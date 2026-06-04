@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Pytest
+.pytest_cache/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# Generated images
+demand_curve_*.png
+
+# Model files (optional)
+*.joblib
+
+# OS files
+.DS_Store
+Thumbs.db
