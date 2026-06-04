@@ -3,6 +3,7 @@ numpy>=1.26.0
 pandas>=2.1.0
 xgboost>=2.0.0
 scikit-learn>=1.3.0
+joblib>=1.3.0
 
 # API and Web Server
 fastapi>=0.100.0
@@ -20,4 +21,3 @@ requests>=2.31.0
 pypdf>=4.0.0
 pdfplumber>=0.10.0
 matplotlib>=3.8.0
-
