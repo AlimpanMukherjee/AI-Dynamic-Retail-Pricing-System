@@ -1,429 +1,429 @@
 product_id,product_name,brand,supplier_id,supplier_location,supplier_price,freight_cost,warehouse_cost,gst_tax,lead_time_days,supplier_reliability,minimum_order_quantity
-SKU_1000,Coca Cola 200ml Mini,Coca Cola,SUP_564,Mumbai,9.19,8.96,9.58,0.7,6,0.98,100
-SKU_1000,Coca Cola 200ml Mini,Coca Cola,SUP_740,Kolkata,9.68,3.7,8.58,0.7,10,0.9,100
-SKU_1000,Coca Cola 200ml Mini,Coca Cola,SUP_897,Hyderabad,9.52,4.58,9.27,0.7,11,0.83,50
-SKU_1000,Coca Cola 200ml Mini,Coca Cola,SUP_951,Pune,9.19,7.81,3.77,0.7,2,0.81,50
-SKU_1001,Coca Cola 200ml Regular,Coca Cola,SUP_645,Pune,11.92,17.65,2.13,1.0,12,0.86,100
-SKU_1001,Coca Cola 200ml Regular,Coca Cola,SUP_533,Delhi,11.12,15.96,9.36,1.0,5,0.92,500
-SKU_1001,Coca Cola 200ml Regular,Coca Cola,SUP_548,Hyderabad,12.19,12.4,5.06,1.0,5,0.8,200
-SKU_1001,Coca Cola 200ml Regular,Coca Cola,SUP_702,Delhi,10.76,10.86,1.06,1.0,12,0.76,50
-SKU_1002,Coca Cola 200ml Value,Coca Cola,SUP_785,Bengaluru,16.21,5.81,2.93,1.2,4,0.92,500
-SKU_1002,Coca Cola 200ml Value,Coca Cola,SUP_516,Delhi,16.58,9.57,1.85,1.2,12,0.85,500
-SKU_1002,Coca Cola 200ml Value,Coca Cola,SUP_155,Chennai,16.95,15.82,6.88,1.2,12,0.77,500
-SKU_1002,Coca Cola 200ml Value,Coca Cola,SUP_211,Delhi,17.65,14.81,2.72,1.2,10,0.86,500
-SKU_1003,Coca Cola 200ml Family,Coca Cola,SUP_553,Pune,17.13,16.77,8.75,1.5,10,0.77,50
-SKU_1003,Coca Cola 200ml Family,Coca Cola,SUP_969,Delhi,18.76,16.82,2.5,1.5,9,0.87,500
-SKU_1003,Coca Cola 200ml Family,Coca Cola,SUP_102,Bengaluru,18.61,4.63,3.39,1.5,9,0.82,500
-SKU_1003,Coca Cola 200ml Family,Coca Cola,SUP_159,Hyderabad,16.91,6.75,7.62,1.5,2,0.93,50
-SKU_1004,Coca Cola 750ml Mini,Coca Cola,SUP_261,Mumbai,15.88,15.64,9.65,1.4,3,0.95,50
-SKU_1004,Coca Cola 750ml Mini,Coca Cola,SUP_340,Bengaluru,16.07,12.8,2.08,1.4,11,0.81,50
-SKU_1004,Coca Cola 750ml Mini,Coca Cola,SUP_697,Hyderabad,16.12,8.71,5.71,1.4,6,0.8,200
-SKU_1004,Coca Cola 750ml Mini,Coca Cola,SUP_787,Chennai,15.34,8.33,3.7,1.4,7,0.97,50
-SKU_1005,Coca Cola 750ml Regular,Coca Cola,SUP_175,Hyderabad,23.82,17.94,2.92,2.0,6,0.78,200
-SKU_1005,Coca Cola 750ml Regular,Coca Cola,SUP_478,Kolkata,23.49,16.07,2.42,2.0,10,0.92,50
-SKU_1005,Coca Cola 750ml Regular,Coca Cola,SUP_779,Mumbai,22.88,10.87,9.45,2.0,4,0.81,50
-SKU_1005,Coca Cola 750ml Regular,Coca Cola,SUP_388,Hyderabad,23.09,4.49,2.9,2.0,7,0.8,200
-SKU_1005,Coca Cola 750ml Regular,Coca Cola,SUP_966,Mumbai,22.41,6.02,1.83,2.0,8,0.95,50
-SKU_1006,Coca Cola 750ml Value,Coca Cola,SUP_859,Bengaluru,27.3,6.19,5.97,2.4,8,0.88,50
-SKU_1006,Coca Cola 750ml Value,Coca Cola,SUP_252,Hyderabad,25.37,16.13,1.32,2.4,7,0.89,100
-SKU_1006,Coca Cola 750ml Value,Coca Cola,SUP_473,Pune,26.58,2.67,9.75,2.4,2,0.97,100
-SKU_1007,Coca Cola 750ml Family,Coca Cola,SUP_995,Bengaluru,38.49,14.48,9.76,3.0,4,0.97,100
-SKU_1007,Coca Cola 750ml Family,Coca Cola,SUP_930,Delhi,42.45,17.62,8.93,3.0,2,0.79,200
-SKU_1007,Coca Cola 750ml Family,Coca Cola,SUP_785,Pune,42.02,8.59,7.62,3.0,5,0.81,50
-SKU_1007,Coca Cola 750ml Family,Coca Cola,SUP_581,Delhi,39.95,2.62,2.8,3.0,9,0.83,100
-SKU_1007,Coca Cola 750ml Family,Coca Cola,SUP_508,Kolkata,39.12,12.56,3.51,3.0,3,0.98,200
-SKU_1008,Coca Cola 1L Mini,Coca Cola,SUP_649,Kolkata,20.53,17.7,9.45,1.68,3,0.96,200
-SKU_1008,Coca Cola 1L Mini,Coca Cola,SUP_371,Mumbai,19.94,17.4,1.98,1.68,8,0.83,200
-SKU_1008,Coca Cola 1L Mini,Coca Cola,SUP_218,Bengaluru,20.62,17.75,9.1,1.68,5,0.81,500
-SKU_1008,Coca Cola 1L Mini,Coca Cola,SUP_651,Chennai,19.47,16.81,7.47,1.68,12,0.8,500
-SKU_1008,Coca Cola 1L Mini,Coca Cola,SUP_438,Hyderabad,19.65,12.63,3.83,1.68,3,0.92,200
-SKU_1009,Coca Cola 1L Regular,Coca Cola,SUP_402,Hyderabad,30.63,8.44,2.15,2.4,8,0.91,500
-SKU_1009,Coca Cola 1L Regular,Coca Cola,SUP_730,Hyderabad,31.7,16.44,3.71,2.4,10,0.95,200
-SKU_1009,Coca Cola 1L Regular,Coca Cola,SUP_693,Hyderabad,30.15,8.88,6.89,2.4,9,0.86,100
-SKU_1009,Coca Cola 1L Regular,Coca Cola,SUP_915,Chennai,31.04,14.7,2.53,2.4,3,0.82,200
-SKU_1009,Coca Cola 1L Regular,Coca Cola,SUP_340,Chennai,29.38,17.23,3.79,2.4,5,0.79,50
-SKU_1010,Coca Cola 1L Value,Coca Cola,SUP_566,Bengaluru,35.08,14.3,8.98,2.88,11,0.8,500
-SKU_1010,Coca Cola 1L Value,Coca Cola,SUP_771,Chennai,34.56,5.9,1.05,2.88,3,0.94,100
-SKU_1010,Coca Cola 1L Value,Coca Cola,SUP_630,Bengaluru,33.15,17.33,1.45,2.88,5,0.97,50
-SKU_1010,Coca Cola 1L Value,Coca Cola,SUP_783,Hyderabad,34.4,14.82,9.89,2.88,11,0.83,500
-SKU_1011,Coca Cola 1L Family,Coca Cola,SUP_661,Bengaluru,50.21,8.83,9.07,3.6,9,0.86,100
-SKU_1011,Coca Cola 1L Family,Coca Cola,SUP_896,Hyderabad,49.89,6.44,5.36,3.6,5,0.82,50
-SKU_1011,Coca Cola 1L Family,Coca Cola,SUP_443,Kolkata,49.11,5.75,9.04,3.6,3,0.78,100
-SKU_1011,Coca Cola 1L Family,Coca Cola,SUP_319,Mumbai,47.09,4.44,4.73,3.6,7,0.88,500
-SKU_1011,Coca Cola 1L Family,Coca Cola,SUP_498,Pune,45.13,15.33,6.26,3.6,2,0.96,500
-SKU_1012,Coca Cola 2L Mini,Coca Cola,SUP_955,Bengaluru,41.5,8.24,5.84,3.33,10,0.94,100
-SKU_1012,Coca Cola 2L Mini,Coca Cola,SUP_597,Mumbai,42.53,6.37,4.5,3.33,12,0.91,500
-SKU_1012,Coca Cola 2L Mini,Coca Cola,SUP_230,Hyderabad,43.82,15.45,5.81,3.33,8,0.89,50
-SKU_1012,Coca Cola 2L Mini,Coca Cola,SUP_987,Bengaluru,40.33,8.86,2.64,3.33,6,0.84,100
-SKU_1013,Coca Cola 2L Regular,Coca Cola,SUP_870,Pune,62.51,8.07,4.79,4.75,3,0.86,50
-SKU_1013,Coca Cola 2L Regular,Coca Cola,SUP_765,Mumbai,64.36,7.6,8.03,4.75,12,0.76,50
-SKU_1013,Coca Cola 2L Regular,Coca Cola,SUP_120,Hyderabad,63.97,5.19,2.37,4.75,4,0.86,50
-SKU_1013,Coca Cola 2L Regular,Coca Cola,SUP_816,Kolkata,60.98,5.49,7.9,4.75,4,0.9,50
-SKU_1014,Coca Cola 2L Value,Coca Cola,SUP_126,Kolkata,83.64,3.73,6.18,5.7,8,0.85,100
-SKU_1014,Coca Cola 2L Value,Coca Cola,SUP_742,Delhi,74.65,13.05,1.92,5.7,6,0.95,50
-SKU_1014,Coca Cola 2L Value,Coca Cola,SUP_142,Kolkata,81.94,11.05,5.79,5.7,12,0.84,200
-SKU_1015,Coca Cola 2L Family,Coca Cola,SUP_470,Chennai,83.16,3.69,9.02,7.12,9,0.92,500
-SKU_1015,Coca Cola 2L Family,Coca Cola,SUP_766,Kolkata,76.55,10.35,6.54,7.12,10,0.94,500
-SKU_1015,Coca Cola 2L Family,Coca Cola,SUP_374,Kolkata,79.2,13.7,8.67,7.12,3,0.82,500
-SKU_1015,Coca Cola 2L Family,Coca Cola,SUP_724,Chennai,77.24,9.44,4.41,7.12,2,0.87,200
-SKU_1016,Coke Zero 300ml Mini,Coca Cola,SUP_386,Hyderabad,16.2,6.13,7.31,1.4,6,0.88,100
-SKU_1016,Coke Zero 300ml Mini,Coca Cola,SUP_600,Hyderabad,15.63,13.52,7.82,1.4,9,0.91,500
-SKU_1016,Coke Zero 300ml Mini,Coca Cola,SUP_401,Delhi,16.4,2.28,4.64,1.4,5,0.82,200
-SKU_1017,Coke Zero 300ml Regular,Coca Cola,SUP_663,Kolkata,25.08,17.95,4.17,2.0,9,0.82,200
-SKU_1017,Coke Zero 300ml Regular,Coca Cola,SUP_423,Mumbai,24.71,13.54,7.69,2.0,4,0.8,500
-SKU_1017,Coke Zero 300ml Regular,Coca Cola,SUP_878,Hyderabad,24.86,11.43,6.37,2.0,3,0.95,200
-SKU_1017,Coke Zero 300ml Regular,Coca Cola,SUP_114,Chennai,24.7,4.87,5.81,2.0,6,0.76,50
-SKU_1017,Coke Zero 300ml Regular,Coca Cola,SUP_229,Chennai,25.77,13.16,8.82,2.0,9,0.77,50
-SKU_1018,Coke Zero 300ml Value,Coca Cola,SUP_152,Kolkata,31.46,7.45,9.47,2.4,9,0.78,50
-SKU_1018,Coke Zero 300ml Value,Coca Cola,SUP_744,Chennai,31.15,3.19,1.48,2.4,4,0.94,200
-SKU_1018,Coke Zero 300ml Value,Coca Cola,SUP_671,Pune,29.87,5.97,4.75,2.4,11,0.94,100
-SKU_1018,Coke Zero 300ml Value,Coca Cola,SUP_553,Kolkata,32.66,8.09,8.74,2.4,8,0.82,50
-SKU_1019,Coke Zero 300ml Family,Coca Cola,SUP_740,Delhi,37.76,14.2,3.38,3.0,3,0.79,100
-SKU_1019,Coke Zero 300ml Family,Coca Cola,SUP_518,Bengaluru,40.07,4.5,7.2,3.0,9,0.82,100
-SKU_1019,Coke Zero 300ml Family,Coca Cola,SUP_980,Bengaluru,38.73,6.52,1.64,3.0,5,0.97,100
-SKU_1019,Coke Zero 300ml Family,Coca Cola,SUP_763,Delhi,39.42,10.71,9.18,3.0,4,0.77,100
-SKU_1019,Coke Zero 300ml Family,Coca Cola,SUP_944,Hyderabad,41.3,11.52,9.29,3.0,9,0.78,200
-SKU_1020,Coke Zero Can 330ml Mini,Coca Cola,SUP_182,Hyderabad,21.39,9.9,1.36,1.58,8,0.93,200
-SKU_1020,Coke Zero Can 330ml Mini,Coca Cola,SUP_790,Pune,20.09,5.66,8.74,1.58,11,0.98,200
-SKU_1020,Coke Zero Can 330ml Mini,Coca Cola,SUP_279,Bengaluru,21.6,14.21,5.67,1.58,9,0.97,100
-SKU_1020,Coke Zero Can 330ml Mini,Coca Cola,SUP_933,Bengaluru,22.75,8.97,9.72,1.58,9,0.83,200
-SKU_1021,Coke Zero Can 330ml Regular,Coca Cola,SUP_810,Bengaluru,28.88,7.28,3.59,2.25,8,0.95,50
-SKU_1021,Coke Zero Can 330ml Regular,Coca Cola,SUP_431,Mumbai,27.45,7.03,9.73,2.25,8,0.96,50
-SKU_1021,Coke Zero Can 330ml Regular,Coca Cola,SUP_523,Mumbai,28.17,10.68,2.69,2.25,7,0.9,500
-SKU_1022,Coke Zero Can 330ml Value,Coca Cola,SUP_394,Bengaluru,34.61,10.79,8.93,2.7,9,0.78,100
-SKU_1022,Coke Zero Can 330ml Value,Coca Cola,SUP_114,Hyderabad,36.94,6.97,4.67,2.7,5,0.99,50
-SKU_1022,Coke Zero Can 330ml Value,Coca Cola,SUP_952,Delhi,35.8,3.88,5.49,2.7,6,0.87,200
-SKU_1023,Coke Zero Can 330ml Family,Coca Cola,SUP_664,Delhi,45.14,5.9,4.45,3.38,11,0.87,100
-SKU_1023,Coke Zero Can 330ml Family,Coca Cola,SUP_908,Pune,44.5,6.42,4.73,3.38,10,0.81,50
-SKU_1023,Coke Zero Can 330ml Family,Coca Cola,SUP_701,Hyderabad,41.34,6.78,9.99,3.38,9,0.96,500
-SKU_1023,Coke Zero Can 330ml Family,Coca Cola,SUP_665,Pune,42.73,7.52,5.89,3.38,9,0.97,100
-SKU_1024,Pepsi 250ml Mini,Pepsi,SUP_894,Bengaluru,10.28,5.74,1.39,0.7,9,0.92,500
-SKU_1024,Pepsi 250ml Mini,Pepsi,SUP_940,Chennai,10.04,12.62,9.83,0.7,9,0.98,100
-SKU_1024,Pepsi 250ml Mini,Pepsi,SUP_990,Mumbai,10.19,11.44,8.87,0.7,9,0.77,500
-SKU_1025,Pepsi 250ml Regular,Pepsi,SUP_258,Mumbai,11.09,12.48,5.23,1.0,6,0.83,500
-SKU_1025,Pepsi 250ml Regular,Pepsi,SUP_972,Chennai,11.43,15.63,8.73,1.0,8,0.98,500
-SKU_1025,Pepsi 250ml Regular,Pepsi,SUP_170,Delhi,11.75,2.57,6.68,1.0,6,0.99,50
-SKU_1026,Pepsi 250ml Value,Pepsi,SUP_202,Bengaluru,15.7,13.26,2.5,1.2,6,0.97,50
-SKU_1026,Pepsi 250ml Value,Pepsi,SUP_467,Kolkata,14.85,2.9,4.88,1.2,5,0.88,100
-SKU_1026,Pepsi 250ml Value,Pepsi,SUP_991,Bengaluru,14.55,3.26,6.58,1.2,5,0.87,100
-SKU_1027,Pepsi 250ml Family,Pepsi,SUP_109,Pune,17.38,6.09,5.19,1.5,6,0.91,100
-SKU_1027,Pepsi 250ml Family,Pepsi,SUP_701,Kolkata,16.97,17.12,6.75,1.5,8,0.92,500
-SKU_1027,Pepsi 250ml Family,Pepsi,SUP_493,Pune,18.74,5.19,5.35,1.5,5,0.84,200
-SKU_1027,Pepsi 250ml Family,Pepsi,SUP_402,Mumbai,18.12,17.88,9.8,1.5,12,0.84,50
-SKU_1027,Pepsi 250ml Family,Pepsi,SUP_862,Mumbai,18.1,12.97,9.2,1.5,9,0.95,200
-SKU_1028,Pepsi 750ml Mini,Pepsi,SUP_751,Delhi,19.64,7.64,6.59,1.4,12,0.93,100
-SKU_1028,Pepsi 750ml Mini,Pepsi,SUP_761,Mumbai,19.7,16.45,3.78,1.4,9,0.76,200
-SKU_1028,Pepsi 750ml Mini,Pepsi,SUP_402,Kolkata,19.96,3.44,7.73,1.4,4,0.8,200
-SKU_1029,Pepsi 750ml Regular,Pepsi,SUP_944,Bengaluru,27.09,6.11,9.71,2.0,6,0.93,200
-SKU_1029,Pepsi 750ml Regular,Pepsi,SUP_177,Delhi,27.01,9.49,7.79,2.0,5,0.96,500
-SKU_1029,Pepsi 750ml Regular,Pepsi,SUP_474,Mumbai,27.55,14.87,8.12,2.0,2,0.81,50
-SKU_1029,Pepsi 750ml Regular,Pepsi,SUP_788,Kolkata,25.84,12.77,6.26,2.0,12,0.98,50
-SKU_1030,Pepsi 750ml Value,Pepsi,SUP_674,Kolkata,30.42,16.15,9.24,2.4,5,0.91,500
-SKU_1030,Pepsi 750ml Value,Pepsi,SUP_518,Mumbai,34.08,6.84,2.26,2.4,2,0.82,500
-SKU_1030,Pepsi 750ml Value,Pepsi,SUP_650,Delhi,30.79,5.76,4.5,2.4,7,0.91,500
-SKU_1030,Pepsi 750ml Value,Pepsi,SUP_524,Chennai,32.75,13.63,1.89,2.4,9,0.9,200
-SKU_1031,Pepsi 750ml Family,Pepsi,SUP_341,Pune,32.61,9.12,4.26,3.0,12,0.84,200
-SKU_1031,Pepsi 750ml Family,Pepsi,SUP_225,Pune,31.93,6.41,8.42,3.0,3,0.91,50
-SKU_1031,Pepsi 750ml Family,Pepsi,SUP_228,Pune,31.89,7.34,6.08,3.0,3,0.95,100
-SKU_1031,Pepsi 750ml Family,Pepsi,SUP_338,Kolkata,34.21,15.01,7.97,3.0,11,0.75,100
-SKU_1032,Pepsi Black Can 330ml Mini,Pepsi,SUP_776,Pune,22.22,4.79,1.23,1.58,2,0.84,100
-SKU_1032,Pepsi Black Can 330ml Mini,Pepsi,SUP_371,Mumbai,23.21,2.25,2.14,1.58,8,0.88,50
-SKU_1032,Pepsi Black Can 330ml Mini,Pepsi,SUP_625,Hyderabad,22.88,14.45,1.98,1.58,10,0.8,50
-SKU_1032,Pepsi Black Can 330ml Mini,Pepsi,SUP_774,Hyderabad,23.62,16.54,3.71,1.58,12,0.98,50
-SKU_1032,Pepsi Black Can 330ml Mini,Pepsi,SUP_536,Chennai,24.42,15.56,1.97,1.58,9,0.77,50
-SKU_1033,Pepsi Black Can 330ml Regular,Pepsi,SUP_748,Hyderabad,26.09,6.4,5.94,2.25,7,0.84,200
-SKU_1033,Pepsi Black Can 330ml Regular,Pepsi,SUP_201,Pune,27.46,11.69,7.32,2.25,12,0.91,100
-SKU_1033,Pepsi Black Can 330ml Regular,Pepsi,SUP_523,Kolkata,27.37,16.21,8.45,2.25,8,0.85,50
-SKU_1034,Pepsi Black Can 330ml Value,Pepsi,SUP_256,Chennai,33.76,7.99,9.31,2.7,3,0.77,50
-SKU_1034,Pepsi Black Can 330ml Value,Pepsi,SUP_856,Kolkata,31.34,3.55,8.31,2.7,10,0.76,200
-SKU_1034,Pepsi Black Can 330ml Value,Pepsi,SUP_994,Chennai,33.78,8.57,9.47,2.7,8,0.96,50
-SKU_1034,Pepsi Black Can 330ml Value,Pepsi,SUP_460,Mumbai,35.04,11.61,6.2,2.7,5,0.79,500
-SKU_1035,Pepsi Black Can 330ml Family,Pepsi,SUP_217,Pune,39.52,10.9,3.51,3.38,5,0.94,50
-SKU_1035,Pepsi Black Can 330ml Family,Pepsi,SUP_810,Kolkata,40.86,12.53,1.26,3.38,6,0.92,200
-SKU_1035,Pepsi Black Can 330ml Family,Pepsi,SUP_285,Pune,42.47,7.62,2.29,3.38,12,0.85,100
-SKU_1036,Lay's Classic Salted 52g Mini,Lay's,SUP_485,Bengaluru,9.1,10.49,5.08,0.7,4,0.84,200
-SKU_1036,Lay's Classic Salted 52g Mini,Lay's,SUP_186,Mumbai,9.95,11.08,2.4,0.7,11,0.76,50
-SKU_1036,Lay's Classic Salted 52g Mini,Lay's,SUP_597,Hyderabad,9.33,12.59,4.98,0.7,6,0.8,50
-SKU_1037,Lay's Classic Salted 52g Regular,Lay's,SUP_598,Hyderabad,12.01,12.86,7.0,1.0,2,0.8,50
-SKU_1037,Lay's Classic Salted 52g Regular,Lay's,SUP_316,Pune,11.58,6.82,2.24,1.0,6,0.82,50
-SKU_1037,Lay's Classic Salted 52g Regular,Lay's,SUP_279,Delhi,11.58,13.95,4.42,1.0,5,0.87,200
-SKU_1038,Lay's Classic Salted 52g Value,Lay's,SUP_179,Pune,12.89,2.3,3.82,1.2,8,0.89,500
-SKU_1038,Lay's Classic Salted 52g Value,Lay's,SUP_432,Delhi,13.33,8.48,8.21,1.2,11,0.86,200
-SKU_1038,Lay's Classic Salted 52g Value,Lay's,SUP_349,Bengaluru,12.97,15.51,6.3,1.2,10,0.77,200
-SKU_1038,Lay's Classic Salted 52g Value,Lay's,SUP_897,Delhi,14.13,5.55,1.69,1.2,12,0.78,100
-SKU_1038,Lay's Classic Salted 52g Value,Lay's,SUP_844,Pune,14.41,7.59,6.81,1.2,4,0.81,100
-SKU_1039,Lay's Classic Salted 52g Family,Lay's,SUP_771,Mumbai,18.31,14.16,2.59,1.5,12,0.87,500
-SKU_1039,Lay's Classic Salted 52g Family,Lay's,SUP_758,Chennai,18.49,16.11,9.88,1.5,7,0.96,200
-SKU_1039,Lay's Classic Salted 52g Family,Lay's,SUP_552,Chennai,17.26,3.09,3.73,1.5,6,0.89,200
-SKU_1040,Lay's Magic Masala 52g Mini,Lay's,SUP_477,Pune,9.0,2.6,3.58,0.7,12,0.96,50
-SKU_1040,Lay's Magic Masala 52g Mini,Lay's,SUP_573,Hyderabad,9.17,10.11,5.99,0.7,2,0.86,100
-SKU_1040,Lay's Magic Masala 52g Mini,Lay's,SUP_254,Mumbai,8.83,9.61,5.05,0.7,7,0.99,50
-SKU_1040,Lay's Magic Masala 52g Mini,Lay's,SUP_353,Chennai,9.05,4.76,4.94,0.7,9,0.88,100
-SKU_1041,Lay's Magic Masala 52g Regular,Lay's,SUP_795,Hyderabad,12.24,14.39,1.47,1.0,12,0.91,50
-SKU_1041,Lay's Magic Masala 52g Regular,Lay's,SUP_495,Kolkata,12.15,10.93,3.27,1.0,12,0.98,100
-SKU_1041,Lay's Magic Masala 52g Regular,Lay's,SUP_244,Kolkata,12.16,11.32,3.79,1.0,12,0.92,500
-SKU_1041,Lay's Magic Masala 52g Regular,Lay's,SUP_186,Kolkata,11.83,13.34,6.03,1.0,12,0.94,100
-SKU_1042,Lay's Magic Masala 52g Value,Lay's,SUP_195,Chennai,17.2,16.6,7.03,1.2,10,0.84,200
-SKU_1042,Lay's Magic Masala 52g Value,Lay's,SUP_449,Pune,15.78,17.22,5.38,1.2,5,0.99,100
-SKU_1042,Lay's Magic Masala 52g Value,Lay's,SUP_203,Hyderabad,15.3,15.51,7.94,1.2,10,0.76,200
-SKU_1042,Lay's Magic Masala 52g Value,Lay's,SUP_711,Bengaluru,16.95,11.89,2.39,1.2,4,0.95,100
-SKU_1042,Lay's Magic Masala 52g Value,Lay's,SUP_473,Chennai,16.63,2.7,7.48,1.2,9,0.9,500
-SKU_1043,Lay's Magic Masala 52g Family,Lay's,SUP_580,Pune,17.52,14.94,2.75,1.5,12,0.98,500
-SKU_1043,Lay's Magic Masala 52g Family,Lay's,SUP_491,Hyderabad,17.87,6.51,5.75,1.5,4,0.95,100
-SKU_1043,Lay's Magic Masala 52g Family,Lay's,SUP_592,Pune,18.82,2.83,4.34,1.5,3,0.92,50
-SKU_1044,Lay's Cream & Onion 90g Mini,Lay's,SUP_250,Pune,18.58,16.48,4.94,1.58,5,0.95,200
-SKU_1044,Lay's Cream & Onion 90g Mini,Lay's,SUP_505,Hyderabad,20.19,8.64,4.37,1.58,8,0.99,200
-SKU_1044,Lay's Cream & Onion 90g Mini,Lay's,SUP_201,Pune,18.46,7.1,7.43,1.58,7,0.94,100
-SKU_1045,Lay's Cream & Onion 90g Regular,Lay's,SUP_822,Bengaluru,26.06,4.22,5.04,2.25,2,0.97,50
-SKU_1045,Lay's Cream & Onion 90g Regular,Lay's,SUP_661,Chennai,24.62,15.36,6.48,2.25,8,0.78,200
-SKU_1045,Lay's Cream & Onion 90g Regular,Lay's,SUP_344,Bengaluru,24.56,3.95,6.75,2.25,11,0.86,50
-SKU_1045,Lay's Cream & Onion 90g Regular,Lay's,SUP_648,Mumbai,26.51,10.0,6.69,2.25,11,0.81,100
-SKU_1046,Lay's Cream & Onion 90g Value,Lay's,SUP_526,Delhi,33.34,5.85,6.98,2.7,3,0.88,200
-SKU_1046,Lay's Cream & Onion 90g Value,Lay's,SUP_619,Pune,31.04,10.42,9.89,2.7,10,0.75,500
-SKU_1046,Lay's Cream & Onion 90g Value,Lay's,SUP_482,Kolkata,30.94,8.19,7.73,2.7,7,0.94,200
-SKU_1047,Lay's Cream & Onion 90g Family,Lay's,SUP_852,Pune,41.16,14.34,3.99,3.38,2,0.83,200
-SKU_1047,Lay's Cream & Onion 90g Family,Lay's,SUP_897,Chennai,42.12,4.8,5.18,3.38,9,0.9,100
-SKU_1047,Lay's Cream & Onion 90g Family,Lay's,SUP_568,Mumbai,38.22,14.42,3.64,3.38,2,0.94,50
-SKU_1047,Lay's Cream & Onion 90g Family,Lay's,SUP_507,Pune,39.53,6.96,5.89,3.38,6,0.76,100
-SKU_1047,Lay's Cream & Onion 90g Family,Lay's,SUP_148,Pune,39.38,15.79,6.9,3.38,6,0.78,200
-SKU_1048,Kurkure Masala Munch 90g Mini,Kurkure,SUP_495,Kolkata,9.15,16.31,9.76,0.7,9,0.92,200
-SKU_1048,Kurkure Masala Munch 90g Mini,Kurkure,SUP_920,Mumbai,9.35,10.31,7.54,0.7,3,0.85,100
-SKU_1048,Kurkure Masala Munch 90g Mini,Kurkure,SUP_181,Kolkata,8.92,7.14,6.95,0.7,6,0.86,500
-SKU_1048,Kurkure Masala Munch 90g Mini,Kurkure,SUP_557,Mumbai,8.49,9.1,7.54,0.7,7,0.9,500
-SKU_1049,Kurkure Masala Munch 90g Regular,Kurkure,SUP_472,Hyderabad,11.45,12.2,8.21,1.0,12,0.79,50
-SKU_1049,Kurkure Masala Munch 90g Regular,Kurkure,SUP_900,Bengaluru,11.56,11.72,1.31,1.0,3,0.81,200
-SKU_1049,Kurkure Masala Munch 90g Regular,Kurkure,SUP_133,Hyderabad,11.9,17.19,2.38,1.0,9,0.98,200
-SKU_1050,Kurkure Masala Munch 90g Value,Kurkure,SUP_507,Kolkata,15.38,10.47,6.85,1.2,5,0.98,50
-SKU_1050,Kurkure Masala Munch 90g Value,Kurkure,SUP_496,Hyderabad,15.7,9.98,2.06,1.2,6,0.92,100
-SKU_1050,Kurkure Masala Munch 90g Value,Kurkure,SUP_602,Delhi,16.21,6.57,2.1,1.2,3,0.86,500
-SKU_1051,Kurkure Masala Munch 90g Family,Kurkure,SUP_783,Kolkata,23.22,17.79,7.39,1.5,10,0.88,200
-SKU_1051,Kurkure Masala Munch 90g Family,Kurkure,SUP_817,Chennai,22.9,13.39,2.57,1.5,7,0.87,50
-SKU_1051,Kurkure Masala Munch 90g Family,Kurkure,SUP_342,Pune,23.27,14.67,5.45,1.5,7,0.88,200
-SKU_1051,Kurkure Masala Munch 90g Family,Kurkure,SUP_232,Hyderabad,21.82,17.73,8.96,1.5,3,0.82,500
-SKU_1051,Kurkure Masala Munch 90g Family,Kurkure,SUP_943,Hyderabad,21.98,14.31,1.66,1.5,7,0.9,500
-SKU_1052,Kurkure Green Chutney 90g Mini,Kurkure,SUP_898,Hyderabad,8.76,16.05,6.76,0.7,4,0.93,100
-SKU_1052,Kurkure Green Chutney 90g Mini,Kurkure,SUP_156,Pune,8.86,16.57,2.12,0.7,4,0.82,100
-SKU_1052,Kurkure Green Chutney 90g Mini,Kurkure,SUP_454,Hyderabad,8.74,13.35,9.05,0.7,3,0.81,200
-SKU_1052,Kurkure Green Chutney 90g Mini,Kurkure,SUP_646,Mumbai,8.51,6.85,5.52,0.7,4,0.89,100
-SKU_1052,Kurkure Green Chutney 90g Mini,Kurkure,SUP_719,Kolkata,8.56,11.99,8.58,0.7,11,0.76,50
-SKU_1053,Kurkure Green Chutney 90g Regular,Kurkure,SUP_315,Pune,11.84,6.23,6.15,1.0,11,0.9,500
-SKU_1053,Kurkure Green Chutney 90g Regular,Kurkure,SUP_757,Kolkata,12.02,10.73,5.35,1.0,12,0.85,500
-SKU_1053,Kurkure Green Chutney 90g Regular,Kurkure,SUP_550,Bengaluru,10.82,2.96,5.36,1.0,5,0.83,100
-SKU_1053,Kurkure Green Chutney 90g Regular,Kurkure,SUP_851,Pune,11.17,13.49,4.11,1.0,8,0.78,200
-SKU_1053,Kurkure Green Chutney 90g Regular,Kurkure,SUP_347,Bengaluru,11.47,3.7,2.1,1.0,9,0.81,50
-SKU_1054,Kurkure Green Chutney 90g Value,Kurkure,SUP_986,Delhi,14.24,8.69,8.32,1.2,11,0.92,100
-SKU_1054,Kurkure Green Chutney 90g Value,Kurkure,SUP_627,Bengaluru,14.07,9.97,5.49,1.2,6,0.87,50
-SKU_1054,Kurkure Green Chutney 90g Value,Kurkure,SUP_346,Delhi,14.38,10.09,6.25,1.2,2,0.76,500
-SKU_1054,Kurkure Green Chutney 90g Value,Kurkure,SUP_788,Bengaluru,13.78,15.49,3.57,1.2,2,0.95,500
-SKU_1055,Kurkure Green Chutney 90g Family,Kurkure,SUP_474,Mumbai,17.95,14.22,4.61,1.5,11,0.88,200
-SKU_1055,Kurkure Green Chutney 90g Family,Kurkure,SUP_616,Bengaluru,17.56,3.18,7.88,1.5,6,0.95,50
-SKU_1055,Kurkure Green Chutney 90g Family,Kurkure,SUP_482,Pune,16.61,3.55,9.88,1.5,10,0.98,100
-SKU_1055,Kurkure Green Chutney 90g Family,Kurkure,SUP_612,Mumbai,16.77,10.15,1.41,1.5,4,0.92,500
-SKU_1056,Maggi 70g Mini,Nestle,SUP_435,Hyderabad,6.44,10.25,3.87,0.49,8,0.99,200
-SKU_1056,Maggi 70g Mini,Nestle,SUP_621,Hyderabad,6.43,10.12,5.41,0.49,11,0.82,50
-SKU_1056,Maggi 70g Mini,Nestle,SUP_526,Hyderabad,6.24,12.78,3.77,0.49,12,0.76,500
-SKU_1057,Maggi 70g Regular,Nestle,SUP_691,Delhi,8.76,14.42,7.49,0.7,11,0.87,500
-SKU_1057,Maggi 70g Regular,Nestle,SUP_132,Hyderabad,8.08,12.89,9.53,0.7,3,0.8,500
-SKU_1057,Maggi 70g Regular,Nestle,SUP_807,Delhi,8.26,4.42,4.69,0.7,11,0.97,50
-SKU_1057,Maggi 70g Regular,Nestle,SUP_674,Kolkata,8.68,10.3,9.98,0.7,9,0.88,200
-SKU_1057,Maggi 70g Regular,Nestle,SUP_645,Kolkata,8.95,9.35,5.92,0.7,12,0.94,200
-SKU_1058,Maggi 70g Value,Nestle,SUP_405,Delhi,11.8,6.46,9.47,0.84,6,0.94,100
-SKU_1058,Maggi 70g Value,Nestle,SUP_591,Kolkata,11.42,9.82,6.04,0.84,6,0.82,500
-SKU_1058,Maggi 70g Value,Nestle,SUP_453,Pune,11.71,8.31,8.24,0.84,6,0.76,50
-SKU_1059,Maggi 70g Family,Nestle,SUP_319,Delhi,13.24,13.96,8.45,1.05,6,0.97,200
-SKU_1059,Maggi 70g Family,Nestle,SUP_700,Delhi,12.38,11.85,3.18,1.05,12,0.97,100
-SKU_1059,Maggi 70g Family,Nestle,SUP_523,Kolkata,13.21,2.84,7.46,1.05,3,0.91,100
-SKU_1059,Maggi 70g Family,Nestle,SUP_261,Bengaluru,12.16,10.81,6.88,1.05,9,0.86,100
-SKU_1060,Maggi Family Pack 280g Mini,Nestle,SUP_887,Mumbai,28.26,12.33,6.87,2.1,5,0.88,50
-SKU_1060,Maggi Family Pack 280g Mini,Nestle,SUP_957,Delhi,30.46,4.8,9.41,2.1,2,0.99,500
-SKU_1060,Maggi Family Pack 280g Mini,Nestle,SUP_866,Pune,29.99,4.98,9.33,2.1,2,0.75,50
-SKU_1060,Maggi Family Pack 280g Mini,Nestle,SUP_565,Chennai,30.51,7.36,5.89,2.1,9,0.96,100
-SKU_1061,Maggi Family Pack 280g Regular,Nestle,SUP_438,Delhi,41.08,14.94,7.58,3.0,12,0.81,100
-SKU_1061,Maggi Family Pack 280g Regular,Nestle,SUP_402,Hyderabad,39.67,7.39,7.07,3.0,5,0.79,500
-SKU_1061,Maggi Family Pack 280g Regular,Nestle,SUP_188,Bengaluru,44.08,10.24,7.02,3.0,4,0.99,500
-SKU_1061,Maggi Family Pack 280g Regular,Nestle,SUP_367,Bengaluru,41.35,5.97,3.12,3.0,6,0.98,200
-SKU_1062,Maggi Family Pack 280g Value,Nestle,SUP_809,Delhi,44.46,12.46,1.56,3.6,3,0.86,100
-SKU_1062,Maggi Family Pack 280g Value,Nestle,SUP_820,Pune,46.86,10.04,3.8,3.6,3,0.9,200
-SKU_1062,Maggi Family Pack 280g Value,Nestle,SUP_236,Bengaluru,46.63,5.53,2.38,3.6,11,0.84,500
-SKU_1062,Maggi Family Pack 280g Value,Nestle,SUP_945,Delhi,48.99,14.83,7.86,3.6,12,0.93,50
-SKU_1062,Maggi Family Pack 280g Value,Nestle,SUP_470,Mumbai,47.59,10.45,9.26,3.6,3,0.76,100
-SKU_1063,Maggi Family Pack 280g Family,Nestle,SUP_552,Mumbai,56.6,15.67,7.12,4.5,11,0.87,500
-SKU_1063,Maggi Family Pack 280g Family,Nestle,SUP_625,Bengaluru,61.47,9.25,5.11,4.5,2,0.88,200
-SKU_1063,Maggi Family Pack 280g Family,Nestle,SUP_936,Mumbai,60.83,8.34,7.71,4.5,11,0.77,500
-SKU_1064,Amul Milk 500ml Mini,Amul,SUP_170,Bengaluru,13.04,2.96,1.29,1.05,8,0.79,100
-SKU_1064,Amul Milk 500ml Mini,Amul,SUP_761,Bengaluru,13.41,17.65,4.37,1.05,8,0.86,500
-SKU_1064,Amul Milk 500ml Mini,Amul,SUP_777,Pune,12.77,12.92,5.85,1.05,12,0.96,50
-SKU_1065,Amul Milk 500ml Regular,Amul,SUP_328,Pune,17.43,4.04,1.03,1.5,2,0.98,500
-SKU_1065,Amul Milk 500ml Regular,Amul,SUP_644,Bengaluru,18.06,10.71,8.41,1.5,5,0.86,100
-SKU_1065,Amul Milk 500ml Regular,Amul,SUP_842,Pune,17.16,17.0,2.02,1.5,12,0.85,50
-SKU_1065,Amul Milk 500ml Regular,Amul,SUP_708,Mumbai,17.08,3.08,5.02,1.5,12,0.92,50
-SKU_1065,Amul Milk 500ml Regular,Amul,SUP_549,Delhi,17.09,2.71,5.86,1.5,2,0.78,200
-SKU_1066,Amul Milk 500ml Value,Amul,SUP_891,Chennai,21.76,11.24,8.37,1.8,5,0.82,100
-SKU_1066,Amul Milk 500ml Value,Amul,SUP_523,Kolkata,22.89,10.34,3.48,1.8,10,0.98,100
-SKU_1066,Amul Milk 500ml Value,Amul,SUP_607,Mumbai,21.9,8.84,9.75,1.8,12,0.91,200
-SKU_1066,Amul Milk 500ml Value,Amul,SUP_407,Bengaluru,22.09,8.53,2.65,1.8,10,0.86,100
-SKU_1066,Amul Milk 500ml Value,Amul,SUP_925,Bengaluru,21.0,13.32,9.23,1.8,10,0.85,500
-SKU_1067,Amul Milk 500ml Family,Amul,SUP_438,Chennai,29.03,6.08,1.71,2.25,9,0.95,50
-SKU_1067,Amul Milk 500ml Family,Amul,SUP_152,Kolkata,29.58,15.27,4.39,2.25,11,0.89,50
-SKU_1067,Amul Milk 500ml Family,Amul,SUP_841,Chennai,28.27,14.19,6.03,2.25,9,0.8,200
-SKU_1068,Amul Milk 1L Mini,Amul,SUP_859,Mumbai,24.7,5.04,7.72,2.1,9,0.97,100
-SKU_1068,Amul Milk 1L Mini,Amul,SUP_429,Pune,25.3,5.83,3.55,2.1,9,0.88,200
-SKU_1068,Amul Milk 1L Mini,Amul,SUP_609,Bengaluru,25.01,7.75,1.89,2.1,9,0.93,200
-SKU_1069,Amul Milk 1L Regular,Amul,SUP_984,Delhi,41.93,2.73,7.67,3.0,2,0.81,500
-SKU_1069,Amul Milk 1L Regular,Amul,SUP_335,Bengaluru,41.83,5.14,6.13,3.0,5,0.87,200
-SKU_1069,Amul Milk 1L Regular,Amul,SUP_840,Chennai,41.63,15.15,7.66,3.0,9,0.79,200
-SKU_1069,Amul Milk 1L Regular,Amul,SUP_600,Delhi,41.14,13.53,9.25,3.0,10,0.99,50
-SKU_1070,Amul Milk 1L Value,Amul,SUP_882,Mumbai,49.37,12.69,4.71,3.6,12,0.81,100
-SKU_1070,Amul Milk 1L Value,Amul,SUP_482,Mumbai,43.77,10.09,6.56,3.6,12,0.97,500
-SKU_1070,Amul Milk 1L Value,Amul,SUP_644,Hyderabad,47.66,2.25,4.7,3.6,2,0.88,200
-SKU_1071,Amul Milk 1L Family,Amul,SUP_790,Bengaluru,54.94,15.01,8.26,4.5,4,0.78,50
-SKU_1071,Amul Milk 1L Family,Amul,SUP_734,Hyderabad,58.75,5.86,3.27,4.5,7,0.81,500
-SKU_1071,Amul Milk 1L Family,Amul,SUP_570,Hyderabad,55.4,17.35,3.19,4.5,5,0.82,50
-SKU_1071,Amul Milk 1L Family,Amul,SUP_877,Mumbai,59.72,15.73,1.84,4.5,8,0.84,500
-SKU_1072,Amul Butter 100g Mini,Amul,SUP_965,Bengaluru,23.66,3.32,6.8,2.03,7,0.89,50
-SKU_1072,Amul Butter 100g Mini,Amul,SUP_335,Delhi,24.22,16.71,9.11,2.03,11,0.86,50
-SKU_1072,Amul Butter 100g Mini,Amul,SUP_387,Hyderabad,24.31,12.95,6.07,2.03,2,0.79,200
-SKU_1073,Amul Butter 100g Regular,Amul,SUP_829,Pune,32.9,14.04,4.58,2.9,3,0.82,100
-SKU_1073,Amul Butter 100g Regular,Amul,SUP_793,Hyderabad,32.81,15.59,3.99,2.9,4,0.94,50
-SKU_1073,Amul Butter 100g Regular,Amul,SUP_154,Mumbai,32.54,17.59,4.93,2.9,3,0.83,500
-SKU_1074,Amul Butter 100g Value,Amul,SUP_561,Bengaluru,47.45,6.37,3.05,3.48,10,0.98,500
-SKU_1074,Amul Butter 100g Value,Amul,SUP_489,Mumbai,48.46,11.37,7.95,3.48,6,0.94,50
-SKU_1074,Amul Butter 100g Value,Amul,SUP_828,Pune,47.79,4.47,6.71,3.48,8,0.83,50
-SKU_1074,Amul Butter 100g Value,Amul,SUP_555,Kolkata,47.85,17.09,7.85,3.48,3,0.78,100
-SKU_1075,Amul Butter 100g Family,Amul,SUP_126,Mumbai,55.42,8.53,4.19,4.35,3,0.89,200
-SKU_1075,Amul Butter 100g Family,Amul,SUP_523,Bengaluru,57.6,2.2,8.01,4.35,10,0.97,100
-SKU_1075,Amul Butter 100g Family,Amul,SUP_489,Delhi,55.54,4.71,2.25,4.35,6,0.81,100
-SKU_1075,Amul Butter 100g Family,Amul,SUP_531,Kolkata,51.96,8.95,5.36,4.35,3,0.84,100
-SKU_1075,Amul Butter 100g Family,Amul,SUP_731,Delhi,56.59,9.93,5.12,4.35,4,0.82,500
-SKU_1076,Amul Cheese Cubes 200g Mini,Amul,SUP_550,Kolkata,57.28,15.8,4.88,4.73,12,0.98,100
-SKU_1076,Amul Cheese Cubes 200g Mini,Amul,SUP_811,Delhi,56.68,11.65,5.31,4.73,4,0.98,200
-SKU_1076,Amul Cheese Cubes 200g Mini,Amul,SUP_602,Hyderabad,56.62,13.12,8.04,4.73,7,0.84,500
-SKU_1076,Amul Cheese Cubes 200g Mini,Amul,SUP_304,Hyderabad,57.17,16.91,9.98,4.73,4,0.91,50
-SKU_1076,Amul Cheese Cubes 200g Mini,Amul,SUP_825,Delhi,61.55,9.39,4.95,4.73,6,0.95,50
-SKU_1077,Amul Cheese Cubes 200g Regular,Amul,SUP_410,Delhi,96.53,4.23,3.27,6.75,4,0.92,500
-SKU_1077,Amul Cheese Cubes 200g Regular,Amul,SUP_590,Hyderabad,89.29,17.85,4.61,6.75,10,0.97,500
-SKU_1077,Amul Cheese Cubes 200g Regular,Amul,SUP_468,Chennai,94.97,14.65,9.06,6.75,10,0.89,50
-SKU_1077,Amul Cheese Cubes 200g Regular,Amul,SUP_780,Kolkata,89.72,5.97,2.5,6.75,11,0.76,500
-SKU_1078,Amul Cheese Cubes 200g Value,Amul,SUP_110,Mumbai,124.47,8.89,3.33,8.1,10,0.93,100
-SKU_1078,Amul Cheese Cubes 200g Value,Amul,SUP_890,Chennai,116.65,8.26,6.3,8.1,10,0.79,50
-SKU_1078,Amul Cheese Cubes 200g Value,Amul,SUP_187,Mumbai,117.2,6.73,8.48,8.1,4,0.83,200
-SKU_1078,Amul Cheese Cubes 200g Value,Amul,SUP_594,Kolkata,116.79,5.31,5.29,8.1,9,0.92,500
-SKU_1079,Amul Cheese Cubes 200g Family,Amul,SUP_123,Pune,116.95,13.37,4.09,10.12,3,0.91,100
-SKU_1079,Amul Cheese Cubes 200g Family,Amul,SUP_628,Delhi,131.03,13.85,5.97,10.12,7,0.88,500
-SKU_1079,Amul Cheese Cubes 200g Family,Amul,SUP_288,Delhi,119.92,8.48,6.76,10.12,8,0.84,100
-SKU_1079,Amul Cheese Cubes 200g Family,Amul,SUP_104,Chennai,123.39,8.87,2.93,10.12,6,0.93,50
-SKU_1080,Dove Soap 100g Mini,Dove,SUP_568,Mumbai,24.31,7.22,3.36,1.93,9,0.88,200
-SKU_1080,Dove Soap 100g Mini,Dove,SUP_701,Mumbai,25.64,11.78,4.13,1.93,9,0.9,200
-SKU_1080,Dove Soap 100g Mini,Dove,SUP_788,Delhi,26.69,11.44,3.82,1.93,5,0.82,100
-SKU_1080,Dove Soap 100g Mini,Dove,SUP_497,Bengaluru,24.92,4.26,6.37,1.93,11,0.84,100
-SKU_1080,Dove Soap 100g Mini,Dove,SUP_760,Delhi,25.28,10.6,5.99,1.93,9,0.82,100
-SKU_1081,Dove Soap 100g Regular,Dove,SUP_109,Bengaluru,34.2,15.85,2.23,2.75,8,0.98,500
-SKU_1081,Dove Soap 100g Regular,Dove,SUP_827,Pune,33.3,9.87,4.99,2.75,4,0.77,50
-SKU_1081,Dove Soap 100g Regular,Dove,SUP_133,Kolkata,34.97,5.53,3.02,2.75,6,0.79,500
-SKU_1081,Dove Soap 100g Regular,Dove,SUP_607,Hyderabad,33.97,14.36,5.6,2.75,11,0.78,200
-SKU_1082,Dove Soap 100g Value,Dove,SUP_323,Bengaluru,44.45,9.06,1.92,3.3,12,0.93,200
-SKU_1082,Dove Soap 100g Value,Dove,SUP_369,Kolkata,45.08,2.52,8.76,3.3,3,0.86,50
-SKU_1082,Dove Soap 100g Value,Dove,SUP_930,Chennai,44.54,5.79,6.29,3.3,7,0.96,500
-SKU_1083,Dove Soap 100g Family,Dove,SUP_924,Mumbai,50.18,15.02,6.13,4.12,10,0.82,100
-SKU_1083,Dove Soap 100g Family,Dove,SUP_396,Hyderabad,47.32,13.26,3.41,4.12,10,0.99,50
-SKU_1083,Dove Soap 100g Family,Dove,SUP_521,Mumbai,46.16,14.0,9.93,4.12,12,0.78,100
-SKU_1084,Dove Shampoo 340ml Mini,Dove,SUP_963,Chennai,119.29,5.96,4.53,10.15,4,0.89,200
-SKU_1084,Dove Shampoo 340ml Mini,Dove,SUP_177,Chennai,124.07,8.0,8.15,10.15,3,0.85,200
-SKU_1084,Dove Shampoo 340ml Mini,Dove,SUP_565,Bengaluru,125.11,16.04,3.95,10.15,2,0.96,50
-SKU_1084,Dove Shampoo 340ml Mini,Dove,SUP_780,Chennai,125.68,9.34,4.22,10.15,3,0.94,500
-SKU_1084,Dove Shampoo 340ml Mini,Dove,SUP_316,Bengaluru,117.66,8.87,3.42,10.15,6,0.83,100
-SKU_1085,Dove Shampoo 340ml Regular,Dove,SUP_880,Mumbai,197.25,16.31,1.41,14.5,12,0.94,500
-SKU_1085,Dove Shampoo 340ml Regular,Dove,SUP_261,Bengaluru,178.44,16.87,5.11,14.5,8,0.8,100
-SKU_1085,Dove Shampoo 340ml Regular,Dove,SUP_995,Kolkata,199.53,6.83,1.84,14.5,7,0.81,200
-SKU_1085,Dove Shampoo 340ml Regular,Dove,SUP_153,Bengaluru,194.23,12.38,6.63,14.5,5,0.85,50
-SKU_1086,Dove Shampoo 340ml Value,Dove,SUP_707,Delhi,227.84,3.25,5.67,17.4,9,0.75,200
-SKU_1086,Dove Shampoo 340ml Value,Dove,SUP_532,Chennai,246.13,17.81,2.19,17.4,3,0.8,50
-SKU_1086,Dove Shampoo 340ml Value,Dove,SUP_420,Kolkata,243.52,3.64,8.93,17.4,4,0.84,100
-SKU_1087,Dove Shampoo 340ml Family,Dove,SUP_108,Hyderabad,277.68,10.49,6.85,21.75,9,0.83,100
-SKU_1087,Dove Shampoo 340ml Family,Dove,SUP_521,Hyderabad,295.77,4.42,7.18,21.75,5,0.77,50
-SKU_1087,Dove Shampoo 340ml Family,Dove,SUP_847,Bengaluru,277.58,3.97,4.16,21.75,8,0.83,100
-SKU_1087,Dove Shampoo 340ml Family,Dove,SUP_354,Hyderabad,281.59,12.31,6.41,21.75,11,0.82,50
-SKU_1087,Dove Shampoo 340ml Family,Dove,SUP_408,Delhi,303.96,12.53,5.66,21.75,10,0.8,500
-SKU_1088,Colgate Strong Teeth 200g Mini,Colgate,SUP_345,Bengaluru,48.62,14.7,4.47,3.85,5,0.87,50
-SKU_1088,Colgate Strong Teeth 200g Mini,Colgate,SUP_469,Kolkata,47.08,17.64,2.19,3.85,11,0.85,100
-SKU_1088,Colgate Strong Teeth 200g Mini,Colgate,SUP_888,Mumbai,48.49,17.27,1.15,3.85,3,0.75,100
-SKU_1089,Colgate Strong Teeth 200g Regular,Colgate,SUP_393,Chennai,65.74,8.37,7.41,5.5,8,0.85,500
-SKU_1089,Colgate Strong Teeth 200g Regular,Colgate,SUP_730,Delhi,58.84,10.59,3.5,5.5,6,0.77,100
-SKU_1089,Colgate Strong Teeth 200g Regular,Colgate,SUP_434,Bengaluru,65.94,4.49,6.28,5.5,12,0.91,50
-SKU_1090,Colgate Strong Teeth 200g Value,Colgate,SUP_159,Delhi,83.13,15.54,1.78,6.6,8,0.78,50
-SKU_1090,Colgate Strong Teeth 200g Value,Colgate,SUP_858,Delhi,78.78,13.87,2.07,6.6,4,0.92,100
-SKU_1090,Colgate Strong Teeth 200g Value,Colgate,SUP_629,Pune,80.72,7.55,8.4,6.6,6,0.79,100
-SKU_1090,Colgate Strong Teeth 200g Value,Colgate,SUP_850,Mumbai,83.34,15.98,7.94,6.6,2,0.83,500
-SKU_1091,Colgate Strong Teeth 200g Family,Colgate,SUP_742,Mumbai,96.82,17.6,5.47,8.25,10,0.84,500
-SKU_1091,Colgate Strong Teeth 200g Family,Colgate,SUP_261,Kolkata,104.45,4.67,7.96,8.25,11,0.91,50
-SKU_1091,Colgate Strong Teeth 200g Family,Colgate,SUP_145,Pune,96.38,10.14,8.77,8.25,5,0.76,200
-SKU_1092,Colgate MaxFresh 150g Mini,Colgate,SUP_136,Hyderabad,39.81,17.37,8.23,3.33,12,0.85,200
-SKU_1092,Colgate MaxFresh 150g Mini,Colgate,SUP_427,Kolkata,40.18,16.65,8.43,3.33,11,0.84,50
-SKU_1092,Colgate MaxFresh 150g Mini,Colgate,SUP_147,Bengaluru,39.81,14.87,1.62,3.33,9,0.96,200
-SKU_1093,Colgate MaxFresh 150g Regular,Colgate,SUP_398,Hyderabad,58.08,7.9,8.06,4.75,11,0.81,200
-SKU_1093,Colgate MaxFresh 150g Regular,Colgate,SUP_891,Pune,59.08,9.89,2.76,4.75,10,0.93,100
-SKU_1093,Colgate MaxFresh 150g Regular,Colgate,SUP_124,Delhi,55.79,16.92,5.87,4.75,12,0.95,50
-SKU_1093,Colgate MaxFresh 150g Regular,Colgate,SUP_773,Bengaluru,61.77,2.02,8.64,4.75,6,0.77,100
-SKU_1093,Colgate MaxFresh 150g Regular,Colgate,SUP_245,Chennai,57.8,17.38,3.52,4.75,2,0.97,500
-SKU_1094,Colgate MaxFresh 150g Value,Colgate,SUP_694,Mumbai,77.01,13.97,5.55,5.7,12,0.95,50
-SKU_1094,Colgate MaxFresh 150g Value,Colgate,SUP_778,Delhi,78.34,3.0,3.13,5.7,6,0.95,500
-SKU_1094,Colgate MaxFresh 150g Value,Colgate,SUP_425,Bengaluru,79.42,13.77,3.45,5.7,3,0.98,100
-SKU_1094,Colgate MaxFresh 150g Value,Colgate,SUP_259,Mumbai,80.2,11.36,2.48,5.7,9,0.83,50
-SKU_1095,Colgate MaxFresh 150g Family,Colgate,SUP_972,Mumbai,92.16,9.41,1.81,7.12,12,0.82,50
-SKU_1095,Colgate MaxFresh 150g Family,Colgate,SUP_251,Mumbai,89.34,15.71,7.4,7.12,7,0.85,50
-SKU_1095,Colgate MaxFresh 150g Family,Colgate,SUP_278,Mumbai,94.83,6.16,9.57,7.12,9,0.88,100
-SKU_1096,Aashirvaad Atta 5kg Mini,Aashirvaad,SUP_112,Mumbai,119.09,4.24,8.47,9.98,5,0.78,500
-SKU_1096,Aashirvaad Atta 5kg Mini,Aashirvaad,SUP_760,Mumbai,112.76,12.08,6.24,9.98,6,0.97,50
-SKU_1096,Aashirvaad Atta 5kg Mini,Aashirvaad,SUP_761,Bengaluru,107.61,3.03,8.28,9.98,3,0.97,200
-SKU_1097,Aashirvaad Atta 5kg Regular,Aashirvaad,SUP_543,Pune,155.62,16.79,7.52,14.25,9,0.76,500
-SKU_1097,Aashirvaad Atta 5kg Regular,Aashirvaad,SUP_291,Kolkata,158.21,5.44,3.52,14.25,4,0.76,100
-SKU_1097,Aashirvaad Atta 5kg Regular,Aashirvaad,SUP_663,Bengaluru,168.24,9.98,1.55,14.25,6,0.84,500
-SKU_1097,Aashirvaad Atta 5kg Regular,Aashirvaad,SUP_638,Delhi,158.77,16.15,6.68,14.25,10,0.94,500
-SKU_1098,Aashirvaad Atta 5kg Value,Aashirvaad,SUP_452,Hyderabad,236.45,14.5,5.52,17.1,8,0.81,50
-SKU_1098,Aashirvaad Atta 5kg Value,Aashirvaad,SUP_930,Pune,231.56,5.5,3.53,17.1,9,0.88,100
-SKU_1098,Aashirvaad Atta 5kg Value,Aashirvaad,SUP_772,Delhi,251.46,3.6,3.4,17.1,2,0.93,100
-SKU_1098,Aashirvaad Atta 5kg Value,Aashirvaad,SUP_497,Kolkata,239.36,17.72,9.42,17.1,4,0.79,200
-SKU_1099,Aashirvaad Atta 5kg Family,Aashirvaad,SUP_820,Chennai,292.73,11.46,4.17,21.38,11,0.89,100
-SKU_1099,Aashirvaad Atta 5kg Family,Aashirvaad,SUP_604,Hyderabad,310.98,14.97,3.78,21.38,9,0.76,50
-SKU_1099,Aashirvaad Atta 5kg Family,Aashirvaad,SUP_639,Bengaluru,287.91,5.5,1.01,21.38,11,0.8,100
-SKU_1099,Aashirvaad Atta 5kg Family,Aashirvaad,SUP_921,Pune,292.04,4.84,8.81,21.38,2,0.76,100
-SKU_1099,Aashirvaad Atta 5kg Family,Aashirvaad,SUP_981,Kolkata,308.6,15.54,9.65,21.38,7,0.92,500
-SKU_1100,Aashirvaad Atta 10kg Mini,Aashirvaad,SUP_261,Chennai,242.91,4.18,9.54,18.9,12,0.98,200
-SKU_1100,Aashirvaad Atta 10kg Mini,Aashirvaad,SUP_810,Hyderabad,238.84,17.5,8.08,18.9,5,0.91,100
-SKU_1100,Aashirvaad Atta 10kg Mini,Aashirvaad,SUP_401,Delhi,245.36,13.74,2.6,18.9,2,0.98,500
-SKU_1100,Aashirvaad Atta 10kg Mini,Aashirvaad,SUP_681,Mumbai,260.44,14.33,2.64,18.9,7,0.97,100
-SKU_1101,Aashirvaad Atta 10kg Regular,Aashirvaad,SUP_863,Mumbai,381.25,4.25,3.14,27.0,7,0.79,50
-SKU_1101,Aashirvaad Atta 10kg Regular,Aashirvaad,SUP_846,Kolkata,375.93,12.72,5.02,27.0,6,0.8,50
-SKU_1101,Aashirvaad Atta 10kg Regular,Aashirvaad,SUP_837,Mumbai,354.14,14.59,1.43,27.0,9,0.93,100
-SKU_1102,Aashirvaad Atta 10kg Value,Aashirvaad,SUP_484,Mumbai,483.17,7.62,8.46,32.4,11,0.91,100
-SKU_1102,Aashirvaad Atta 10kg Value,Aashirvaad,SUP_966,Mumbai,440.75,3.18,3.65,32.4,7,0.81,50
-SKU_1102,Aashirvaad Atta 10kg Value,Aashirvaad,SUP_484,Delhi,435.53,4.72,7.59,32.4,10,0.98,50
-SKU_1102,Aashirvaad Atta 10kg Value,Aashirvaad,SUP_594,Chennai,451.09,17.76,1.28,32.4,12,0.79,500
-SKU_1103,Aashirvaad Atta 10kg Family,Aashirvaad,SUP_519,Chennai,463.88,17.59,5.99,40.5,10,0.81,200
-SKU_1103,Aashirvaad Atta 10kg Family,Aashirvaad,SUP_502,Hyderabad,461.84,3.53,5.95,40.5,9,0.79,200
-SKU_1103,Aashirvaad Atta 10kg Family,Aashirvaad,SUP_943,Chennai,444.01,3.4,6.63,40.5,9,0.8,50
-SKU_1104,Tata Salt 1kg Mini,Tata,SUP_964,Mumbai,12.14,3.31,3.78,1.05,8,0.86,200
-SKU_1104,Tata Salt 1kg Mini,Tata,SUP_289,Kolkata,11.82,10.71,8.97,1.05,7,0.79,50
-SKU_1104,Tata Salt 1kg Mini,Tata,SUP_331,Pune,12.1,9.44,3.42,1.05,2,0.79,50
-SKU_1104,Tata Salt 1kg Mini,Tata,SUP_654,Bengaluru,11.81,7.5,9.74,1.05,11,0.8,50
-SKU_1104,Tata Salt 1kg Mini,Tata,SUP_528,Hyderabad,13.02,15.09,7.18,1.05,9,0.89,100
-SKU_1105,Tata Salt 1kg Regular,Tata,SUP_135,Hyderabad,18.95,15.66,6.14,1.5,10,0.94,100
-SKU_1105,Tata Salt 1kg Regular,Tata,SUP_277,Delhi,18.28,14.12,9.75,1.5,5,0.78,500
-SKU_1105,Tata Salt 1kg Regular,Tata,SUP_306,Pune,18.18,12.93,6.65,1.5,11,0.81,50
-SKU_1106,Tata Salt 1kg Value,Tata,SUP_382,Hyderabad,20.37,7.22,5.12,1.8,2,0.94,500
-SKU_1106,Tata Salt 1kg Value,Tata,SUP_680,Hyderabad,19.61,4.39,6.24,1.8,3,0.97,50
-SKU_1106,Tata Salt 1kg Value,Tata,SUP_452,Bengaluru,21.39,15.88,3.38,1.8,12,0.87,500
-SKU_1106,Tata Salt 1kg Value,Tata,SUP_247,Hyderabad,19.42,6.41,6.48,1.8,8,0.76,200
-SKU_1106,Tata Salt 1kg Value,Tata,SUP_586,Kolkata,21.14,2.79,9.07,1.8,2,0.83,200
-SKU_1107,Tata Salt 1kg Family,Tata,SUP_989,Delhi,28.8,12.96,2.21,2.25,9,0.94,200
-SKU_1107,Tata Salt 1kg Family,Tata,SUP_761,Mumbai,26.72,8.67,2.69,2.25,5,0.97,500
-SKU_1107,Tata Salt 1kg Family,Tata,SUP_988,Kolkata,28.39,14.15,8.39,2.25,10,0.94,50
-SKU_1107,Tata Salt 1kg Family,Tata,SUP_238,Pune,26.87,10.11,8.66,2.25,11,0.76,100
-SKU_1108,Fortune Sunflower Oil 1L Mini,Fortune,SUP_567,Mumbai,85.46,5.99,9.26,5.78,5,0.82,500
-SKU_1108,Fortune Sunflower Oil 1L Mini,Fortune,SUP_226,Chennai,81.97,12.17,1.28,5.78,7,0.87,500
-SKU_1108,Fortune Sunflower Oil 1L Mini,Fortune,SUP_700,Hyderabad,78.54,15.93,4.15,5.78,4,0.95,200
-SKU_1109,Fortune Sunflower Oil 1L Regular,Fortune,SUP_150,Delhi,107.48,2.44,8.68,8.25,5,0.96,100
-SKU_1109,Fortune Sunflower Oil 1L Regular,Fortune,SUP_519,Hyderabad,116.02,6.31,1.18,8.25,12,0.75,100
-SKU_1109,Fortune Sunflower Oil 1L Regular,Fortune,SUP_108,Delhi,115.58,11.62,3.27,8.25,6,0.92,200
-SKU_1109,Fortune Sunflower Oil 1L Regular,Fortune,SUP_457,Bengaluru,112.33,8.02,3.27,8.25,9,0.82,500
-SKU_1109,Fortune Sunflower Oil 1L Regular,Fortune,SUP_778,Pune,114.66,2.12,8.55,8.25,10,0.91,200
+SKU_1000,Coca Cola 200ml Mini,Coca Cola,SUP_564,Mumbai,9.19,0.77,0.22,0.93,6,0.98,100
+SKU_1000,Coca Cola 200ml Mini,Coca Cola,SUP_740,Kolkata,9.68,0.59,0.66,1.08,10,0.9,100
+SKU_1000,Coca Cola 200ml Mini,Coca Cola,SUP_897,Hyderabad,9.52,0.86,0.72,0.73,11,0.83,50
+SKU_1000,Coca Cola 200ml Mini,Coca Cola,SUP_951,Pune,9.19,0.72,0.61,0.79,2,0.81,50
+SKU_1001,Coca Cola 200ml Regular,Coca Cola,SUP_645,Pune,11.92,0.44,0.74,1.21,12,0.86,100
+SKU_1001,Coca Cola 200ml Regular,Coca Cola,SUP_533,Delhi,11.12,1.09,0.78,1.13,5,0.92,500
+SKU_1001,Coca Cola 200ml Regular,Coca Cola,SUP_548,Hyderabad,12.19,1.02,0.27,1.28,5,0.8,200
+SKU_1001,Coca Cola 200ml Regular,Coca Cola,SUP_702,Delhi,10.76,0.91,0.35,0.97,12,0.76,50
+SKU_1002,Coca Cola 200ml Value,Coca Cola,SUP_785,Bengaluru,16.21,0.63,0.45,0.93,4,0.92,500
+SKU_1002,Coca Cola 200ml Value,Coca Cola,SUP_516,Delhi,16.58,1.02,0.83,1.88,12,0.85,500
+SKU_1002,Coca Cola 200ml Value,Coca Cola,SUP_155,Chennai,16.95,0.95,1.1,1.87,12,0.77,500
+SKU_1002,Coca Cola 200ml Value,Coca Cola,SUP_211,Delhi,17.65,1.67,1.02,1.87,10,0.86,500
+SKU_1003,Coca Cola 200ml Family,Coca Cola,SUP_553,Pune,17.13,1.29,1.22,0.98,10,0.77,50
+SKU_1003,Coca Cola 200ml Family,Coca Cola,SUP_969,Delhi,18.76,1.64,0.55,1.21,9,0.87,500
+SKU_1003,Coca Cola 200ml Family,Coca Cola,SUP_102,Bengaluru,18.61,1.14,1.19,1.9,9,0.82,500
+SKU_1003,Coca Cola 200ml Family,Coca Cola,SUP_159,Hyderabad,16.91,0.78,0.53,0.87,2,0.93,50
+SKU_1004,Coca Cola 750ml Mini,Coca Cola,SUP_261,Mumbai,15.88,1.09,0.58,1.88,3,0.95,50
+SKU_1004,Coca Cola 750ml Mini,Coca Cola,SUP_340,Bengaluru,16.07,0.55,1.01,1.23,11,0.81,50
+SKU_1004,Coca Cola 750ml Mini,Coca Cola,SUP_697,Hyderabad,16.12,1.42,1.27,1.62,6,0.8,200
+SKU_1004,Coca Cola 750ml Mini,Coca Cola,SUP_787,Chennai,15.34,1.14,0.87,1.72,7,0.97,50
+SKU_1005,Coca Cola 750ml Regular,Coca Cola,SUP_175,Hyderabad,23.82,1.98,0.55,1.85,6,0.78,200
+SKU_1005,Coca Cola 750ml Regular,Coca Cola,SUP_478,Kolkata,23.49,1.29,1.34,1.7,10,0.92,50
+SKU_1005,Coca Cola 750ml Regular,Coca Cola,SUP_779,Mumbai,22.88,2.24,0.52,2.12,4,0.81,50
+SKU_1005,Coca Cola 750ml Regular,Coca Cola,SUP_388,Hyderabad,23.09,2.14,1.69,2.09,7,0.8,200
+SKU_1005,Coca Cola 750ml Regular,Coca Cola,SUP_966,Mumbai,22.41,1.89,1.4,1.76,8,0.95,50
+SKU_1006,Coca Cola 750ml Value,Coca Cola,SUP_859,Bengaluru,27.3,1.19,0.83,2.51,8,0.88,50
+SKU_1006,Coca Cola 750ml Value,Coca Cola,SUP_252,Hyderabad,25.37,1.59,0.65,2.93,7,0.89,100
+SKU_1006,Coca Cola 750ml Value,Coca Cola,SUP_473,Pune,26.58,0.88,0.82,2.2,2,0.97,100
+SKU_1007,Coca Cola 750ml Family,Coca Cola,SUP_995,Bengaluru,38.49,1.57,3.03,2.45,4,0.97,100
+SKU_1007,Coca Cola 750ml Family,Coca Cola,SUP_930,Delhi,42.45,3.3,2.02,3.24,2,0.79,200
+SKU_1007,Coca Cola 750ml Family,Coca Cola,SUP_785,Pune,42.02,3.45,2.82,3.26,5,0.81,50
+SKU_1007,Coca Cola 750ml Family,Coca Cola,SUP_581,Delhi,39.95,3.9,2.32,2.36,9,0.83,100
+SKU_1007,Coca Cola 750ml Family,Coca Cola,SUP_508,Kolkata,39.12,2.07,2.13,2.4,3,0.98,200
+SKU_1008,Coca Cola 1L Mini,Coca Cola,SUP_649,Kolkata,20.53,1.15,0.59,2.01,3,0.96,200
+SKU_1008,Coca Cola 1L Mini,Coca Cola,SUP_371,Mumbai,19.94,1.25,1.53,1.47,8,0.83,200
+SKU_1008,Coca Cola 1L Mini,Coca Cola,SUP_218,Bengaluru,20.62,0.89,0.79,2.41,5,0.81,500
+SKU_1008,Coca Cola 1L Mini,Coca Cola,SUP_651,Chennai,19.47,0.76,1.06,1.31,12,0.8,500
+SKU_1008,Coca Cola 1L Mini,Coca Cola,SUP_438,Hyderabad,19.65,1.24,1.22,1.12,3,0.92,200
+SKU_1009,Coca Cola 1L Regular,Coca Cola,SUP_402,Hyderabad,30.63,1.41,1.81,3.15,8,0.91,500
+SKU_1009,Coca Cola 1L Regular,Coca Cola,SUP_730,Hyderabad,31.7,2.44,2.42,3.54,10,0.95,200
+SKU_1009,Coca Cola 1L Regular,Coca Cola,SUP_693,Hyderabad,30.15,1.83,0.87,2.09,9,0.86,100
+SKU_1009,Coca Cola 1L Regular,Coca Cola,SUP_915,Chennai,31.04,2.74,1.57,1.99,3,0.82,200
+SKU_1009,Coca Cola 1L Regular,Coca Cola,SUP_340,Chennai,29.38,2.32,1.3,1.85,5,0.79,50
+SKU_1010,Coca Cola 1L Value,Coca Cola,SUP_566,Bengaluru,35.08,1.82,1.7,3.04,11,0.8,500
+SKU_1010,Coca Cola 1L Value,Coca Cola,SUP_771,Chennai,34.56,3.05,0.94,2.86,3,0.94,100
+SKU_1010,Coca Cola 1L Value,Coca Cola,SUP_630,Bengaluru,33.15,2.86,0.93,2.26,5,0.97,50
+SKU_1010,Coca Cola 1L Value,Coca Cola,SUP_783,Hyderabad,34.4,1.97,1.26,1.83,11,0.83,500
+SKU_1011,Coca Cola 1L Family,Coca Cola,SUP_661,Bengaluru,50.21,2.52,1.92,4.2,9,0.86,100
+SKU_1011,Coca Cola 1L Family,Coca Cola,SUP_896,Hyderabad,49.89,3.88,2.28,5.84,5,0.82,50
+SKU_1011,Coca Cola 1L Family,Coca Cola,SUP_443,Kolkata,49.11,1.95,2.78,4.7,3,0.78,100
+SKU_1011,Coca Cola 1L Family,Coca Cola,SUP_319,Mumbai,47.09,2.07,2.73,3.99,7,0.88,500
+SKU_1011,Coca Cola 1L Family,Coca Cola,SUP_498,Pune,45.13,1.38,2.02,2.61,2,0.96,500
+SKU_1012,Coca Cola 2L Mini,Coca Cola,SUP_955,Bengaluru,41.5,3.53,1.85,2.81,10,0.94,100
+SKU_1012,Coca Cola 2L Mini,Coca Cola,SUP_597,Mumbai,42.53,3.26,1.41,3.0,12,0.91,500
+SKU_1012,Coca Cola 2L Mini,Coca Cola,SUP_230,Hyderabad,43.82,3.48,2.42,4.54,8,0.89,50
+SKU_1012,Coca Cola 2L Mini,Coca Cola,SUP_987,Bengaluru,40.33,3.41,1.57,4.49,6,0.84,100
+SKU_1013,Coca Cola 2L Regular,Coca Cola,SUP_870,Pune,62.51,3.88,1.39,7.07,3,0.86,50
+SKU_1013,Coca Cola 2L Regular,Coca Cola,SUP_765,Mumbai,64.36,4.49,2.9,7.65,12,0.76,50
+SKU_1013,Coca Cola 2L Regular,Coca Cola,SUP_120,Hyderabad,63.97,2.55,3.1,7.6,4,0.86,50
+SKU_1013,Coca Cola 2L Regular,Coca Cola,SUP_816,Kolkata,60.98,2.32,2.04,7.12,4,0.9,50
+SKU_1014,Coca Cola 2L Value,Coca Cola,SUP_126,Kolkata,83.64,6.42,4.55,4.6,8,0.85,100
+SKU_1014,Coca Cola 2L Value,Coca Cola,SUP_742,Delhi,74.65,4.7,4.03,4.45,6,0.95,50
+SKU_1014,Coca Cola 2L Value,Coca Cola,SUP_142,Kolkata,81.94,5.7,5.09,5.84,12,0.84,200
+SKU_1015,Coca Cola 2L Family,Coca Cola,SUP_470,Chennai,83.16,6.95,4.9,7.38,9,0.92,500
+SKU_1015,Coca Cola 2L Family,Coca Cola,SUP_766,Kolkata,76.55,5.7,4.53,4.35,10,0.94,500
+SKU_1015,Coca Cola 2L Family,Coca Cola,SUP_374,Kolkata,79.2,5.45,3.09,8.65,3,0.82,500
+SKU_1015,Coca Cola 2L Family,Coca Cola,SUP_724,Chennai,77.24,5.34,5.19,7.2,2,0.87,200
+SKU_1016,Coke Zero 300ml Mini,Coca Cola,SUP_386,Hyderabad,16.2,0.83,0.86,1.43,6,0.88,100
+SKU_1016,Coke Zero 300ml Mini,Coca Cola,SUP_600,Hyderabad,15.63,0.5,0.72,0.96,9,0.91,500
+SKU_1016,Coke Zero 300ml Mini,Coca Cola,SUP_401,Delhi,16.4,0.99,0.94,1.11,5,0.82,200
+SKU_1017,Coke Zero 300ml Regular,Coca Cola,SUP_663,Kolkata,25.08,1.13,1.04,1.54,9,0.82,200
+SKU_1017,Coke Zero 300ml Regular,Coca Cola,SUP_423,Mumbai,24.71,1.45,1.25,2.71,4,0.8,500
+SKU_1017,Coke Zero 300ml Regular,Coca Cola,SUP_878,Hyderabad,24.86,2.23,1.6,2.26,3,0.95,200
+SKU_1017,Coke Zero 300ml Regular,Coca Cola,SUP_114,Chennai,24.7,1.15,1.81,2.51,6,0.76,50
+SKU_1017,Coke Zero 300ml Regular,Coca Cola,SUP_229,Chennai,25.77,0.88,1.94,1.82,9,0.77,50
+SKU_1018,Coke Zero 300ml Value,Coca Cola,SUP_152,Kolkata,31.46,1.56,1.58,2.39,9,0.78,50
+SKU_1018,Coke Zero 300ml Value,Coca Cola,SUP_744,Chennai,31.15,1.57,1.6,2.44,4,0.94,200
+SKU_1018,Coke Zero 300ml Value,Coca Cola,SUP_671,Pune,29.87,2.28,2.03,3.08,11,0.94,100
+SKU_1018,Coke Zero 300ml Value,Coca Cola,SUP_553,Kolkata,32.66,2.25,1.27,3.4,8,0.82,50
+SKU_1019,Coke Zero 300ml Family,Coca Cola,SUP_740,Delhi,37.76,3.2,2.65,2.43,3,0.79,100
+SKU_1019,Coke Zero 300ml Family,Coca Cola,SUP_518,Bengaluru,40.07,3.07,1.99,4.64,9,0.82,100
+SKU_1019,Coke Zero 300ml Family,Coca Cola,SUP_980,Bengaluru,38.73,2.26,1.04,2.26,5,0.97,100
+SKU_1019,Coke Zero 300ml Family,Coca Cola,SUP_763,Delhi,39.42,3.43,0.96,4.44,4,0.77,100
+SKU_1019,Coke Zero 300ml Family,Coca Cola,SUP_944,Hyderabad,41.3,1.72,2.91,2.36,9,0.78,200
+SKU_1020,Coke Zero Can 330ml Mini,Coca Cola,SUP_182,Hyderabad,21.39,0.68,0.5,1.47,8,0.93,200
+SKU_1020,Coke Zero Can 330ml Mini,Coca Cola,SUP_790,Pune,20.09,0.73,0.74,2.19,11,0.98,200
+SKU_1020,Coke Zero Can 330ml Mini,Coca Cola,SUP_279,Bengaluru,21.6,1.74,0.87,1.35,9,0.97,100
+SKU_1020,Coke Zero Can 330ml Mini,Coca Cola,SUP_933,Bengaluru,22.75,1.42,0.69,1.8,9,0.83,200
+SKU_1021,Coke Zero Can 330ml Regular,Coca Cola,SUP_810,Bengaluru,28.88,1.19,1.12,2.35,8,0.95,50
+SKU_1021,Coke Zero Can 330ml Regular,Coca Cola,SUP_431,Mumbai,27.45,1.79,1.77,1.84,8,0.96,50
+SKU_1021,Coke Zero Can 330ml Regular,Coca Cola,SUP_523,Mumbai,28.17,1.15,0.59,2.81,7,0.9,500
+SKU_1022,Coke Zero Can 330ml Value,Coca Cola,SUP_394,Bengaluru,34.61,2.73,2.41,3.79,9,0.78,100
+SKU_1022,Coke Zero Can 330ml Value,Coca Cola,SUP_114,Hyderabad,36.94,2.26,2.64,4.11,5,0.99,50
+SKU_1022,Coke Zero Can 330ml Value,Coca Cola,SUP_952,Delhi,35.8,2.03,1.52,2.64,6,0.87,200
+SKU_1023,Coke Zero Can 330ml Family,Coca Cola,SUP_664,Delhi,45.14,2.31,1.32,3.93,11,0.87,100
+SKU_1023,Coke Zero Can 330ml Family,Coca Cola,SUP_908,Pune,44.5,3.3,2.49,3.0,10,0.81,50
+SKU_1023,Coke Zero Can 330ml Family,Coca Cola,SUP_701,Hyderabad,41.34,2.29,1.12,2.78,9,0.96,500
+SKU_1023,Coke Zero Can 330ml Family,Coca Cola,SUP_665,Pune,42.73,1.54,1.79,2.62,9,0.97,100
+SKU_1024,Pepsi 250ml Mini,Pepsi,SUP_894,Bengaluru,10.28,0.39,0.8,1.19,9,0.92,500
+SKU_1024,Pepsi 250ml Mini,Pepsi,SUP_940,Chennai,10.04,0.98,0.8,1.13,9,0.98,100
+SKU_1024,Pepsi 250ml Mini,Pepsi,SUP_990,Mumbai,10.19,0.95,0.68,1.06,9,0.77,500
+SKU_1025,Pepsi 250ml Regular,Pepsi,SUP_258,Mumbai,11.09,0.88,0.43,0.96,6,0.83,500
+SKU_1025,Pepsi 250ml Regular,Pepsi,SUP_972,Chennai,11.43,0.56,0.7,0.96,8,0.98,500
+SKU_1025,Pepsi 250ml Regular,Pepsi,SUP_170,Delhi,11.75,1.15,0.73,1.02,6,0.99,50
+SKU_1026,Pepsi 250ml Value,Pepsi,SUP_202,Bengaluru,15.7,1.33,0.68,1.37,6,0.97,50
+SKU_1026,Pepsi 250ml Value,Pepsi,SUP_467,Kolkata,14.85,1.19,0.87,1.19,5,0.88,100
+SKU_1026,Pepsi 250ml Value,Pepsi,SUP_991,Bengaluru,14.55,0.89,0.3,0.86,5,0.87,100
+SKU_1027,Pepsi 250ml Family,Pepsi,SUP_109,Pune,17.38,0.85,0.57,1.02,6,0.91,100
+SKU_1027,Pepsi 250ml Family,Pepsi,SUP_701,Kolkata,16.97,0.62,0.87,1.98,8,0.92,500
+SKU_1027,Pepsi 250ml Family,Pepsi,SUP_493,Pune,18.74,1.75,0.56,1.57,5,0.84,200
+SKU_1027,Pepsi 250ml Family,Pepsi,SUP_402,Mumbai,18.12,1.12,0.54,2.12,12,0.84,50
+SKU_1027,Pepsi 250ml Family,Pepsi,SUP_862,Mumbai,18.1,0.8,1.27,1.11,9,0.95,200
+SKU_1028,Pepsi 750ml Mini,Pepsi,SUP_751,Delhi,19.64,1.01,1.56,1.74,12,0.93,100
+SKU_1028,Pepsi 750ml Mini,Pepsi,SUP_761,Mumbai,19.7,1.39,1.05,1.27,9,0.76,200
+SKU_1028,Pepsi 750ml Mini,Pepsi,SUP_402,Kolkata,19.96,0.85,1.4,1.35,4,0.8,200
+SKU_1029,Pepsi 750ml Regular,Pepsi,SUP_944,Bengaluru,27.09,2.44,2.15,1.41,6,0.93,200
+SKU_1029,Pepsi 750ml Regular,Pepsi,SUP_177,Delhi,27.01,2.24,0.77,1.58,5,0.96,500
+SKU_1029,Pepsi 750ml Regular,Pepsi,SUP_474,Mumbai,27.55,2.21,1.29,3.15,2,0.81,50
+SKU_1029,Pepsi 750ml Regular,Pepsi,SUP_788,Kolkata,25.84,1.56,1.13,1.87,12,0.98,50
+SKU_1030,Pepsi 750ml Value,Pepsi,SUP_674,Kolkata,30.42,2.25,0.75,2.82,5,0.91,500
+SKU_1030,Pepsi 750ml Value,Pepsi,SUP_518,Mumbai,34.08,2.42,2.23,2.81,2,0.82,500
+SKU_1030,Pepsi 750ml Value,Pepsi,SUP_650,Delhi,30.79,2.32,1.42,2.4,7,0.91,500
+SKU_1030,Pepsi 750ml Value,Pepsi,SUP_524,Chennai,32.75,1.18,1.58,2.86,9,0.9,200
+SKU_1031,Pepsi 750ml Family,Pepsi,SUP_341,Pune,32.61,1.93,0.95,2.06,12,0.84,200
+SKU_1031,Pepsi 750ml Family,Pepsi,SUP_225,Pune,31.93,1.05,0.99,3.81,3,0.91,50
+SKU_1031,Pepsi 750ml Family,Pepsi,SUP_228,Pune,31.89,2.06,2.37,3.42,3,0.95,100
+SKU_1031,Pepsi 750ml Family,Pepsi,SUP_338,Kolkata,34.21,1.82,0.78,3.49,11,0.75,100
+SKU_1032,Pepsi Black Can 330ml Mini,Pepsi,SUP_776,Pune,22.22,0.89,0.75,1.84,2,0.84,100
+SKU_1032,Pepsi Black Can 330ml Mini,Pepsi,SUP_371,Mumbai,23.21,0.86,0.87,1.41,8,0.88,50
+SKU_1032,Pepsi Black Can 330ml Mini,Pepsi,SUP_625,Hyderabad,22.88,1.63,1.13,2.62,10,0.8,50
+SKU_1032,Pepsi Black Can 330ml Mini,Pepsi,SUP_774,Hyderabad,23.62,0.99,1.3,1.75,12,0.98,50
+SKU_1032,Pepsi Black Can 330ml Mini,Pepsi,SUP_536,Chennai,24.42,2.31,1.21,1.31,9,0.77,50
+SKU_1033,Pepsi Black Can 330ml Regular,Pepsi,SUP_748,Hyderabad,26.09,1.84,0.65,1.93,7,0.84,200
+SKU_1033,Pepsi Black Can 330ml Regular,Pepsi,SUP_201,Pune,27.46,1.49,0.95,2.9,12,0.91,100
+SKU_1033,Pepsi Black Can 330ml Regular,Pepsi,SUP_523,Kolkata,27.37,1.95,1.93,2.56,8,0.85,50
+SKU_1034,Pepsi Black Can 330ml Value,Pepsi,SUP_256,Chennai,33.76,1.07,1.97,3.46,3,0.77,50
+SKU_1034,Pepsi Black Can 330ml Value,Pepsi,SUP_856,Kolkata,31.34,3.04,1.85,3.31,10,0.76,200
+SKU_1034,Pepsi Black Can 330ml Value,Pepsi,SUP_994,Chennai,33.78,2.15,2.03,2.19,8,0.96,50
+SKU_1034,Pepsi Black Can 330ml Value,Pepsi,SUP_460,Mumbai,35.04,2.97,2.3,4.02,5,0.79,500
+SKU_1035,Pepsi Black Can 330ml Family,Pepsi,SUP_217,Pune,39.52,1.41,0.93,3.19,5,0.94,50
+SKU_1035,Pepsi Black Can 330ml Family,Pepsi,SUP_810,Kolkata,40.86,2.62,1.72,3.87,6,0.92,200
+SKU_1035,Pepsi Black Can 330ml Family,Pepsi,SUP_285,Pune,42.47,2.73,2.22,2.13,12,0.85,100
+SKU_1036,Lay's Classic Salted 52g Mini,Lay's,SUP_485,Bengaluru,9.1,0.87,0.37,1.09,4,0.84,200
+SKU_1036,Lay's Classic Salted 52g Mini,Lay's,SUP_186,Mumbai,9.95,0.7,0.7,0.69,11,0.76,50
+SKU_1036,Lay's Classic Salted 52g Mini,Lay's,SUP_597,Hyderabad,9.33,0.59,0.46,0.51,6,0.8,50
+SKU_1037,Lay's Classic Salted 52g Regular,Lay's,SUP_598,Hyderabad,12.01,0.58,0.79,0.99,2,0.8,50
+SKU_1037,Lay's Classic Salted 52g Regular,Lay's,SUP_316,Pune,11.58,0.62,0.82,0.68,6,0.82,50
+SKU_1037,Lay's Classic Salted 52g Regular,Lay's,SUP_279,Delhi,11.58,0.77,0.58,0.7,5,0.87,200
+SKU_1038,Lay's Classic Salted 52g Value,Lay's,SUP_179,Pune,12.89,0.78,0.96,1.22,8,0.89,500
+SKU_1038,Lay's Classic Salted 52g Value,Lay's,SUP_432,Delhi,13.33,0.42,0.74,1.03,11,0.86,200
+SKU_1038,Lay's Classic Salted 52g Value,Lay's,SUP_349,Bengaluru,12.97,1.14,0.92,1.49,10,0.77,200
+SKU_1038,Lay's Classic Salted 52g Value,Lay's,SUP_897,Delhi,14.13,1.31,0.57,1.02,12,0.78,100
+SKU_1038,Lay's Classic Salted 52g Value,Lay's,SUP_844,Pune,14.41,0.57,0.72,1.45,4,0.81,100
+SKU_1039,Lay's Classic Salted 52g Family,Lay's,SUP_771,Mumbai,18.31,1.26,0.95,1.51,12,0.87,500
+SKU_1039,Lay's Classic Salted 52g Family,Lay's,SUP_758,Chennai,18.49,0.7,0.49,1.78,7,0.96,200
+SKU_1039,Lay's Classic Salted 52g Family,Lay's,SUP_552,Chennai,17.26,1.33,0.76,1.59,6,0.89,200
+SKU_1040,Lay's Magic Masala 52g Mini,Lay's,SUP_477,Pune,9.0,0.45,0.68,0.75,12,0.96,50
+SKU_1040,Lay's Magic Masala 52g Mini,Lay's,SUP_573,Hyderabad,9.17,0.7,0.53,1.07,2,0.86,100
+SKU_1040,Lay's Magic Masala 52g Mini,Lay's,SUP_254,Mumbai,8.83,0.71,0.27,0.65,7,0.99,50
+SKU_1040,Lay's Magic Masala 52g Mini,Lay's,SUP_353,Chennai,9.05,0.76,0.36,0.56,9,0.88,100
+SKU_1041,Lay's Magic Masala 52g Regular,Lay's,SUP_795,Hyderabad,12.24,0.46,0.39,1.19,12,0.91,50
+SKU_1041,Lay's Magic Masala 52g Regular,Lay's,SUP_495,Kolkata,12.15,1.14,0.26,1.33,12,0.98,100
+SKU_1041,Lay's Magic Masala 52g Regular,Lay's,SUP_244,Kolkata,12.16,0.56,0.92,0.64,12,0.92,500
+SKU_1041,Lay's Magic Masala 52g Regular,Lay's,SUP_186,Kolkata,11.83,0.39,0.55,0.96,12,0.94,100
+SKU_1042,Lay's Magic Masala 52g Value,Lay's,SUP_195,Chennai,17.2,1.18,0.66,1.93,10,0.84,200
+SKU_1042,Lay's Magic Masala 52g Value,Lay's,SUP_449,Pune,15.78,0.88,0.88,1.62,5,0.99,100
+SKU_1042,Lay's Magic Masala 52g Value,Lay's,SUP_203,Hyderabad,15.3,1.35,0.31,1.83,10,0.76,200
+SKU_1042,Lay's Magic Masala 52g Value,Lay's,SUP_711,Bengaluru,16.95,1.47,0.62,1.48,4,0.95,100
+SKU_1042,Lay's Magic Masala 52g Value,Lay's,SUP_473,Chennai,16.63,0.87,1.03,1.6,9,0.9,500
+SKU_1043,Lay's Magic Masala 52g Family,Lay's,SUP_580,Pune,17.52,1.69,1.02,1.25,12,0.98,500
+SKU_1043,Lay's Magic Masala 52g Family,Lay's,SUP_491,Hyderabad,17.87,0.9,1.41,2.08,4,0.95,100
+SKU_1043,Lay's Magic Masala 52g Family,Lay's,SUP_592,Pune,18.82,1.24,1.08,1.42,3,0.92,50
+SKU_1044,Lay's Cream & Onion 90g Mini,Lay's,SUP_250,Pune,18.58,0.89,0.9,1.89,5,0.95,200
+SKU_1044,Lay's Cream & Onion 90g Mini,Lay's,SUP_505,Hyderabad,20.19,1.93,1.33,1.58,8,0.99,200
+SKU_1044,Lay's Cream & Onion 90g Mini,Lay's,SUP_201,Pune,18.46,0.77,1.37,1.65,7,0.94,100
+SKU_1045,Lay's Cream & Onion 90g Regular,Lay's,SUP_822,Bengaluru,26.06,0.86,1.65,2.62,2,0.97,50
+SKU_1045,Lay's Cream & Onion 90g Regular,Lay's,SUP_661,Chennai,24.62,1.49,1.92,2.11,8,0.78,200
+SKU_1045,Lay's Cream & Onion 90g Regular,Lay's,SUP_344,Bengaluru,24.56,2.44,1.64,2.79,11,0.86,50
+SKU_1045,Lay's Cream & Onion 90g Regular,Lay's,SUP_648,Mumbai,26.51,2.45,1.91,2.1,11,0.81,100
+SKU_1046,Lay's Cream & Onion 90g Value,Lay's,SUP_526,Delhi,33.34,2.75,0.9,3.18,3,0.88,200
+SKU_1046,Lay's Cream & Onion 90g Value,Lay's,SUP_619,Pune,31.04,2.87,1.98,2.3,10,0.75,500
+SKU_1046,Lay's Cream & Onion 90g Value,Lay's,SUP_482,Kolkata,30.94,2.86,1.44,2.43,7,0.94,200
+SKU_1047,Lay's Cream & Onion 90g Family,Lay's,SUP_852,Pune,41.16,2.73,2.19,3.33,2,0.83,200
+SKU_1047,Lay's Cream & Onion 90g Family,Lay's,SUP_897,Chennai,42.12,2.2,2.5,2.48,9,0.9,100
+SKU_1047,Lay's Cream & Onion 90g Family,Lay's,SUP_568,Mumbai,38.22,3.21,2.99,2.16,2,0.94,50
+SKU_1047,Lay's Cream & Onion 90g Family,Lay's,SUP_507,Pune,39.53,3.02,3.13,3.82,6,0.76,100
+SKU_1047,Lay's Cream & Onion 90g Family,Lay's,SUP_148,Pune,39.38,2.21,1.47,3.78,6,0.78,200
+SKU_1048,Kurkure Masala Munch 90g Mini,Kurkure,SUP_495,Kolkata,9.15,0.34,0.59,0.88,9,0.92,200
+SKU_1048,Kurkure Masala Munch 90g Mini,Kurkure,SUP_920,Mumbai,9.35,0.77,0.61,0.48,3,0.85,100
+SKU_1048,Kurkure Masala Munch 90g Mini,Kurkure,SUP_181,Kolkata,8.92,0.43,0.36,0.65,6,0.86,500
+SKU_1048,Kurkure Masala Munch 90g Mini,Kurkure,SUP_557,Mumbai,8.49,0.81,0.23,0.54,7,0.9,500
+SKU_1049,Kurkure Masala Munch 90g Regular,Kurkure,SUP_472,Hyderabad,11.45,0.54,0.26,1.2,12,0.79,50
+SKU_1049,Kurkure Masala Munch 90g Regular,Kurkure,SUP_900,Bengaluru,11.56,0.45,0.77,1.27,3,0.81,200
+SKU_1049,Kurkure Masala Munch 90g Regular,Kurkure,SUP_133,Hyderabad,11.9,1.05,0.59,0.8,9,0.98,200
+SKU_1050,Kurkure Masala Munch 90g Value,Kurkure,SUP_507,Kolkata,15.38,0.63,1.22,1.49,5,0.98,50
+SKU_1050,Kurkure Masala Munch 90g Value,Kurkure,SUP_496,Hyderabad,15.7,0.67,0.75,0.93,6,0.92,100
+SKU_1050,Kurkure Masala Munch 90g Value,Kurkure,SUP_602,Delhi,16.21,1.17,1.28,1.12,3,0.86,500
+SKU_1051,Kurkure Masala Munch 90g Family,Kurkure,SUP_783,Kolkata,23.22,2.12,1.04,1.39,10,0.88,200
+SKU_1051,Kurkure Masala Munch 90g Family,Kurkure,SUP_817,Chennai,22.9,1.0,1.55,1.6,7,0.87,50
+SKU_1051,Kurkure Masala Munch 90g Family,Kurkure,SUP_342,Pune,23.27,1.2,0.58,2.26,7,0.88,200
+SKU_1051,Kurkure Masala Munch 90g Family,Kurkure,SUP_232,Hyderabad,21.82,1.84,1.16,2.48,3,0.82,500
+SKU_1051,Kurkure Masala Munch 90g Family,Kurkure,SUP_943,Hyderabad,21.98,2.15,1.5,1.41,7,0.9,500
+SKU_1052,Kurkure Green Chutney 90g Mini,Kurkure,SUP_898,Hyderabad,8.76,0.57,0.66,0.77,4,0.93,100
+SKU_1052,Kurkure Green Chutney 90g Mini,Kurkure,SUP_156,Pune,8.86,0.36,0.61,0.88,4,0.82,100
+SKU_1052,Kurkure Green Chutney 90g Mini,Kurkure,SUP_454,Hyderabad,8.74,0.27,0.19,1.02,3,0.81,200
+SKU_1052,Kurkure Green Chutney 90g Mini,Kurkure,SUP_646,Mumbai,8.51,0.39,0.36,0.79,4,0.89,100
+SKU_1052,Kurkure Green Chutney 90g Mini,Kurkure,SUP_719,Kolkata,8.56,0.34,0.2,0.58,11,0.76,50
+SKU_1053,Kurkure Green Chutney 90g Regular,Kurkure,SUP_315,Pune,11.84,0.92,0.31,1.11,11,0.9,500
+SKU_1053,Kurkure Green Chutney 90g Regular,Kurkure,SUP_757,Kolkata,12.02,0.46,0.73,0.87,12,0.85,500
+SKU_1053,Kurkure Green Chutney 90g Regular,Kurkure,SUP_550,Bengaluru,10.82,0.71,0.68,1.28,5,0.83,100
+SKU_1053,Kurkure Green Chutney 90g Regular,Kurkure,SUP_851,Pune,11.17,0.88,0.74,0.87,8,0.78,200
+SKU_1053,Kurkure Green Chutney 90g Regular,Kurkure,SUP_347,Bengaluru,11.47,0.81,0.83,1.12,9,0.81,50
+SKU_1054,Kurkure Green Chutney 90g Value,Kurkure,SUP_986,Delhi,14.24,0.63,0.92,0.74,11,0.92,100
+SKU_1054,Kurkure Green Chutney 90g Value,Kurkure,SUP_627,Bengaluru,14.07,1.21,0.96,1.1,6,0.87,50
+SKU_1054,Kurkure Green Chutney 90g Value,Kurkure,SUP_346,Delhi,14.38,1.15,0.33,1.6,2,0.76,500
+SKU_1054,Kurkure Green Chutney 90g Value,Kurkure,SUP_788,Bengaluru,13.78,1.13,0.47,1.28,2,0.95,500
+SKU_1055,Kurkure Green Chutney 90g Family,Kurkure,SUP_474,Mumbai,17.95,0.7,1.03,1.46,11,0.88,200
+SKU_1055,Kurkure Green Chutney 90g Family,Kurkure,SUP_616,Bengaluru,17.56,0.68,1.26,2.03,6,0.95,50
+SKU_1055,Kurkure Green Chutney 90g Family,Kurkure,SUP_482,Pune,16.61,1.58,0.34,1.82,10,0.98,100
+SKU_1055,Kurkure Green Chutney 90g Family,Kurkure,SUP_612,Mumbai,16.77,0.97,0.85,1.22,4,0.92,500
+SKU_1056,Maggi 70g Mini,Nestle,SUP_435,Hyderabad,6.44,0.33,0.39,0.57,8,0.99,200
+SKU_1056,Maggi 70g Mini,Nestle,SUP_621,Hyderabad,6.43,0.41,0.14,0.54,11,0.82,50
+SKU_1056,Maggi 70g Mini,Nestle,SUP_526,Hyderabad,6.24,0.48,0.28,0.59,12,0.76,500
+SKU_1057,Maggi 70g Regular,Nestle,SUP_691,Delhi,8.76,0.85,0.65,0.64,11,0.87,500
+SKU_1057,Maggi 70g Regular,Nestle,SUP_132,Hyderabad,8.08,0.4,0.49,0.54,3,0.8,500
+SKU_1057,Maggi 70g Regular,Nestle,SUP_807,Delhi,8.26,0.78,0.28,0.94,11,0.97,50
+SKU_1057,Maggi 70g Regular,Nestle,SUP_674,Kolkata,8.68,0.28,0.62,1.0,9,0.88,200
+SKU_1057,Maggi 70g Regular,Nestle,SUP_645,Kolkata,8.95,0.62,0.37,0.98,12,0.94,200
+SKU_1058,Maggi 70g Value,Nestle,SUP_405,Delhi,11.8,0.88,0.84,1.4,6,0.94,100
+SKU_1058,Maggi 70g Value,Nestle,SUP_591,Kolkata,11.42,0.43,0.43,1.17,6,0.82,500
+SKU_1058,Maggi 70g Value,Nestle,SUP_453,Pune,11.71,0.47,0.65,1.21,6,0.76,50
+SKU_1059,Maggi 70g Family,Nestle,SUP_319,Delhi,13.24,0.79,0.58,1.37,6,0.97,200
+SKU_1059,Maggi 70g Family,Nestle,SUP_700,Delhi,12.38,1.21,0.45,1.04,12,0.97,100
+SKU_1059,Maggi 70g Family,Nestle,SUP_523,Kolkata,13.21,0.95,0.97,1.08,3,0.91,100
+SKU_1059,Maggi 70g Family,Nestle,SUP_261,Bengaluru,12.16,1.16,0.38,0.81,9,0.86,100
+SKU_1060,Maggi Family Pack 280g Mini,Nestle,SUP_887,Mumbai,28.26,2.44,0.71,2.69,5,0.88,50
+SKU_1060,Maggi Family Pack 280g Mini,Nestle,SUP_957,Delhi,30.46,1.91,1.23,2.14,2,0.99,500
+SKU_1060,Maggi Family Pack 280g Mini,Nestle,SUP_866,Pune,29.99,2.55,1.89,2.04,2,0.75,50
+SKU_1060,Maggi Family Pack 280g Mini,Nestle,SUP_565,Chennai,30.51,0.95,2.09,2.78,9,0.96,100
+SKU_1061,Maggi Family Pack 280g Regular,Nestle,SUP_438,Delhi,41.08,1.55,3.28,3.23,12,0.81,100
+SKU_1061,Maggi Family Pack 280g Regular,Nestle,SUP_402,Hyderabad,39.67,3.49,1.5,2.59,5,0.79,500
+SKU_1061,Maggi Family Pack 280g Regular,Nestle,SUP_188,Bengaluru,44.08,3.78,1.96,4.72,4,0.99,500
+SKU_1061,Maggi Family Pack 280g Regular,Nestle,SUP_367,Bengaluru,41.35,1.91,1.17,4.56,6,0.98,200
+SKU_1062,Maggi Family Pack 280g Value,Nestle,SUP_809,Delhi,44.46,2.99,2.42,2.74,3,0.86,100
+SKU_1062,Maggi Family Pack 280g Value,Nestle,SUP_820,Pune,46.86,3.39,3.74,2.37,3,0.9,200
+SKU_1062,Maggi Family Pack 280g Value,Nestle,SUP_236,Bengaluru,46.63,4.23,2.89,3.43,11,0.84,500
+SKU_1062,Maggi Family Pack 280g Value,Nestle,SUP_945,Delhi,48.99,3.54,2.73,5.18,12,0.93,50
+SKU_1062,Maggi Family Pack 280g Value,Nestle,SUP_470,Mumbai,47.59,2.8,2.07,5.18,3,0.76,100
+SKU_1063,Maggi Family Pack 280g Family,Nestle,SUP_552,Mumbai,56.6,3.18,4.24,3.38,11,0.87,500
+SKU_1063,Maggi Family Pack 280g Family,Nestle,SUP_625,Bengaluru,61.47,3.68,3.06,6.41,2,0.88,200
+SKU_1063,Maggi Family Pack 280g Family,Nestle,SUP_936,Mumbai,60.83,4.6,1.71,3.53,11,0.77,500
+SKU_1064,Amul Milk 500ml Mini,Amul,SUP_170,Bengaluru,13.04,1.18,0.55,1.01,8,0.79,100
+SKU_1064,Amul Milk 500ml Mini,Amul,SUP_761,Bengaluru,13.41,0.83,0.32,1.61,8,0.86,500
+SKU_1064,Amul Milk 500ml Mini,Amul,SUP_777,Pune,12.77,0.6,0.41,0.81,12,0.96,50
+SKU_1065,Amul Milk 500ml Regular,Amul,SUP_328,Pune,17.43,0.81,0.37,1.06,2,0.98,500
+SKU_1065,Amul Milk 500ml Regular,Amul,SUP_644,Bengaluru,18.06,1.48,0.85,1.44,5,0.86,100
+SKU_1065,Amul Milk 500ml Regular,Amul,SUP_842,Pune,17.16,1.5,1.0,1.6,12,0.85,50
+SKU_1065,Amul Milk 500ml Regular,Amul,SUP_708,Mumbai,17.08,0.64,0.69,1.97,12,0.92,50
+SKU_1065,Amul Milk 500ml Regular,Amul,SUP_549,Delhi,17.09,0.59,0.77,2.03,2,0.78,200
+SKU_1066,Amul Milk 500ml Value,Amul,SUP_891,Chennai,21.76,1.56,1.69,1.19,5,0.82,100
+SKU_1066,Amul Milk 500ml Value,Amul,SUP_523,Kolkata,22.89,0.92,1.49,1.37,10,0.98,100
+SKU_1066,Amul Milk 500ml Value,Amul,SUP_607,Mumbai,21.9,1.92,1.15,2.31,12,0.91,200
+SKU_1066,Amul Milk 500ml Value,Amul,SUP_407,Bengaluru,22.09,1.14,0.82,1.52,10,0.86,100
+SKU_1066,Amul Milk 500ml Value,Amul,SUP_925,Bengaluru,21.0,0.84,1.55,2.35,10,0.85,500
+SKU_1067,Amul Milk 500ml Family,Amul,SUP_438,Chennai,29.03,2.74,0.99,2.8,9,0.95,50
+SKU_1067,Amul Milk 500ml Family,Amul,SUP_152,Kolkata,29.58,1.23,1.17,1.71,11,0.89,50
+SKU_1067,Amul Milk 500ml Family,Amul,SUP_841,Chennai,28.27,1.41,2.11,3.06,9,0.8,200
+SKU_1068,Amul Milk 1L Mini,Amul,SUP_859,Mumbai,24.7,1.01,1.28,1.54,9,0.97,100
+SKU_1068,Amul Milk 1L Mini,Amul,SUP_429,Pune,25.3,0.96,1.63,2.02,9,0.88,200
+SKU_1068,Amul Milk 1L Mini,Amul,SUP_609,Bengaluru,25.01,0.79,1.39,2.22,9,0.93,200
+SKU_1069,Amul Milk 1L Regular,Amul,SUP_984,Delhi,41.93,1.42,2.48,3.57,2,0.81,500
+SKU_1069,Amul Milk 1L Regular,Amul,SUP_335,Bengaluru,41.83,1.77,1.59,4.1,5,0.87,200
+SKU_1069,Amul Milk 1L Regular,Amul,SUP_840,Chennai,41.63,1.4,1.44,3.98,9,0.79,200
+SKU_1069,Amul Milk 1L Regular,Amul,SUP_600,Delhi,41.14,2.94,1.62,4.91,10,0.99,50
+SKU_1070,Amul Milk 1L Value,Amul,SUP_882,Mumbai,49.37,3.83,1.45,5.92,12,0.81,100
+SKU_1070,Amul Milk 1L Value,Amul,SUP_482,Mumbai,43.77,2.52,3.17,3.77,12,0.97,500
+SKU_1070,Amul Milk 1L Value,Amul,SUP_644,Hyderabad,47.66,2.49,1.76,2.7,2,0.88,200
+SKU_1071,Amul Milk 1L Family,Amul,SUP_790,Bengaluru,54.94,3.59,2.95,5.55,4,0.78,50
+SKU_1071,Amul Milk 1L Family,Amul,SUP_734,Hyderabad,58.75,5.36,3.97,6.95,7,0.81,500
+SKU_1071,Amul Milk 1L Family,Amul,SUP_570,Hyderabad,55.4,4.96,3.71,4.0,5,0.82,50
+SKU_1071,Amul Milk 1L Family,Amul,SUP_877,Mumbai,59.72,1.97,2.77,4.91,8,0.84,500
+SKU_1072,Amul Butter 100g Mini,Amul,SUP_965,Bengaluru,23.66,1.01,1.15,1.89,7,0.89,50
+SKU_1072,Amul Butter 100g Mini,Amul,SUP_335,Delhi,24.22,1.13,1.93,1.3,11,0.86,50
+SKU_1072,Amul Butter 100g Mini,Amul,SUP_387,Hyderabad,24.31,1.15,1.47,2.36,2,0.79,200
+SKU_1073,Amul Butter 100g Regular,Amul,SUP_829,Pune,32.9,2.3,2.27,2.46,3,0.82,100
+SKU_1073,Amul Butter 100g Regular,Amul,SUP_793,Hyderabad,32.81,1.94,2.43,3.45,4,0.94,50
+SKU_1073,Amul Butter 100g Regular,Amul,SUP_154,Mumbai,32.54,1.09,2.19,3.52,3,0.83,500
+SKU_1074,Amul Butter 100g Value,Amul,SUP_561,Bengaluru,47.45,2.66,1.48,5.1,10,0.98,500
+SKU_1074,Amul Butter 100g Value,Amul,SUP_489,Mumbai,48.46,3.23,2.6,3.84,6,0.94,50
+SKU_1074,Amul Butter 100g Value,Amul,SUP_828,Pune,47.79,1.77,1.25,3.47,8,0.83,50
+SKU_1074,Amul Butter 100g Value,Amul,SUP_555,Kolkata,47.85,4.23,2.83,4.9,3,0.78,100
+SKU_1075,Amul Butter 100g Family,Amul,SUP_126,Mumbai,55.42,1.86,4.29,5.88,3,0.89,200
+SKU_1075,Amul Butter 100g Family,Amul,SUP_523,Bengaluru,57.6,5.46,2.92,4.86,10,0.97,100
+SKU_1075,Amul Butter 100g Family,Amul,SUP_489,Delhi,55.54,2.05,2.55,6.25,6,0.81,100
+SKU_1075,Amul Butter 100g Family,Amul,SUP_531,Kolkata,51.96,4.63,1.15,3.12,3,0.84,100
+SKU_1075,Amul Butter 100g Family,Amul,SUP_731,Delhi,56.59,5.27,4.39,6.31,4,0.82,500
+SKU_1076,Amul Cheese Cubes 200g Mini,Amul,SUP_550,Kolkata,57.28,5.65,1.5,3.25,12,0.98,100
+SKU_1076,Amul Cheese Cubes 200g Mini,Amul,SUP_811,Delhi,56.68,4.88,1.27,3.44,4,0.98,200
+SKU_1076,Amul Cheese Cubes 200g Mini,Amul,SUP_602,Hyderabad,56.62,4.79,1.97,4.95,7,0.84,500
+SKU_1076,Amul Cheese Cubes 200g Mini,Amul,SUP_304,Hyderabad,57.17,4.29,1.37,3.13,4,0.91,50
+SKU_1076,Amul Cheese Cubes 200g Mini,Amul,SUP_825,Delhi,61.55,5.2,2.91,3.31,6,0.95,50
+SKU_1077,Amul Cheese Cubes 200g Regular,Amul,SUP_410,Delhi,96.53,3.81,4.92,4.83,4,0.92,500
+SKU_1077,Amul Cheese Cubes 200g Regular,Amul,SUP_590,Hyderabad,89.29,6.03,3.46,7.19,10,0.97,500
+SKU_1077,Amul Cheese Cubes 200g Regular,Amul,SUP_468,Chennai,94.97,6.27,2.19,9.9,10,0.89,50
+SKU_1077,Amul Cheese Cubes 200g Regular,Amul,SUP_780,Kolkata,89.72,8.08,2.4,4.7,11,0.76,500
+SKU_1078,Amul Cheese Cubes 200g Value,Amul,SUP_110,Mumbai,124.47,7.77,5.36,11.91,10,0.93,100
+SKU_1078,Amul Cheese Cubes 200g Value,Amul,SUP_890,Chennai,116.65,6.64,2.76,12.55,10,0.79,50
+SKU_1078,Amul Cheese Cubes 200g Value,Amul,SUP_187,Mumbai,117.2,8.76,7.25,7.24,4,0.83,200
+SKU_1078,Amul Cheese Cubes 200g Value,Amul,SUP_594,Kolkata,116.79,5.68,3.79,7.04,9,0.92,500
+SKU_1079,Amul Cheese Cubes 200g Family,Amul,SUP_123,Pune,116.95,4.65,4.46,12.89,3,0.91,100
+SKU_1079,Amul Cheese Cubes 200g Family,Amul,SUP_628,Delhi,131.03,8.31,5.72,14.1,7,0.88,500
+SKU_1079,Amul Cheese Cubes 200g Family,Amul,SUP_288,Delhi,119.92,7.1,5.4,10.52,8,0.84,100
+SKU_1079,Amul Cheese Cubes 200g Family,Amul,SUP_104,Chennai,123.39,5.71,2.48,13.25,6,0.93,50
+SKU_1080,Dove Soap 100g Mini,Dove,SUP_568,Mumbai,24.31,1.35,0.65,1.37,9,0.88,200
+SKU_1080,Dove Soap 100g Mini,Dove,SUP_701,Mumbai,25.64,1.43,1.84,1.99,9,0.9,200
+SKU_1080,Dove Soap 100g Mini,Dove,SUP_788,Delhi,26.69,1.41,0.54,2.71,5,0.82,100
+SKU_1080,Dove Soap 100g Mini,Dove,SUP_497,Bengaluru,24.92,1.41,1.26,1.7,11,0.84,100
+SKU_1080,Dove Soap 100g Mini,Dove,SUP_760,Delhi,25.28,1.97,1.25,2.6,9,0.82,100
+SKU_1081,Dove Soap 100g Regular,Dove,SUP_109,Bengaluru,34.2,1.74,1.37,2.92,8,0.98,500
+SKU_1081,Dove Soap 100g Regular,Dove,SUP_827,Pune,33.3,3.21,1.53,3.41,4,0.77,50
+SKU_1081,Dove Soap 100g Regular,Dove,SUP_133,Kolkata,34.97,3.29,2.34,2.89,6,0.79,500
+SKU_1081,Dove Soap 100g Regular,Dove,SUP_607,Hyderabad,33.97,2.16,2.39,2.57,11,0.78,200
+SKU_1082,Dove Soap 100g Value,Dove,SUP_323,Bengaluru,44.45,2.36,1.58,2.9,12,0.93,200
+SKU_1082,Dove Soap 100g Value,Dove,SUP_369,Kolkata,45.08,3.04,1.77,2.91,3,0.86,50
+SKU_1082,Dove Soap 100g Value,Dove,SUP_930,Chennai,44.54,3.98,1.54,4.57,7,0.96,500
+SKU_1083,Dove Soap 100g Family,Dove,SUP_924,Mumbai,50.18,3.8,2.45,2.93,10,0.82,100
+SKU_1083,Dove Soap 100g Family,Dove,SUP_396,Hyderabad,47.32,4.08,2.89,2.65,10,0.99,50
+SKU_1083,Dove Soap 100g Family,Dove,SUP_521,Mumbai,46.16,3.11,1.56,2.88,12,0.78,100
+SKU_1084,Dove Shampoo 340ml Mini,Dove,SUP_963,Chennai,119.29,8.86,4.75,7.43,4,0.89,200
+SKU_1084,Dove Shampoo 340ml Mini,Dove,SUP_177,Chennai,124.07,6.22,9.41,13.35,3,0.85,200
+SKU_1084,Dove Shampoo 340ml Mini,Dove,SUP_565,Bengaluru,125.11,10.19,2.87,9.75,2,0.96,50
+SKU_1084,Dove Shampoo 340ml Mini,Dove,SUP_780,Chennai,125.68,5.55,5.99,15.0,3,0.94,500
+SKU_1084,Dove Shampoo 340ml Mini,Dove,SUP_316,Bengaluru,117.66,9.25,7.38,7.01,6,0.83,100
+SKU_1085,Dove Shampoo 340ml Regular,Dove,SUP_880,Mumbai,197.25,17.8,5.73,18.89,12,0.94,500
+SKU_1085,Dove Shampoo 340ml Regular,Dove,SUP_261,Bengaluru,178.44,7.0,4.08,14.53,8,0.8,100
+SKU_1085,Dove Shampoo 340ml Regular,Dove,SUP_995,Kolkata,199.53,14.57,5.65,15.46,7,0.81,200
+SKU_1085,Dove Shampoo 340ml Regular,Dove,SUP_153,Bengaluru,194.23,7.12,14.59,21.61,5,0.85,50
+SKU_1086,Dove Shampoo 340ml Value,Dove,SUP_707,Delhi,227.84,18.41,4.68,26.95,9,0.75,200
+SKU_1086,Dove Shampoo 340ml Value,Dove,SUP_532,Chennai,246.13,8.84,7.7,27.35,3,0.8,50
+SKU_1086,Dove Shampoo 340ml Value,Dove,SUP_420,Kolkata,243.52,23.26,5.33,15.45,4,0.84,100
+SKU_1087,Dove Shampoo 340ml Family,Dove,SUP_108,Hyderabad,277.68,11.0,7.4,18.18,9,0.83,100
+SKU_1087,Dove Shampoo 340ml Family,Dove,SUP_521,Hyderabad,295.77,28.73,16.92,28.37,5,0.77,50
+SKU_1087,Dove Shampoo 340ml Family,Dove,SUP_847,Bengaluru,277.58,23.89,9.58,19.5,8,0.83,100
+SKU_1087,Dove Shampoo 340ml Family,Dove,SUP_354,Hyderabad,281.59,20.15,15.25,28.56,11,0.82,50
+SKU_1087,Dove Shampoo 340ml Family,Dove,SUP_408,Delhi,303.96,25.77,16.84,27.25,10,0.8,500
+SKU_1088,Colgate Strong Teeth 200g Mini,Colgate,SUP_345,Bengaluru,48.62,4.16,3.45,4.31,5,0.87,50
+SKU_1088,Colgate Strong Teeth 200g Mini,Colgate,SUP_469,Kolkata,47.08,4.53,0.95,5.08,11,0.85,100
+SKU_1088,Colgate Strong Teeth 200g Mini,Colgate,SUP_888,Mumbai,48.49,2.31,3.45,4.84,3,0.75,100
+SKU_1089,Colgate Strong Teeth 200g Regular,Colgate,SUP_393,Chennai,65.74,4.69,3.76,3.41,8,0.85,500
+SKU_1089,Colgate Strong Teeth 200g Regular,Colgate,SUP_730,Delhi,58.84,2.16,1.75,3.15,6,0.77,100
+SKU_1089,Colgate Strong Teeth 200g Regular,Colgate,SUP_434,Bengaluru,65.94,4.82,4.38,6.07,12,0.91,50
+SKU_1090,Colgate Strong Teeth 200g Value,Colgate,SUP_159,Delhi,83.13,3.49,5.93,6.99,8,0.78,50
+SKU_1090,Colgate Strong Teeth 200g Value,Colgate,SUP_858,Delhi,78.78,5.48,2.78,5.37,4,0.92,100
+SKU_1090,Colgate Strong Teeth 200g Value,Colgate,SUP_629,Pune,80.72,5.66,6.06,6.4,6,0.79,100
+SKU_1090,Colgate Strong Teeth 200g Value,Colgate,SUP_850,Mumbai,83.34,5.22,3.94,8.59,2,0.83,500
+SKU_1091,Colgate Strong Teeth 200g Family,Colgate,SUP_742,Mumbai,96.82,6.45,5.44,10.44,10,0.84,500
+SKU_1091,Colgate Strong Teeth 200g Family,Colgate,SUP_261,Kolkata,104.45,8.72,8.26,9.33,11,0.91,50
+SKU_1091,Colgate Strong Teeth 200g Family,Colgate,SUP_145,Pune,96.38,8.28,4.02,7.42,5,0.76,200
+SKU_1092,Colgate MaxFresh 150g Mini,Colgate,SUP_136,Hyderabad,39.81,2.57,2.74,2.74,12,0.85,200
+SKU_1092,Colgate MaxFresh 150g Mini,Colgate,SUP_427,Kolkata,40.18,2.89,1.57,3.48,11,0.84,50
+SKU_1092,Colgate MaxFresh 150g Mini,Colgate,SUP_147,Bengaluru,39.81,3.79,2.71,2.87,9,0.96,200
+SKU_1093,Colgate MaxFresh 150g Regular,Colgate,SUP_398,Hyderabad,58.08,2.23,3.26,5.2,11,0.81,200
+SKU_1093,Colgate MaxFresh 150g Regular,Colgate,SUP_891,Pune,59.08,2.26,1.95,5.75,10,0.93,100
+SKU_1093,Colgate MaxFresh 150g Regular,Colgate,SUP_124,Delhi,55.79,2.02,2.5,3.05,12,0.95,50
+SKU_1093,Colgate MaxFresh 150g Regular,Colgate,SUP_773,Bengaluru,61.77,4.7,2.41,3.09,6,0.77,100
+SKU_1093,Colgate MaxFresh 150g Regular,Colgate,SUP_245,Chennai,57.8,3.43,1.43,3.75,2,0.97,500
+SKU_1094,Colgate MaxFresh 150g Value,Colgate,SUP_694,Mumbai,77.01,6.48,1.68,8.67,12,0.95,50
+SKU_1094,Colgate MaxFresh 150g Value,Colgate,SUP_778,Delhi,78.34,6.03,3.2,7.46,6,0.95,500
+SKU_1094,Colgate MaxFresh 150g Value,Colgate,SUP_425,Bengaluru,79.42,4.24,1.68,4.93,3,0.98,100
+SKU_1094,Colgate MaxFresh 150g Value,Colgate,SUP_259,Mumbai,80.2,7.45,2.4,9.01,9,0.83,50
+SKU_1095,Colgate MaxFresh 150g Family,Colgate,SUP_972,Mumbai,92.16,7.68,5.85,7.64,12,0.82,50
+SKU_1095,Colgate MaxFresh 150g Family,Colgate,SUP_251,Mumbai,89.34,4.37,5.58,7.44,7,0.85,50
+SKU_1095,Colgate MaxFresh 150g Family,Colgate,SUP_278,Mumbai,94.83,5.26,6.1,10.95,9,0.88,100
+SKU_1096,Aashirvaad Atta 5kg Mini,Aashirvaad,SUP_112,Mumbai,119.09,6.19,4.65,6.45,5,0.78,500
+SKU_1096,Aashirvaad Atta 5kg Mini,Aashirvaad,SUP_760,Mumbai,112.76,4.63,8.28,7.34,6,0.97,50
+SKU_1096,Aashirvaad Atta 5kg Mini,Aashirvaad,SUP_761,Bengaluru,107.61,4.34,5.99,9.79,3,0.97,200
+SKU_1097,Aashirvaad Atta 5kg Regular,Aashirvaad,SUP_543,Pune,155.62,14.87,4.29,9.91,9,0.76,500
+SKU_1097,Aashirvaad Atta 5kg Regular,Aashirvaad,SUP_291,Kolkata,158.21,9.6,4.53,15.44,4,0.76,100
+SKU_1097,Aashirvaad Atta 5kg Regular,Aashirvaad,SUP_663,Bengaluru,168.24,9.56,10.36,10.93,6,0.84,500
+SKU_1097,Aashirvaad Atta 5kg Regular,Aashirvaad,SUP_638,Delhi,158.77,12.87,4.82,9.04,10,0.94,500
+SKU_1098,Aashirvaad Atta 5kg Value,Aashirvaad,SUP_452,Hyderabad,236.45,16.25,11.93,15.25,8,0.81,50
+SKU_1098,Aashirvaad Atta 5kg Value,Aashirvaad,SUP_930,Pune,231.56,22.12,18.41,18.43,9,0.88,100
+SKU_1098,Aashirvaad Atta 5kg Value,Aashirvaad,SUP_772,Delhi,251.46,21.28,5.09,15.67,2,0.93,100
+SKU_1098,Aashirvaad Atta 5kg Value,Aashirvaad,SUP_497,Kolkata,239.36,15.21,5.03,14.22,4,0.79,200
+SKU_1099,Aashirvaad Atta 5kg Family,Aashirvaad,SUP_820,Chennai,292.73,16.49,23.3,32.26,11,0.89,100
+SKU_1099,Aashirvaad Atta 5kg Family,Aashirvaad,SUP_604,Hyderabad,310.98,30.81,17.13,22.52,9,0.76,50
+SKU_1099,Aashirvaad Atta 5kg Family,Aashirvaad,SUP_639,Bengaluru,287.91,23.1,7.95,21.67,11,0.8,100
+SKU_1099,Aashirvaad Atta 5kg Family,Aashirvaad,SUP_921,Pune,292.04,28.21,21.56,15.73,2,0.76,100
+SKU_1099,Aashirvaad Atta 5kg Family,Aashirvaad,SUP_981,Kolkata,308.6,11.82,22.47,23.15,7,0.92,500
+SKU_1100,Aashirvaad Atta 10kg Mini,Aashirvaad,SUP_261,Chennai,242.91,21.75,12.67,16.65,12,0.98,200
+SKU_1100,Aashirvaad Atta 10kg Mini,Aashirvaad,SUP_810,Hyderabad,238.84,17.82,13.69,22.15,5,0.91,100
+SKU_1100,Aashirvaad Atta 10kg Mini,Aashirvaad,SUP_401,Delhi,245.36,9.45,8.93,15.8,2,0.98,500
+SKU_1100,Aashirvaad Atta 10kg Mini,Aashirvaad,SUP_681,Mumbai,260.44,18.54,6.0,29.22,7,0.97,100
+SKU_1101,Aashirvaad Atta 10kg Regular,Aashirvaad,SUP_863,Mumbai,381.25,29.75,21.23,43.87,7,0.79,50
+SKU_1101,Aashirvaad Atta 10kg Regular,Aashirvaad,SUP_846,Kolkata,375.93,11.6,14.17,21.42,6,0.8,50
+SKU_1101,Aashirvaad Atta 10kg Regular,Aashirvaad,SUP_837,Mumbai,354.14,21.89,21.18,20.37,9,0.93,100
+SKU_1102,Aashirvaad Atta 10kg Value,Aashirvaad,SUP_484,Mumbai,483.17,42.41,33.91,28.06,11,0.91,100
+SKU_1102,Aashirvaad Atta 10kg Value,Aashirvaad,SUP_966,Mumbai,440.75,22.34,9.3,41.15,7,0.81,50
+SKU_1102,Aashirvaad Atta 10kg Value,Aashirvaad,SUP_484,Delhi,435.53,27.05,24.28,25.49,10,0.98,50
+SKU_1102,Aashirvaad Atta 10kg Value,Aashirvaad,SUP_594,Chennai,451.09,27.5,15.28,49.47,12,0.79,500
+SKU_1103,Aashirvaad Atta 10kg Family,Aashirvaad,SUP_519,Chennai,463.88,23.72,33.6,47.69,10,0.81,200
+SKU_1103,Aashirvaad Atta 10kg Family,Aashirvaad,SUP_502,Hyderabad,461.84,43.55,16.27,49.6,9,0.79,200
+SKU_1103,Aashirvaad Atta 10kg Family,Aashirvaad,SUP_943,Chennai,444.01,37.6,25.15,38.55,9,0.8,50
+SKU_1104,Tata Salt 1kg Mini,Tata,SUP_964,Mumbai,12.14,0.46,0.65,1.45,8,0.86,200
+SKU_1104,Tata Salt 1kg Mini,Tata,SUP_289,Kolkata,11.82,1.18,0.52,0.63,7,0.79,50
+SKU_1104,Tata Salt 1kg Mini,Tata,SUP_331,Pune,12.1,1.11,0.73,0.94,2,0.79,50
+SKU_1104,Tata Salt 1kg Mini,Tata,SUP_654,Bengaluru,11.81,0.59,0.75,0.86,11,0.8,50
+SKU_1104,Tata Salt 1kg Mini,Tata,SUP_528,Hyderabad,13.02,1.15,0.7,1.52,9,0.89,100
+SKU_1105,Tata Salt 1kg Regular,Tata,SUP_135,Hyderabad,18.95,0.71,1.24,1.71,10,0.94,100
+SKU_1105,Tata Salt 1kg Regular,Tata,SUP_277,Delhi,18.28,1.83,1.44,1.95,5,0.78,500
+SKU_1105,Tata Salt 1kg Regular,Tata,SUP_306,Pune,18.18,1.39,0.82,1.13,11,0.81,50
+SKU_1106,Tata Salt 1kg Value,Tata,SUP_382,Hyderabad,20.37,1.54,1.04,2.41,2,0.94,500
+SKU_1106,Tata Salt 1kg Value,Tata,SUP_680,Hyderabad,19.61,0.71,0.41,1.66,3,0.97,50
+SKU_1106,Tata Salt 1kg Value,Tata,SUP_452,Bengaluru,21.39,1.98,1.45,1.81,12,0.87,500
+SKU_1106,Tata Salt 1kg Value,Tata,SUP_247,Hyderabad,19.42,0.62,0.99,2.29,8,0.76,200
+SKU_1106,Tata Salt 1kg Value,Tata,SUP_586,Kolkata,21.14,0.99,0.94,1.62,2,0.83,200
+SKU_1107,Tata Salt 1kg Family,Tata,SUP_989,Delhi,28.8,1.15,0.74,2.24,9,0.94,200
+SKU_1107,Tata Salt 1kg Family,Tata,SUP_761,Mumbai,26.72,2.25,1.96,2.43,5,0.97,500
+SKU_1107,Tata Salt 1kg Family,Tata,SUP_988,Kolkata,28.39,1.25,1.24,1.67,10,0.94,50
+SKU_1107,Tata Salt 1kg Family,Tata,SUP_238,Pune,26.87,2.52,1.64,1.95,11,0.76,100
+SKU_1108,Fortune Sunflower Oil 1L Mini,Fortune,SUP_567,Mumbai,85.46,6.49,2.48,5.43,5,0.82,500
+SKU_1108,Fortune Sunflower Oil 1L Mini,Fortune,SUP_226,Chennai,81.97,2.67,6.37,4.69,7,0.87,500
+SKU_1108,Fortune Sunflower Oil 1L Mini,Fortune,SUP_700,Hyderabad,78.54,2.39,2.41,8.69,4,0.95,200
+SKU_1109,Fortune Sunflower Oil 1L Regular,Fortune,SUP_150,Delhi,107.48,3.61,3.44,9.81,5,0.96,100
+SKU_1109,Fortune Sunflower Oil 1L Regular,Fortune,SUP_519,Hyderabad,116.02,8.4,8.3,8.71,12,0.75,100
+SKU_1109,Fortune Sunflower Oil 1L Regular,Fortune,SUP_108,Delhi,115.58,9.95,8.64,9.09,6,0.92,200
+SKU_1109,Fortune Sunflower Oil 1L Regular,Fortune,SUP_457,Bengaluru,112.33,5.25,3.68,9.01,9,0.82,500
+SKU_1109,Fortune Sunflower Oil 1L Regular,Fortune,SUP_778,Pune,114.66,10.26,5.53,10.81,10,0.91,200

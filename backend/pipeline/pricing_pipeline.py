@@ -136,13 +136,13 @@ if __name__ == "__main__":
     # Test end-to-end pricing pipeline run
     import json
     
-    sku = "SKU_1078"
+    sku = "SKU_1056"
     retailer = "Reliance Retail"
-    store = "Delhi"
+    store = "Hyderabad"
     
     context = {
-        "retailer_type": "premium",
-        "business_strategy": "volume_first",
+        "retailer_type": "standard",
+        "business_strategy": "margin_first",
         "region": "urban"
     }
     
