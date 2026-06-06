@@ -113,7 +113,7 @@ def run_coordinated_pricing(
     coordinated_weights = predict_engine_weights(feature_vector)
 
     # 9. Execute Layer 3 Price Optimization
-    optimizer = PriceOptimizer()
+    optimizer = PriceOptimizer({"candidate_step_size": 0.15})
     optimization_report = optimizer.optimize_price(pricing_state, coordinated_weights)
 
     return {
@@ -142,7 +142,7 @@ if __name__ == "__main__":
     
     context = {
         "retailer_type": "standard",
-        "business_strategy": "margin_first",
+        "business_strategy": "balanced",
         "region": "urban"
     }
     
