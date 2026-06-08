@@ -3,6 +3,7 @@ import numpy as np
 from xgboost import XGBRegressor
 import matplotlib.pyplot as plt
 import os
+import logging
 
 # Helper class for categorical label encoding that safely handles unseen labels
 class SafeLabelEncoder:
@@ -322,7 +323,64 @@ def plot_curve(df_curve, product_id):
     print(f"Demand curve plot saved to: {plot_filename}")
 
 # -----------------------------
-# STEP 9: MAIN PIPELINE
+# STEP 9: prediction modes & helpers
+# -----------------------------
+def determine_prediction_mode(sales_records_count: int) -> str:
+    """
+    Determines whether Engine 2 should operate in:
+    - cold_start (0-30 sales records)
+    - hybrid (31-100 sales records)
+    - normal (>100 sales records)
+    """
+    if sales_records_count <= 30:
+        return "cold_start"
+    elif sales_records_count <= 100:
+        return "hybrid"
+    else:
+        return "normal"
+
+def hybrid_prediction(hist_metrics: dict, sim_metrics: dict, sales_records_count: int) -> dict:
+    """
+    Blends target SKU sales history with similarity-borrowed signals.
+    Linear interpolation logic:
+      - 31 records: 90% similarity, 10% history
+      - 50 records: 70% similarity, 30% history
+      - 100 records: 0% similarity, 100% history
+    """
+    n = sales_records_count
+    if n <= 30:
+        w_hist = 0.0
+    elif n <= 31:
+        w_hist = 0.10
+    elif n <= 50:
+        # Interpolate between 31 (0.10) and 50 (0.30)
+        w_hist = 0.10 + (n - 31) / (50 - 31) * (0.30 - 0.10)
+    elif n <= 100:
+        # Interpolate between 50 (0.30) and 100 (1.00)
+        w_hist = 0.30 + (n - 50) / (100 - 50) * (1.00 - 0.30)
+    else:
+        w_hist = 1.0
+
+    w_sim = 1.0 - w_hist
+
+    blended_optimal_price = w_hist * hist_metrics["optimal_price"] + w_sim * sim_metrics["optimal_price"]
+    blended_expected_demand = w_hist * hist_metrics["expected_demand"] + w_sim * sim_metrics["expected_demand"]
+    blended_elasticity = w_hist * hist_metrics["elasticity"] + w_sim * sim_metrics["elasticity"]
+
+    # Log explanation details
+    log_msg = f"[Hybrid] Blending {w_hist * 100:.1f}% historical and {w_sim * 100:.1f}% similarity signals"
+    print(log_msg)
+    logging.getLogger("pricing_system.layer1.engine2").info(log_msg)
+
+    return {
+        "optimal_price": float(round(blended_optimal_price, 2)),
+        "expected_demand": float(round(blended_expected_demand, 2)),
+        "elasticity": float(round(blended_elasticity, 3)),
+        "similar_products_used": sim_metrics.get("similar_products_used", [])
+    }
+
+# -----------------------------
+# STEP 10: MAIN PIPELINE
 # -----------------------------
 def run_pipeline(
     sales_csv_path="datasets/sales.csv",
@@ -337,61 +395,174 @@ def run_pipeline(
     if csv_path is not None:
         sales_csv_path = csv_path
 
+    # Verify target product exists in catalog
+    if not os.path.exists(products_csv_path):
+        raise FileNotFoundError(f"Products file not found at: {products_csv_path}")
+    df_catalog = pd.read_csv(products_csv_path)
+    df_catalog["product_id"] = df_catalog["product_id"].astype(str).str.strip()
+    if target_product_id not in df_catalog["product_id"].values:
+        raise ValueError(f"Product ID {target_product_id} not found in products catalog.")
+
     df = load_and_join_data(sales_csv_path, products_csv_path, inventory_csv_path)
     df, encoders = preprocess(df)
 
+    # Train global model as normal
     model, features = train_model(df)
 
-    # Pick latest row for the target product as base context
+    # Pick all records for the target product to determine mode and localize history
     df_product = df[df["product_id"] == target_product_id]
-    if df_product.empty:
-        raise ValueError(f"Product ID {target_product_id} not found in the dataset.")
-    
+    df_product_localized = df_product.copy()
+
     # Filter by retailer and store if provided
     if retailer_company:
-        df_filtered = df_product[df_product["retailer_company"].str.lower() == retailer_company.lower()]
+        df_filtered = df_product_localized[df_product_localized["retailer_company"].str.lower() == retailer_company.lower()]
         if not df_filtered.empty:
-            df_product = df_filtered
+            df_product_localized = df_filtered
             
     if store_location:
-        df_filtered = df_product[df_product["store_location"].str.lower() == store_location.lower()]
+        df_filtered = df_product_localized[df_product_localized["store_location"].str.lower() == store_location.lower()]
         if not df_filtered.empty:
-            df_product = df_filtered
+            df_product_localized = df_filtered
 
-    base_row = df_product.iloc[-1].to_dict()
+    sales_records_count = len(df_product_localized)
+    mode = determine_prediction_mode(sales_records_count)
+
+    # Import ColdStartPredictor inside function to resolve circular dependencies
+    from backend.similarity.cold_start_predictor import ColdStartPredictor
+    predictor = ColdStartPredictor(products_csv_path)
+
+    # 1. Cold Start Mode
+    if mode == "cold_start":
+        print(f"[Cold Start] Using similarity-based prediction (sales records count: {sales_records_count})")
+        logging.getLogger("pricing_system.layer1.engine2").info(
+            f"[Cold Start] Using similarity-based prediction (sales records count: {sales_records_count})"
+        )
+        
+        sim_metrics = predictor.predict_cold_start(
+            target_product_id=target_product_id,
+            df=df,
+            model=model,
+            features=features,
+            retailer_company=retailer_company,
+            store_location=store_location
+        )
+        
+        opt_price = sim_metrics["optimal_price"]
+        exp_demand = sim_metrics["expected_demand"]
+        elast = sim_metrics["elasticity"]
+        
+        # Generate simulated demand curve for plotting
+        price_range = np.linspace(opt_price * 0.7, opt_price * 1.3, 20)
+        demand_points = exp_demand * (price_range / opt_price) ** min(0.0, elast)
+        df_curve = pd.DataFrame({"price": price_range, "demand": demand_points})
+        df_curve = calculate_revenue(df_curve)
+        
+        print(f"\n===== RESULTS FOR {target_product_id} (COLD START) =====")
+        print("Optimal Price:", round(opt_price, 2))
+        print("Expected Demand:", round(exp_demand, 2))
+        print("Max Revenue:", round(opt_price * exp_demand, 2))
+        print("Elasticity:", round(elast, 3))
+        
+        plot_curve(df_curve, target_product_id)
+        
+        return {
+            "optimal_price": opt_price,
+            "expected_demand": exp_demand,
+            "elasticity": elast,
+            "prediction_source": "similar_products",
+            "similar_products_used": sim_metrics["similar_products_used"]
+        }
+
+    # 2. Extract base history context needed for Hybrid/Normal modes
+    # If the localized context is empty, fall back to global product slice to prevent crash
+    if df_product_localized.empty:
+        df_product_localized = df_product
+    
+    base_row = df_product_localized.iloc[-1].to_dict()
 
     # Generate candidate prices specifically for this product
     price_range = np.linspace(
-        df_product["price"].min() * 0.7,
-        df_product["price"].max() * 1.3,
+        df_product_localized["price"].min() * 0.7,
+        df_product_localized["price"].max() * 1.3,
         20
     )
 
-    df_curve = generate_demand_curve(
-        model,
-        features,
-        base_row,
-        price_range
+    # Get historical predictions
+    df_curve_hist = generate_demand_curve(model, features, base_row, price_range)
+    df_curve_hist = calculate_revenue(df_curve_hist)
+    optimal_hist = find_optimal_price(df_curve_hist)
+    elasticity_hist = compute_elasticity(df_curve_hist)
+
+    hist_metrics = {
+        "optimal_price": float(optimal_hist["price"]),
+        "expected_demand": float(optimal_hist["demand"]),
+        "elasticity": float(elasticity_hist)
+    }
+
+    # 3. Hybrid Mode
+    if mode == "hybrid":
+        print(f"[Hybrid] Running hybrid prediction blending (sales records count: {sales_records_count})")
+        logging.getLogger("pricing_system.layer1.engine2").info(
+            f"[Hybrid] Running hybrid prediction blending (sales records count: {sales_records_count})"
+        )
+
+        sim_metrics = predictor.predict_cold_start(
+            target_product_id=target_product_id,
+            df=df,
+            model=model,
+            features=features,
+            retailer_company=retailer_company,
+            store_location=store_location
+        )
+
+        hybrid_metrics = hybrid_prediction(hist_metrics, sim_metrics, sales_records_count)
+        
+        opt_price = hybrid_metrics["optimal_price"]
+        exp_demand = hybrid_metrics["expected_demand"]
+        elast = hybrid_metrics["elasticity"]
+
+        # Generate blended demand curve for plotting
+        price_range = np.linspace(opt_price * 0.7, opt_price * 1.3, 20)
+        demand_points = exp_demand * (price_range / opt_price) ** min(0.0, elast)
+        df_curve = pd.DataFrame({"price": price_range, "demand": demand_points})
+        df_curve = calculate_revenue(df_curve)
+
+        print(f"\n===== RESULTS FOR {target_product_id} (HYBRID) =====")
+        print("Optimal Price:", round(opt_price, 2))
+        print("Expected Demand:", round(exp_demand, 2))
+        print("Max Revenue:", round(opt_price * exp_demand, 2))
+        print("Elasticity:", round(elast, 3))
+
+        plot_curve(df_curve, target_product_id)
+
+        return {
+            "optimal_price": opt_price,
+            "expected_demand": exp_demand,
+            "elasticity": elast,
+            "prediction_source": "hybrid",
+            "similar_products_used": hybrid_metrics["similar_products_used"]
+        }
+
+    # 4. Normal Mode
+    print(f"[Normal] Using historical sales prediction (sales records count: {sales_records_count})")
+    logging.getLogger("pricing_system.layer1.engine2").info(
+        f"[Normal] Using historical sales prediction (sales records count: {sales_records_count})"
     )
 
-    df_curve = calculate_revenue(df_curve)
+    print(f"\n===== RESULTS FOR {target_product_id} (NORMAL) =====")
+    print("Optimal Price:", round(hist_metrics["optimal_price"], 2))
+    print("Expected Demand:", round(hist_metrics["expected_demand"], 2))
+    print("Max Revenue:", round(optimal_hist["revenue"], 2))
+    print("Elasticity:", round(hist_metrics["elasticity"], 3))
 
-    optimal = find_optimal_price(df_curve)
-
-    elasticity = compute_elasticity(df_curve)
-
-    print(f"\n===== RESULTS FOR {target_product_id} =====")
-    print("Optimal Price:", round(optimal["price"], 2))
-    print("Expected Demand:", round(optimal["demand"], 2))
-    print("Max Revenue:", round(optimal["revenue"], 2))
-    print("Elasticity:", round(elasticity, 3))
-
-    plot_curve(df_curve, target_product_id)
+    plot_curve(df_curve_hist, target_product_id)
 
     return {
-        "optimal_price": float(optimal["price"]),
-        "expected_demand": float(optimal["demand"]),
-        "elasticity": float(elasticity)
+        "optimal_price": hist_metrics["optimal_price"],
+        "expected_demand": hist_metrics["expected_demand"],
+        "elasticity": hist_metrics["elasticity"],
+        "prediction_source": "historical_sales",
+        "similar_products_used": []
     }
 
 # -----------------------------

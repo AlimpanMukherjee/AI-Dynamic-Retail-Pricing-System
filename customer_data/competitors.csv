@@ -1,0 +1,551 @@
+product_id,product_name,competitor_name,competitor_price,market_region,promotion_active,rating
+SKU_1000,Coca Cola 200ml Mini,Blinkit,14.17,Kolkata,True,4.3
+SKU_1000,Coca Cola 200ml Mini,BigBasket,14.11,Kolkata,False,4.4
+SKU_1000,Coca Cola 200ml Mini,JioMart,13.67,Kolkata,False,4.4
+SKU_1000,Coca Cola 200ml Mini,Amazon India,14.84,Kolkata,True,3.8
+SKU_1000,Coca Cola 200ml Mini,Flipkart Grocery,13.35,Kolkata,False,4.8
+SKU_1001,Coca Cola 200ml Regular,Blinkit,20.02,Kolkata,False,4.1
+SKU_1001,Coca Cola 200ml Regular,BigBasket,20.56,Kolkata,False,3.9
+SKU_1001,Coca Cola 200ml Regular,JioMart,20.62,Kolkata,True,4.6
+SKU_1001,Coca Cola 200ml Regular,Amazon India,21.17,Kolkata,True,4.9
+SKU_1001,Coca Cola 200ml Regular,Flipkart Grocery,19.18,Kolkata,True,4.0
+SKU_1002,Coca Cola 200ml Value,Blinkit,25.63,Kolkata,False,4.8
+SKU_1002,Coca Cola 200ml Value,BigBasket,24.64,Kolkata,False,4.4
+SKU_1002,Coca Cola 200ml Value,JioMart,25.39,Kolkata,True,3.9
+SKU_1002,Coca Cola 200ml Value,Amazon India,22.77,Kolkata,False,3.9
+SKU_1002,Coca Cola 200ml Value,Flipkart Grocery,22.58,Kolkata,True,4.4
+SKU_1003,Coca Cola 200ml Family,Blinkit,28.79,Kolkata,False,4.2
+SKU_1003,Coca Cola 200ml Family,BigBasket,31.76,Kolkata,True,4.9
+SKU_1003,Coca Cola 200ml Family,JioMart,29.87,Kolkata,True,4.8
+SKU_1003,Coca Cola 200ml Family,Amazon India,28.81,Kolkata,True,4.3
+SKU_1003,Coca Cola 200ml Family,Flipkart Grocery,29.82,Kolkata,False,4.0
+SKU_1004,Coca Cola 750ml Mini,Blinkit,26.64,Kolkata,True,4.2
+SKU_1004,Coca Cola 750ml Mini,BigBasket,26.82,Kolkata,True,4.1
+SKU_1004,Coca Cola 750ml Mini,JioMart,29.95,Kolkata,True,4.6
+SKU_1004,Coca Cola 750ml Mini,Amazon India,29.6,Kolkata,True,4.6
+SKU_1004,Coca Cola 750ml Mini,Flipkart Grocery,28.09,Kolkata,False,4.3
+SKU_1005,Coca Cola 750ml Regular,Blinkit,41.31,Kolkata,False,3.8
+SKU_1005,Coca Cola 750ml Regular,BigBasket,39.24,Kolkata,True,4.1
+SKU_1005,Coca Cola 750ml Regular,JioMart,41.28,Kolkata,False,4.2
+SKU_1005,Coca Cola 750ml Regular,Amazon India,41.65,Kolkata,False,4.0
+SKU_1005,Coca Cola 750ml Regular,Flipkart Grocery,39.18,Kolkata,True,4.9
+SKU_1006,Coca Cola 750ml Value,Blinkit,47.33,Kolkata,True,4.5
+SKU_1006,Coca Cola 750ml Value,BigBasket,45.45,Kolkata,True,4.2
+SKU_1006,Coca Cola 750ml Value,JioMart,45.57,Kolkata,False,4.8
+SKU_1006,Coca Cola 750ml Value,Amazon India,50.32,Kolkata,True,4.9
+SKU_1006,Coca Cola 750ml Value,Flipkart Grocery,49.12,Kolkata,True,4.3
+SKU_1007,Coca Cola 750ml Family,Blinkit,64.04,Kolkata,False,3.8
+SKU_1007,Coca Cola 750ml Family,BigBasket,64.18,Kolkata,True,4.0
+SKU_1007,Coca Cola 750ml Family,JioMart,57.84,Kolkata,True,4.9
+SKU_1007,Coca Cola 750ml Family,Amazon India,60.16,Kolkata,False,4.8
+SKU_1007,Coca Cola 750ml Family,Flipkart Grocery,63.59,Kolkata,True,4.2
+SKU_1008,Coca Cola 1L Mini,Blinkit,34.59,Kolkata,False,4.7
+SKU_1008,Coca Cola 1L Mini,BigBasket,34.18,Kolkata,False,4.4
+SKU_1008,Coca Cola 1L Mini,JioMart,35.29,Kolkata,True,4.0
+SKU_1008,Coca Cola 1L Mini,Amazon India,31.66,Kolkata,True,4.6
+SKU_1008,Coca Cola 1L Mini,Flipkart Grocery,33.23,Kolkata,True,4.3
+SKU_1009,Coca Cola 1L Regular,Blinkit,51.0,Kolkata,False,4.4
+SKU_1009,Coca Cola 1L Regular,BigBasket,48.21,Kolkata,True,4.1
+SKU_1009,Coca Cola 1L Regular,JioMart,45.26,Kolkata,False,4.7
+SKU_1009,Coca Cola 1L Regular,Amazon India,47.09,Kolkata,True,4.3
+SKU_1009,Coca Cola 1L Regular,Flipkart Grocery,48.19,Kolkata,False,4.1
+SKU_1010,Coca Cola 1L Value,Blinkit,56.96,Kolkata,True,3.9
+SKU_1010,Coca Cola 1L Value,BigBasket,58.3,Kolkata,False,4.1
+SKU_1010,Coca Cola 1L Value,JioMart,60.49,Kolkata,False,4.6
+SKU_1010,Coca Cola 1L Value,Amazon India,57.14,Kolkata,False,3.9
+SKU_1010,Coca Cola 1L Value,Flipkart Grocery,61.63,Kolkata,True,3.9
+SKU_1011,Coca Cola 1L Family,Blinkit,69.34,Kolkata,True,4.3
+SKU_1011,Coca Cola 1L Family,BigBasket,76.84,Kolkata,False,4.3
+SKU_1011,Coca Cola 1L Family,JioMart,73.26,Kolkata,False,4.2
+SKU_1011,Coca Cola 1L Family,Amazon India,70.51,Kolkata,True,4.8
+SKU_1011,Coca Cola 1L Family,Flipkart Grocery,75.05,Kolkata,False,4.4
+SKU_1012,Coca Cola 2L Mini,Blinkit,68.88,Kolkata,False,4.9
+SKU_1012,Coca Cola 2L Mini,BigBasket,68.13,Kolkata,True,4.1
+SKU_1012,Coca Cola 2L Mini,JioMart,67.81,Kolkata,True,4.7
+SKU_1012,Coca Cola 2L Mini,Amazon India,64.43,Kolkata,False,4.6
+SKU_1012,Coca Cola 2L Mini,Flipkart Grocery,66.65,Kolkata,True,4.8
+SKU_1013,Coca Cola 2L Regular,Blinkit,98.12,Kolkata,False,4.3
+SKU_1013,Coca Cola 2L Regular,BigBasket,97.68,Kolkata,False,4.8
+SKU_1013,Coca Cola 2L Regular,JioMart,99.22,Kolkata,False,4.5
+SKU_1013,Coca Cola 2L Regular,Amazon India,92.11,Kolkata,False,3.8
+SKU_1013,Coca Cola 2L Regular,Flipkart Grocery,89.95,Kolkata,True,4.6
+SKU_1014,Coca Cola 2L Value,Blinkit,114.88,Kolkata,False,4.6
+SKU_1014,Coca Cola 2L Value,BigBasket,112.01,Kolkata,True,4.1
+SKU_1014,Coca Cola 2L Value,JioMart,114.08,Kolkata,True,4.5
+SKU_1014,Coca Cola 2L Value,Amazon India,117.93,Kolkata,True,4.2
+SKU_1014,Coca Cola 2L Value,Flipkart Grocery,116.88,Kolkata,True,4.8
+SKU_1015,Coca Cola 2L Family,Blinkit,137.92,Kolkata,False,3.9
+SKU_1015,Coca Cola 2L Family,BigBasket,149.94,Kolkata,False,4.6
+SKU_1015,Coca Cola 2L Family,JioMart,151.66,Kolkata,False,4.4
+SKU_1015,Coca Cola 2L Family,Amazon India,140.0,Kolkata,True,4.7
+SKU_1015,Coca Cola 2L Family,Flipkart Grocery,147.89,Kolkata,True,4.4
+SKU_1016,Coke Zero 300ml Mini,Blinkit,27.53,Kolkata,True,3.9
+SKU_1016,Coke Zero 300ml Mini,BigBasket,26.6,Kolkata,True,3.8
+SKU_1016,Coke Zero 300ml Mini,JioMart,27.63,Kolkata,False,4.8
+SKU_1016,Coke Zero 300ml Mini,Amazon India,29.46,Kolkata,False,4.8
+SKU_1016,Coke Zero 300ml Mini,Flipkart Grocery,27.25,Kolkata,False,4.9
+SKU_1017,Coke Zero 300ml Regular,Blinkit,41.19,Kolkata,False,3.9
+SKU_1017,Coke Zero 300ml Regular,BigBasket,37.87,Kolkata,True,4.8
+SKU_1017,Coke Zero 300ml Regular,JioMart,40.39,Kolkata,False,4.6
+SKU_1017,Coke Zero 300ml Regular,Amazon India,40.24,Kolkata,True,4.6
+SKU_1017,Coke Zero 300ml Regular,Flipkart Grocery,38.91,Kolkata,True,4.2
+SKU_1018,Coke Zero 300ml Value,Blinkit,47.21,Kolkata,False,4.7
+SKU_1018,Coke Zero 300ml Value,BigBasket,49.7,Kolkata,False,4.9
+SKU_1018,Coke Zero 300ml Value,JioMart,50.53,Kolkata,True,4.7
+SKU_1018,Coke Zero 300ml Value,Amazon India,48.61,Kolkata,True,4.0
+SKU_1018,Coke Zero 300ml Value,Flipkart Grocery,45.6,Kolkata,False,4.8
+SKU_1019,Coke Zero 300ml Family,Blinkit,59.64,Kolkata,True,4.5
+SKU_1019,Coke Zero 300ml Family,BigBasket,59.27,Kolkata,False,4.2
+SKU_1019,Coke Zero 300ml Family,JioMart,62.71,Kolkata,False,4.2
+SKU_1019,Coke Zero 300ml Family,Amazon India,62.69,Kolkata,True,4.7
+SKU_1019,Coke Zero 300ml Family,Flipkart Grocery,59.1,Kolkata,False,4.1
+SKU_1020,Coke Zero Can 330ml Mini,Blinkit,33.53,Kolkata,True,4.6
+SKU_1020,Coke Zero Can 330ml Mini,BigBasket,33.29,Kolkata,True,4.3
+SKU_1020,Coke Zero Can 330ml Mini,JioMart,32.53,Kolkata,True,4.5
+SKU_1020,Coke Zero Can 330ml Mini,Amazon India,30.62,Kolkata,False,3.9
+SKU_1020,Coke Zero Can 330ml Mini,Flipkart Grocery,31.17,Kolkata,True,3.8
+SKU_1021,Coke Zero Can 330ml Regular,Blinkit,46.8,Kolkata,False,4.1
+SKU_1021,Coke Zero Can 330ml Regular,BigBasket,46.01,Kolkata,True,4.7
+SKU_1021,Coke Zero Can 330ml Regular,JioMart,48.12,Kolkata,False,3.8
+SKU_1021,Coke Zero Can 330ml Regular,Amazon India,46.36,Kolkata,False,4.7
+SKU_1021,Coke Zero Can 330ml Regular,Flipkart Grocery,44.22,Kolkata,False,4.2
+SKU_1022,Coke Zero Can 330ml Value,Blinkit,57.03,Kolkata,True,4.9
+SKU_1022,Coke Zero Can 330ml Value,BigBasket,52.08,Kolkata,False,4.3
+SKU_1022,Coke Zero Can 330ml Value,JioMart,57.03,Kolkata,False,4.7
+SKU_1022,Coke Zero Can 330ml Value,Amazon India,53.97,Kolkata,True,4.4
+SKU_1022,Coke Zero Can 330ml Value,Flipkart Grocery,51.6,Kolkata,False,4.5
+SKU_1023,Coke Zero Can 330ml Family,Blinkit,70.23,Kolkata,False,4.2
+SKU_1023,Coke Zero Can 330ml Family,BigBasket,70.93,Kolkata,False,4.7
+SKU_1023,Coke Zero Can 330ml Family,JioMart,70.82,Kolkata,False,4.6
+SKU_1023,Coke Zero Can 330ml Family,Amazon India,63.93,Kolkata,False,4.7
+SKU_1023,Coke Zero Can 330ml Family,Flipkart Grocery,63.67,Kolkata,True,4.1
+SKU_1024,Pepsi 250ml Mini,Blinkit,13.16,Kolkata,False,4.3
+SKU_1024,Pepsi 250ml Mini,BigBasket,14.84,Kolkata,False,4.4
+SKU_1024,Pepsi 250ml Mini,JioMart,14.17,Kolkata,True,4.3
+SKU_1024,Pepsi 250ml Mini,Amazon India,13.69,Kolkata,True,4.9
+SKU_1024,Pepsi 250ml Mini,Flipkart Grocery,14.29,Kolkata,True,4.3
+SKU_1025,Pepsi 250ml Regular,Blinkit,19.21,Kolkata,False,4.0
+SKU_1025,Pepsi 250ml Regular,BigBasket,19.54,Kolkata,False,3.9
+SKU_1025,Pepsi 250ml Regular,JioMart,20.99,Kolkata,True,4.8
+SKU_1025,Pepsi 250ml Regular,Amazon India,19.47,Kolkata,True,4.3
+SKU_1025,Pepsi 250ml Regular,Flipkart Grocery,21.09,Kolkata,True,4.1
+SKU_1026,Pepsi 250ml Value,Blinkit,24.52,Kolkata,False,4.9
+SKU_1026,Pepsi 250ml Value,BigBasket,22.69,Kolkata,True,4.9
+SKU_1026,Pepsi 250ml Value,JioMart,24.58,Kolkata,False,4.1
+SKU_1026,Pepsi 250ml Value,Amazon India,24.08,Kolkata,False,3.9
+SKU_1026,Pepsi 250ml Value,Flipkart Grocery,23.21,Kolkata,True,4.4
+SKU_1027,Pepsi 250ml Family,Blinkit,31.55,Kolkata,False,4.6
+SKU_1027,Pepsi 250ml Family,BigBasket,29.67,Kolkata,False,4.9
+SKU_1027,Pepsi 250ml Family,JioMart,28.51,Kolkata,False,4.0
+SKU_1027,Pepsi 250ml Family,Amazon India,29.83,Kolkata,False,4.2
+SKU_1027,Pepsi 250ml Family,Flipkart Grocery,28.39,Kolkata,True,4.6
+SKU_1028,Pepsi 750ml Mini,Blinkit,29.35,Kolkata,False,4.1
+SKU_1028,Pepsi 750ml Mini,BigBasket,29.05,Kolkata,False,4.2
+SKU_1028,Pepsi 750ml Mini,JioMart,27.32,Kolkata,False,4.7
+SKU_1028,Pepsi 750ml Mini,Amazon India,28.35,Kolkata,True,4.2
+SKU_1028,Pepsi 750ml Mini,Flipkart Grocery,29.1,Kolkata,True,3.8
+SKU_1029,Pepsi 750ml Regular,Blinkit,40.62,Kolkata,True,4.1
+SKU_1029,Pepsi 750ml Regular,BigBasket,41.63,Kolkata,False,4.3
+SKU_1029,Pepsi 750ml Regular,JioMart,39.51,Kolkata,False,4.8
+SKU_1029,Pepsi 750ml Regular,Amazon India,38.86,Kolkata,False,4.8
+SKU_1029,Pepsi 750ml Regular,Flipkart Grocery,41.69,Kolkata,False,3.9
+SKU_1030,Pepsi 750ml Value,Blinkit,49.9,Kolkata,False,4.6
+SKU_1030,Pepsi 750ml Value,BigBasket,50.64,Kolkata,True,4.4
+SKU_1030,Pepsi 750ml Value,JioMart,48.21,Kolkata,True,4.8
+SKU_1030,Pepsi 750ml Value,Amazon India,48.99,Kolkata,True,4.1
+SKU_1030,Pepsi 750ml Value,Flipkart Grocery,45.27,Kolkata,False,4.6
+SKU_1031,Pepsi 750ml Family,Blinkit,60.46,Kolkata,True,4.2
+SKU_1031,Pepsi 750ml Family,BigBasket,58.7,Kolkata,True,3.8
+SKU_1031,Pepsi 750ml Family,JioMart,62.61,Kolkata,False,4.6
+SKU_1031,Pepsi 750ml Family,Amazon India,58.75,Kolkata,False,4.8
+SKU_1031,Pepsi 750ml Family,Flipkart Grocery,60.22,Kolkata,False,4.9
+SKU_1032,Pepsi Black Can 330ml Mini,Blinkit,30.17,Kolkata,True,4.4
+SKU_1032,Pepsi Black Can 330ml Mini,BigBasket,31.1,Kolkata,True,4.8
+SKU_1032,Pepsi Black Can 330ml Mini,JioMart,30.06,Kolkata,True,4.1
+SKU_1032,Pepsi Black Can 330ml Mini,Amazon India,30.15,Kolkata,True,4.1
+SKU_1032,Pepsi Black Can 330ml Mini,Flipkart Grocery,33.05,Kolkata,True,4.0
+SKU_1033,Pepsi Black Can 330ml Regular,Blinkit,46.48,Kolkata,False,4.1
+SKU_1033,Pepsi Black Can 330ml Regular,BigBasket,43.77,Kolkata,False,4.2
+SKU_1033,Pepsi Black Can 330ml Regular,JioMart,43.11,Kolkata,False,3.9
+SKU_1033,Pepsi Black Can 330ml Regular,Amazon India,45.95,Kolkata,False,4.1
+SKU_1033,Pepsi Black Can 330ml Regular,Flipkart Grocery,42.76,Kolkata,False,4.5
+SKU_1034,Pepsi Black Can 330ml Value,Blinkit,53.46,Kolkata,True,4.9
+SKU_1034,Pepsi Black Can 330ml Value,BigBasket,55.24,Kolkata,False,4.0
+SKU_1034,Pepsi Black Can 330ml Value,JioMart,51.57,Kolkata,True,4.8
+SKU_1034,Pepsi Black Can 330ml Value,Amazon India,53.81,Kolkata,False,4.6
+SKU_1034,Pepsi Black Can 330ml Value,Flipkart Grocery,57.06,Kolkata,True,4.6
+SKU_1035,Pepsi Black Can 330ml Family,Blinkit,68.21,Kolkata,True,3.9
+SKU_1035,Pepsi Black Can 330ml Family,BigBasket,64.72,Kolkata,True,4.4
+SKU_1035,Pepsi Black Can 330ml Family,JioMart,65.77,Kolkata,False,4.1
+SKU_1035,Pepsi Black Can 330ml Family,Amazon India,63.82,Kolkata,False,4.1
+SKU_1035,Pepsi Black Can 330ml Family,Flipkart Grocery,72.05,Kolkata,True,3.9
+SKU_1036,Lay's Classic Salted 52g Mini,Blinkit,14.46,Kolkata,False,4.4
+SKU_1036,Lay's Classic Salted 52g Mini,BigBasket,13.5,Kolkata,False,4.0
+SKU_1036,Lay's Classic Salted 52g Mini,JioMart,14.31,Kolkata,True,4.8
+SKU_1036,Lay's Classic Salted 52g Mini,Amazon India,13.56,Kolkata,False,4.3
+SKU_1036,Lay's Classic Salted 52g Mini,Flipkart Grocery,14.35,Kolkata,True,4.6
+SKU_1037,Lay's Classic Salted 52g Regular,Blinkit,19.29,Kolkata,True,4.6
+SKU_1037,Lay's Classic Salted 52g Regular,BigBasket,20.04,Kolkata,True,4.0
+SKU_1037,Lay's Classic Salted 52g Regular,JioMart,19.87,Kolkata,True,4.2
+SKU_1037,Lay's Classic Salted 52g Regular,Amazon India,20.23,Kolkata,False,3.9
+SKU_1037,Lay's Classic Salted 52g Regular,Flipkart Grocery,19.73,Kolkata,False,3.9
+SKU_1038,Lay's Classic Salted 52g Value,Blinkit,22.68,Kolkata,True,4.4
+SKU_1038,Lay's Classic Salted 52g Value,BigBasket,23.69,Kolkata,False,4.4
+SKU_1038,Lay's Classic Salted 52g Value,JioMart,23.62,Kolkata,True,4.0
+SKU_1038,Lay's Classic Salted 52g Value,Amazon India,23.4,Kolkata,False,4.1
+SKU_1038,Lay's Classic Salted 52g Value,Flipkart Grocery,24.48,Kolkata,False,4.0
+SKU_1039,Lay's Classic Salted 52g Family,Blinkit,30.57,Kolkata,True,4.6
+SKU_1039,Lay's Classic Salted 52g Family,BigBasket,31.31,Kolkata,True,4.8
+SKU_1039,Lay's Classic Salted 52g Family,JioMart,31.34,Kolkata,True,4.6
+SKU_1039,Lay's Classic Salted 52g Family,Amazon India,31.79,Kolkata,True,4.7
+SKU_1039,Lay's Classic Salted 52g Family,Flipkart Grocery,31.2,Kolkata,False,4.3
+SKU_1040,Lay's Magic Masala 52g Mini,Blinkit,13.81,Kolkata,False,4.0
+SKU_1040,Lay's Magic Masala 52g Mini,BigBasket,14.4,Kolkata,True,4.7
+SKU_1040,Lay's Magic Masala 52g Mini,JioMart,14.37,Kolkata,True,4.9
+SKU_1040,Lay's Magic Masala 52g Mini,Amazon India,13.42,Kolkata,True,4.5
+SKU_1040,Lay's Magic Masala 52g Mini,Flipkart Grocery,13.33,Kolkata,False,4.1
+SKU_1041,Lay's Magic Masala 52g Regular,Blinkit,21.02,Kolkata,True,4.8
+SKU_1041,Lay's Magic Masala 52g Regular,BigBasket,19.73,Kolkata,True,4.1
+SKU_1041,Lay's Magic Masala 52g Regular,JioMart,19.44,Kolkata,True,4.4
+SKU_1041,Lay's Magic Masala 52g Regular,Amazon India,19.79,Kolkata,False,4.4
+SKU_1041,Lay's Magic Masala 52g Regular,Flipkart Grocery,20.5,Kolkata,True,4.5
+SKU_1042,Lay's Magic Masala 52g Value,Blinkit,25.53,Kolkata,True,4.0
+SKU_1042,Lay's Magic Masala 52g Value,BigBasket,25.29,Kolkata,True,4.2
+SKU_1042,Lay's Magic Masala 52g Value,JioMart,24.97,Kolkata,False,4.4
+SKU_1042,Lay's Magic Masala 52g Value,Amazon India,23.53,Kolkata,True,3.8
+SKU_1042,Lay's Magic Masala 52g Value,Flipkart Grocery,23.5,Kolkata,True,4.3
+SKU_1043,Lay's Magic Masala 52g Family,Blinkit,29.03,Kolkata,False,4.5
+SKU_1043,Lay's Magic Masala 52g Family,BigBasket,29.79,Kolkata,False,4.8
+SKU_1043,Lay's Magic Masala 52g Family,JioMart,28.85,Kolkata,False,4.0
+SKU_1043,Lay's Magic Masala 52g Family,Amazon India,31.8,Kolkata,False,4.3
+SKU_1043,Lay's Magic Masala 52g Family,Flipkart Grocery,29.96,Kolkata,False,4.7
+SKU_1044,Lay's Cream & Onion 90g Mini,Blinkit,31.6,Kolkata,True,4.7
+SKU_1044,Lay's Cream & Onion 90g Mini,BigBasket,29.66,Kolkata,True,4.3
+SKU_1044,Lay's Cream & Onion 90g Mini,JioMart,33.45,Kolkata,True,4.0
+SKU_1044,Lay's Cream & Onion 90g Mini,Amazon India,30.13,Kolkata,False,4.5
+SKU_1044,Lay's Cream & Onion 90g Mini,Flipkart Grocery,30.53,Kolkata,False,4.4
+SKU_1045,Lay's Cream & Onion 90g Regular,Blinkit,44.26,Kolkata,False,4.0
+SKU_1045,Lay's Cream & Onion 90g Regular,BigBasket,42.61,Kolkata,True,4.4
+SKU_1045,Lay's Cream & Onion 90g Regular,JioMart,47.63,Kolkata,False,4.3
+SKU_1045,Lay's Cream & Onion 90g Regular,Amazon India,42.37,Kolkata,False,4.8
+SKU_1045,Lay's Cream & Onion 90g Regular,Flipkart Grocery,47.09,Kolkata,False,4.8
+SKU_1046,Lay's Cream & Onion 90g Value,Blinkit,56.53,Kolkata,True,4.2
+SKU_1046,Lay's Cream & Onion 90g Value,BigBasket,56.94,Kolkata,False,4.6
+SKU_1046,Lay's Cream & Onion 90g Value,JioMart,56.56,Kolkata,True,4.0
+SKU_1046,Lay's Cream & Onion 90g Value,Amazon India,53.12,Kolkata,True,4.0
+SKU_1046,Lay's Cream & Onion 90g Value,Flipkart Grocery,55.09,Kolkata,True,4.8
+SKU_1047,Lay's Cream & Onion 90g Family,Blinkit,65.38,Kolkata,False,4.0
+SKU_1047,Lay's Cream & Onion 90g Family,BigBasket,64.69,Kolkata,True,4.2
+SKU_1047,Lay's Cream & Onion 90g Family,JioMart,66.16,Kolkata,False,4.7
+SKU_1047,Lay's Cream & Onion 90g Family,Amazon India,67.31,Kolkata,False,4.4
+SKU_1047,Lay's Cream & Onion 90g Family,Flipkart Grocery,68.42,Kolkata,True,4.2
+SKU_1048,Kurkure Masala Munch 90g Mini,Blinkit,14.54,Kolkata,True,4.4
+SKU_1048,Kurkure Masala Munch 90g Mini,BigBasket,13.51,Kolkata,False,4.5
+SKU_1048,Kurkure Masala Munch 90g Mini,JioMart,13.68,Kolkata,False,4.7
+SKU_1048,Kurkure Masala Munch 90g Mini,Amazon India,14.89,Kolkata,True,4.7
+SKU_1048,Kurkure Masala Munch 90g Mini,Flipkart Grocery,14.68,Kolkata,True,4.5
+SKU_1049,Kurkure Masala Munch 90g Regular,Blinkit,20.79,Kolkata,False,4.0
+SKU_1049,Kurkure Masala Munch 90g Regular,BigBasket,19.63,Kolkata,True,3.9
+SKU_1049,Kurkure Masala Munch 90g Regular,JioMart,20.3,Kolkata,True,4.9
+SKU_1049,Kurkure Masala Munch 90g Regular,Amazon India,20.04,Kolkata,True,4.5
+SKU_1049,Kurkure Masala Munch 90g Regular,Flipkart Grocery,20.02,Kolkata,True,4.8
+SKU_1050,Kurkure Masala Munch 90g Value,Blinkit,25.56,Kolkata,True,4.8
+SKU_1050,Kurkure Masala Munch 90g Value,BigBasket,22.91,Kolkata,True,4.5
+SKU_1050,Kurkure Masala Munch 90g Value,JioMart,23.21,Kolkata,True,4.4
+SKU_1050,Kurkure Masala Munch 90g Value,Amazon India,23.64,Kolkata,False,4.9
+SKU_1050,Kurkure Masala Munch 90g Value,Flipkart Grocery,23.26,Kolkata,True,4.1
+SKU_1051,Kurkure Masala Munch 90g Family,Blinkit,30.87,Kolkata,True,4.2
+SKU_1051,Kurkure Masala Munch 90g Family,BigBasket,31.07,Kolkata,False,4.6
+SKU_1051,Kurkure Masala Munch 90g Family,JioMart,29.43,Kolkata,True,4.6
+SKU_1051,Kurkure Masala Munch 90g Family,Amazon India,29.34,Kolkata,True,4.4
+SKU_1051,Kurkure Masala Munch 90g Family,Flipkart Grocery,30.19,Kolkata,False,4.5
+SKU_1052,Kurkure Green Chutney 90g Mini,Blinkit,14.33,Kolkata,True,4.7
+SKU_1052,Kurkure Green Chutney 90g Mini,BigBasket,13.58,Kolkata,False,4.0
+SKU_1052,Kurkure Green Chutney 90g Mini,JioMart,13.9,Kolkata,True,4.3
+SKU_1052,Kurkure Green Chutney 90g Mini,Amazon India,13.87,Kolkata,True,4.4
+SKU_1052,Kurkure Green Chutney 90g Mini,Flipkart Grocery,13.85,Kolkata,True,3.9
+SKU_1053,Kurkure Green Chutney 90g Regular,Blinkit,21.32,Kolkata,True,4.0
+SKU_1053,Kurkure Green Chutney 90g Regular,BigBasket,19.99,Kolkata,True,4.3
+SKU_1053,Kurkure Green Chutney 90g Regular,JioMart,19.65,Kolkata,True,4.0
+SKU_1053,Kurkure Green Chutney 90g Regular,Amazon India,20.36,Kolkata,True,4.3
+SKU_1053,Kurkure Green Chutney 90g Regular,Flipkart Grocery,19.56,Kolkata,False,4.9
+SKU_1054,Kurkure Green Chutney 90g Value,Blinkit,22.93,Kolkata,False,4.7
+SKU_1054,Kurkure Green Chutney 90g Value,BigBasket,23.3,Kolkata,True,3.9
+SKU_1054,Kurkure Green Chutney 90g Value,JioMart,24.12,Kolkata,True,4.1
+SKU_1054,Kurkure Green Chutney 90g Value,Amazon India,23.0,Kolkata,False,4.8
+SKU_1054,Kurkure Green Chutney 90g Value,Flipkart Grocery,24.87,Kolkata,True,4.6
+SKU_1055,Kurkure Green Chutney 90g Family,Blinkit,32.03,Kolkata,True,3.9
+SKU_1055,Kurkure Green Chutney 90g Family,BigBasket,29.36,Kolkata,True,4.8
+SKU_1055,Kurkure Green Chutney 90g Family,JioMart,28.33,Kolkata,True,4.2
+SKU_1055,Kurkure Green Chutney 90g Family,Amazon India,31.59,Kolkata,False,4.8
+SKU_1055,Kurkure Green Chutney 90g Family,Flipkart Grocery,30.72,Kolkata,True,4.4
+SKU_1056,Maggi 70g Mini,Blinkit,9.38,Kolkata,False,4.1
+SKU_1056,Maggi 70g Mini,BigBasket,10.14,Kolkata,True,4.3
+SKU_1056,Maggi 70g Mini,JioMart,10.3,Kolkata,False,3.9
+SKU_1056,Maggi 70g Mini,Amazon India,10.03,Kolkata,True,4.6
+SKU_1056,Maggi 70g Mini,Flipkart Grocery,9.56,Kolkata,True,4.0
+SKU_1057,Maggi 70g Regular,Blinkit,14.82,Kolkata,True,4.7
+SKU_1057,Maggi 70g Regular,BigBasket,13.46,Kolkata,True,4.6
+SKU_1057,Maggi 70g Regular,JioMart,14.94,Kolkata,True,4.4
+SKU_1057,Maggi 70g Regular,Amazon India,14.27,Kolkata,False,4.2
+SKU_1057,Maggi 70g Regular,Flipkart Grocery,14.79,Kolkata,True,4.1
+SKU_1058,Maggi 70g Value,Blinkit,15.84,Kolkata,True,4.2
+SKU_1058,Maggi 70g Value,BigBasket,17.96,Kolkata,False,3.9
+SKU_1058,Maggi 70g Value,JioMart,16.79,Kolkata,True,4.3
+SKU_1058,Maggi 70g Value,Amazon India,16.86,Kolkata,True,4.7
+SKU_1058,Maggi 70g Value,Flipkart Grocery,17.84,Kolkata,True,3.9
+SKU_1059,Maggi 70g Family,Blinkit,20.49,Kolkata,False,4.0
+SKU_1059,Maggi 70g Family,BigBasket,20.14,Kolkata,True,4.6
+SKU_1059,Maggi 70g Family,JioMart,21.6,Kolkata,False,4.0
+SKU_1059,Maggi 70g Family,Amazon India,20.05,Kolkata,True,4.3
+SKU_1059,Maggi 70g Family,Flipkart Grocery,20.73,Kolkata,False,4.3
+SKU_1060,Maggi Family Pack 280g Mini,Blinkit,39.6,Kolkata,True,3.9
+SKU_1060,Maggi Family Pack 280g Mini,BigBasket,40.87,Kolkata,False,4.0
+SKU_1060,Maggi Family Pack 280g Mini,JioMart,41.19,Kolkata,True,4.1
+SKU_1060,Maggi Family Pack 280g Mini,Amazon India,39.93,Kolkata,False,4.5
+SKU_1060,Maggi Family Pack 280g Mini,Flipkart Grocery,40.15,Kolkata,True,4.9
+SKU_1061,Maggi Family Pack 280g Regular,Blinkit,62.23,Kolkata,False,4.2
+SKU_1061,Maggi Family Pack 280g Regular,BigBasket,63.81,Kolkata,True,3.8
+SKU_1061,Maggi Family Pack 280g Regular,JioMart,60.87,Kolkata,True,4.7
+SKU_1061,Maggi Family Pack 280g Regular,Amazon India,58.38,Kolkata,False,3.9
+SKU_1061,Maggi Family Pack 280g Regular,Flipkart Grocery,61.05,Kolkata,False,4.1
+SKU_1062,Maggi Family Pack 280g Value,Blinkit,72.03,Kolkata,True,4.6
+SKU_1062,Maggi Family Pack 280g Value,BigBasket,73.94,Kolkata,True,4.5
+SKU_1062,Maggi Family Pack 280g Value,JioMart,69.27,Kolkata,False,4.9
+SKU_1062,Maggi Family Pack 280g Value,Amazon India,71.79,Kolkata,False,4.0
+SKU_1062,Maggi Family Pack 280g Value,Flipkart Grocery,70.47,Kolkata,False,4.6
+SKU_1063,Maggi Family Pack 280g Family,Blinkit,85.38,Kolkata,True,4.0
+SKU_1063,Maggi Family Pack 280g Family,BigBasket,92.88,Kolkata,True,3.9
+SKU_1063,Maggi Family Pack 280g Family,JioMart,88.98,Kolkata,True,4.1
+SKU_1063,Maggi Family Pack 280g Family,Amazon India,91.34,Kolkata,True,4.8
+SKU_1063,Maggi Family Pack 280g Family,Flipkart Grocery,90.51,Kolkata,True,3.8
+SKU_1064,Amul Milk 500ml Mini,Blinkit,20.02,Kolkata,True,4.1
+SKU_1064,Amul Milk 500ml Mini,BigBasket,22.31,Kolkata,True,4.6
+SKU_1064,Amul Milk 500ml Mini,JioMart,20.24,Kolkata,True,4.2
+SKU_1064,Amul Milk 500ml Mini,Amazon India,19.88,Kolkata,False,4.6
+SKU_1064,Amul Milk 500ml Mini,Flipkart Grocery,19.87,Kolkata,False,4.3
+SKU_1065,Amul Milk 500ml Regular,Blinkit,31.87,Kolkata,False,4.4
+SKU_1065,Amul Milk 500ml Regular,BigBasket,28.96,Kolkata,True,4.3
+SKU_1065,Amul Milk 500ml Regular,JioMart,29.11,Kolkata,False,4.4
+SKU_1065,Amul Milk 500ml Regular,Amazon India,29.63,Kolkata,False,4.4
+SKU_1065,Amul Milk 500ml Regular,Flipkart Grocery,30.31,Kolkata,False,4.9
+SKU_1066,Amul Milk 500ml Value,Blinkit,36.12,Kolkata,False,3.9
+SKU_1066,Amul Milk 500ml Value,BigBasket,35.4,Kolkata,False,4.1
+SKU_1066,Amul Milk 500ml Value,JioMart,34.55,Kolkata,False,4.4
+SKU_1066,Amul Milk 500ml Value,Amazon India,34.93,Kolkata,False,4.8
+SKU_1066,Amul Milk 500ml Value,Flipkart Grocery,36.63,Kolkata,True,4.4
+SKU_1067,Amul Milk 500ml Family,Blinkit,43.45,Kolkata,False,4.0
+SKU_1067,Amul Milk 500ml Family,BigBasket,43.45,Kolkata,False,4.0
+SKU_1067,Amul Milk 500ml Family,JioMart,47.06,Kolkata,False,3.8
+SKU_1067,Amul Milk 500ml Family,Amazon India,47.01,Kolkata,True,3.9
+SKU_1067,Amul Milk 500ml Family,Flipkart Grocery,46.79,Kolkata,True,3.9
+SKU_1068,Amul Milk 1L Mini,Blinkit,42.33,Kolkata,True,4.6
+SKU_1068,Amul Milk 1L Mini,BigBasket,43.27,Kolkata,False,4.7
+SKU_1068,Amul Milk 1L Mini,JioMart,40.02,Kolkata,False,4.4
+SKU_1068,Amul Milk 1L Mini,Amazon India,44.64,Kolkata,False,4.8
+SKU_1068,Amul Milk 1L Mini,Flipkart Grocery,40.76,Kolkata,True,3.9
+SKU_1069,Amul Milk 1L Regular,Blinkit,59.42,Kolkata,True,4.7
+SKU_1069,Amul Milk 1L Regular,BigBasket,57.2,Kolkata,False,3.8
+SKU_1069,Amul Milk 1L Regular,JioMart,58.29,Kolkata,True,3.9
+SKU_1069,Amul Milk 1L Regular,Amazon India,56.56,Kolkata,False,4.6
+SKU_1069,Amul Milk 1L Regular,Flipkart Grocery,58.55,Kolkata,False,4.2
+SKU_1070,Amul Milk 1L Value,Blinkit,72.83,Kolkata,True,3.9
+SKU_1070,Amul Milk 1L Value,BigBasket,70.77,Kolkata,True,4.8
+SKU_1070,Amul Milk 1L Value,JioMart,68.93,Kolkata,True,4.5
+SKU_1070,Amul Milk 1L Value,Amazon India,76.17,Kolkata,False,4.3
+SKU_1070,Amul Milk 1L Value,Flipkart Grocery,75.89,Kolkata,True,4.8
+SKU_1071,Amul Milk 1L Family,Blinkit,94.9,Kolkata,True,4.3
+SKU_1071,Amul Milk 1L Family,BigBasket,91.02,Kolkata,False,4.1
+SKU_1071,Amul Milk 1L Family,JioMart,88.27,Kolkata,True,3.8
+SKU_1071,Amul Milk 1L Family,Amazon India,90.91,Kolkata,False,4.3
+SKU_1071,Amul Milk 1L Family,Flipkart Grocery,85.53,Kolkata,False,4.6
+SKU_1072,Amul Butter 100g Mini,Blinkit,42.87,Kolkata,True,4.5
+SKU_1072,Amul Butter 100g Mini,BigBasket,43.27,Kolkata,True,4.6
+SKU_1072,Amul Butter 100g Mini,JioMart,41.99,Kolkata,True,4.8
+SKU_1072,Amul Butter 100g Mini,Amazon India,40.28,Kolkata,False,4.5
+SKU_1072,Amul Butter 100g Mini,Flipkart Grocery,42.22,Kolkata,False,3.9
+SKU_1073,Amul Butter 100g Regular,Blinkit,61.74,Kolkata,False,4.8
+SKU_1073,Amul Butter 100g Regular,BigBasket,60.74,Kolkata,False,4.1
+SKU_1073,Amul Butter 100g Regular,JioMart,54.62,Kolkata,False,4.0
+SKU_1073,Amul Butter 100g Regular,Amazon India,58.98,Kolkata,True,4.3
+SKU_1073,Amul Butter 100g Regular,Flipkart Grocery,57.14,Kolkata,False,4.6
+SKU_1074,Amul Butter 100g Value,Blinkit,69.44,Kolkata,False,4.2
+SKU_1074,Amul Butter 100g Value,BigBasket,71.44,Kolkata,True,4.0
+SKU_1074,Amul Butter 100g Value,JioMart,73.14,Kolkata,True,4.8
+SKU_1074,Amul Butter 100g Value,Amazon India,69.22,Kolkata,False,4.2
+SKU_1074,Amul Butter 100g Value,Flipkart Grocery,67.63,Kolkata,True,4.3
+SKU_1075,Amul Butter 100g Family,Blinkit,89.92,Kolkata,True,4.4
+SKU_1075,Amul Butter 100g Family,BigBasket,83.57,Kolkata,True,4.3
+SKU_1075,Amul Butter 100g Family,JioMart,92.0,Kolkata,True,4.2
+SKU_1075,Amul Butter 100g Family,Amazon India,89.17,Kolkata,False,4.0
+SKU_1075,Amul Butter 100g Family,Flipkart Grocery,88.1,Kolkata,True,4.1
+SKU_1076,Amul Cheese Cubes 200g Mini,Blinkit,90.68,Kolkata,True,4.6
+SKU_1076,Amul Cheese Cubes 200g Mini,BigBasket,89.6,Kolkata,True,4.3
+SKU_1076,Amul Cheese Cubes 200g Mini,JioMart,100.38,Kolkata,False,4.4
+SKU_1076,Amul Cheese Cubes 200g Mini,Amazon India,96.05,Kolkata,True,4.4
+SKU_1076,Amul Cheese Cubes 200g Mini,Flipkart Grocery,97.48,Kolkata,False,4.0
+SKU_1077,Amul Cheese Cubes 200g Regular,Blinkit,137.91,Kolkata,True,3.9
+SKU_1077,Amul Cheese Cubes 200g Regular,BigBasket,136.7,Kolkata,True,4.6
+SKU_1077,Amul Cheese Cubes 200g Regular,JioMart,131.51,Kolkata,False,4.4
+SKU_1077,Amul Cheese Cubes 200g Regular,Amazon India,136.2,Kolkata,False,4.8
+SKU_1077,Amul Cheese Cubes 200g Regular,Flipkart Grocery,139.81,Kolkata,True,4.7
+SKU_1078,Amul Cheese Cubes 200g Value,Blinkit,163.8,Kolkata,True,3.9
+SKU_1078,Amul Cheese Cubes 200g Value,BigBasket,167.86,Kolkata,True,4.4
+SKU_1078,Amul Cheese Cubes 200g Value,JioMart,159.2,Kolkata,True,4.0
+SKU_1078,Amul Cheese Cubes 200g Value,Amazon India,157.47,Kolkata,True,4.5
+SKU_1078,Amul Cheese Cubes 200g Value,Flipkart Grocery,172.65,Kolkata,True,4.1
+SKU_1079,Amul Cheese Cubes 200g Family,Blinkit,195.52,Kolkata,False,4.0
+SKU_1079,Amul Cheese Cubes 200g Family,BigBasket,207.68,Kolkata,True,4.2
+SKU_1079,Amul Cheese Cubes 200g Family,JioMart,214.12,Kolkata,False,4.4
+SKU_1079,Amul Cheese Cubes 200g Family,Amazon India,203.61,Kolkata,True,4.2
+SKU_1079,Amul Cheese Cubes 200g Family,Flipkart Grocery,206.54,Kolkata,False,4.2
+SKU_1080,Dove Soap 100g Mini,Blinkit,38.63,Kolkata,False,3.9
+SKU_1080,Dove Soap 100g Mini,BigBasket,41.16,Kolkata,False,4.0
+SKU_1080,Dove Soap 100g Mini,JioMart,36.38,Kolkata,False,4.1
+SKU_1080,Dove Soap 100g Mini,Amazon India,36.38,Kolkata,True,4.1
+SKU_1080,Dove Soap 100g Mini,Flipkart Grocery,36.89,Kolkata,False,4.8
+SKU_1081,Dove Soap 100g Regular,Blinkit,55.57,Kolkata,True,4.5
+SKU_1081,Dove Soap 100g Regular,BigBasket,58.16,Kolkata,False,4.3
+SKU_1081,Dove Soap 100g Regular,JioMart,53.1,Kolkata,False,4.6
+SKU_1081,Dove Soap 100g Regular,Amazon India,55.79,Kolkata,True,4.8
+SKU_1081,Dove Soap 100g Regular,Flipkart Grocery,57.28,Kolkata,True,4.1
+SKU_1082,Dove Soap 100g Value,Blinkit,62.12,Kolkata,False,4.7
+SKU_1082,Dove Soap 100g Value,BigBasket,69.9,Kolkata,True,4.6
+SKU_1082,Dove Soap 100g Value,JioMart,67.14,Kolkata,True,4.7
+SKU_1082,Dove Soap 100g Value,Amazon India,65.95,Kolkata,True,3.9
+SKU_1082,Dove Soap 100g Value,Flipkart Grocery,66.37,Kolkata,False,4.6
+SKU_1083,Dove Soap 100g Family,Blinkit,88.04,Kolkata,True,4.7
+SKU_1083,Dove Soap 100g Family,BigBasket,79.5,Kolkata,False,4.3
+SKU_1083,Dove Soap 100g Family,JioMart,80.58,Kolkata,True,4.0
+SKU_1083,Dove Soap 100g Family,Amazon India,78.99,Kolkata,True,4.7
+SKU_1083,Dove Soap 100g Family,Flipkart Grocery,82.99,Kolkata,True,4.4
+SKU_1084,Dove Shampoo 340ml Mini,Blinkit,202.26,Kolkata,False,3.8
+SKU_1084,Dove Shampoo 340ml Mini,BigBasket,211.79,Kolkata,False,4.9
+SKU_1084,Dove Shampoo 340ml Mini,JioMart,203.91,Kolkata,True,4.8
+SKU_1084,Dove Shampoo 340ml Mini,Amazon India,205.53,Kolkata,False,4.6
+SKU_1084,Dove Shampoo 340ml Mini,Flipkart Grocery,196.33,Kolkata,True,4.5
+SKU_1085,Dove Shampoo 340ml Regular,Blinkit,309.24,Kolkata,True,4.6
+SKU_1085,Dove Shampoo 340ml Regular,BigBasket,284.25,Kolkata,True,4.1
+SKU_1085,Dove Shampoo 340ml Regular,JioMart,304.33,Kolkata,True,3.8
+SKU_1085,Dove Shampoo 340ml Regular,Amazon India,292.95,Kolkata,False,4.6
+SKU_1085,Dove Shampoo 340ml Regular,Flipkart Grocery,294.58,Kolkata,False,4.2
+SKU_1086,Dove Shampoo 340ml Value,Blinkit,343.3,Kolkata,True,4.7
+SKU_1086,Dove Shampoo 340ml Value,BigBasket,370.74,Kolkata,False,4.3
+SKU_1086,Dove Shampoo 340ml Value,JioMart,340.71,Kolkata,True,4.6
+SKU_1086,Dove Shampoo 340ml Value,Amazon India,354.94,Kolkata,False,4.6
+SKU_1086,Dove Shampoo 340ml Value,Flipkart Grocery,353.96,Kolkata,False,4.8
+SKU_1087,Dove Shampoo 340ml Family,Blinkit,456.54,Kolkata,False,3.9
+SKU_1087,Dove Shampoo 340ml Family,BigBasket,419.42,Kolkata,False,4.1
+SKU_1087,Dove Shampoo 340ml Family,JioMart,457.27,Kolkata,True,4.8
+SKU_1087,Dove Shampoo 340ml Family,Amazon India,420.19,Kolkata,True,4.8
+SKU_1087,Dove Shampoo 340ml Family,Flipkart Grocery,435.35,Kolkata,True,4.0
+SKU_1088,Colgate Strong Teeth 200g Mini,Blinkit,82.23,Kolkata,False,4.4
+SKU_1088,Colgate Strong Teeth 200g Mini,BigBasket,80.25,Kolkata,True,4.7
+SKU_1088,Colgate Strong Teeth 200g Mini,JioMart,73.92,Kolkata,True,4.0
+SKU_1088,Colgate Strong Teeth 200g Mini,Amazon India,76.92,Kolkata,False,4.1
+SKU_1088,Colgate Strong Teeth 200g Mini,Flipkart Grocery,73.1,Kolkata,True,4.8
+SKU_1089,Colgate Strong Teeth 200g Regular,Blinkit,112.72,Kolkata,False,4.5
+SKU_1089,Colgate Strong Teeth 200g Regular,BigBasket,109.05,Kolkata,False,4.1
+SKU_1089,Colgate Strong Teeth 200g Regular,JioMart,104.26,Kolkata,False,4.5
+SKU_1089,Colgate Strong Teeth 200g Regular,Amazon India,107.73,Kolkata,False,4.0
+SKU_1089,Colgate Strong Teeth 200g Regular,Flipkart Grocery,110.34,Kolkata,True,3.8
+SKU_1090,Colgate Strong Teeth 200g Value,Blinkit,132.08,Kolkata,False,4.2
+SKU_1090,Colgate Strong Teeth 200g Value,BigBasket,124.77,Kolkata,True,3.8
+SKU_1090,Colgate Strong Teeth 200g Value,JioMart,135.31,Kolkata,True,4.3
+SKU_1090,Colgate Strong Teeth 200g Value,Amazon India,136.93,Kolkata,True,4.0
+SKU_1090,Colgate Strong Teeth 200g Value,Flipkart Grocery,124.95,Kolkata,True,4.5
+SKU_1091,Colgate Strong Teeth 200g Family,Blinkit,158.53,Kolkata,False,4.8
+SKU_1091,Colgate Strong Teeth 200g Family,BigBasket,155.31,Kolkata,False,4.4
+SKU_1091,Colgate Strong Teeth 200g Family,JioMart,161.88,Kolkata,True,4.2
+SKU_1091,Colgate Strong Teeth 200g Family,Amazon India,158.06,Kolkata,True,4.4
+SKU_1091,Colgate Strong Teeth 200g Family,Flipkart Grocery,160.18,Kolkata,True,4.4
+SKU_1092,Colgate MaxFresh 150g Mini,Blinkit,70.25,Kolkata,False,4.0
+SKU_1092,Colgate MaxFresh 150g Mini,BigBasket,70.12,Kolkata,True,4.2
+SKU_1092,Colgate MaxFresh 150g Mini,JioMart,65.08,Kolkata,False,4.0
+SKU_1092,Colgate MaxFresh 150g Mini,Amazon India,62.68,Kolkata,True,3.8
+SKU_1092,Colgate MaxFresh 150g Mini,Flipkart Grocery,66.74,Kolkata,True,4.5
+SKU_1093,Colgate MaxFresh 150g Regular,Blinkit,95.39,Kolkata,False,3.9
+SKU_1093,Colgate MaxFresh 150g Regular,BigBasket,95.73,Kolkata,False,4.4
+SKU_1093,Colgate MaxFresh 150g Regular,JioMart,95.41,Kolkata,False,4.4
+SKU_1093,Colgate MaxFresh 150g Regular,Amazon India,91.45,Kolkata,True,4.3
+SKU_1093,Colgate MaxFresh 150g Regular,Flipkart Grocery,91.04,Kolkata,True,4.3
+SKU_1094,Colgate MaxFresh 150g Value,Blinkit,108.06,Kolkata,False,4.2
+SKU_1094,Colgate MaxFresh 150g Value,BigBasket,113.85,Kolkata,True,4.0
+SKU_1094,Colgate MaxFresh 150g Value,JioMart,108.29,Kolkata,True,4.2
+SKU_1094,Colgate MaxFresh 150g Value,Amazon India,109.99,Kolkata,False,4.6
+SKU_1094,Colgate MaxFresh 150g Value,Flipkart Grocery,117.08,Kolkata,True,3.9
+SKU_1095,Colgate MaxFresh 150g Family,Blinkit,134.43,Kolkata,True,4.9
+SKU_1095,Colgate MaxFresh 150g Family,BigBasket,143.77,Kolkata,False,4.6
+SKU_1095,Colgate MaxFresh 150g Family,JioMart,146.38,Kolkata,False,4.2
+SKU_1095,Colgate MaxFresh 150g Family,Amazon India,145.48,Kolkata,False,4.8
+SKU_1095,Colgate MaxFresh 150g Family,Flipkart Grocery,144.3,Kolkata,True,4.0
+SKU_1096,Aashirvaad Atta 5kg Mini,Blinkit,200.25,Kolkata,True,3.8
+SKU_1096,Aashirvaad Atta 5kg Mini,BigBasket,209.91,Kolkata,False,4.4
+SKU_1096,Aashirvaad Atta 5kg Mini,JioMart,202.73,Kolkata,True,4.6
+SKU_1096,Aashirvaad Atta 5kg Mini,Amazon India,194.92,Kolkata,True,4.7
+SKU_1096,Aashirvaad Atta 5kg Mini,Flipkart Grocery,201.8,Kolkata,False,4.0
+SKU_1097,Aashirvaad Atta 5kg Regular,Blinkit,274.12,Kolkata,False,4.1
+SKU_1097,Aashirvaad Atta 5kg Regular,BigBasket,304.03,Kolkata,False,4.3
+SKU_1097,Aashirvaad Atta 5kg Regular,JioMart,286.57,Kolkata,True,4.7
+SKU_1097,Aashirvaad Atta 5kg Regular,Amazon India,286.68,Kolkata,False,4.3
+SKU_1097,Aashirvaad Atta 5kg Regular,Flipkart Grocery,301.8,Kolkata,False,4.9
+SKU_1098,Aashirvaad Atta 5kg Value,Blinkit,357.39,Kolkata,False,4.1
+SKU_1098,Aashirvaad Atta 5kg Value,BigBasket,358.93,Kolkata,False,3.8
+SKU_1098,Aashirvaad Atta 5kg Value,JioMart,361.95,Kolkata,True,4.0
+SKU_1098,Aashirvaad Atta 5kg Value,Amazon India,347.04,Kolkata,False,4.5
+SKU_1098,Aashirvaad Atta 5kg Value,Flipkart Grocery,333.67,Kolkata,True,3.9
+SKU_1099,Aashirvaad Atta 5kg Family,Blinkit,428.8,Kolkata,True,4.0
+SKU_1099,Aashirvaad Atta 5kg Family,BigBasket,443.73,Kolkata,True,3.9
+SKU_1099,Aashirvaad Atta 5kg Family,JioMart,409.88,Kolkata,True,4.5
+SKU_1099,Aashirvaad Atta 5kg Family,Amazon India,410.53,Kolkata,False,4.7
+SKU_1099,Aashirvaad Atta 5kg Family,Flipkart Grocery,439.54,Kolkata,True,3.9
+SKU_1100,Aashirvaad Atta 10kg Mini,Blinkit,372.62,Kolkata,False,4.7
+SKU_1100,Aashirvaad Atta 10kg Mini,BigBasket,360.95,Kolkata,True,4.8
+SKU_1100,Aashirvaad Atta 10kg Mini,JioMart,395.1,Kolkata,False,4.3
+SKU_1100,Aashirvaad Atta 10kg Mini,Amazon India,386.91,Kolkata,True,4.8
+SKU_1100,Aashirvaad Atta 10kg Mini,Flipkart Grocery,367.22,Kolkata,True,4.5
+SKU_1101,Aashirvaad Atta 10kg Regular,Blinkit,541.6,Kolkata,False,4.6
+SKU_1101,Aashirvaad Atta 10kg Regular,BigBasket,517.81,Kolkata,False,4.6
+SKU_1101,Aashirvaad Atta 10kg Regular,JioMart,568.89,Kolkata,True,4.7
+SKU_1101,Aashirvaad Atta 10kg Regular,Amazon India,543.74,Kolkata,False,4.6
+SKU_1101,Aashirvaad Atta 10kg Regular,Flipkart Grocery,523.29,Kolkata,False,4.9
+SKU_1102,Aashirvaad Atta 10kg Value,Blinkit,633.95,Kolkata,True,4.4
+SKU_1102,Aashirvaad Atta 10kg Value,BigBasket,613.59,Kolkata,True,4.4
+SKU_1102,Aashirvaad Atta 10kg Value,JioMart,616.08,Kolkata,True,4.8
+SKU_1102,Aashirvaad Atta 10kg Value,Amazon India,634.34,Kolkata,True,4.6
+SKU_1102,Aashirvaad Atta 10kg Value,Flipkart Grocery,674.16,Kolkata,False,4.7
+SKU_1103,Aashirvaad Atta 10kg Family,Blinkit,855.02,Kolkata,True,4.8
+SKU_1103,Aashirvaad Atta 10kg Family,BigBasket,779.65,Kolkata,True,4.7
+SKU_1103,Aashirvaad Atta 10kg Family,JioMart,842.81,Kolkata,False,4.8
+SKU_1103,Aashirvaad Atta 10kg Family,Amazon India,768.63,Kolkata,False,4.3
+SKU_1103,Aashirvaad Atta 10kg Family,Flipkart Grocery,766.61,Kolkata,True,4.5
+SKU_1104,Tata Salt 1kg Mini,Blinkit,22.34,Kolkata,False,4.4
+SKU_1104,Tata Salt 1kg Mini,BigBasket,21.94,Kolkata,False,4.3
+SKU_1104,Tata Salt 1kg Mini,JioMart,20.9,Kolkata,True,4.4
+SKU_1104,Tata Salt 1kg Mini,Amazon India,20.34,Kolkata,True,3.8
+SKU_1104,Tata Salt 1kg Mini,Flipkart Grocery,19.97,Kolkata,False,4.1
+SKU_1105,Tata Salt 1kg Regular,Blinkit,29.66,Kolkata,False,4.1
+SKU_1105,Tata Salt 1kg Regular,BigBasket,30.1,Kolkata,True,4.8
+SKU_1105,Tata Salt 1kg Regular,JioMart,28.53,Kolkata,True,4.3
+SKU_1105,Tata Salt 1kg Regular,Amazon India,29.24,Kolkata,True,4.7
+SKU_1105,Tata Salt 1kg Regular,Flipkart Grocery,31.2,Kolkata,True,4.0
+SKU_1106,Tata Salt 1kg Value,Blinkit,35.57,Kolkata,False,4.1
+SKU_1106,Tata Salt 1kg Value,BigBasket,34.53,Kolkata,False,4.6
+SKU_1106,Tata Salt 1kg Value,JioMart,35.72,Kolkata,False,4.0
+SKU_1106,Tata Salt 1kg Value,Amazon India,38.12,Kolkata,True,4.8
+SKU_1106,Tata Salt 1kg Value,Flipkart Grocery,37.2,Kolkata,True,4.8
+SKU_1107,Tata Salt 1kg Family,Blinkit,46.11,Kolkata,True,4.2
+SKU_1107,Tata Salt 1kg Family,BigBasket,45.82,Kolkata,True,4.4
+SKU_1107,Tata Salt 1kg Family,JioMart,47.81,Kolkata,False,4.0
+SKU_1107,Tata Salt 1kg Family,Amazon India,43.79,Kolkata,True,4.4
+SKU_1107,Tata Salt 1kg Family,Flipkart Grocery,47.86,Kolkata,False,4.0
+SKU_1108,Fortune Sunflower Oil 1L Mini,Blinkit,119.91,Kolkata,False,4.0
+SKU_1108,Fortune Sunflower Oil 1L Mini,BigBasket,122.32,Kolkata,False,4.4
+SKU_1108,Fortune Sunflower Oil 1L Mini,JioMart,108.67,Kolkata,True,4.7
+SKU_1108,Fortune Sunflower Oil 1L Mini,Amazon India,123.53,Kolkata,False,3.8
+SKU_1108,Fortune Sunflower Oil 1L Mini,Flipkart Grocery,117.51,Kolkata,False,4.7
+SKU_1109,Fortune Sunflower Oil 1L Regular,Blinkit,158.73,Kolkata,False,4.1
+SKU_1109,Fortune Sunflower Oil 1L Regular,BigBasket,171.3,Kolkata,True,4.7
+SKU_1109,Fortune Sunflower Oil 1L Regular,JioMart,159.28,Kolkata,False,4.7
+SKU_1109,Fortune Sunflower Oil 1L Regular,Amazon India,155.6,Kolkata,False,4.4
+SKU_1109,Fortune Sunflower Oil 1L Regular,Flipkart Grocery,163.86,Kolkata,False,4.7
