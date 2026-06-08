@@ -15,13 +15,6 @@ from backend.layer2.predict_weights import predict_engine_weights
 # Import Layer 3 modules
 from backend.layer3.optimizer import PriceOptimizer
 
-# Default CSV file paths
-DEFAULT_PRODUCTS_CSV = "datasets/products.csv"
-DEFAULT_PROCUREMENT_CSV = "datasets/procurement.csv"
-DEFAULT_SALES_CSV = "datasets/sales.csv"
-DEFAULT_INVENTORY_CSV = "datasets/inventory.csv"
-DEFAULT_COMPETITORS_CSV = "datasets/competitors.csv"
-
 def run_coordinated_pricing(
     product_id="SKU_1000",
     retailer_company=None,
@@ -54,6 +47,13 @@ def run_coordinated_pricing(
               - feature_vector (flat ML inputs)
               - coordinated_weights (predicted weights)
     """
+    import backend.config as cfg
+    products_csv = cfg.CUSTOMER_PRODUCTS_PATH
+    procurement_csv = cfg.CUSTOMER_PROCUREMENT_PATH
+    sales_csv = cfg.CUSTOMER_SALES_PATH
+    inventory_csv = cfg.CUSTOMER_INVENTORY_PATH
+    competitors_csv = cfg.CUSTOMER_COMPETITOR_PATH
+
     # 1. Fallback to default business context if not provided
     if business_context is None:
         business_context = {
@@ -64,8 +64,8 @@ def run_coordinated_pricing(
 
     # 2. Run Engine 1: Procurement & Supply Risk
     e1_output = engine1.run_pipeline(
-        products_csv_path=DEFAULT_PRODUCTS_CSV,
-        procurement_csv_path=DEFAULT_PROCUREMENT_CSV,
+        products_csv_path=products_csv,
+        procurement_csv_path=procurement_csv,
         target_product_id=product_id,
         target_supplier_id=target_supplier_id,
         currency_fluctuation_factor=currency_fluctuation_factor
@@ -73,15 +73,17 @@ def run_coordinated_pricing(
 
     # 3. Run Engine 2: Demand Elasticity
     e2_output = engine2.run_pipeline(
-        csv_path=DEFAULT_SALES_CSV,
+        sales_csv_path=sales_csv,
         target_product_id=product_id,
+        products_csv_path=products_csv,
+        inventory_csv_path=inventory_csv,
         retailer_company=retailer_company,
         store_location=store_location
     )
 
     # 4. Run Engine 3: Inventory Dynamics
     e3_output = engine3.run_pipeline(
-        csv_path=DEFAULT_INVENTORY_CSV,
+        csv_path=inventory_csv,
         target_product_id=product_id,
         retailer_company=retailer_company,
         store_location=store_location
@@ -90,8 +92,8 @@ def run_coordinated_pricing(
     # 5. Run Engine 4: Competitor Market Intelligence
     # Map store_location to market_region for engine 4
     e4_output = engine4.run_pipeline(
-        competitors_csv=DEFAULT_COMPETITORS_CSV,
-        sales_csv=DEFAULT_SALES_CSV,
+        competitors_csv=competitors_csv,
+        sales_csv=sales_csv,
         target_product_id=product_id,
         market_region=store_location,
         market_trend_score=market_trend_score

@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import os
 
+
 # Lead time mapping based on warehouse location (fallback in case lead_time_days is missing)
 LOCATION_LEAD_TIME = {
     "Mumbai": 5,
@@ -81,40 +82,77 @@ def compute_inventory_metrics(row):
     # Fallback to dataset-provided risk if present and we want comparison
     dataset_risk_score = row.get("stockout_risk_score", None)
 
-    # 5. Inventory Pressure (-1.0 to 1.0)
-    # -1.0 means critical understock (net stock < reorder point)
-    #  1.0 means critical overstock (net stock > 3x reorder point)
-    #  0.0 means perfect balance (net stock around reorder point)
-    if net_stock == reorder_point:
-        inventory_pressure = 0.0
-    elif net_stock > reorder_point:
-        # Overstock pressure: ratio of net stock to reorder point
-        ratio = net_stock / (reorder_point + 1e-5)
-        # Reaches 1.0 pressure at 3x reorder point
-        inventory_pressure = np.clip((ratio - 1.0) / 2.0, 0.0, 1.0)
-    else:
-        # Understock pressure: ratio of net stock to reorder point
-        ratio = net_stock / (reorder_point + 1e-5)
-        # Reaches -1.0 pressure at 0 stock
-        inventory_pressure = np.clip(ratio - 1.0, -1.0, 0.0)
+    # -------------------------------------------------------------------------
+    # 5. INVENTORY PRESSURE (-1.0 to 1.0)
+    # -------------------------------------------------------------------------
+    # Named constants for Days of Supply thresholds representing inventory pressure states.
+    # Declared explicitly to prevent "magic numbers" and make scaling readable.
+    CRITICAL_UNDERSTOCK_DAYS = 3.0
+    UNDERSTOCK_DAYS = 7.0
+    SHORTAGE_DAYS = 15.0
+    HEALTHY_STOCK_DAYS = 30.0
+    OVERSTOCK_DAYS = 60.0
+    HEAVY_OVERSTOCK_DAYS = 120.0
+    EXTREME_OVERSTOCK_DAYS = 180.0
+    MAX_SATURATION_DAYS = 360.0
 
-    # 6. Urgency Score (0.0 to 1.0)
-    # High urgency occurs if we are running out of stock (understock)
-    # OR if we have massive overstock of old/aging inventory (perishable pressure)
-    understock_urgency = stockout_risk
-    overstock_urgency = np.clip(inventory_pressure * (stock_age / 90.0), 0.0, 1.0)
-    urgency_score = float(max(understock_urgency, overstock_urgency))
+    # Keypoints for piecewise linear mapping from days of supply to inventory pressure
+    DOS_KEYPOINTS = [
+        0.0,
+        CRITICAL_UNDERSTOCK_DAYS,
+        UNDERSTOCK_DAYS,
+        SHORTAGE_DAYS,
+        HEALTHY_STOCK_DAYS,
+        OVERSTOCK_DAYS,
+        HEAVY_OVERSTOCK_DAYS,
+        EXTREME_OVERSTOCK_DAYS,
+        MAX_SATURATION_DAYS
+    ]
 
-    # 7. Recommended Price Adjustment Multiplier
-    # - Low stock (negative pressure) -> Raise price (up to +10%)
-    # - High stock (positive pressure) -> Lower price (down to -15%)
-    max_discount = 0.15
-    max_premium = 0.10
+    # Target pressure values corresponding to each keypoint.
+    # Map Days of Supply to pressure zones:
+    #   - < 3 days: critical shortage, maps to -1.0
+    #   - 3-7 days: understock, maps between -1.0 and -0.7
+    #   - 7-15 days: moderate shortage, maps between -0.7 and -0.45
+    #   - 15-30 days: approaching balance, maps between -0.45 and 0.0
+    #   - 30-60 days: healthy to mild overstock, maps between 0.0 and 0.3
+    #   - 60-120 days: overstock, maps between 0.3 and 0.6
+    #   - 120-180 days: heavy overstock, maps between 0.6 and 0.8
+    #   - 180+ days: approaches extreme saturation, mapping up to 1.0 (at 360 days)
+    PRESSURE_KEYPOINTS = [-1.0, -1.0, -0.7, -0.45, 0.0, 0.3, 0.6, 0.8, 1.0]
+
+    # Perform continuous piecewise linear interpolation to determine inventory pressure
+    inventory_pressure = float(np.interp(days_of_supply, DOS_KEYPOINTS, PRESSURE_KEYPOINTS))
+
+    # -------------------------------------------------------------------------
+    # 6. URGENCY SCORE (0.0 to 1.0)
+    # -------------------------------------------------------------------------
+    # Urgency consists of two distinct components:
+    # A. Stockout Urgency: Driven directly by stockout risk (the likelihood of running out of stock).
+    stockout_urgency = stockout_risk
+
+    # B. Liquidation Urgency: Driven by positive inventory pressure (overstock) and stock age.
+    # We apply a slower aging factor (LIQUIDATION_AGE_FACTOR = 180 days) to prevent stock
+    # that is only moderately aged (e.g. 60-90 days) from escalating into critical emergency.
+    LIQUIDATION_AGE_FACTOR = 180.0
+    liquidation_urgency = max(0.0, inventory_pressure) * (stock_age / LIQUIDATION_AGE_FACTOR)
+    liquidation_urgency = float(np.clip(liquidation_urgency, 0.0, 1.0))
+
+    # The final urgency score is the maximum of the two urgency signals.
+    urgency_score = float(max(stockout_urgency, liquidation_urgency))
+
+    # -------------------------------------------------------------------------
+    # 7. RECOMMENDED PRICE ADJUSTMENT MULTIPLIER
+    # -------------------------------------------------------------------------
+    # - Negative pressure (understock) -> Raise price (premium up to +10%)
+    # - Positive pressure (overstock) -> Lower price (discount down to -15%)
+    MAX_DISCOUNT = 0.15
+    MAX_PREMIUM = 0.10
     
     if inventory_pressure >= 0:
-        recommended_multiplier = 1.0 - (inventory_pressure * max_discount)
+        recommended_multiplier = 1.0 - (inventory_pressure * MAX_DISCOUNT)
     else:
-        recommended_multiplier = 1.0 - (inventory_pressure * max_premium)
+        recommended_multiplier = 1.0 - (inventory_pressure * MAX_PREMIUM)
 
     return {
         "net_stock": float(net_stock),
@@ -131,7 +169,12 @@ def compute_inventory_metrics(row):
 # -----------------------------
 # STEP 3: MAIN PIPELINE
 # -----------------------------
-def run_pipeline(csv_path, target_product_id="SKU_1000", retailer_company=None, store_location=None):
+def run_pipeline(csv_path=None, target_product_id="SKU_1000", retailer_company=None, store_location=None):
+    # Dynamically resolve path defaults at call time to support routing configuration
+    if csv_path is None:
+        import backend.config as cfg
+        csv_path = cfg.CUSTOMER_INVENTORY_PATH
+        
     df = load_data(csv_path)
 
     # Filter for the target product
@@ -193,6 +236,6 @@ def run_pipeline(csv_path, target_product_id="SKU_1000", retailer_company=None, 
 # -----------------------------
 if __name__ == "__main__":
     # Run for SKU_1000 at Reliance Retail in Bengaluru (first row of dataset)
-    result = run_pipeline("datasets/inventory.csv", "SKU_1000", "Reliance Retail", "Bengaluru")
+    result = run_pipeline(CUSTOMER_INVENTORY_PATH, "SKU_1000", "Reliance Retail", "Bengaluru")
     print("\nPipeline execution result:")
     print(result)

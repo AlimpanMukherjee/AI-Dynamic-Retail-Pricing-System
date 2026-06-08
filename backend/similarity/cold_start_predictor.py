@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 import logging
 from typing import Dict, Any, List, Tuple
-
 from backend.similarity.product_similarity_engine import ProductSimilarityEngine
+
 
 # Configure logging
 logger = logging.getLogger("pricing_system.similarity.cold_start_predictor")
@@ -13,10 +13,13 @@ class ColdStartPredictor:
     Generates pricing and demand estimates for products with insufficient sales history
     by borrowing intelligence from similar products.
     """
-    def __init__(self, products_csv_path: str = "datasets/products.csv"):
+    def __init__(self, products_csv_path: str = None):
         """
         Initializes the ColdStartPredictor.
         """
+        if products_csv_path is None:
+            import backend.config as cfg
+            products_csv_path = cfg.CUSTOMER_PRODUCTS_PATH
         self.similarity_engine = ProductSimilarityEngine(products_csv_path)
         self.products_dict = self.similarity_engine.products_dict
 

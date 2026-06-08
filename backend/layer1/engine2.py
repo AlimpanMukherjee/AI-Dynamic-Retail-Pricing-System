@@ -383,10 +383,10 @@ def hybrid_prediction(hist_metrics: dict, sim_metrics: dict, sales_records_count
 # STEP 10: MAIN PIPELINE
 # -----------------------------
 def run_pipeline(
-    sales_csv_path="datasets/sales.csv",
+    sales_csv_path=None,
     target_product_id="SKU_1000",
-    products_csv_path="datasets/products.csv",
-    inventory_csv_path="datasets/inventory.csv",
+    products_csv_path=None,
+    inventory_csv_path=None,
     retailer_company=None,
     store_location=None,
     csv_path=None
@@ -394,6 +394,15 @@ def run_pipeline(
     # Preserve backward compatibility with csv_path argument
     if csv_path is not None:
         sales_csv_path = csv_path
+
+    # Dynamically resolve path defaults at call time to support routing configuration
+    import backend.config as cfg
+    if sales_csv_path is None:
+        sales_csv_path = cfg.CUSTOMER_SALES_PATH
+    if products_csv_path is None:
+        products_csv_path = cfg.CUSTOMER_PRODUCTS_PATH
+    if inventory_csv_path is None:
+        inventory_csv_path = cfg.CUSTOMER_INVENTORY_PATH
 
     # Verify target product exists in catalog
     if not os.path.exists(products_csv_path):
@@ -569,5 +578,5 @@ def run_pipeline(
 # RUN
 # -----------------------------
 if __name__ == "__main__":
-    result = run_pipeline("datasets/sales.csv", "SKU_1000")
+    result = run_pipeline(CUSTOMER_SALES_PATH, "SKU_1000")
     print(result)

@@ -160,12 +160,14 @@ def run_pipeline(products_csv_path, procurement_csv_path, target_product_id="SKU
 # RUN
 # -----------------------------
 if __name__ == "__main__":
+    from backend.config import CUSTOMER_PRODUCTS_PATH, CUSTOMER_PROCUREMENT_PATH
     # Assumes run from workspace root
     result = run_pipeline(
-        products_csv_path="datasets/products.csv",
-        procurement_csv_path="datasets/procurement.csv",
+        products_csv_path=CUSTOMER_PRODUCTS_PATH,
+        procurement_csv_path=CUSTOMER_PROCUREMENT_PATH,
         target_product_id="SKU_1000",
         currency_fluctuation_factor=1.0
     )
     print("\nPipeline execution result:")
     print(result)
+

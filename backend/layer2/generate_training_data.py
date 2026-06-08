@@ -121,12 +121,33 @@ def main():
             }
 
             # Generate training inputs and labels for each context
-            for context in simulated_contexts:
+            import copy
+            for c_idx, context in enumerate(simulated_contexts):
+                state_copy = copy.deepcopy(pricing_state)
+                
+                # To train the XGBoost model on extreme scenarios, we inject synthetic extreme
+                # states for a subset of the generated data. This allows the model to learn the
+                # heuristic thresholds and generalize correctly under extreme business events.
+                if c_idx == 0:
+                    # Inject severe procurement risk (supply_risk > 0.85)
+                    state_copy["E1"]["supply_risk"] = float(np.random.uniform(0.86, 0.99))
+                elif c_idx == 1:
+                    # Inject severe inventory crisis (abs(pressure) > 0.8, high urgency)
+                    state_copy["E3"]["inventory_pressure"] = float(np.random.choice([-1.0, 1.0]))
+                    state_copy["E3"]["urgency_score"] = 1.0
+                elif c_idx == 2:
+                    # Inject major competitor gap (abs(gap) > 1.5)
+                    state_copy["E4"]["competitive_gap"] = float(np.random.choice([
+                        np.random.uniform(-3.0, -1.5),
+                        np.random.uniform(1.5, 3.0)
+                    ]))
+                # c_idx == 3 remains completely unmodified as a baseline sample
+
                 # Get feature vector
-                features = build_feature_vector(pricing_state, context)
+                features = build_feature_vector(state_copy, context)
                 
                 # Get heuristic target weights
-                targets = generate_heuristic_weights(pricing_state, context)
+                targets = generate_heuristic_weights(state_copy, context)
                 
                 record = {
                     "product_id": product_id,

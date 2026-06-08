@@ -3,15 +3,19 @@ import pandas as pd
 from typing import List, Tuple, Dict, Any
 from backend.similarity.similarity_utils import calculate_pack_size_similarity
 
+
 class ProductSimilarityEngine:
     """
     Computes similarity between products in the catalog based on category,
     subcategory, and pack size, using business-rule weightings.
     """
-    def __init__(self, products_csv_path: str = "datasets/products.csv"):
+    def __init__(self, products_csv_path: str = None):
         """
         Initializes the similarity engine and loads the product catalog.
         """
+        if products_csv_path is None:
+            import backend.config as cfg
+            products_csv_path = cfg.CUSTOMER_PRODUCTS_PATH
         self.products_csv_path = products_csv_path
         self.df_products = None
         self.products_dict = {}

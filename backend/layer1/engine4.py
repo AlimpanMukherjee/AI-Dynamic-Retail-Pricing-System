@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import os
 
+
 # -----------------------------
 # STEP 1: LOAD DATA
 # -----------------------------
@@ -97,7 +98,14 @@ def compute_market_metrics(df_product, our_price=None, market_trend_score=0.5):
 # -----------------------------
 # STEP 4: MAIN PIPELINE
 # -----------------------------
-def run_pipeline(competitors_csv, sales_csv, target_product_id="SKU_1000", market_region=None, market_trend_score=0.5):
+def run_pipeline(competitors_csv=None, sales_csv=None, target_product_id="SKU_1000", market_region=None, market_trend_score=0.5):
+    # Dynamically resolve path defaults at call time to support routing configuration
+    import backend.config as cfg
+    if competitors_csv is None:
+        competitors_csv = cfg.CUSTOMER_COMPETITOR_PATH
+    if sales_csv is None:
+        sales_csv = cfg.CUSTOMER_SALES_PATH
+
     df_comp = load_data(competitors_csv)
 
     # Filter for the target product
@@ -150,8 +158,8 @@ def run_pipeline(competitors_csv, sales_csv, target_product_id="SKU_1000", marke
 if __name__ == "__main__":
     # Assumes run from workspace root
     result = run_pipeline(
-        competitors_csv="datasets/competitors.csv",
-        sales_csv="datasets/sales.csv",
+        competitors_csv=CUSTOMER_COMPETITOR_PATH,
+        sales_csv=CUSTOMER_SALES_PATH,
         target_product_id="SKU_1000",
         market_region="Delhi",
         market_trend_score=0.5
