@@ -19,7 +19,18 @@ def get_available_products() -> list:
         # Drop empty IDs
         df = df.dropna(subset=["product_id"])
         df["product_id"] = df["product_id"].astype(str).str.strip()
-        df["name"] = df.get("name", "Product").astype(str).str.strip()
+        
+        # Resolve product name safely
+        name_col = None
+        if "product_name" in df.columns:
+            name_col = "product_name"
+        elif "name" in df.columns:
+            name_col = "name"
+            
+        if name_col:
+            df["name"] = df[name_col].astype(str).str.strip()
+        else:
+            df["name"] = "Product"
         
         # Build description list: "SKU_1056 - Maggi 70g Mini"
         products = []
@@ -31,7 +42,9 @@ def get_available_products() -> list:
                 "label": f"{pid} - {name}"
             })
         return sorted(products, key=lambda x: x["id"])
-    except Exception:
+    except Exception as e:
+        # Log exception to stdout to avoid swallowing it silently during troubleshooting
+        print(f"Error in get_available_products: {str(e)}")
         return []
 
 

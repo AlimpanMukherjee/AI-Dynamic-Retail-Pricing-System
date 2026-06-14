@@ -6,3 +6,4 @@ timestamp,sku,recommended_price,expected_demand,elasticity,prediction_source
 2026-06-14 18:50:22,SKU_1000,19.617,246.96142578125,-0.010807031413313609,historical_sales
 2026-06-14 18:50:24,SKU_9999,29.42,232.72,-0.0,similar_products
 2026-06-14 18:50:25,SKU_9998,27.73,231.12,0.003,hybrid
+2026-06-14 19:30:10,SKU_1000,19.617,247.8285369873047,-0.01076993221705507,historical_sales
