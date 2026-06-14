@@ -1,0 +1,8 @@
+{
+    "model_version": "1.0",
+    "trained_at": "2026-06-13 22:18:31",
+    "training_rows": 19845,
+    "train_r2": 0.8658,
+    "validation_r2": 0.3049,
+    "test_r2": 0.0749
+}

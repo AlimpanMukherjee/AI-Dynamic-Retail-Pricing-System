@@ -1,0 +1,4 @@
+from backend.data_ingestion.sales_ingestion import append_sales_data
+from backend.data_ingestion.inventory_ingestion import append_inventory_data
+from backend.data_ingestion.market_ingestion import append_market_data
+from backend.data_ingestion.supplier_ingestion import append_supplier_data
