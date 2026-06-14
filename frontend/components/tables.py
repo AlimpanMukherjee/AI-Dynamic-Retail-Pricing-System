@@ -44,6 +44,9 @@ def render_styled_table(df: pd.DataFrame, use_container_width: bool = True):
             elif val == "Healthy":
                 return "background-color: #e2efda; color: #375623; font-weight: bold;"
             return ""
-        style_obj = style_obj.applymap(highlight_status, subset=["stock_status"])
+        if hasattr(style_obj, "map"):
+            style_obj = style_obj.map(highlight_status, subset=["stock_status"])
+        else:
+            style_obj = style_obj.applymap(highlight_status, subset=["stock_status"])
 
     st.dataframe(style_obj, use_container_width=use_container_width, hide_index=True)
