@@ -236,7 +236,8 @@ def run_pipeline(csv_path=None, target_product_id="SKU_1000", retailer_company=N
 # RUN
 # -----------------------------
 if __name__ == "__main__":
+    import backend.config as cfg
     # Run for SKU_1000 at Reliance Retail in Bengaluru (first row of dataset)
-    result = run_pipeline(CUSTOMER_INVENTORY_PATH, "SKU_1000", "Reliance Retail", "Bengaluru")
+    result = run_pipeline(cfg.CUSTOMER_INVENTORY_PATH, "SKU_1000", "Reliance Retail", "Bengaluru")
     print("\nPipeline execution result:")
     print(result)

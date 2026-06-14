@@ -21,3 +21,9 @@ requests>=2.31.0
 pypdf>=4.0.0
 pdfplumber>=0.10.0
 matplotlib>=3.8.0
+
+# UI and Visual Analytics
+streamlit>=1.30.0
+plotly>=5.18.0
+openpyxl>=3.1.2
+
