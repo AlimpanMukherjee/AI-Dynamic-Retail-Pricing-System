@@ -37,6 +37,14 @@ def __getattr__(name: str):
         return os.path.join(_get_customer_data_dir(), "inventory_current.csv")
     elif name == "CUSTOMER_INVENTORY_HISTORY_PATH":
         return os.path.join(_get_customer_data_dir(), "inventory_history.csv")
+    elif name == "CUSTOMER_PRICING_HISTORY_PATH":
+        return os.path.join(_get_customer_data_dir(), "pricing_history.csv")
+    elif name == "CUSTOMER_MODEL_REGISTRY_PATH":
+        return os.path.join(_get_customer_data_dir(), "model_registry.csv")
+    elif name == "CUSTOMER_ALERTS_PATH":
+        return os.path.join(_get_customer_data_dir(), "alerts.csv")
+    elif name == "MODELS_DIR":
+        return os.path.join(PROJECT_ROOT, "models")
     elif name == "BACKUP_INVENTORY_DIR":
         return os.path.join(PROJECT_ROOT, "backend", "uploads", "inventory")
     elif name == "CUSTOMER_PROCUREMENT_PATH":

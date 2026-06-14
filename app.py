@@ -31,6 +31,13 @@ def initialize_application():
     # 3. Create raw upload recovery directories if missing
     os.makedirs(cfg.BACKUP_INVENTORY_DIR, exist_ok=True)
 
+    # 4. Initialize model registry and training directories
+    try:
+        from backend.retraining.retrain_model import _initialize_registry
+        _initialize_registry()
+    except Exception as e:
+        print(f"Error initializing model registry: {str(e)}")
+
     st.session_state.initialized = True
 
 
@@ -70,4 +77,13 @@ elif page == "Product Search":
     show_page()
 elif page == "Run Pricing":
     from frontend.pages.run_pricing import show_page
+    show_page()
+elif page == "Pricing History":
+    from frontend.pages.pricing_history import show_page
+    show_page()
+elif page == "Model Management":
+    from frontend.pages.model_management import show_page
+    show_page()
+elif page == "Alerts":
+    from frontend.pages.alerts import show_page
     show_page()

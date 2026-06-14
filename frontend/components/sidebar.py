@@ -14,7 +14,10 @@ def render_sidebar():
         "📈 Sales Upload",
         "📦 Inventory Upload",
         "🔍 Product Search",
-        "💸 Run Pricing"
+        "💸 Run Pricing",
+        "🕰️ Pricing History",
+        "🧠 Model Management",
+        "🚨 Alerts"
     ]
 
     # Resolve index of current page if set in session state

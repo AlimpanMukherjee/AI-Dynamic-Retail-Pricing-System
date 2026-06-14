@@ -1,0 +1,2 @@
+timestamp,alert_type,severity,product_id,message,status
+2026-06-14 20:40:31,SUPPLY_RISK,HIGH,SKU_1056,High supply procurement risk detected: 93.90%,OPEN

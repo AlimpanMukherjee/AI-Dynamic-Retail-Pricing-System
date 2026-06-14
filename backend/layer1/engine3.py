@@ -227,7 +227,8 @@ def run_pipeline(csv_path=None, target_product_id="SKU_1000", retailer_company=N
         "stockout_risk": metrics["stockout_risk"],
         "inventory_pressure": metrics["inventory_pressure"],
         "urgency_score": metrics["urgency_score"],
-        "recommended_multiplier": metrics["recommended_multiplier"]
+        "recommended_multiplier": metrics["recommended_multiplier"],
+        "days_of_supply": metrics["days_of_supply"]
     }
 
 

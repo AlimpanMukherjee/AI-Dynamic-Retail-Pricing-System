@@ -118,7 +118,7 @@ def run_coordinated_pricing(
     optimizer = PriceOptimizer({"candidate_step_size": 0.15})
     optimization_report = optimizer.optimize_price(pricing_state, coordinated_weights)
 
-    return {
+    pipeline_result = {
         "product_id": product_id,
         "pricing_state": pricing_state,
         "feature_vector": feature_vector.tolist(),
@@ -133,6 +133,38 @@ def run_coordinated_pricing(
         "decision_summary": optimization_report["decision_summary"],
         "explanation": optimization_report["explanation"]
     }
+
+    # Automatically persist pricing decision to pricing history
+    try:
+        from frontend.services.pricing_history_service import save_pricing_decision
+        save_pricing_decision(
+            product_id=product_id,
+            retailer=retailer_company or "N/A",
+            location=store_location or "N/A",
+            engine1_price=pricing_state["E1"].get("minimum_safe_price", 0.0),
+            engine2_price=pricing_state["E2"].get("optimal_price", 0.0),
+            engine3_multiplier=pricing_state["E3"].get("recommended_multiplier", 1.0),
+            engine4_multiplier=pricing_state["E4"].get("recommended_multiplier", 1.0),
+            final_price=optimization_report["final_price"],
+            confidence=optimization_report["confidence"],
+            supply_risk=pricing_state["E1"].get("supply_risk", 0.0),
+            inventory_pressure=pricing_state["E3"].get("inventory_pressure", 0.0),
+            market_pressure=pricing_state["E4"].get("market_pressure", 0.0)
+        )
+    except Exception as e:
+        # Graceful error handling - avoid crashing pipeline
+        import logging
+        logging.getLogger("pricing_system.pipeline").error(f"Error saving pricing history: {str(e)}")
+
+    # Automatically generate any alerts triggered by pipeline outputs
+    try:
+        from backend.alerts.alert_engine import generate_alerts
+        generate_alerts(product_id, pipeline_result)
+    except Exception as e:
+        import logging
+        logging.getLogger("pricing_system.pipeline").error(f"Error generating alerts: {str(e)}")
+
+    return pipeline_result
 
 if __name__ == "__main__":
     # Test end-to-end pricing pipeline run
