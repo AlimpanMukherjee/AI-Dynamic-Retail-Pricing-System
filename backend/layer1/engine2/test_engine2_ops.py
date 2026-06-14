@@ -185,8 +185,14 @@ def test_data_ingestion_appending_logic(tmp_path, monkeypatch):
     # Patch config paths
     monkeypatch.setattr(cfg, "CUSTOMER_SALES_PATH", str(sales_file))
     monkeypatch.setattr(cfg, "CUSTOMER_INVENTORY_PATH", str(inv_file))
+    monkeypatch.setattr(cfg, "CUSTOMER_INVENTORY_CURRENT_PATH", str(inv_file))
+    monkeypatch.setattr(cfg, "CUSTOMER_INVENTORY_HISTORY_PATH", str(tmp_path / "inventory_history.csv"))
     monkeypatch.setattr(cfg, "CUSTOMER_COMPETITOR_PATH", str(market_file))
     monkeypatch.setattr(cfg, "CUSTOMER_PROCUREMENT_PATH", str(supplier_file))
+
+    # Pre-create empty inventory files to bypass auto-migration during test
+    pd.DataFrame(columns=["product_id", "current_stock", "reserved_stock", "warehouse"]).to_csv(inv_file, index=False)
+    pd.DataFrame(columns=["snapshot_timestamp", "product_id", "current_stock", "reserved_stock", "warehouse"]).to_csv(tmp_path / "inventory_history.csv", index=False)
 
     # Test Sales Ingestion
     df_sales_1 = pd.DataFrame({
@@ -330,9 +336,14 @@ def test_run_pipeline_caching_and_execution(tmp_path, monkeypatch):
     monkeypatch.setattr(cfg, "CUSTOMER_SALES_PATH", str(sales_file))
     monkeypatch.setattr(cfg, "CUSTOMER_PRODUCTS_PATH", str(products_file))
     monkeypatch.setattr(cfg, "CUSTOMER_INVENTORY_PATH", str(inv_file))
+    monkeypatch.setattr(cfg, "CUSTOMER_INVENTORY_CURRENT_PATH", str(inv_file))
+    monkeypatch.setattr(cfg, "CUSTOMER_INVENTORY_HISTORY_PATH", str(tmp_path / "inventory_history.csv"))
     
     monkeypatch.setattr("backend.layer1.engine2.engine2.MODEL_PATH", str(model_file))
     monkeypatch.setattr("backend.layer1.engine2.engine2.METADATA_PATH", str(metadata_file))
+
+    # Pre-create history inventory file to bypass auto-migration during test
+    pd.DataFrame(columns=["snapshot_timestamp", "product_id", "current_stock", "reserved_stock", "warehouse"]).to_csv(tmp_path / "inventory_history.csv", index=False)
 
     # Construct robust synthetic dataset
     # We generate 110 unique dates to test the pipeline in "normal" mode and avoid validation/test split index issues.

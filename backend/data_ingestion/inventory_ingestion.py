@@ -1,26 +1,13 @@
-import os
 import pandas as pd
-import backend.config as cfg
-from backend.data_ingestion.validators import validate_inventory_data
+from backend.inventory.inventory_ingestion import process_inventory_upload
 
-def append_inventory_data(new_inventory_df: pd.DataFrame):
+def append_inventory_data(new_inventory_df: pd.DataFrame) -> int:
     """
-    Validates and appends new inventory records to the inventory.csv master dataset.
-    Prevents duplicate appends by dropping exact matches.
+    Validates and UPSERTs new inventory records to inventory_current.csv 
+    and appends history snapshots to inventory_history.csv.
+    
+    Delegates to the new inventory ingestion pipeline and returns the count 
+    of newly inserted SKUs to maintain backward compatibility with tests.
     """
-    validate_inventory_data(new_inventory_df)
-    
-    inventory_path = cfg.CUSTOMER_INVENTORY_PATH
-    
-    if os.path.exists(inventory_path):
-        df_existing = pd.read_csv(inventory_path)
-        df_combined = pd.concat([df_existing, new_inventory_df], ignore_index=True)
-        df_combined = df_combined.drop_duplicates().reset_index(drop=True)
-        rows_added = len(df_combined) - len(df_existing)
-    else:
-        df_combined = new_inventory_df.copy()
-        rows_added = len(df_combined)
-        
-    os.makedirs(os.path.dirname(inventory_path), exist_ok=True)
-    df_combined.to_csv(inventory_path, index=False)
-    return rows_added
+    result = process_inventory_upload(new_inventory_df)
+    return result["rows_inserted"]

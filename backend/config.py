@@ -10,7 +10,9 @@ PROJECT_ROOT = os.path.dirname(BASE_DIR)
 DEV_DATA_DIR = os.path.join(PROJECT_ROOT, "datasets")
 DEV_PRODUCTS_PATH = os.path.join(DEV_DATA_DIR, "products.csv")
 DEV_SALES_PATH = os.path.join(DEV_DATA_DIR, "sales.csv")
-DEV_INVENTORY_PATH = os.path.join(DEV_DATA_DIR, "inventory.csv")
+DEV_INVENTORY_PATH = os.path.join(DEV_DATA_DIR, "inventory_current.csv")
+DEV_INVENTORY_CURRENT_PATH = os.path.join(DEV_DATA_DIR, "inventory_current.csv")
+DEV_INVENTORY_HISTORY_PATH = os.path.join(DEV_DATA_DIR, "inventory_history.csv")
 DEV_PROCUREMENT_PATH = os.path.join(DEV_DATA_DIR, "procurement.csv")
 DEV_COMPETITORS_PATH = os.path.join(DEV_DATA_DIR, "competitors.csv")
 
@@ -28,7 +30,13 @@ def __getattr__(name: str):
     elif name == "CUSTOMER_SALES_PATH":
         return os.path.join(_get_customer_data_dir(), "sales.csv")
     elif name == "CUSTOMER_INVENTORY_PATH":
-        return os.path.join(_get_customer_data_dir(), "inventory.csv")
+        return os.path.join(_get_customer_data_dir(), "inventory_current.csv")
+    elif name == "CUSTOMER_INVENTORY_CURRENT_PATH":
+        return os.path.join(_get_customer_data_dir(), "inventory_current.csv")
+    elif name == "CUSTOMER_INVENTORY_HISTORY_PATH":
+        return os.path.join(_get_customer_data_dir(), "inventory_history.csv")
+    elif name == "BACKUP_INVENTORY_DIR":
+        return os.path.join(PROJECT_ROOT, "backend", "uploads", "inventory")
     elif name == "CUSTOMER_PROCUREMENT_PATH":
         return os.path.join(_get_customer_data_dir(), "procurement.csv")
     elif name == "CUSTOMER_COMPETITOR_PATH":

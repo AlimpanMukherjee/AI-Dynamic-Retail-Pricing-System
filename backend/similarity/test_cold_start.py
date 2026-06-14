@@ -16,7 +16,7 @@ def setup_mock_products():
     Setup fixture that backs up datasets and appends simulated cold-start (0 sales)
     and hybrid (45 sales) test products. Automatically restores backups on teardown.
     """
-    files = ["products.csv", "procurement.csv", "inventory.csv", "competitors.csv", "sales.csv"]
+    files = ["products.csv", "procurement.csv", "inventory_current.csv", "inventory_history.csv", "competitors.csv", "sales.csv"]
     backup_paths = {}
     
     # 1. Create backups
@@ -39,9 +39,9 @@ def setup_mock_products():
             file.write("\nSKU_9998,Campa Cola Hybrid,Campa,SUP_564,Mumbai,9.19,0.77,0.22,0.93,6,0.98,100")
 
         # 4. Append inventory stock levels
-        with open("datasets/inventory.csv", "a") as file:
-            file.write("\nSKU_9999,Campa Cola Test,Campa,Beverages,Reliance Retail,Mumbai,Bengaluru,1424,124,319,202,55.76,14,112,529.24,0.78")
-            file.write("\nSKU_9998,Campa Cola Hybrid,Campa,Beverages,Reliance Retail,Mumbai,Bengaluru,1424,124,319,202,55.76,14,112,529.24,0.78")
+        with open("datasets/inventory_current.csv", "a") as file:
+            file.write("\nSKU_9999,Campa Cola Test,Campa,Beverages,Reliance Retail,Mumbai,Bengaluru,1424,124,319,202,55.76,14,112,529.24,0.78,2026-06-14 16:52:14,Bengaluru")
+            file.write("\nSKU_9998,Campa Cola Hybrid,Campa,Beverages,Reliance Retail,Mumbai,Bengaluru,1424,124,319,202,55.76,14,112,529.24,0.78,2026-06-14 16:52:14,Bengaluru")
 
         # 5. Append competitors pricing
         with open("datasets/competitors.csv", "a") as file:
