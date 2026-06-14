@@ -1,0 +1,86 @@
+import streamlit as st
+import pandas as pd
+from frontend.services.inventory_service import get_inventory_summary
+from frontend.services.sales_service import get_sales_summary
+from frontend.components.metrics import render_metric_card
+
+def show_page():
+    st.title("📊 Pricing & Ingestion Dashboard")
+    st.markdown("Monitor real-time stock levels, check dataset metrics, and analyze health statuses.")
+    st.markdown("---")
+
+    # Load data summaries
+    inv_summary = get_inventory_summary()
+    sales_summary = get_sales_summary()
+
+    # Metric Row 1
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        render_metric_card("Total Products Cataloged", f"{inv_summary['total_products']:,}", border_color="#4e73df")
+    with col2:
+        render_metric_card("Total Inventory Units", f"{inv_summary['total_stock']:,}", border_color="#1cc88a")
+    with col3:
+        render_metric_card("Low Stock (Watchlist)", f"{inv_summary['low_stock_count']:,}", border_color="#f6c23e")
+    with col4:
+        render_metric_card("Critical Stock items", f"{inv_summary['critical_stock_count']:,}", border_color="#e74a3b")
+
+    # Metric Row 2
+    col5, col6 = st.columns(2)
+    with col5:
+        render_metric_card("Latest Sales Transaction Date", sales_summary["latest_sale_date"], border_color="#36b9cc")
+    with col6:
+        render_metric_card("Latest Inventory Ingest Time", inv_summary["latest_update"], border_color="#f8f9fc")
+
+    st.markdown("---")
+
+    # If no data is available
+    if inv_summary["products_list"].empty:
+        st.info("No current inventory records found. Please navigate to the Upload panels to ingest CSV updates.")
+        return
+
+    df = inv_summary["products_list"]
+
+    # Charts Row
+    st.subheader("Inventory Metrics & Visual Analytics")
+    c_col1, c_col2, c_col3 = st.columns(3)
+
+    with c_col1:
+        st.markdown("**Stock Health Status**")
+        health_data = pd.DataFrame(
+            [{"Status": k, "Count": v} for k, v in inv_summary["health_counts"].items()]
+        )
+        st.bar_chart(health_data, x="Status", y="Count")
+
+    with c_col2:
+        st.markdown("**Top 10 SKUs by On-Hand Stock**")
+        df_top10 = df.sort_values(by="current_stock", ascending=False).head(10)
+        df_top10["label"] = df_top10["product_id"] + " - " + df_top10.get("product_name", "Product")
+        st.bar_chart(df_top10, x="product_id", y="current_stock")
+
+    with c_col3:
+        st.markdown("**Stock Distribution by Category**")
+        df_cat = df.groupby("category")["current_stock"].sum().reset_index()
+        st.bar_chart(df_cat, x="category", y="current_stock")
+
+    st.markdown("---")
+
+    # Low & Critical Stock watchlist tables
+    st.subheader("⚠️ Stock Level Alerts")
+    critical_df = df[df["stock_status"] == "Critical"][["product_id", "product_name", "category", "current_stock", "reserved_stock", "net_stock", "warehouse"]]
+    watchlist_df = df[df["stock_status"] == "Watchlist"][["product_id", "product_name", "category", "current_stock", "reserved_stock", "net_stock", "warehouse"]]
+
+    tab1, tab2 = st.tabs(["🔴 Critical Stock Warnings", "🟡 Low Stock Watchlist"])
+    
+    with tab1:
+        if not critical_df.empty:
+            st.warning(f"{len(critical_df)} products are currently in Critical condition. Stockout risk is high.")
+            st.dataframe(critical_df, use_container_width=True, hide_index=True)
+        else:
+            st.success("All products have safe stock counts above safety levels.")
+
+    with tab2:
+        if not watchlist_df.empty:
+            st.info(f"{len(watchlist_df)} products are below reorder thresholds. Consider reordering.")
+            st.dataframe(watchlist_df, use_container_width=True, hide_index=True)
+        else:
+            st.success("No products are in the low-stock warning zone.")

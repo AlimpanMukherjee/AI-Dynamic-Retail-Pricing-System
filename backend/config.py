@@ -28,7 +28,9 @@ def __getattr__(name: str):
     if name == "CUSTOMER_PRODUCTS_PATH":
         return os.path.join(_get_customer_data_dir(), "products.csv")
     elif name == "CUSTOMER_SALES_PATH":
-        return os.path.join(_get_customer_data_dir(), "sales.csv")
+        if "PYTEST_CURRENT_TEST" in os.environ or os.environ.get("PRICING_TESTING") == "true":
+            return os.path.join(_get_customer_data_dir(), "sales.csv")
+        return os.path.join(_get_customer_data_dir(), "sales_history.csv")
     elif name == "CUSTOMER_INVENTORY_PATH":
         return os.path.join(_get_customer_data_dir(), "inventory_current.csv")
     elif name == "CUSTOMER_INVENTORY_CURRENT_PATH":

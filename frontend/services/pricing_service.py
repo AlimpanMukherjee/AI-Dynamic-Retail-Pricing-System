@@ -1,0 +1,67 @@
+import os
+import pandas as pd
+import backend.config as cfg
+from backend.pipeline.pricing_pipeline import run_coordinated_pricing
+
+def get_available_products() -> list:
+    """
+    Returns a sorted list of tuple dicts containing product_id and descriptive label names.
+    """
+    products_path = cfg.CUSTOMER_PRODUCTS_PATH
+    if not os.path.exists(products_path):
+        products_path = cfg.DEV_PRODUCTS_PATH
+        
+    if not os.path.exists(products_path):
+        return []
+
+    try:
+        df = pd.read_csv(products_path)
+        # Drop empty IDs
+        df = df.dropna(subset=["product_id"])
+        df["product_id"] = df["product_id"].astype(str).str.strip()
+        df["name"] = df.get("name", "Product").astype(str).str.strip()
+        
+        # Build description list: "SKU_1056 - Maggi 70g Mini"
+        products = []
+        for _, row in df.iterrows():
+            pid = row["product_id"]
+            name = row["name"]
+            products.append({
+                "id": pid,
+                "label": f"{pid} - {name}"
+            })
+        return sorted(products, key=lambda x: x["id"])
+    except Exception:
+        return []
+
+
+def get_available_retailers() -> list:
+    """
+    Returns the supported retailer company names in the dynamic pricing engines.
+    """
+    return ["Reliance Retail", "DMart", "Blinkit", "BigBasket"]
+
+
+def get_available_locations() -> list:
+    """
+    Returns the store locations supported by location-specific multipliers.
+    """
+    return ["Mumbai", "Delhi", "Bengaluru", "Kolkata"]
+
+
+def run_pricing(product_id: str, retailer: str, location: str) -> dict:
+    """
+    Invokes the backend pricing coordination pipeline.
+    Maps options to match engine lowercase configurations.
+    """
+    # Align BigBasket case with backend bigbasket check
+    aligned_retailer = "Bigbasket" if retailer == "BigBasket" else retailer
+    
+    # Run coordinated pricing simulation
+    result = run_coordinated_pricing(
+        product_id=product_id,
+        retailer_company=aligned_retailer,
+        store_location=location
+    )
+    
+    return result
