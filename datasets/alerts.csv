@@ -1,3 +1,1 @@
 timestamp,alert_type,severity,product_id,message,status
-2026-06-14 19:36:29,LOW_STOCK,HIGH,SKU_1000,Low stock warning: only 0.3 days of supply remaining.,OPEN
-2026-06-14 19:36:29,STOCKOUT_RISK,HIGH,SKU_1000,High stockout risk detected: 100.00%,OPEN

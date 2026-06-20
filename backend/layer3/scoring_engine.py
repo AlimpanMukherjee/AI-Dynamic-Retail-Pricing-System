@@ -221,8 +221,8 @@ class PricingScorer:
 
     def score_candidate(self, price: float, pricing_state: Dict[str, Any], weights: Dict[str, float]) -> Dict[str, Any]:
         """
-        Scores a single candidate price across all four dimensions and calculates
-        the final weighted score using Layer 2 weights.
+        Scores a single candidate price across all dimensions and calculates
+        the final weighted score incorporating E5 Event component.
         
         Parameters:
             price (float): The price candidate.
@@ -242,9 +242,30 @@ class PricingScorer:
         w2 = weights.get("E2_weight", 0.25)
         w3 = weights.get("E3_weight", 0.25)
         w4 = weights.get("E4_weight", 0.25)
+        w5 = weights.get("E5_weight", 0.0)
+
+        # Retrieve event properties
+        event_active = pricing_state.get("event_active", False)
+        current_price = pricing_state.get("current_price", 0.0)
+        
+        if event_active and current_price > 0:
+            e5_data = pricing_state.get("E5", {})
+            event_score = float(e5_data.get("event_score", 0.0))
+            price_increase_ratio = (price - current_price) / current_price
+            # Upward-only pricing reward: max(0.0, price_increase_ratio)
+            event_component = w5 * event_score * max(0.0, price_increase_ratio)
+        else:
+            event_score = 0.0
+            event_component = 0.0
 
         # Blended weighted score
-        final_score = (w1 * procurement_score) + (w2 * elasticity_score) + (w3 * inventory_score) + (w4 * market_score)
+        final_score = (
+            (w1 * procurement_score) + 
+            (w2 * elasticity_score) + 
+            (w3 * inventory_score) + 
+            (w4 * market_score) + 
+            event_component
+        )
 
         return {
             "price": price,
@@ -252,5 +273,7 @@ class PricingScorer:
             "elasticity_score": float(round(elasticity_score, 4)),
             "inventory_score": float(round(inventory_score, 4)),
             "market_score": float(round(market_score, 4)),
+            "event_score": float(round(event_score, 4)),
+            "event_component": float(round(event_component, 4)),
             "final_score": float(round(final_score, 4))
         }

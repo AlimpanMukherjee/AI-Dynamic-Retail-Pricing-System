@@ -114,21 +114,24 @@ class PriceOptimizer:
                 pricing_state[eng] = {}
 
         # Validate weights completeness
-        expected_keys = {"E1_weight", "E2_weight", "E3_weight", "E4_weight"}
+        expected_keys = {"E1_weight", "E2_weight", "E3_weight", "E4_weight", "E5_weight"}
         present_keys = set(weights.keys())
         missing_keys = expected_keys - present_keys
         
         if missing_keys:
-            logger.warning(f"[Layer3] Missing weights {missing_keys}. Falling back to default equal weights.")
+            logger.warning(f"[Layer3] Missing weights {missing_keys}. Initializing to defaults.")
             for key in missing_keys:
-                weights[key] = 0.25
+                if key == "E5_weight":
+                    weights[key] = 0.0
+                else:
+                    weights[key] = 0.25
         
         # Ensure weights are positive floats and normalize if they deviate from 1.0
         for k in expected_keys:
             try:
                 weights[k] = max(0.0, float(weights[k]))
             except (ValueError, TypeError):
-                weights[k] = 0.25
+                weights[k] = 0.0 if k == "E5_weight" else 0.25
 
         weight_values = [weights[k] for k in expected_keys]
         total_weight = sum(weight_values)
@@ -137,7 +140,7 @@ class PriceOptimizer:
         if total_weight < 1e-5:
             logger.warning("[Layer3] Total weight is zero. Resetting to equal weights.")
             for k in expected_keys:
-                weights[k] = 0.25
+                weights[k] = 0.0 if k == "E5_weight" else 0.25
             total_weight = 1.0
 
         if not (0.99 <= total_weight <= 1.01):

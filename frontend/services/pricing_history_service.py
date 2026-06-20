@@ -17,7 +17,27 @@ COLUMNS = [
     "confidence",
     "supply_risk",
     "inventory_pressure",
-    "market_pressure"
+    "market_pressure",
+    "event_active",
+    "event_type",
+    "attendance",
+    "event_score",
+    "event_influence",
+    "distance_km",
+    "duration_hours",
+    "impact_level",
+    "base_price",
+    "e2_contribution_raw",
+    "e2_contribution",
+    "e3_contribution_raw",
+    "e3_contribution",
+    "e4_contribution_raw",
+    "e4_contribution",
+    "e5_contribution_raw",
+    "e5_contribution",
+    "total_uplift",
+    "confidence_score",
+    "confidence_level"
 ]
 
 def save_pricing_decision(
@@ -32,7 +52,27 @@ def save_pricing_decision(
     confidence: float,
     supply_risk: float,
     inventory_pressure: float,
-    market_pressure: float
+    market_pressure: float,
+    event_active: bool = False,
+    event_type: str = "Other",
+    attendance: int = 0,
+    event_score: float = 0.0,
+    event_influence: float = 0.0,
+    distance_km: float = 2.0,
+    duration_hours: float = 4.0,
+    impact_level: str = "LOW",
+    base_price: float = None,
+    e2_contribution_raw: float = None,
+    e2_contribution: float = None,
+    e3_contribution_raw: float = None,
+    e3_contribution: float = None,
+    e4_contribution_raw: float = None,
+    e4_contribution: float = None,
+    e5_contribution_raw: float = None,
+    e5_contribution: float = None,
+    total_uplift: float = None,
+    confidence_score: float = None,
+    confidence_level: str = None
 ):
     """
     Saves a pricing decision to customer_data/pricing_history.csv.
@@ -53,7 +93,27 @@ def save_pricing_decision(
         "confidence": round(float(confidence), 4),
         "supply_risk": round(float(supply_risk), 4),
         "inventory_pressure": round(float(inventory_pressure), 4),
-        "market_pressure": round(float(market_pressure), 4)
+        "market_pressure": round(float(market_pressure), 4),
+        "event_active": bool(event_active),
+        "event_type": str(event_type),
+        "attendance": int(attendance),
+        "event_score": round(float(event_score), 4),
+        "event_influence": round(float(event_influence), 4),
+        "distance_km": round(float(distance_km), 2),
+        "duration_hours": round(float(duration_hours), 2),
+        "impact_level": str(impact_level),
+        "base_price": round(float(base_price), 4) if base_price is not None else None,
+        "e2_contribution_raw": round(float(e2_contribution_raw), 4) if e2_contribution_raw is not None else None,
+        "e2_contribution": round(float(e2_contribution), 4) if e2_contribution is not None else None,
+        "e3_contribution_raw": round(float(e3_contribution_raw), 4) if e3_contribution_raw is not None else None,
+        "e3_contribution": round(float(e3_contribution), 4) if e3_contribution is not None else None,
+        "e4_contribution_raw": round(float(e4_contribution_raw), 4) if e4_contribution_raw is not None else None,
+        "e4_contribution": round(float(e4_contribution), 4) if e4_contribution is not None else None,
+        "e5_contribution_raw": round(float(e5_contribution_raw), 4) if e5_contribution_raw is not None else None,
+        "e5_contribution": round(float(e5_contribution), 4) if e5_contribution is not None else None,
+        "total_uplift": round(float(total_uplift), 4) if total_uplift is not None else None,
+        "confidence_score": round(float(confidence_score), 2) if confidence_score is not None else None,
+        "confidence_level": str(confidence_level) if confidence_level is not None else None
     }
 
     df_new = pd.DataFrame([record])

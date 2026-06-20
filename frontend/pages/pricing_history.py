@@ -107,6 +107,40 @@ def show_page():
     else:
         st.info("💡 **Tip**: Select a specific SKU filter to view comparative time-series line charts and risk trends.")
 
+    # 1. Event Uplift Analytics
+    try:
+        import backend.config as cfg
+        import os
+        products_csv = cfg.CUSTOMER_PRODUCTS_PATH
+        if os.path.exists(products_csv):
+            df_prod_cat = pd.read_csv(products_csv)
+            base_price_map = df_prod_cat.set_index("product_id")["base_market_price"].to_dict()
+        else:
+            base_price_map = {}
+    except Exception:
+        base_price_map = {}
+
+    df_filtered_copy = df_filtered.copy()
+    df_filtered_copy["base_price"] = df_filtered_copy["product_id"].map(base_price_map)
+    df_filtered_copy["base_price"] = df_filtered_copy["base_price"].fillna(df_filtered_copy["engine2_price"])
+    df_filtered_copy["price_uplift_pct"] = (df_filtered_copy["final_price"] - df_filtered_copy["base_price"]) / df_filtered_copy["base_price"].replace(0.0, 1.0)
+
+    # Filter where event was active and columns exist
+    if "event_active" in df_filtered_copy.columns:
+        # Normalize boolean mask to handle strings or bools
+        is_active_mask = (df_filtered_copy["event_active"] == True) | (df_filtered_copy["event_active"].astype(str).str.lower() == "true")
+        df_events = df_filtered_copy[is_active_mask]
+        if not df_events.empty:
+            st.subheader("🎪 Event Uplift Analytics")
+            df_uplifts = df_events.groupby("event_type")["price_uplift_pct"].mean().reset_index()
+            # Format average price uplift
+            df_uplifts["price_uplift_pct"] = df_uplifts["price_uplift_pct"].apply(lambda x: f"+{x:.2%}" if x >= 0 else f"{x:.2%}")
+            df_uplifts.columns = ["Event Type", "Average Price Uplift"]
+            
+            st.markdown("Average price uplift compared to base market price during active events nearby:")
+            st.dataframe(df_uplifts, use_container_width=True, hide_index=True)
+            st.markdown("---")
+
     # Show raw historical data records
     st.subheader("📋 Log of Decisions")
     
@@ -115,10 +149,20 @@ def show_page():
     df_grid["product_name"] = df_grid["product_id"].map(prod_map)
     df_grid["run_timestamp"] = df_grid["run_timestamp"].dt.strftime("%Y-%m-%d %H:%M:%S")
     
-    cols_to_show = [
+    # Check what columns exist in the DataFrame
+    available_cols = [
         "run_timestamp", "product_id", "product_name", "retailer", "location", 
-        "final_price", "confidence", "supply_risk", "inventory_pressure", "market_pressure"
+        "final_price", "confidence", "base_price", "total_uplift",
+        "e2_contribution_raw", "e2_contribution",
+        "e3_contribution_raw", "e3_contribution",
+        "e4_contribution_raw", "e4_contribution",
+        "e5_contribution_raw", "e5_contribution",
+        "confidence_score", "confidence_level",
+        "supply_risk", "inventory_pressure", "market_pressure",
+        "event_active", "event_type", "attendance", "event_score", "event_influence",
+        "distance_km", "duration_hours", "impact_level"
     ]
+    cols_to_show = [c for c in available_cols if c in df_grid.columns]
     
     from frontend.components.tables import render_styled_table
     render_styled_table(df_grid[cols_to_show])

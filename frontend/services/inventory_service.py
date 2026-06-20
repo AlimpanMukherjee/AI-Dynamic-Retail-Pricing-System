@@ -69,6 +69,48 @@ def get_inventory_summary() -> dict:
 
     df["stock_status"] = df.apply(determine_status, axis=1)
 
+    # Merge base price from products database
+    products_path = getattr(cfg, "CUSTOMER_PRODUCTS_PATH", None)
+    if products_path and os.path.exists(products_path):
+        try:
+            df_prod = pd.read_csv(products_path)
+            df_prod["product_id"] = df_prod["product_id"].astype(str).str.strip()
+            df_prod = df_prod[["product_id", "base_market_price"]].drop_duplicates(subset=["product_id"])
+            if "base_market_price" in df.columns:
+                df = df.drop(columns=["base_market_price"])
+            df = pd.merge(df, df_prod, on="product_id", how="left")
+        except Exception as e:
+            print(f"Error merging base_market_price in get_inventory_summary: {e}")
+
+    # Merge procurement cost details (picking the primary supplier with highest reliability)
+    procurement_path = getattr(cfg, "CUSTOMER_PROCUREMENT_PATH", None)
+    if procurement_path and os.path.exists(procurement_path):
+        try:
+            df_proc = pd.read_csv(procurement_path)
+            df_proc["product_id"] = df_proc["product_id"].astype(str).str.strip()
+            df_proc = df_proc.sort_values(by="supplier_reliability", ascending=False)
+            df_proc_unique = df_proc.drop_duplicates(subset=["product_id"])
+            
+            cost_cols = ["product_id", "supplier_price", "freight_cost", "warehouse_cost", "gst_tax"]
+            existing_cost_cols = [c for c in cost_cols if c in df_proc_unique.columns]
+            df_proc_costs = df_proc_unique[existing_cost_cols].copy()
+            
+            required_landed_cols = ["supplier_price", "freight_cost", "warehouse_cost", "gst_tax"]
+            if all(c in df_proc_costs.columns for c in required_landed_cols):
+                df_proc_costs["true_landed_cost"] = (
+                    df_proc_costs["supplier_price"] +
+                    df_proc_costs["freight_cost"] +
+                    df_proc_costs["warehouse_cost"] +
+                    df_proc_costs["gst_tax"]
+                )
+            
+            to_drop = [c for c in df_proc_costs.columns if c != "product_id" and c in df.columns]
+            if to_drop:
+                df = df.drop(columns=to_drop)
+            df = pd.merge(df, df_proc_costs, on="product_id", how="left")
+        except Exception as e:
+            print(f"Error merging procurement costs in get_inventory_summary: {e}")
+
     # Read latest upload time
     latest_update = "N/A"
     if "last_updated" in df.columns:

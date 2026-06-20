@@ -1,9 +1,17 @@
-run_timestamp,product_id,retailer,location,engine1_price,engine2_price,engine3_multiplier,engine4_multiplier,final_price,confidence,supply_risk,inventory_pressure,market_pressure
-2026-06-14 20:37:03,SKU_1000,Reliance Retail,Mumbai,12.94,19.617,1.014,1.005,15.3,0.9705,0.134,-0.138,0.607
-2026-06-14 20:40:31,SKU_1056,Bigbasket,Delhi,9.07,13.754,0.983,1.063,11.7,0.9723,0.939,0.112,0.674
-2026-06-14 20:57:19,SKU_1000,Reliance Retail,Mumbai,12.94,19.617,1.014,1.005,15.3,0.9705,0.134,-0.138,0.607
-2026-06-14 21:05:36,SKU_1000,Reliance Retail,Mumbai,12.94,19.617,1.014,1.005,15.3,0.9705,0.134,-0.138,0.607
-2026-06-14 21:08:27,SKU_1020,Reliance Retail,Mumbai,27.92,44.187,1.024,1.038,34.05,0.9743,0.234,-0.243,0.758
-2026-06-14 21:09:16,SKU_1043,Reliance Retail,Mumbai,26.35,42.081,1.022,1.005,33.0,0.9711,0.254,-0.22,0.457
-2026-06-14 21:10:05,SKU_1000,Reliance Retail,Mumbai,12.94,19.617,1.014,1.005,15.3,0.9705,0.134,-0.138,0.607
-2026-06-14 21:34:46,SKU_1048,Reliance Retail,Mumbai,13.43,19.656,1.021,1.011,15.3,0.9715,0.236,-0.207,0.705
+run_timestamp,product_id,retailer,location,engine1_price,engine2_price,engine3_multiplier,engine4_multiplier,final_price,confidence,supply_risk,inventory_pressure,market_pressure,event_active,event_type,attendance,event_score,event_influence,distance_km,duration_hours,impact_level,base_price,e2_contribution_raw,e2_contribution,e3_contribution_raw,e3_contribution,e4_contribution_raw,e4_contribution,e5_contribution_raw,e5_contribution,total_uplift,confidence_score,confidence_level
+2026-06-20 23:19:55,SKU_1000,Reliance Retail,Mumbai,12.94,19.6488,1.014,1.149,15.15,0.9222,0.134,-0.138,0.607,True,Festival,50000,0.4533,0.068,2.0,4.0,MEDIUM,,,,,,,,,,,,
+2026-06-20 23:20:32,SKU_1000,Reliance Retail,Mumbai,12.94,19.6488,1.014,1.149,15.0,0.9869,0.134,-0.138,0.607,False,Other,0,0.0,0.0,2.0,4.0,LOW,,,,,,,,,,,,
+2026-06-20 23:20:57,SKU_1000,Reliance Retail,Mumbai,12.94,19.6488,1.014,1.149,15.3,0.9015,0.134,-0.138,0.607,True,Festival,500000,0.608,0.0912,1.5,194.0,HIGH,,,,,,,,,,,,
+2026-06-20 23:21:30,SKU_1000,Reliance Retail,Mumbai,12.94,19.6488,1.014,1.149,15.3,0.9015,0.134,-0.138,0.607,True,Festival,500000,0.608,0.0912,1.5,720.0,HIGH,,,,,,,,,,,,
+2026-06-20 23:21:44,SKU_1000,Reliance Retail,Mumbai,12.94,19.6488,1.014,1.149,15.0,0.9437,0.134,-0.138,0.607,True,Festival,5000,0.2987,0.0448,2.0,400.0,MEDIUM,,,,,,,,,,,,
+2026-06-20 23:21:54,SKU_1000,Reliance Retail,Mumbai,12.94,19.6488,1.014,1.149,15.3,0.9043,0.134,-0.138,0.607,True,Festival,500000,0.5867,0.088,2.0,400.0,HIGH,,,,,,,,,,,,
+2026-06-20 23:22:14,SKU_1000,Reliance Retail,Mumbai,12.94,19.6488,1.014,1.149,15.3,0.8973,0.134,-0.138,0.607,True,Festival,500000,0.64,0.096,1.0,400.0,HIGH,,,,,,,,,,,,
+2026-06-20 23:34:56,SKU_1056,Reliance Retail,Hyderabad,9.07,16.081,0.983,1.117,11.55,0.9554,0.939,0.112,0.674,False,Other,0,0.0,0.0,2.0,4.0,LOW,9.07,1.47,1.97,-0.02,-0.02,0.39,0.53,0.0,0.0,2.48,75.0,Medium
+2026-06-20 23:35:29,SKU_1056,Reliance Retail,Hyderabad,9.07,16.081,0.983,1.117,11.55,0.9554,0.939,0.112,0.674,False,Other,0,0.0,0.0,2.0,4.0,LOW,9.07,1.47,1.97,-0.02,-0.02,0.39,0.53,0.0,0.0,2.48,75.0,Medium
+2026-06-20 23:38:03,SKU_1000,Reliance Retail,Mumbai,12.94,19.6488,1.014,1.149,15.0,0.9869,0.134,-0.138,0.607,False,Other,0,0.0,0.0,2.0,4.0,LOW,12.94,1.06,1.2,0.03,0.03,0.74,0.83,0.0,0.0,2.06,85.0,High
+2026-06-20 23:42:22,SKU_1056,Reliance Retail,Hyderabad,9.07,16.081,0.983,1.117,11.55,0.9554,0.939,0.112,0.674,False,Other,0,0.0,0.0,2.0,4.0,LOW,9.07,1.47,1.97,-0.02,-0.02,0.39,0.53,0.0,0.0,2.48,75.0,Medium
+2026-06-20 23:44:42,SKU_1000,Reliance Retail,Mumbai,12.94,19.6488,1.014,1.149,15.0,0.9869,0.134,-0.138,0.607,False,Other,0,0.0,0.0,2.0,4.0,LOW,12.94,1.06,1.2,0.03,0.03,0.74,0.83,0.0,0.0,2.06,85.0,High
+2026-06-20 23:58:05,SKU_1056,Reliance Retail,Hyderabad,9.07,16.081,0.983,1.117,11.55,0.9554,0.939,0.112,0.674,False,Other,0,0.0,0.0,2.0,4.0,LOW,9.07,1.47,1.97,-0.02,-0.02,0.39,0.53,0.0,0.0,2.48,75.0,Medium
+2026-06-21 00:04:05,SKU_1041,Reliance Retail,Mumbai,18.24,33.202,1.002,0.948,21.3,0.968,0.254,-0.018,0.775,False,Other,0,0.0,0.0,2.0,4.0,LOW,18.24,2.27,3.65,0.01,0.01,-0.37,-0.6,0.0,0.0,3.06,85.0,High
+2026-06-21 00:08:10,SKU_1056,Reliance Retail,Hyderabad,9.07,16.081,0.983,1.117,11.55,0.9554,0.939,0.112,0.674,False,Other,0,0.0,0.0,2.0,4.0,LOW,9.07,1.47,1.97,-0.02,-0.02,0.39,0.53,0.0,0.0,2.48,75.0,Medium
+2026-06-21 00:08:52,SKU_1103,Reliance Retail,Mumbai,616.83,1339.936,1.019,0.933,862.2,0.9761,0.333,-0.195,0.71,False,Other,0,0.0,0.0,2.0,4.0,LOW,616.83,112.44,280.14,1.84,4.6,-15.8,-39.37,0.0,0.0,245.37,85.0,High

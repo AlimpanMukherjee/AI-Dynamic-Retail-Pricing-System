@@ -32,7 +32,8 @@ FEATURE_NAMES = [
     "competitive_gap",
     "retailer_type_encoded",
     "business_strategy_encoded",
-    "region_encoded"
+    "region_encoded",
+    "event_score"
 ]
 
 def build_feature_vector(pricing_state, business_context):
@@ -45,13 +46,14 @@ def build_feature_vector(pricing_state, business_context):
         business_context (dict): Dictionary with keys: retailer_type, business_strategy, region.
         
     Returns:
-        np.ndarray: A flat float array of length 11.
+        np.ndarray: A flat float array of length 12.
     """
     # 1. Extract Layer 1 Engine Signals (defaults used in case of missing keys)
     e1_data = pricing_state.get("E1", {})
     e2_data = pricing_state.get("E2", {})
     e3_data = pricing_state.get("E3", {})
     e4_data = pricing_state.get("E4", {})
+    e5_data = pricing_state.get("E5", {})
 
     min_safe_price = float(e1_data.get("minimum_safe_price", 0.0))
     supply_risk = float(e1_data.get("supply_risk", 0.0))
@@ -64,6 +66,7 @@ def build_feature_vector(pricing_state, business_context):
     
     market_pressure = float(e4_data.get("market_pressure", 0.0))
     competitive_gap = float(e4_data.get("competitive_gap", 0.0))
+    event_score = float(e5_data.get("event_score", 0.0))
 
     # 2. Encode Business Context Signals
     retailer_type = business_context.get("retailer_type", "standard")
@@ -87,7 +90,8 @@ def build_feature_vector(pricing_state, business_context):
         competitive_gap,
         retailer_enc,
         strategy_enc,
-        region_enc
+        region_enc,
+        event_score
     ], dtype=np.float32)
 
     return feature_vector

@@ -22,14 +22,20 @@ def render_styled_table(df: pd.DataFrame, use_container_width: bool = True):
         formatters["net_stock"] = "{:,}"
     if "units_sold" in display_df.columns:
         formatters["units_sold"] = "{:,}"
-    if "price" in display_df.columns:
-        formatters["price"] = "₹{:.2f}"
-    if "selling_price" in display_df.columns:
-        formatters["selling_price"] = "₹{:.2f}"
-    if "recommended_price" in display_df.columns:
-        formatters["recommended_price"] = "₹{:.2f}"
-    if "competitor_price" in display_df.columns:
-        formatters["competitor_price"] = "₹{:.2f}"
+        
+    price_cols = [
+        "price", "selling_price", "recommended_price", "competitor_price",
+        "base_price", "e2_contribution", "e3_contribution", "e4_contribution", "e5_contribution",
+        "e2_contribution_raw", "e3_contribution_raw", "e4_contribution_raw", "e5_contribution_raw",
+        "total_uplift", "final_price", "base_market_price", "supplier_price", 
+        "freight_cost", "warehouse_cost", "gst_tax", "true_landed_cost"
+    ]
+    for col in price_cols:
+        if col in display_df.columns:
+            formatters[col] = "₹{:.2f}"
+            
+    if "confidence_score" in display_df.columns:
+        formatters["confidence_score"] = "{:.1f}%"
 
     if formatters:
         style_obj = style_obj.format(formatters)

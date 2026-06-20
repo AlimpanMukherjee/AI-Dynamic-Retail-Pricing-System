@@ -62,10 +62,23 @@ def get_available_locations() -> list:
     return ["Mumbai", "Delhi", "Bengaluru", "Kolkata"]
 
 
-def run_pricing(product_id: str, retailer: str, location: str) -> dict:
+def run_pricing(
+    product_id: str,
+    retailer: str,
+    location: str,
+    event_active: bool = False,
+    event_type: str = "Other",
+    attendance: int = 0,
+    distance_km: float = 2.0,
+    duration_hours: float = 4.0
+) -> dict:
     """
     Invokes the backend pricing coordination pipeline.
     Maps options to match engine lowercase configurations.
+    
+    Returns:
+        dict: pricing results containing final_price, confidence, explanation,
+              as well as price_journey and price_confidence explainability structures.
     """
     # Align BigBasket case with backend bigbasket check
     aligned_retailer = "Bigbasket" if retailer == "BigBasket" else retailer
@@ -74,7 +87,12 @@ def run_pricing(product_id: str, retailer: str, location: str) -> dict:
     result = run_coordinated_pricing(
         product_id=product_id,
         retailer_company=aligned_retailer,
-        store_location=location
+        store_location=location,
+        event_active=event_active,
+        event_type=event_type,
+        attendance=attendance,
+        distance_km=distance_km,
+        duration_hours=duration_hours
     )
     
     return result

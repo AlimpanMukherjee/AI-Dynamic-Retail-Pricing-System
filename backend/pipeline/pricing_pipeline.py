@@ -22,30 +22,21 @@ def run_coordinated_pricing(
     business_context=None,
     market_trend_score=0.5,
     currency_fluctuation_factor=1.0,
-    target_supplier_id=None
+    target_supplier_id=None,
+    event_active=False,
+    event_type="Other",
+    attendance=0,
+    distance_km=2.0,
+    duration_hours=4.0
 ):
     """
     Executes the end-to-end pricing pipeline:
-    1. Executes E1, E2, E3, and E4 engines.
-    2. Builds a unified pricing state.
-    3. Builds the dynamic feature vector.
-    4. Predicts the dynamic coordinated engine weights.
-    
-    Parameters:
-        product_id (str): SKU to evaluate.
-        retailer_company (str): Retailer name (e.g. "Reliance Retail").
-        store_location (str): Store city (e.g. "Bengaluru").
-        business_context (dict): Business environment overrides.
-        market_trend_score (float): Macro market trend factor.
-        currency_fluctuation_factor (float): Exchange rate volatility factor.
-        target_supplier_id (str): Overrides default primary supplier search.
-        
-    Returns:
-        dict: Coordinated pricing report containing:
-              - product_id
-              - pricing_state (unified engine metrics)
-              - feature_vector (flat ML inputs)
-              - coordinated_weights (predicted weights)
+    1. Loads target product's base price from catalog.
+    2. Executes E1, E2, E3, E4, and E5 specialist engines.
+    3. Builds a unified pricing state.
+    4. Builds the dynamic feature vector.
+    5. Predicts the dynamic coordinated engine weights.
+    6. Runs Layer 3 optimization.
     """
     import backend.config as cfg
     products_csv = cfg.CUSTOMER_PRODUCTS_PATH
@@ -53,6 +44,16 @@ def run_coordinated_pricing(
     sales_csv = cfg.CUSTOMER_SALES_PATH
     inventory_csv = cfg.CUSTOMER_INVENTORY_PATH
     competitors_csv = cfg.CUSTOMER_COMPETITOR_PATH
+
+    # Load target product base_market_price early to set as current_price
+    current_price = 0.0
+    try:
+        df_prod = pd.read_csv(products_csv)
+        product_row = df_prod[df_prod["product_id"].astype(str).str.strip() == str(product_id).strip()]
+        if not product_row.empty:
+            current_price = float(product_row.iloc[0].get("base_market_price", 0.0))
+    except Exception as e:
+        print(f"Error loading base_market_price for current_price: {str(e)}")
 
     # 1. Fallback to default business context if not provided
     if business_context is None:
@@ -90,7 +91,6 @@ def run_coordinated_pricing(
     )
 
     # 5. Run Engine 4: Competitor Market Intelligence
-    # Map store_location to market_region for engine 4
     e4_output = engine4.run_pipeline(
         competitors_csv=competitors_csv,
         sales_csv=sales_csv,
@@ -99,20 +99,37 @@ def run_coordinated_pricing(
         market_trend_score=market_trend_score
     )
 
-    # 6. Assemble Unified Pricing State
+    # 6. Run Engine 5: Event Intelligence
+    from backend.engines.event_engine import run_pipeline as run_event_engine
+    e5_output = run_event_engine(
+        event_active=event_active,
+        event_type=event_type,
+        attendance=attendance,
+        distance_km=distance_km,
+        duration_hours=duration_hours
+    )
+
+    # Assemble Unified Pricing State
     pricing_state = {
         "product_id": product_id,
+        "current_price": current_price,
+        "event_active": event_active,
+        "event_type": event_type,
+        "attendance": attendance,
+        "distance_km": distance_km,
+        "duration_hours": duration_hours,
         "E1": e1_output,
         "E2": e2_output,
         "E3": e3_output,
-        "E4": e4_output
+        "E4": e4_output,
+        "E5": e5_output
     }
 
     # 7. Convert nested pricing state and context into feature vector
     feature_vector = build_feature_vector(pricing_state, business_context)
 
     # 8. Predict coordinated weights from the feature vector using the Layer 2 model
-    coordinated_weights = predict_engine_weights(feature_vector)
+    coordinated_weights = predict_engine_weights(feature_vector, event_active=event_active)
 
     # 9. Execute Layer 3 Price Optimization
     optimizer = PriceOptimizer({"candidate_step_size": 0.15})
@@ -131,12 +148,16 @@ def run_coordinated_pricing(
         "winning_candidate": optimization_report["winning_candidate"],
         "price_breakdown": optimization_report["price_breakdown"],
         "decision_summary": optimization_report["decision_summary"],
-        "explanation": optimization_report["explanation"]
+        "explanation": optimization_report["explanation"],
+        "price_journey": optimization_report.get("price_journey"),
+        "price_confidence": optimization_report.get("price_confidence")
     }
 
     # Automatically persist pricing decision to pricing history
     try:
         from frontend.services.pricing_history_service import save_pricing_decision
+        journey = optimization_report.get("price_journey", {})
+        conf_data = optimization_report.get("price_confidence", {})
         save_pricing_decision(
             product_id=product_id,
             retailer=retailer_company or "N/A",
@@ -149,7 +170,27 @@ def run_coordinated_pricing(
             confidence=optimization_report["confidence"],
             supply_risk=pricing_state["E1"].get("supply_risk", 0.0),
             inventory_pressure=pricing_state["E3"].get("inventory_pressure", 0.0),
-            market_pressure=pricing_state["E4"].get("market_pressure", 0.0)
+            market_pressure=pricing_state["E4"].get("market_pressure", 0.0),
+            event_active=event_active,
+            event_type=event_type,
+            attendance=attendance,
+            event_score=e5_output.get("event_score", 0.0),
+            event_influence=coordinated_weights.get("E5_weight", 0.0),
+            distance_km=distance_km,
+            duration_hours=duration_hours,
+            impact_level=e5_output.get("impact_level", "LOW"),
+            base_price=journey.get("procurement_floor"),
+            e2_contribution_raw=journey.get("demand_effect_raw"),
+            e2_contribution=journey.get("demand_effect"),
+            e3_contribution_raw=journey.get("inventory_effect_raw"),
+            e3_contribution=journey.get("inventory_effect"),
+            e4_contribution_raw=journey.get("competitor_effect_raw"),
+            e4_contribution=journey.get("competitor_effect"),
+            e5_contribution_raw=journey.get("event_effect_raw"),
+            e5_contribution=journey.get("event_effect"),
+            total_uplift=journey.get("total_uplift"),
+            confidence_score=conf_data.get("confidence_score"),
+            confidence_level=conf_data.get("confidence_level")
         )
     except Exception as e:
         # Graceful error handling - avoid crashing pipeline
@@ -168,8 +209,16 @@ def run_coordinated_pricing(
 
 if __name__ == "__main__":
     # Test end-to-end pricing pipeline run
+    import sys
     import json
     
+    # Reconfigure stdout to support unicode/utf-8 encoding in Windows terminal
+    if hasattr(sys.stdout, "reconfigure"):
+        try:
+            sys.stdout.reconfigure(encoding="utf-8")
+        except Exception:
+            pass
+            
     sku = "SKU_1056"
     retailer = "Reliance Retail"
     store = "Hyderabad"
@@ -225,4 +274,8 @@ if __name__ == "__main__":
         
     print("\nStakeholder Explanation:")
     print(result["explanation"])
+    print("\nPrice Journey:")
+    print(json.dumps(result.get("price_journey"), indent=2))
+    print("\nPrice Confidence:")
+    print(json.dumps(result.get("price_confidence"), indent=2))
     print("========================================================")
