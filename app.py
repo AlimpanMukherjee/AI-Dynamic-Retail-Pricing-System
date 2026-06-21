@@ -81,6 +81,9 @@ elif page == "Run Pricing":
 elif page == "Pricing History":
     from frontend.pages.pricing_history import show_page
     show_page()
+elif page == "Competitor Upload":
+    from frontend.pages.competitor_upload import show_page
+    show_page()
 elif page == "Model Management":
     from frontend.pages.model_management import show_page
     show_page()

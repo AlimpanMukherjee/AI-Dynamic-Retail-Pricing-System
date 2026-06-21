@@ -158,8 +158,6 @@ def run_pipeline(competitors_csv=None, sales_csv=None, target_product_id="SKU_10
 if __name__ == "__main__":
     # Assumes run from workspace root
     result = run_pipeline(
-        competitors_csv=CUSTOMER_COMPETITOR_PATH,
-        sales_csv=CUSTOMER_SALES_PATH,
         target_product_id="SKU_1000",
         market_region="Delhi",
         market_trend_score=0.5

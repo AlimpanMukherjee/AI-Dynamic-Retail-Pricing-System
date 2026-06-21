@@ -42,25 +42,14 @@ def show_page():
     with col4:
         render_metric_card("Critical Stock items", f"{inv_summary['critical_stock_count']:,}", border_color="#e74a3b")
 
-    # Metric Row 2: System Risks & Models
-    col5, col6, col7, col8 = st.columns(4)
+    # Metric Row 2: Operational Status
+    col5, col6, col7 = st.columns(3)
     with col5:
-        border_open = "#e74a3b" if open_alerts > 0 else "#1cc88a"
-        render_metric_card("Open System Alerts", str(open_alerts), border_color=border_open)
-    with col6:
-        border_high = "#e74a3b" if high_sev_alerts > 0 else "#858796"
-        render_metric_card("High Severity Alerts", str(high_sev_alerts), border_color=border_high)
-    with col7:
-        render_metric_card("Active Forecasting Model", active_ver, border_color="#36b9cc")
-    with col8:
-        render_metric_card("Model Last Retrained", last_retrain, border_color="#858796")
-
-    # Metric Row 3: Operational Timestamps
-    col9, col10 = st.columns(2)
-    with col9:
         render_metric_card("Latest Sales Transaction Date", sales_summary["latest_sale_date"], border_color="#4e73df")
-    with col10:
+    with col6:
         render_metric_card("Latest Inventory Ingest Time", inv_summary["latest_update"], border_color="#f8f9fc")
+    with col7:
+        render_metric_card("Model Last Retrained", last_retrain, border_color="#858796")
 
     st.markdown("---")
 

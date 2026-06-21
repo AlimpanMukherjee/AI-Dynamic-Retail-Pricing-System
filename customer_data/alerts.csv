@@ -1,4 +1,4 @@
 timestamp,alert_type,severity,product_id,message,status
-2026-06-20 23:34:56,SUPPLY_RISK,HIGH,SKU_1056,High supply procurement risk detected: 93.90%,OPEN
-2026-06-21 21:08:54,LOW_STOCK,HIGH,SKU_1000,Low stock warning: only 0.9 days of supply remaining.,OPEN
-2026-06-21 21:08:54,STOCKOUT_RISK,HIGH,SKU_1000,High stockout risk detected: 100.00%,OPEN
+2026-06-20 23:34:56,SUPPLY_RISK,HIGH,SKU_1056,High supply procurement risk detected: 93.90%,RESOLVED
+2026-06-21 21:08:54,LOW_STOCK,HIGH,SKU_1000,Low stock warning: only 0.9 days of supply remaining.,RESOLVED
+2026-06-21 21:08:54,STOCKOUT_RISK,HIGH,SKU_1000,High stockout risk detected: 100.00%,RESOLVED
