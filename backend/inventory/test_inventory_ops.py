@@ -247,3 +247,33 @@ def test_process_inventory_upload(temp_paths):
     df_curr = pd.read_csv(temp_paths["current"])
     assert df_curr[df_curr["product_id"] == "SKU_1056"]["current_stock"].iloc[0] == 4100
     assert df_curr[df_curr["product_id"] == "SKU_8888"]["current_stock"].iloc[0] == 2500
+
+
+def test_deduct_inventory_from_sales(temp_paths):
+    from backend.inventory.inventory_ingestion import deduct_inventory_from_sales
+    initialize_inventory_datasets()
+    
+    # Verify initial stock
+    df_curr = pd.read_csv(temp_paths["current"])
+    assert df_curr[df_curr["product_id"] == "SKU_1056"]["current_stock"].iloc[0] == 5000
+    assert df_curr[df_curr["product_id"] == "SKU_1057"]["current_stock"].iloc[0] == 3000
+
+    # Create dummy sales dataframe
+    sales_df = pd.DataFrame([
+        {"product_id": "SKU_1056", "units_sold": 200},
+        {"product_id": "SKU_1057", "units_sold": 3500},
+        {"product_id": "SKU_9999", "units_sold": 10} # Non-existent SKU
+    ])
+
+    deduct_inventory_from_sales(sales_df)
+
+    # Verify updated stock levels
+    df_curr_new = pd.read_csv(temp_paths["current"])
+    
+    # 5000 - 200 = 4800
+    assert df_curr_new[df_curr_new["product_id"] == "SKU_1056"]["current_stock"].iloc[0] == 4800
+    # 3000 - 3500 = 0 (clamped)
+    assert df_curr_new[df_curr_new["product_id"] == "SKU_1057"]["current_stock"].iloc[0] == 0
+    # SKU_9999 not added to inventory
+    assert "SKU_9999" not in df_curr_new["product_id"].values
+

@@ -171,11 +171,28 @@ def compute_inventory_metrics(row):
 # -----------------------------
 def run_pipeline(csv_path=None, target_product_id="SKU_1000", retailer_company=None, store_location=None):
     # Dynamically resolve path defaults at call time to support routing configuration
+    import backend.config as cfg
+    from backend.inventory.inventory_repository import load_current_inventory
+    import logging
+
     if csv_path is None:
-        import backend.config as cfg
         csv_path = cfg.CUSTOMER_INVENTORY_PATH
-        
-    df = load_data(csv_path)
+
+    is_operational = False
+    if csv_path:
+        norm_inv = os.path.abspath(csv_path)
+        norm_curr = os.path.abspath(cfg.CUSTOMER_INVENTORY_CURRENT_PATH)
+        norm_inv_legacy = os.path.abspath(cfg.CUSTOMER_INVENTORY_PATH)
+        if norm_inv in [norm_curr, norm_inv_legacy]:
+            is_operational = True
+
+    logger = logging.getLogger("pricing_system.layer1.engine3")
+    logger.info(f"Engine 3 Inventory Source: {csv_path} (Operational: {is_operational})")
+
+    if is_operational:
+        df = load_current_inventory()
+    else:
+        df = load_data(csv_path)
 
     # Filter for the target product
     df_product = df[df["product_id"] == target_product_id]
@@ -228,7 +245,8 @@ def run_pipeline(csv_path=None, target_product_id="SKU_1000", retailer_company=N
         "inventory_pressure": metrics["inventory_pressure"],
         "urgency_score": metrics["urgency_score"],
         "recommended_multiplier": metrics["recommended_multiplier"],
-        "days_of_supply": metrics["days_of_supply"]
+        "days_of_supply": metrics["days_of_supply"],
+        "net_stock": metrics["net_stock"]
     }
 
 

@@ -144,6 +144,13 @@ def validate_sales(df: pd.DataFrame) -> None:
     if missing_cols:
         raise ValidationError(f"Missing required columns in sales data: {missing_cols}")
         
+    # Normalize date column if present
+    if "date" in df.columns:
+        try:
+            normalize_date_column(df, "date")
+        except ValueError as e:
+            raise ValidationError(str(e))
+        
     # Check for missing product_id
     if df["product_id"].isnull().any():
         null_rows = df[df["product_id"].isnull()].index.tolist()
@@ -200,3 +207,19 @@ def validate_competitors(df: pd.DataFrame) -> None:
     if (prices < 0).any():
         negative_rows = df[prices < 0].index.tolist()
         raise ValidationError(f"Negative prices detected in competitor column 'competitor_price' at row index: {negative_rows}")
+
+
+def normalize_date_column(df: pd.DataFrame, column: str = "date") -> pd.DataFrame:
+    """
+    Safely converts a date column to datetime and then formats it as YYYY-MM-DD string
+    to ensure matching date types for merge and storage.
+    """
+    if column not in df.columns:
+        return df
+    try:
+        df[column] = pd.to_datetime(df[column], format='mixed', errors="raise")
+        df[column] = df[column].dt.strftime("%Y-%m-%d")
+    except Exception:
+        raise ValueError(f"Validation Error: Invalid date format in column '{column}'")
+    return df
+

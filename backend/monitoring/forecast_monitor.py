@@ -29,8 +29,8 @@ def calculate_forecast_accuracy(sales_csv_path=None):
     df_sales = pd.read_csv(sales_csv_path)
     
     # Extract YYYY-MM-DD from prediction timestamp
-    df_pred["date"] = pd.to_datetime(df_pred["timestamp"]).dt.strftime("%Y-%m-%d")
-    df_sales["date"] = pd.to_datetime(df_sales["date"]).dt.strftime("%Y-%m-%d")
+    df_pred["date"] = pd.to_datetime(df_pred["timestamp"], format='mixed').dt.strftime("%Y-%m-%d")
+    df_sales["date"] = pd.to_datetime(df_sales["date"], format='mixed').dt.strftime("%Y-%m-%d")
     
     # Align column names for merging
     df_pred_sub = df_pred[["date", "sku", "expected_demand"]].rename(columns={"sku": "product_id"})

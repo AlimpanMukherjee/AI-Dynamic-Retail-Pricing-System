@@ -64,7 +64,7 @@ def preprocess(df, encoders=None):
     df["log_price"] = np.log(df["price"])
 
     # Temporal feature engineering
-    df["date"] = pd.to_datetime(df["date"])
+    df["date"] = pd.to_datetime(df["date"], format='mixed')
     df["day_of_week"] = df["date"].dt.dayofweek
     df["month"] = df["date"].dt.month
     df["week_of_year"] = df["date"].dt.isocalendar().week.astype(int)

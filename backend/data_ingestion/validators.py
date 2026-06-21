@@ -46,6 +46,7 @@ def validate_sales_data(df: pd.DataFrame):
     Validates sales data uploads
     """
     _check_missing_fields(df, ["date", "product_id"], "sales")
+    normalize_date_column(df, "date")
     _check_duplicates(df, "sales")
     
     price_col = "selling_price" if "selling_price" in df.columns else "price"
@@ -96,3 +97,21 @@ def validate_supplier_data(df: pd.DataFrame):
             if not bad_rows.empty:
                 sku_info = f" for SKU: {bad_rows['product_id'].iloc[0]}"
             raise ValueError(f"Validation Error: Reliability must be between 0 and 1{sku_info}")
+
+
+def normalize_date_column(df: pd.DataFrame, column: str = "date") -> pd.DataFrame:
+    """
+    Safely converts a date column to datetime and then formats it as YYYY-MM-DD string
+    to ensure matching date types for merge and storage.
+    """
+    if column not in df.columns:
+        return df
+    try:
+        # Convert to datetime (coerce handles various string/excel representations)
+        df[column] = pd.to_datetime(df[column], format='mixed', errors="raise")
+        # Format as string YYYY-MM-DD
+        df[column] = df[column].dt.strftime("%Y-%m-%d")
+    except Exception:
+        raise ValueError(f"Validation Error: Invalid date format in column '{column}'")
+    return df
+

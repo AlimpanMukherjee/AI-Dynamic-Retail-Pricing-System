@@ -20,6 +20,25 @@ def show_page():
     if "warehouse" not in df.columns and "warehouse_location" in df.columns:
         df["warehouse"] = df["warehouse_location"]
 
+    # Retrieve stock exclusively from backend repository
+    from backend.inventory.inventory_repository import get_product_inventory
+
+    for idx, row in df.iterrows():
+        p_id = str(row["product_id"]).strip()
+        inv_data = get_product_inventory(p_id)
+        if inv_data:
+            df.loc[idx, "current_stock"] = inv_data.get("current_stock", 0)
+            df.loc[idx, "reserved_stock"] = inv_data.get("reserved_stock", 0)
+            df.loc[idx, "net_stock"] = inv_data.get("net_stock", 0)
+            df.loc[idx, "stock_status"] = inv_data.get("stock_status", "Healthy")
+            df.loc[idx, "warehouse"] = inv_data.get("warehouse", "N/A")
+        else:
+            df.loc[idx, "current_stock"] = 0
+            df.loc[idx, "reserved_stock"] = 0
+            df.loc[idx, "net_stock"] = 0
+            df.loc[idx, "stock_status"] = "Critical"
+            df.loc[idx, "warehouse"] = "N/A"
+
     # Filter Layout Row 1
     col1, col2 = st.columns(2)
     with col1:

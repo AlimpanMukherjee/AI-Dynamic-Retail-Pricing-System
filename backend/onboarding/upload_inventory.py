@@ -23,8 +23,22 @@ def upload_inventory(file_source, target_path=CUSTOMER_INVENTORY_PATH) -> str:
     validate_inventory(df)
     
     # Save to target path
-    os.makedirs(os.path.dirname(target_path), exist_ok=True)
-    df.to_csv(target_path, index=False)
+    import backend.config as cfg
+    from backend.inventory.inventory_repository import save_current_inventory
+    
+    is_operational = False
+    if target_path:
+        norm_targ = os.path.abspath(target_path)
+        norm_curr = os.path.abspath(cfg.CUSTOMER_INVENTORY_CURRENT_PATH)
+        norm_inv_legacy = os.path.abspath(cfg.CUSTOMER_INVENTORY_PATH)
+        if norm_targ in [norm_curr, norm_inv_legacy]:
+            is_operational = True
+            
+    if is_operational:
+        save_current_inventory(df)
+    else:
+        os.makedirs(os.path.dirname(target_path), exist_ok=True)
+        df.to_csv(target_path, index=False)
     
     return f"Inventory dataset successfully validated and saved to {target_path}"
 

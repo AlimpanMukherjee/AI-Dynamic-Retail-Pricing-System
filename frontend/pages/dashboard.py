@@ -13,6 +13,12 @@ def show_page():
     inv_summary = get_inventory_summary()
     sales_summary = get_sales_summary()
 
+    # Log dashboard inventory source path
+    import logging
+    from backend.inventory.inventory_repository import get_current_inventory_path
+    logger = logging.getLogger("pricing_system.frontend.dashboard")
+    logger.info(f"Dashboard metrics loaded. Inventory Source Path: {get_current_inventory_path()}")
+
     # Load alerts and model details
     from frontend.services.alert_service import get_alerts_summary
     from frontend.services.retraining_service import get_active_model_details

@@ -4,12 +4,12 @@ import streamlit as st
 import backend.config as cfg
 from backend.inventory.inventory_ingestion import process_inventory_upload as backend_process_upload
 
-def process_inventory_upload(file_source) -> dict:
+def process_inventory_upload(file_source, mode: str = "overwrite") -> dict:
     """
     Validates, backups, and processes inventory upload. 
     Clears cache data upon completion to refresh dashboard metrics.
     """
-    res = backend_process_upload(file_source)
+    res = backend_process_upload(file_source, mode=mode)
     st.cache_data.clear()
     return res
 
@@ -19,19 +19,8 @@ def get_inventory_summary() -> dict:
     Calculates stock health breakdowns, product lists, and aggregate metrics.
     Uses st.cache_data to speed up UI loading.
     """
-    current_path = cfg.CUSTOMER_INVENTORY_CURRENT_PATH
-    if not os.path.exists(current_path):
-        return {
-            "total_products": 0,
-            "total_stock": 0,
-            "low_stock_count": 0,
-            "critical_stock_count": 0,
-            "health_counts": {"Healthy": 0, "Watchlist": 0, "Critical": 0},
-            "latest_update": "N/A",
-            "products_list": pd.DataFrame()
-        }
-
-    df = pd.read_csv(current_path)
+    from backend.inventory.inventory_repository import load_current_inventory
+    df = load_current_inventory()
     if df.empty:
         return {
             "total_products": 0,
@@ -42,7 +31,6 @@ def get_inventory_summary() -> dict:
             "latest_update": "N/A",
             "products_list": pd.DataFrame()
         }
-
     # Clean product IDs
     df["product_id"] = df["product_id"].astype(str).str.strip()
 

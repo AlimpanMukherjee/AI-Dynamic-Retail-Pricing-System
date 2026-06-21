@@ -24,12 +24,27 @@ def load_and_join_data(sales_path, products_path, inventory_path):
         raise FileNotFoundError(f"Sales file not found at: {sales_path}")
     if not os.path.exists(products_path):
         raise FileNotFoundError(f"Products file not found at: {products_path}")
-    if not os.path.exists(inventory_path):
-        raise FileNotFoundError(f"Inventory file not found at: {inventory_path}")
 
     df_sales = pd.read_csv(sales_path)
     df_products = pd.read_csv(products_path)
-    df_inventory = pd.read_csv(inventory_path)
+
+    import backend.config as cfg
+    from backend.inventory.inventory_repository import load_current_inventory
+
+    is_operational = False
+    if inventory_path:
+        norm_inv = os.path.abspath(inventory_path)
+        norm_curr = os.path.abspath(cfg.CUSTOMER_INVENTORY_CURRENT_PATH)
+        norm_inv_legacy = os.path.abspath(cfg.CUSTOMER_INVENTORY_PATH)
+        if norm_inv in [norm_curr, norm_inv_legacy]:
+            is_operational = True
+
+    if is_operational:
+        df_inventory = load_current_inventory()
+    else:
+        if not os.path.exists(inventory_path):
+            raise FileNotFoundError(f"Inventory file not found at: {inventory_path}")
+        df_inventory = pd.read_csv(inventory_path)
 
     # Subset master catalog & store information to join cleanly
     df_prod_sub = df_products[['product_id', 'category', 'brand']].drop_duplicates()

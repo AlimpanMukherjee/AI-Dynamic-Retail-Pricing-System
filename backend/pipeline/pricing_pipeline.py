@@ -45,6 +45,16 @@ def run_coordinated_pricing(
     inventory_csv = cfg.CUSTOMER_INVENTORY_PATH
     competitors_csv = cfg.CUSTOMER_COMPETITOR_PATH
 
+    # Log inventory source and target SKU stock levels
+    import logging
+    logger = logging.getLogger("pricing_system.pipeline")
+    from backend.inventory.inventory_repository import get_product_inventory, get_current_inventory_path
+    
+    inv_path = get_current_inventory_path()
+    prod_inv = get_product_inventory(product_id)
+    current_stock = prod_inv.get("current_stock", 0)
+    logger.info(f"Pricing Coordinated Pipeline execution started for Product: {product_id}. Inventory Path: {inv_path}. Current Stock: {current_stock}")
+
     # Load target product base_market_price early to set as current_price
     current_price = 0.0
     try:

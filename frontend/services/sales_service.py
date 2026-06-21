@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import streamlit as st
 import backend.config as cfg
-from backend.data_ingestion.validators import validate_sales_data
+from backend.data_ingestion.validators import validate_sales_data, normalize_date_column
 
 def validate_sales_file(df: pd.DataFrame):
     """
@@ -47,18 +47,33 @@ def append_sales_upload(file_source) -> dict:
     # Append and drop duplicates
     if os.path.exists(sales_path):
         df_existing = pd.read_csv(sales_path)
+        df_existing = normalize_date_column(df_existing, "date")
+        # Find which rows in df are actually new
+        common_cols = list(set(df.columns).intersection(set(df_existing.columns)))
+        if common_cols:
+            df_new = df.merge(df_existing[common_cols], on=common_cols, how='left', indicator=True)
+            df_new = df_new[df_new['_merge'] == 'left_only'].drop(columns=['_merge'])
+        else:
+            df_new = df.copy()
+
         df_combined = pd.concat([df_existing, df], ignore_index=True)
         df_combined = df_combined.drop_duplicates().reset_index(drop=True)
         rows_added = len(df_combined) - len(df_existing)
     else:
         df_combined = df.copy()
+        df_new = df.copy()
         rows_added = len(df)
 
     os.makedirs(os.path.dirname(sales_path), exist_ok=True)
     df_combined.to_csv(sales_path, index=False)
 
-    # Convert date representations to strings
-    dates = pd.to_datetime(df["date"])
+    # Deduct stock for new sales records
+    if rows_added > 0 and not df_new.empty:
+        from backend.inventory.inventory_ingestion import deduct_inventory_from_sales
+        deduct_inventory_from_sales(df_new)
+
+    # Convert date representations to strings safely
+    dates = pd.to_datetime(df["date"], format='mixed')
     start_date = dates.min().strftime("%Y-%m-%d")
     end_date = dates.max().strftime("%Y-%m-%d")
 
@@ -101,7 +116,7 @@ def get_sales_summary() -> dict:
     price_col = "selling_price" if "selling_price" in df.columns else "price"
     revenue = float((df[price_col] * df["units_sold"]).sum())
     
-    dates = pd.to_datetime(df["date"])
+    dates = pd.to_datetime(df["date"], format='mixed')
     
     return {
         "total_records": len(df),
