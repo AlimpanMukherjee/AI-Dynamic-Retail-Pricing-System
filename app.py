@@ -72,6 +72,9 @@ elif page == "Sales Upload":
 elif page == "Inventory Upload":
     from frontend.pages.inventory_upload import show_page
     show_page()
+elif page == "Product Onboarding":
+    from frontend.pages.product_onboarding import show_page
+    show_page()
 elif page == "Product Search":
     from frontend.pages.product_search import show_page
     show_page()

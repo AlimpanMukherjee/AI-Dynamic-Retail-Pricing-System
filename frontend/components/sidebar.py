@@ -14,6 +14,7 @@ def render_sidebar():
         "📈 Sales Upload",
         "📦 Inventory Upload",
         "📦 Competitor Upload",
+        "✨ Product Onboarding",
         "🔍 Product Search",
         "💸 Run Pricing",
         "🕰️ Pricing History",
