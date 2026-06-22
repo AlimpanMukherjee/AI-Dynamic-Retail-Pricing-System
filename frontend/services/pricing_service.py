@@ -55,6 +55,33 @@ def get_available_retailers() -> list:
     return ["Reliance Retail", "DMart", "Blinkit", "BigBasket"]
 
 
+def get_resolved_retailer() -> str:
+    """
+    Dynamically loads the retailer company name from the current inventory dataset.
+    Defaults to "Spencer's" if missing, empty, or unreadable.
+    """
+    inventory_path = cfg.CUSTOMER_INVENTORY_PATH
+    if not os.path.exists(inventory_path):
+        inventory_path = cfg.DEV_INVENTORY_PATH
+        
+    if not os.path.exists(inventory_path):
+        return "Spencer's"
+        
+    try:
+        df = pd.read_csv(inventory_path, nrows=5)
+        if "retailer_company" in df.columns:
+            retailers = df["retailer_company"].dropna().unique()
+            if len(retailers) > 0:
+                retailer = str(retailers[0]).strip()
+                if retailer:
+                    return retailer
+        return "Spencer's"
+    except Exception as e:
+        print(f"Error reading retailer from inventory: {str(e)}")
+        return "Spencer's"
+
+
+
 def get_available_locations() -> list:
     """
     Returns the store locations supported by location-specific multipliers.

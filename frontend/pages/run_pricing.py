@@ -1,7 +1,7 @@
 import streamlit as st
 from frontend.services.pricing_service import (
     get_available_products,
-    get_available_retailers,
+    get_resolved_retailer,
     get_available_locations,
     run_pricing
 )
@@ -13,7 +13,7 @@ def show_page():
 
     # Load available selections
     products = get_available_products()
-    retailers = get_available_retailers()
+    selected_retailer = get_resolved_retailer()
     locations = get_available_locations()
 
     if not products:
@@ -21,7 +21,7 @@ def show_page():
         return
 
     # Simulation Parameter Columns
-    col_sku, col_ret, col_loc = st.columns(3)
+    col_sku, col_loc = st.columns(2)
     
     with col_sku:
         selected_prod = st.selectbox(
@@ -29,10 +29,10 @@ def show_page():
             products, 
             format_func=lambda x: x["label"]
         )
-    with col_ret:
-        selected_retailer = st.selectbox("Select Target Retailer", retailers)
     with col_loc:
         selected_location = st.selectbox("Select Store Location", locations)
+
+    st.markdown(f"🏢 **Active Retailer**: `{selected_retailer}`")
 
     # Event Intelligence section
     st.subheader("🎪 Event Intelligence")
@@ -242,18 +242,34 @@ def show_page():
             with col_e2:
                 st.subheader("📈 E2: Demand Forecasting")
                 e2 = pricing_state["E2"]
+                sales_count = e2.get("sales_history_count", 0)
+                conf = e2.get("engine2_confidence", 1.0)
+                conf_pct = f"{int(conf * 100)}%"
+                
                 st.markdown(
                     f"""
                     <div style="padding: 1rem; border-radius: 6px; border-left: 4px solid #1cc88a; background-color: #f8f9fc; margin-bottom: 1rem;">
-                        <b>Prediction Mode:</b> {e2['prediction_source'].replace('_', ' ').title()}<br>
                         <b>Optimal Price Point:</b> ₹{e2['optimal_price']:.2f}<br>
                         <b>Expected Daily Demand:</b> {e2['expected_demand']:.2f} units<br>
                         <b>Price Elasticity Score:</b> {e2['elasticity']:.3f}<br>
-                        <b>Similarity SKU count:</b> {len(e2.get('similar_products_used', []))}
+                        <b>Sales Records Used:</b> {sales_count}<br>
+                        <b>Demand Model Confidence:</b> {conf_pct}
                     </div>
                     """, 
                     unsafe_allow_html=True
                 )
+                
+                if conf < 0.5:
+                    st.info(
+                        "ℹ️ **Demand forecasting is operating with limited historical sales data.**\n\n"
+                        "The pricing recommendation therefore relies more heavily on procurement costs, "
+                        "inventory conditions, competitor pricing, and event intelligence."
+                    )
+                else:
+                    st.success(
+                        "✨ **Demand forecasting is based on substantial historical sales data and has "
+                        "significant influence on the pricing recommendation.**"
+                    )
                 
             # Centered and larger Demand Elasticity Curve
             opt_price = float(e2.get("optimal_price", 0.0))

@@ -40,6 +40,23 @@ def show_page():
 
     st.markdown("---")
 
+    # Customer Data Profile Section
+    st.subheader("📊 Onboarding Customer Profile")
+    from backend.onboarding.customer_profile import get_customer_profile
+    profile = get_customer_profile()
+    
+    col_profile_records, col_profile_conf, col_profile_elig = st.columns(3)
+    with col_profile_records:
+        render_metric_card("Customer Sales Records", f"{profile['sales_records']:,}", border_color="#36b9cc")
+    with col_profile_conf:
+        render_metric_card("Engine 2 Confidence", f"{int(profile['engine2_confidence'] * 100)}%", border_color="#f6c23e")
+    with col_profile_elig:
+        elig_text = "Eligible" if profile["training_eligible"] else "Limited Data"
+        elig_color = "#1cc88a" if profile["training_eligible"] else "#e74a3b"
+        render_metric_card("Training Eligibility", elig_text, border_color=elig_color)
+
+    st.markdown("---")
+
     # Retraining Control Panel
     st.subheader("🚀 Trigger Engine 2 Retraining")
     st.markdown(
@@ -66,6 +83,11 @@ def show_page():
                     f"• **New Validation R²**: {res['new_val_r2']:.4f}\n"
                     f"• **Previous R²**: {res['old_val_r2']}\n"
                     f"• **Test R²**: {res['test_r2']:.4f}"
+                )
+            elif res["status"] == "limited_data":
+                st.warning(
+                    f"⚠️ **Insufficient Data for Retraining!**\n\n"
+                    f"{res['message']}"
                 )
             else:
                 st.warning(

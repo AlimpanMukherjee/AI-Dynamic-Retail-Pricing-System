@@ -39,6 +39,11 @@ def run_coordinated_pricing(
     6. Runs Layer 3 optimization.
     """
     import backend.config as cfg
+    from backend.onboarding.customer_profile import get_customer_profile
+    profile = get_customer_profile()
+    sales_history_count = profile["sales_records"]
+    engine2_confidence = profile["engine2_confidence"]
+
     products_csv = cfg.CUSTOMER_PRODUCTS_PATH
     procurement_csv = cfg.CUSTOMER_PROCUREMENT_PATH
     sales_csv = cfg.CUSTOMER_SALES_PATH
@@ -128,6 +133,8 @@ def run_coordinated_pricing(
         "attendance": attendance,
         "distance_km": distance_km,
         "duration_hours": duration_hours,
+        "sales_history_count": sales_history_count,
+        "engine2_confidence": engine2_confidence,
         "E1": e1_output,
         "E2": e2_output,
         "E3": e3_output,
@@ -139,7 +146,7 @@ def run_coordinated_pricing(
     feature_vector = build_feature_vector(pricing_state, business_context)
 
     # 8. Predict coordinated weights from the feature vector using the Layer 2 model
-    coordinated_weights = predict_engine_weights(feature_vector, event_active=event_active)
+    coordinated_weights = predict_engine_weights(feature_vector, event_active=event_active, confidence=engine2_confidence)
 
     # 9. Execute Layer 3 Price Optimization
     optimizer = PriceOptimizer({"candidate_step_size": 0.15})
@@ -200,7 +207,9 @@ def run_coordinated_pricing(
             e5_contribution=journey.get("event_effect"),
             total_uplift=journey.get("total_uplift"),
             confidence_score=conf_data.get("confidence_score"),
-            confidence_level=conf_data.get("confidence_level")
+            confidence_level=conf_data.get("confidence_level"),
+            sales_history_count=sales_history_count,
+            engine2_confidence=engine2_confidence
         )
     except Exception as e:
         # Graceful error handling - avoid crashing pipeline

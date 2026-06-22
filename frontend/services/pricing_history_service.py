@@ -37,7 +37,9 @@ COLUMNS = [
     "e5_contribution",
     "total_uplift",
     "confidence_score",
-    "confidence_level"
+    "confidence_level",
+    "sales_history_count",
+    "engine2_confidence"
 ]
 
 def save_pricing_decision(
@@ -72,7 +74,9 @@ def save_pricing_decision(
     e5_contribution: float = None,
     total_uplift: float = None,
     confidence_score: float = None,
-    confidence_level: str = None
+    confidence_level: str = None,
+    sales_history_count: int = None,
+    engine2_confidence: float = None
 ):
     """
     Saves a pricing decision to customer_data/pricing_history.csv.
@@ -113,7 +117,9 @@ def save_pricing_decision(
         "e5_contribution": round(float(e5_contribution), 4) if e5_contribution is not None else None,
         "total_uplift": round(float(total_uplift), 4) if total_uplift is not None else None,
         "confidence_score": round(float(confidence_score), 2) if confidence_score is not None else None,
-        "confidence_level": str(confidence_level) if confidence_level is not None else None
+        "confidence_level": str(confidence_level) if confidence_level is not None else None,
+        "sales_history_count": int(sales_history_count) if sales_history_count is not None else None,
+        "engine2_confidence": round(float(engine2_confidence), 4) if engine2_confidence is not None else None
     }
 
     df_new = pd.DataFrame([record])

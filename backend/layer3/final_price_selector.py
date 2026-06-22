@@ -151,6 +151,21 @@ class FinalPriceSelector:
         else:
             narrative += f"The selected price fully satisfies the procurement safety floor of ₹{min_safe_price:.2f}. "
 
+        # E2 confidence and learning explanation
+        e2_conf = pricing_state.get("engine2_confidence", 1.0)
+        if e2_conf < 0.5:
+            narrative += (
+                "Demand forecasting is operating with limited historical sales data. "
+                "The pricing recommendation therefore relies more heavily on procurement costs, "
+                "inventory conditions, competitor pricing, and event intelligence. "
+            )
+        else:
+            narrative += (
+                "Demand forecasting is based on substantial historical sales data and has "
+                "significant influence on the pricing recommendation. "
+            )
+
+
         # Add inventory/market context
         inv_desc = decision_summary["inventory_pressure"]
         mkt_desc = decision_summary["market_pressure"]

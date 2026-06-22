@@ -6,6 +6,13 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(BASE_DIR)
 
+# Progressive Learning Thresholds
+LOW_DATA_THRESHOLD = 500
+MEDIUM_DATA_THRESHOLD = 1000
+HIGH_DATA_THRESHOLD = 5000
+MIN_ENGINE2_CONFIDENCE = 0.10
+
+
 # Developer/Base Model Training Datasets Directory (Preserved for ML Dev/Testing/Training)
 DEV_DATA_DIR = os.path.join(PROJECT_ROOT, "datasets")
 DEV_PRODUCTS_PATH = os.path.join(DEV_DATA_DIR, "products.csv")

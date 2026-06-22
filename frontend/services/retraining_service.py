@@ -47,7 +47,11 @@ def execute_model_retraining(force_override_gate: bool = False) -> dict:
     old_val_r2 = float(active_info.get("val_r2", -999.0)) if active_info else -999.0
 
     # 2. Run training in backend
-    version, eval_stats, training_rows = train_new_model()
+    res = train_new_model()
+    if isinstance(res, dict) and res.get("status") == "limited_data":
+        return res
+        
+    version, eval_stats, training_rows = res
     new_val_r2 = float(eval_stats["validation_r2"])
 
     # 3. Validation Safety Gate Check

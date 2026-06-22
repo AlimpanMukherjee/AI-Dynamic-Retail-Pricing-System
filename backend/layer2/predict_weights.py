@@ -22,22 +22,24 @@ def load_layer2_model():
         _MODEL_CACHE = joblib.load(MODEL_PATH)
     return _MODEL_CACHE
 
-def predict_engine_weights(feature_vector, event_active=False):
+def predict_engine_weights(feature_vector, event_active=False, confidence=1.0):
     """
-    Predicts normalized weights for E1, E2, E3, E4, and E5 based on the retail feature vector.
+    Predicts normalized weights for E1, E2, E3, E4, and E5 based on the retail feature vector,
+    then applies confidence scaling to E2 based on historical sales data.
     
     Parameters:
         feature_vector (list or np.ndarray): Flat float array (normally length 12).
         event_active (bool): Whether a special event is active nearby.
+        confidence (float): Confidence score for Engine 2 (between 0.10 and 1.0).
         
     Returns:
-        dict: Predicted weights mapping like:
+        dict: Predicted and adjusted weights mapping like:
               {
-                "E1_weight": 0.2375,
-                "E2_weight": 0.2375,
-                "E3_weight": 0.2375,
-                "E4_weight": 0.2375,
-                "E5_weight": 0.05
+                "E1_weight": 0.32,
+                "E2_weight": 0.04,
+                "E3_weight": 0.32,
+                "E4_weight": 0.24,
+                "E5_weight": 0.08
               }
     """
     model = load_layer2_model()
@@ -74,10 +76,41 @@ def predict_engine_weights(feature_vector, event_active=False):
     # Distribute the remaining weight to E1-E4
     remaining_weight = 1.0 - E5_weight
 
-    return {
-        "E1_weight": float(round(normalized_weights[0] * remaining_weight, 4)),
-        "E2_weight": float(round(normalized_weights[1] * remaining_weight, 4)),
-        "E3_weight": float(round(normalized_weights[2] * remaining_weight, 4)),
-        "E4_weight": float(round(normalized_weights[3] * remaining_weight, 4)),
-        "E5_weight": float(round(E5_weight, 4))
+    # Calculate initial baseline weights
+    weights = {
+        "E1_weight": float(normalized_weights[0] * remaining_weight),
+        "E2_weight": float(normalized_weights[1] * remaining_weight),
+        "E3_weight": float(normalized_weights[2] * remaining_weight),
+        "E4_weight": float(normalized_weights[3] * remaining_weight),
+        "E5_weight": float(E5_weight)
     }
+
+    # Apply Confidence Scaling Step
+    pred_e2 = weights["E2_weight"]
+    adjusted_e2 = pred_e2 * confidence
+    weights["E2_weight"] = adjusted_e2
+
+    # Remaining weight from E2 to redistribute proportionally
+    redist_weight = pred_e2 - adjusted_e2
+    other_sum = weights["E1_weight"] + weights["E3_weight"] + weights["E4_weight"] + weights["E5_weight"]
+
+    if other_sum > 0.0:
+        for key in ["E1_weight", "E3_weight", "E4_weight", "E5_weight"]:
+            weights[key] += redist_weight * (weights[key] / other_sum)
+    else:
+        for key in ["E1_weight", "E3_weight", "E4_weight", "E5_weight"]:
+            weights[key] += redist_weight / 4.0
+
+    # Re-normalize and round
+    sum_total = sum(weights.values())
+    if sum_total > 0.0:
+        for key in weights:
+            weights[key] = float(round(weights[key] / sum_total, 4))
+
+    # Adjust rounding discrepancy
+    sum_w = sum(weights.values())
+    diff = round(1.0 - sum_w, 4)
+    if diff != 0:
+        weights["E1_weight"] = float(round(weights["E1_weight"] + diff, 4))
+
+    return weights

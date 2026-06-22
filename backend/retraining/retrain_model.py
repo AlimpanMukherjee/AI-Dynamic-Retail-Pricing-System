@@ -22,7 +22,6 @@ OPERATIONAL_METADATA_PATH = os.path.join(OPERATIONAL_MODEL_DIR, "engine2_metadat
 def _initialize_registry():
     """
     Initializes the model registry CSV if it does not exist.
-    Registers the operational base model as v1 if present.
     """
     registry_path = cfg.CUSTOMER_MODEL_REGISTRY_PATH
     os.makedirs(os.path.dirname(registry_path), exist_ok=True)
@@ -38,48 +37,13 @@ def _initialize_registry():
             "test_r2",
             "active"
         ])
-        
-        # Check if an operational model already exists and import it as v1
-        if os.path.exists(OPERATIONAL_MODEL_PATH):
-            train_date = datetime.now().strftime("%Y-%m-%d")
-            rows = 20000
-            tr_r2, v_r2, te_r2 = 0.65, 0.10, 0.05
-            
-            if os.path.exists(OPERATIONAL_METADATA_PATH):
-                try:
-                    with open(OPERATIONAL_METADATA_PATH, 'r') as f:
-                        meta = json.load(f)
-                        train_date = meta.get("trained_at", train_date).split(" ")[0]
-                        rows = meta.get("training_rows", rows)
-                        tr_r2 = meta.get("train_r2", tr_r2)
-                        v_r2 = meta.get("validation_r2", v_r2)
-                        te_r2 = meta.get("test_r2", te_r2)
-                except Exception:
-                    pass
-            
-            base_model_record = {
-                "model_version": "v1",
-                "training_date": train_date,
-                "training_rows": int(rows),
-                "train_r2": float(tr_r2),
-                "val_r2": float(v_r2),
-                "test_r2": float(te_r2),
-                "active": True
-            }
-            
-            # Copy active model to root models dir
-            v1_path = os.path.join(cfg.MODELS_DIR, "model_v1.pkl")
-            shutil.copyfile(OPERATIONAL_MODEL_PATH, v1_path)
-            
-            df_registry = pd.DataFrame([base_model_record])
-        
         df_registry.to_csv(registry_path, index=False)
 
 
 def train_new_model() -> tuple:
     """
     Trains a new XGBoost forecasting model using the latest sales history.
-    Saves the trained model and returns (version, eval_stats, training_rows).
+    Saves the trained model and returns (version, eval_stats, training_rows) or status dict.
     """
     _initialize_registry()
 
@@ -87,6 +51,20 @@ def train_new_model() -> tuple:
     if not os.path.exists(sales_path):
         # Fallback to dev dataset under tests or if missing
         sales_path = cfg.DEV_SALES_PATH
+
+    # Count rows in resolved sales_path
+    sales_count = 0
+    if os.path.exists(sales_path):
+        try:
+            sales_count = len(pd.read_csv(sales_path))
+        except Exception:
+            pass
+
+    if sales_count < 500:
+        return {
+            "status": "limited_data",
+            "message": "Insufficient data for reliable training. Pricing system remains operational with reduced Engine 2 influence."
+        }
 
     products_path = cfg.CUSTOMER_PRODUCTS_PATH
     if not os.path.exists(products_path):

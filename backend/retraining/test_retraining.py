@@ -99,3 +99,26 @@ def test_train_and_activate_workflow(temp_retraining_paths):
     assert model is not None
     assert len(features) > 0
     assert encoders is not None
+
+
+def test_customer_profile_and_confidence_calculations():
+    from backend.onboarding.customer_profile import calculate_engine2_confidence
+    assert calculate_engine2_confidence(5000) == 1.0
+    assert calculate_engine2_confidence(2500) == 0.8
+    assert calculate_engine2_confidence(1000) == 0.6
+    assert calculate_engine2_confidence(500) == 0.4
+    assert calculate_engine2_confidence(120) == 0.2
+    assert calculate_engine2_confidence(50) == 0.1
+    assert calculate_engine2_confidence(0) == 0.1
+
+
+def test_retraining_insufficient_data(temp_retraining_paths, monkeypatch):
+    # Mock CUSTOMER_SALES_PATH to a file with 10 rows
+    sales_file = temp_retraining_paths["registry"].parent / "low_sales.csv"
+    pd.DataFrame({"a": range(10)}).to_csv(sales_file, index=False)
+    monkeypatch.setattr(cfg, "CUSTOMER_SALES_PATH", str(sales_file))
+
+    res = train_new_model()
+    assert isinstance(res, dict)
+    assert res["status"] == "limited_data"
+    assert "Insufficient data" in res["message"]

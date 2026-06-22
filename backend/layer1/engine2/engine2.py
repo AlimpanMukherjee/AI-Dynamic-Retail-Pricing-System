@@ -58,6 +58,11 @@ def run_pipeline(
     if inventory_csv_path is None:
         inventory_csv_path = cfg.CUSTOMER_INVENTORY_PATH
 
+    from backend.onboarding.customer_profile import get_customer_profile
+    profile = get_customer_profile()
+    sales_history_count = profile["sales_records"]
+    engine2_confidence = profile["engine2_confidence"]
+
     # Verify target product exists in catalog
     if not os.path.exists(products_csv_path):
         raise FileNotFoundError(f"Products file not found at: {products_csv_path}")
@@ -88,25 +93,39 @@ def run_pipeline(
     df = load_and_join_data(sales_csv_path, products_csv_path, inventory_csv_path)
 
     if not model_loaded:
-        logger.info("Retraining started")
-        # Preprocess fits and encodes
-        df_preprocessed, encoders = preprocess(df)
-        model, features, eval_stats = train_model(df_preprocessed)
-        
-        # Save model and metadata
-        save_model(model, features, encoders, MODEL_PATH)
-        metadata = {
-            "model_version": "1.0",
-            "trained_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "training_rows": len(df),
-            "train_r2": eval_stats["train_r2"],
-            "validation_r2": eval_stats["validation_r2"],
-            "test_r2": eval_stats["test_r2"]
-        }
-        save_metadata(metadata, METADATA_PATH)
+        if len(df) >= 35:
+            logger.info("Retraining started")
+            # Preprocess fits and encodes
+            df_preprocessed, encoders = preprocess(df)
+            model, features, eval_stats = train_model(df_preprocessed)
+            
+            # Save model and metadata
+            save_model(model, features, encoders, MODEL_PATH)
+            metadata = {
+                "model_version": "1.0",
+                "trained_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "training_rows": len(df),
+                "train_r2": eval_stats["train_r2"],
+                "validation_r2": eval_stats["validation_r2"],
+                "test_r2": eval_stats["test_r2"]
+            }
+            save_metadata(metadata, METADATA_PATH)
+            model_loaded = True
+        else:
+            logger.warning("Insufficient data to auto-train Engine 2 model. Using cold start / fallback mode.")
+            model = None
+            features = []
+            encoders = None
+            if not df.empty:
+                df_preprocessed, _ = preprocess(df)
+            else:
+                df_preprocessed = df.copy()
     else:
         # Preprocess transfers pre-fitted encoders to match loaded model
-        df_preprocessed, _ = preprocess(df, encoders=encoders)
+        if not df.empty:
+            df_preprocessed, _ = preprocess(df, encoders=encoders)
+        else:
+            df_preprocessed = df.copy()
 
     # Pick target product records to localize history context
     df_product = df_preprocessed[df_preprocessed["product_id"] == target_product_id]
@@ -180,7 +199,9 @@ def run_pipeline(
             "expected_demand": exp_demand,
             "elasticity": elast,
             "prediction_source": "similar_products",
-            "similar_products_used": sim_metrics["similar_products_used"]
+            "similar_products_used": sim_metrics["similar_products_used"],
+            "sales_history_count": sales_history_count,
+            "engine2_confidence": engine2_confidence
         }
 
     # 2. Extract base history context for Hybrid/Normal modes
@@ -248,7 +269,9 @@ def run_pipeline(
             "expected_demand": exp_demand,
             "elasticity": elast,
             "prediction_source": "hybrid",
-            "similar_products_used": hybrid_metrics["similar_products_used"]
+            "similar_products_used": hybrid_metrics["similar_products_used"],
+            "sales_history_count": sales_history_count,
+            "engine2_confidence": engine2_confidence
         }
 
     # 4. Normal Mode
@@ -273,5 +296,7 @@ def run_pipeline(
         "expected_demand": exp_demand,
         "elasticity": elast,
         "prediction_source": "historical_sales",
-        "similar_products_used": []
+        "similar_products_used": [],
+        "sales_history_count": sales_history_count,
+        "engine2_confidence": engine2_confidence
     }
