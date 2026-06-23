@@ -60,15 +60,17 @@ def run_coordinated_pricing(
     current_stock = prod_inv.get("current_stock", 0)
     logger.info(f"Pricing Coordinated Pipeline execution started for Product: {product_id}. Inventory Path: {inv_path}. Current Stock: {current_stock}")
 
-    # Load target product base_market_price early to set as current_price
+    # Load target product base_market_price and category early
     current_price = 0.0
+    product_category = "Other"
     try:
         df_prod = pd.read_csv(products_csv)
         product_row = df_prod[df_prod["product_id"].astype(str).str.strip() == str(product_id).strip()]
         if not product_row.empty:
             current_price = float(product_row.iloc[0].get("base_market_price", 0.0))
+            product_category = str(product_row.iloc[0].get("category", "Other")).strip()
     except Exception as e:
-        print(f"Error loading base_market_price for current_price: {str(e)}")
+        print(f"Error loading product details: {str(e)}")
 
     # 1. Fallback to default business context if not provided
     if business_context is None:
@@ -121,7 +123,9 @@ def run_coordinated_pricing(
         event_type=event_type,
         attendance=attendance,
         distance_km=distance_km,
-        duration_hours=duration_hours
+        duration_hours=duration_hours,
+        product_category=product_category,
+        elasticity=e2_output.get("elasticity", 0.0)
     )
 
     # Assemble Unified Pricing State
@@ -152,14 +156,36 @@ def run_coordinated_pricing(
     optimizer = PriceOptimizer({"candidate_step_size": 0.15})
     optimization_report = optimizer.optimize_price(pricing_state, coordinated_weights)
 
+    base_price = float(optimization_report["final_price"])
+    effective_uplift_pct = float(e5_output.get("effective_uplift_pct", 0.0)) if event_active else 0.0
+    elasticity = float(pricing_state["E2"].get("elasticity", 0.0))
+    
+    elasticity_factor = max(
+        0.5,
+        min(
+            1.5,
+            2.0 - abs(elasticity)
+        )
+    )
+    
+    event_uplift_amount = base_price * effective_uplift_pct * elasticity_factor
+    final_price = base_price + event_uplift_amount
+
+    # Construct pipeline result
     pipeline_result = {
         "product_id": product_id,
         "pricing_state": pricing_state,
         "feature_vector": feature_vector.tolist(),
         "coordinated_weights": coordinated_weights,
         
+        # Post-Optimization Event adjustment fields
+        "price_before_event": float(base_price),
+        "event_uplift_amount": float(event_uplift_amount),
+        "event_uplift_pct": float(effective_uplift_pct * 100.0),
+        "event_opportunity_score": float(e5_output.get("event_opportunity_score", 0.0)),
+        "final_price": float(final_price),
+        
         # Layer 3 Optimization outputs
-        "final_price": optimization_report["final_price"],
         "confidence": optimization_report["confidence"],
         "selected_price_score": optimization_report["selected_price_score"],
         "winning_candidate": optimization_report["winning_candidate"],
@@ -183,7 +209,7 @@ def run_coordinated_pricing(
             engine2_price=pricing_state["E2"].get("optimal_price", 0.0),
             engine3_multiplier=pricing_state["E3"].get("recommended_multiplier", 1.0),
             engine4_multiplier=pricing_state["E4"].get("recommended_multiplier", 1.0),
-            final_price=optimization_report["final_price"],
+            final_price=final_price,
             confidence=optimization_report["confidence"],
             supply_risk=pricing_state["E1"].get("supply_risk", 0.0),
             inventory_pressure=pricing_state["E3"].get("inventory_pressure", 0.0),
@@ -196,20 +222,24 @@ def run_coordinated_pricing(
             distance_km=distance_km,
             duration_hours=duration_hours,
             impact_level=e5_output.get("impact_level", "LOW"),
-            base_price=journey.get("procurement_floor"),
-            e2_contribution_raw=journey.get("demand_effect_raw"),
-            e2_contribution=journey.get("demand_effect"),
-            e3_contribution_raw=journey.get("inventory_effect_raw"),
-            e3_contribution=journey.get("inventory_effect"),
-            e4_contribution_raw=journey.get("competitor_effect_raw"),
-            e4_contribution=journey.get("competitor_effect"),
-            e5_contribution_raw=journey.get("event_effect_raw"),
-            e5_contribution=journey.get("event_effect"),
-            total_uplift=journey.get("total_uplift"),
+            base_price=journey.get("minimum_safe_price") or pricing_state["E1"].get("minimum_safe_price", 0.0),
+            e2_contribution_raw=0.0,
+            e2_contribution=0.0,
+            e3_contribution_raw=0.0,
+            e3_contribution=0.0,
+            e4_contribution_raw=0.0,
+            e4_contribution=0.0,
+            e5_contribution_raw=event_uplift_amount,
+            e5_contribution=event_uplift_amount,
+            total_uplift=event_uplift_amount + (base_price - float(pricing_state["E1"].get("minimum_safe_price", 0.0))),
             confidence_score=conf_data.get("confidence_score"),
             confidence_level=conf_data.get("confidence_level"),
             sales_history_count=sales_history_count,
-            engine2_confidence=engine2_confidence
+            engine2_confidence=engine2_confidence,
+            price_before_event=base_price,
+            event_opportunity_score=e5_output.get("event_opportunity_score", 0.0),
+            event_uplift_pct=effective_uplift_pct * 100.0,
+            event_uplift_amount=event_uplift_amount
         )
     except Exception as e:
         # Graceful error handling - avoid crashing pipeline

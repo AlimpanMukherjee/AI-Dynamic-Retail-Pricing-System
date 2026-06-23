@@ -64,25 +64,16 @@ def predict_engine_weights(feature_vector, event_active=False, confidence=1.0):
     total = np.sum(clipped)
     normalized_weights = clipped / total
 
-    # Retrieve event_score from feature_vector (index 11 if length 12)
-    event_score = float(feature_vector[11]) if len(feature_vector) > 11 else 0.0
-
-    # Calculate dynamic E5 weight: min(0.15, event_score * 0.15) if active
-    if event_active:
-        E5_weight = min(0.15, event_score * 0.15)
-    else:
-        E5_weight = 0.0
-
-    # Distribute the remaining weight to E1-E4
-    remaining_weight = 1.0 - E5_weight
+    # E5_weight is always 0.0 in E5 V3 post-optimization design
+    E5_weight = 0.0
 
     # Calculate initial baseline weights
     weights = {
-        "E1_weight": float(normalized_weights[0] * remaining_weight),
-        "E2_weight": float(normalized_weights[1] * remaining_weight),
-        "E3_weight": float(normalized_weights[2] * remaining_weight),
-        "E4_weight": float(normalized_weights[3] * remaining_weight),
-        "E5_weight": float(E5_weight)
+        "E1_weight": float(normalized_weights[0]),
+        "E2_weight": float(normalized_weights[1]),
+        "E3_weight": float(normalized_weights[2]),
+        "E4_weight": float(normalized_weights[3]),
+        "E5_weight": 0.0
     }
 
     # Apply Confidence Scaling Step
@@ -90,16 +81,16 @@ def predict_engine_weights(feature_vector, event_active=False, confidence=1.0):
     adjusted_e2 = pred_e2 * confidence
     weights["E2_weight"] = adjusted_e2
 
-    # Remaining weight from E2 to redistribute proportionally
+    # Remaining weight from E2 to redistribute proportionally (excluding E5)
     redist_weight = pred_e2 - adjusted_e2
-    other_sum = weights["E1_weight"] + weights["E3_weight"] + weights["E4_weight"] + weights["E5_weight"]
+    other_sum = weights["E1_weight"] + weights["E3_weight"] + weights["E4_weight"]
 
     if other_sum > 0.0:
-        for key in ["E1_weight", "E3_weight", "E4_weight", "E5_weight"]:
+        for key in ["E1_weight", "E3_weight", "E4_weight"]:
             weights[key] += redist_weight * (weights[key] / other_sum)
     else:
-        for key in ["E1_weight", "E3_weight", "E4_weight", "E5_weight"]:
-            weights[key] += redist_weight / 4.0
+        for key in ["E1_weight", "E3_weight", "E4_weight"]:
+            weights[key] += redist_weight / 3.0
 
     # Re-normalize and round
     sum_total = sum(weights.values())

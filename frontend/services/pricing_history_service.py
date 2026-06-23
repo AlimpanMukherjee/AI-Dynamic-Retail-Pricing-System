@@ -39,7 +39,11 @@ COLUMNS = [
     "confidence_score",
     "confidence_level",
     "sales_history_count",
-    "engine2_confidence"
+    "engine2_confidence",
+    "price_before_event",
+    "event_opportunity_score",
+    "event_uplift_pct",
+    "event_uplift_amount"
 ]
 
 def save_pricing_decision(
@@ -76,7 +80,11 @@ def save_pricing_decision(
     confidence_score: float = None,
     confidence_level: str = None,
     sales_history_count: int = None,
-    engine2_confidence: float = None
+    engine2_confidence: float = None,
+    price_before_event: float = None,
+    event_opportunity_score: float = None,
+    event_uplift_pct: float = None,
+    event_uplift_amount: float = None
 ):
     """
     Saves a pricing decision to customer_data/pricing_history.csv.
@@ -119,7 +127,11 @@ def save_pricing_decision(
         "confidence_score": round(float(confidence_score), 2) if confidence_score is not None else None,
         "confidence_level": str(confidence_level) if confidence_level is not None else None,
         "sales_history_count": int(sales_history_count) if sales_history_count is not None else None,
-        "engine2_confidence": round(float(engine2_confidence), 4) if engine2_confidence is not None else None
+        "engine2_confidence": round(float(engine2_confidence), 4) if engine2_confidence is not None else None,
+        "price_before_event": round(float(price_before_event), 4) if price_before_event is not None else None,
+        "event_opportunity_score": round(float(event_opportunity_score), 4) if event_opportunity_score is not None else None,
+        "event_uplift_pct": round(float(event_uplift_pct), 4) if event_uplift_pct is not None else None,
+        "event_uplift_amount": round(float(event_uplift_amount), 4) if event_uplift_amount is not None else None
     }
 
     df_new = pd.DataFrame([record])

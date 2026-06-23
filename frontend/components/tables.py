@@ -28,7 +28,8 @@ def render_styled_table(df: pd.DataFrame, use_container_width: bool = True):
         "base_price", "e2_contribution", "e3_contribution", "e4_contribution", "e5_contribution",
         "e2_contribution_raw", "e3_contribution_raw", "e4_contribution_raw", "e5_contribution_raw",
         "total_uplift", "final_price", "base_market_price", "supplier_price", 
-        "freight_cost", "warehouse_cost", "gst_tax", "true_landed_cost"
+        "freight_cost", "warehouse_cost", "gst_tax", "true_landed_cost",
+        "price_before_event", "event_uplift_amount"
     ]
     for col in price_cols:
         if col in display_df.columns:

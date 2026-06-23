@@ -131,12 +131,15 @@ class FinalPriceSelector:
         if event_active:
             e5_data = pricing_state.get("E5", {})
             impact_level = e5_data.get("impact_level", "LOW")
+            effective_uplift_pct = float(e5_data.get("effective_uplift_pct", 0.0))
+            elasticity = float(pricing_state.get("E2", {}).get("elasticity", 0.0))
+            elasticity_factor = max(0.5, min(1.5, 2.0 - abs(elasticity)))
+            event_uplift_pct_val = effective_uplift_pct * elasticity_factor * 100.0
             narrative += (
                 f"A special {e5_data.get('event_type')} event nearby (expected attendance: {e5_data.get('attendance'):,}, "
                 f"distance: {e5_data.get('distance_km'):.1f}km, duration: {e5_data.get('duration_hours'):.1f} hours) "
-                f"triggered an '{impact_level}' event intelligence surge (E5 score: {e5_data.get('event_score'):.2f}), "
-                f"assigning it an engine influence weight of {weights.get('E5_weight', 0.0):.1%} and contributing "
-                f"a price enhancement value of {winner.get('event_component', 0.0):.3f} to this price point. "
+                f"triggered an '{impact_level}' event intelligence surge (E5 opportunity score: {e5_data.get('event_opportunity_score'):.1f}%), "
+                f"resulting in a post-optimization business uplift of {event_uplift_pct_val:.1f}% applied to the base recommended price. "
             )
 
         # Describe constraint resolution
@@ -190,112 +193,28 @@ class FinalPriceSelector:
         final_selected_price: float
     ) -> Dict[str, float]:
         """
-        Calculates sub-engine pricing contributions using actual outputs,
-        and scales them so they sum up exactly to (final_price - base_price).
+        Calculates post-optimization price journey parameters including base minimum safe price,
+        Layer 3 optimized price, and post-optimization event uplift.
         """
-        e1_data = pricing_state.get("E1", {})
-        e2_data = pricing_state.get("E2", {})
-        e3_data = pricing_state.get("E3", {})
-        e4_data = pricing_state.get("E4", {})
-        e5_data = pricing_state.get("E5", {})
-
-        # Base price (E1 minimum safe price)
-        base_price = float(e1_data.get("minimum_safe_price", 0.0))
-        e2_price = float(e2_data.get("optimal_price", 0.0))
+        minimum_safe_price = float(pricing_state.get("E1", {}).get("minimum_safe_price", 0.0))
+        layer3_price = float(final_selected_price)
         
-        # E3 Price = E2_price * recommended_multiplier
-        e3_mult = float(e3_data.get("recommended_multiplier", 1.0))
-        e3_price = e2_price * e3_mult
-
-        # E4 Price = E2_price * recommended_multiplier
-        e4_mult = float(e4_data.get("recommended_multiplier", 1.0))
-        e4_price = e2_price * e4_mult
-
-        # E5 Price = E2_price * (1.0 + event_score) if active else base_price
         event_active = bool(pricing_state.get("event_active", False))
-        event_score = float(e5_data.get("event_score", 0.0)) if e5_data else 0.0
-        if event_active:
-            e5_price = e2_price * (1.0 + event_score)
-        else:
-            e5_price = base_price
-
-        # Retrieve Layer 2 weights
-        w2 = float(weights.get("E2_weight", 0.0))
-        w3 = float(weights.get("E3_weight", 0.0))
-        w4 = float(weights.get("E4_weight", 0.0))
-        w5 = float(weights.get("E5_weight", 0.0))
-
-        # Calculate raw uplifts (contributions) relative to base_price
-        e2_uplift_raw = (e2_price - base_price) * w2
-        inventory_uplift_raw = base_price * (e3_mult - 1.0) * w3
-        competitor_uplift_raw = base_price * (e4_mult - 1.0) * w4
-        event_uplift_raw = base_price * event_score * w5 if event_active else 0.0
-
-        # Scale contributions proportionally to equal the actual difference between selected final price and base price
-        target_total_uplift = final_selected_price - base_price
-        sum_raw_uplifts = e2_uplift_raw + inventory_uplift_raw + competitor_uplift_raw + event_uplift_raw
-
-        scaled_uplifts = {}
-        if abs(sum_raw_uplifts) > 1e-4:
-            scale_factor = target_total_uplift / sum_raw_uplifts
-            scaled_uplifts["demand_effect"] = e2_uplift_raw * scale_factor
-            scaled_uplifts["inventory_effect"] = inventory_uplift_raw * scale_factor
-            scaled_uplifts["competitor_effect"] = competitor_uplift_raw * scale_factor
-            scaled_uplifts["event_effect"] = event_uplift_raw * scale_factor
-        else:
-            # Fallback if sum of raw uplifts is zero (e.g. no deviation from E1 base)
-            # Distribute based on weights
-            total_w = w2 + w3 + w4 + w5
-            if total_w > 0:
-                scaled_uplifts["demand_effect"] = target_total_uplift * (w2 / total_w)
-                scaled_uplifts["inventory_effect"] = target_total_uplift * (w3 / total_w)
-                scaled_uplifts["competitor_effect"] = target_total_uplift * (w4 / total_w)
-                scaled_uplifts["event_effect"] = target_total_uplift * (w5 / total_w)
-            else:
-                scaled_uplifts["demand_effect"] = target_total_uplift
-                scaled_uplifts["inventory_effect"] = 0.0
-                scaled_uplifts["competitor_effect"] = 0.0
-                scaled_uplifts["event_effect"] = 0.0
-
-        # Round all outputs to 2 decimal places
-        journey = {
-            "procurement_floor": round(base_price, 2),
-            "demand_effect_raw": round(e2_uplift_raw, 2),
-            "demand_effect": round(scaled_uplifts["demand_effect"], 2),
-            "inventory_effect_raw": round(inventory_uplift_raw, 2),
-            "inventory_effect": round(scaled_uplifts["inventory_effect"], 2),
-            "competitor_effect_raw": round(competitor_uplift_raw, 2),
-            "competitor_effect": round(scaled_uplifts["competitor_effect"], 2),
-            "event_effect_raw": round(event_uplift_raw, 2),
-            "event_effect": round(scaled_uplifts["event_effect"], 2),
-            "total_uplift": round(target_total_uplift, 2),
-            "final_price": round(final_selected_price, 2)
+        e5_data = pricing_state.get("E5", {})
+        effective_uplift_pct = float(e5_data.get("effective_uplift_pct", 0.0)) if event_active else 0.0
+        elasticity = float(pricing_state.get("E2", {}).get("elasticity", 0.0))
+        
+        elasticity_factor = max(0.5, min(1.5, 2.0 - abs(elasticity)))
+        event_uplift_amount = layer3_price * effective_uplift_pct * elasticity_factor if event_active else 0.0
+        final_price = layer3_price + event_uplift_amount
+        
+        return {
+            "minimum_safe_price": round(minimum_safe_price, 2),
+            "layer3_price": round(layer3_price, 2),
+            "event_uplift_amount": round(event_uplift_amount, 2),
+            "event_uplift_pct": round(effective_uplift_pct * 100.0, 2),
+            "final_price": round(final_price, 2)
         }
-
-        # Handle rounding errors to ensure: procurement_floor + sum(scaled_effects) == final_price
-        sum_components = (
-            journey["procurement_floor"] + 
-            journey["demand_effect"] + 
-            journey["inventory_effect"] + 
-            journey["competitor_effect"] + 
-            journey["event_effect"]
-        )
-        diff = round(journey["final_price"] - sum_components, 2)
-        if diff != 0:
-            # Adjust the largest effect to preserve mathematical exactness
-            effects_keys = ["demand_effect", "inventory_effect", "competitor_effect", "event_effect"]
-            largest_key = max(effects_keys, key=lambda k: abs(journey[k]))
-            journey[largest_key] = round(journey[largest_key] + diff, 2)
-
-        # Make sure total_uplift is exactly the sum of scaled effects
-        journey["total_uplift"] = round(
-            journey["demand_effect"] + 
-            journey["inventory_effect"] + 
-            journey["competitor_effect"] + 
-            journey["event_effect"], 2
-        )
-
-        return journey
 
     def _calculate_system_confidence(self, pricing_state: Dict[str, Any]) -> Dict[str, Any]:
         """

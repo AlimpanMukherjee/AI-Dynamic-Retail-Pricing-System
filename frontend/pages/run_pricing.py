@@ -126,33 +126,24 @@ def show_page():
             if price_journey:
                 st.subheader("📊 Price Composition & Journey")
                 
-                procurement_floor = price_journey.get("procurement_floor", 0.0)
-                demand_effect = price_journey.get("demand_effect", 0.0)
-                inventory_effect = price_journey.get("inventory_effect", 0.0)
-                competitor_effect = price_journey.get("competitor_effect", 0.0)
-                event_effect = price_journey.get("event_effect", 0.0)
-                total_uplift = price_journey.get("total_uplift", 0.0)
+                minimum_safe_price = price_journey.get("minimum_safe_price", 0.0)
+                layer3_price = price_journey.get("layer3_price", 0.0)
+                event_uplift_amount = price_journey.get("event_uplift_amount", 0.0)
                 final_recommended_price = price_journey.get("final_price", final_price)
-
-                demand_effect_raw = price_journey.get("demand_effect_raw", 0.0)
-                inventory_effect_raw = price_journey.get("inventory_effect_raw", 0.0)
-                competitor_effect_raw = price_journey.get("competitor_effect_raw", 0.0)
-                event_effect_raw = price_journey.get("event_effect_raw", 0.0)
+                
+                optimization_uplift = layer3_price - minimum_safe_price
                 
                 # Plotly Waterfall Chart
                 import plotly.graph_objects as go
                 import pandas as pd
                 
-                # Set up the measure and text labels
-                measure = ["relative", "relative", "relative", "relative", "relative", "total"]
-                x_labels = ["Procurement Floor", "Demand Effect", "Inventory Effect", "Competitor Effect", "Event Effect", "Final Recommended Price"]
+                measure = ["relative", "relative", "relative", "total"]
+                x_labels = ["Minimum Safe Price", "Layer 3 Optimization Uplift", "Event Uplift", "Final Recommended Price"]
                 
                 text_labels = [
-                    f"₹{procurement_floor:.2f}",
-                    f"{'+' if demand_effect >= 0 else ''}₹{demand_effect:.2f}",
-                    f"{'+' if inventory_effect >= 0 else ''}₹{inventory_effect:.2f}",
-                    f"{'+' if competitor_effect >= 0 else ''}₹{competitor_effect:.2f}",
-                    f"{'+' if event_effect >= 0 else ''}₹{event_effect:.2f}",
+                    f"₹{minimum_safe_price:.2f}",
+                    f"{'+' if optimization_uplift >= 0 else ''}₹{optimization_uplift:.2f}",
+                    f"{'+' if event_uplift_amount >= 0 else ''}₹{event_uplift_amount:.2f}",
                     f"₹{final_recommended_price:.2f}"
                 ]
                 
@@ -161,7 +152,7 @@ def show_page():
                     orientation="v",
                     measure=measure,
                     x=x_labels,
-                    y=[procurement_floor, demand_effect, inventory_effect, competitor_effect, event_effect, 0],
+                    y=[minimum_safe_price, optimization_uplift, event_uplift_amount, 0],
                     text=text_labels,
                     textposition="outside",
                     connector={"line": {"color": "rgb(63, 63, 63)"}},
@@ -185,29 +176,14 @@ def show_page():
                 breakdown_data = {
                     "Metric": [
                         "Minimum Safe Price (Procurement Floor)",
-                        "Demand Engine Effect (E2)",
-                        "Inventory Engine Effect (E3)",
-                        "Competitor Engine Effect (E4)",
-                        "Event Engine Effect (E5)",
-                        "Total Uplift above Floor",
-                        "Final Recommended Price"
+                        "Layer 3 Price (Optimized)",
+                        "Event Uplift",
+                        "Final Price"
                     ],
-                    "Raw Effect": [
-                        "-",
-                        f"₹{demand_effect_raw:+.2f}",
-                        f"₹{inventory_effect_raw:+.2f}",
-                        f"₹{competitor_effect_raw:+.2f}",
-                        f"₹{event_effect_raw:+.2f}",
-                        "-",
-                        "-"
-                    ],
-                    "Scaled Effect (Presentation)": [
-                        f"₹{procurement_floor:.2f}",
-                        f"₹{demand_effect:+.2f}",
-                        f"₹{inventory_effect:+.2f}",
-                        f"₹{competitor_effect:+.2f}",
-                        f"₹{event_effect:+.2f}",
-                        f"₹{total_uplift:+.2f}",
+                    "Amount": [
+                        f"₹{minimum_safe_price:.2f}",
+                        f"₹{layer3_price:.2f}",
+                        f"+₹{event_uplift_amount:.2f} ({price_journey.get('event_uplift_pct', 0.0):+.1f}%)",
                         f"₹{final_recommended_price:.2f}"
                     ]
                 }
@@ -243,8 +219,6 @@ def show_page():
                 st.subheader("📈 E2: Demand Forecasting")
                 e2 = pricing_state["E2"]
                 sales_count = e2.get("sales_history_count", 0)
-                conf = e2.get("engine2_confidence", 1.0)
-                conf_pct = f"{int(conf * 100)}%"
                 
                 st.markdown(
                     f"""
@@ -252,8 +226,7 @@ def show_page():
                         <b>Optimal Price Point:</b> ₹{e2['optimal_price']:.2f}<br>
                         <b>Expected Daily Demand:</b> {e2['expected_demand']:.2f} units<br>
                         <b>Price Elasticity Score:</b> {e2['elasticity']:.3f}<br>
-                        <b>Sales Records Used:</b> {sales_count}<br>
-                        <b>Demand Model Confidence:</b> {conf_pct}
+                        <b>Sales Records Used:</b> {sales_count}
                     </div>
                     """, 
                     unsafe_allow_html=True
@@ -349,19 +322,89 @@ def show_page():
                 st.markdown("---")
                 st.subheader("🎪 E5: Event Intelligence")
                 e5 = pricing_state.get("E5", {})
-                st.markdown(
-                    f"""
-                    <div style="padding: 1rem; border-radius: 6px; border-left: 4px solid #6f42c1; background-color: #f8f9fc; margin-bottom: 1rem;">
-                        <b>Event Type:</b> {e5.get('event_type')}<br>
-                        <b>Expected Attendance:</b> {e5.get('attendance'):,} people<br>
-                        <b>Distance to Store:</b> {e5.get('distance_km'):.2f} km<br>
-                        <b>Event Duration:</b> {e5.get('duration_hours'):.1f} hours<br>
-                        <b>Calculated Event Score (0-1):</b> {e5.get('event_score', 0.0):.3f}<br>
-                        <b>Impact Severity Level:</b> <span style="font-weight: bold; color: {'#e74a3b' if e5.get('impact_level') == 'EXTREME' else '#f6c23e' if e5.get('impact_level') == 'HIGH' else '#36b9cc' if e5.get('impact_level') == 'MEDIUM' else '#858796'};">{e5.get('impact_level')}</span>
-                    </div>
-                    """, 
-                    unsafe_allow_html=True
-                )
+                
+                # Fetch target category
+                try:
+                    import backend.config as cfg
+                    import pandas as pd
+                    df_p = pd.read_csv(cfg.CUSTOMER_PRODUCTS_PATH)
+                    row_p = df_p[df_p["product_id"].astype(str).str.strip() == str(pricing_state["product_id"]).strip()]
+                    cat_name = str(row_p.iloc[0].get("category", "Other")).strip() if not row_p.empty else "Other"
+                except Exception:
+                    cat_name = "Other"
+                
+                applied_uplift_pct = result.get("event_uplift_pct", 0.0)
+                
+                col_e5_1, col_e5_2 = st.columns(2)
+                
+                with col_e5_1:
+                    st.markdown(
+                        f"""
+                        <div style="padding: 1.2rem; border-radius: 8px; border-left: 4px solid #6f42c1; background-color: #f8f9fc; height: 100%;">
+                            <h4 style="margin-top: 0; color: #6f42c1;">Business Opportunity Detail</h4>
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tr><td style="padding: 4px 0;"><b>Event Type:</b></td><td style="text-align: right;">{e5.get('event_type')}</td></tr>
+                                <tr><td style="padding: 4px 0;"><b>Attendance:</b></td><td style="text-align: right;">{e5.get('attendance', 0):,} people</td></tr>
+                                <tr><td style="padding: 4px 0;"><b>Category:</b></td><td style="text-align: right;">{cat_name}</td></tr>
+                                <tr><td style="padding: 4px 0;"><b>Impact Level:</b></td><td style="text-align: right; font-weight: bold; color: {'#e74a3b' if e5.get('impact_level') == 'EXTREME' else '#f6c23e' if e5.get('impact_level') == 'HIGH' else '#36b9cc' if e5.get('impact_level') == 'MEDIUM' else '#858796'};">{e5.get('impact_level')}</td></tr>
+                                <tr><td style="padding: 4px 0;"><b>Opportunity Score:</b></td><td style="text-align: right; font-weight: bold;">{e5.get('event_opportunity_score', 0.0):.1f}%</td></tr>
+                                <tr><td style="padding: 4px 0;"><b>Applied Uplift:</b></td><td style="text-align: right; font-weight: bold; color: #1cc88a;">+{applied_uplift_pct:.1f}%</td></tr>
+                            </table>
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
+                    
+                with col_e5_2:
+                    st.markdown(
+                        """
+                        <div style="padding: 1.2rem; border-radius: 8px; border-left: 4px solid #4e73df; background-color: #f8f9fc; height: 100%;">
+                            <h4 style="margin-top: 0; color: #4e73df;">Why Event Uplift?</h4>
+                            <ul style="margin-bottom: 0; padding-left: 1.2rem;">
+                        """,
+                        unsafe_allow_html=True
+                    )
+                    
+                    reasoning_list = e5.get("reasoning", [])
+                    if not reasoning_list:
+                        st.markdown("<li>Nearby event detected</li>", unsafe_allow_html=True)
+                    else:
+                        for reason in reasoning_list:
+                            if reason == "Sports Match":
+                                desc = "Large sports match event nearby."
+                            elif reason == "Festival":
+                                desc = "Festival event scheduled nearby."
+                            elif reason == "Concert":
+                                desc = "Concert event scheduled nearby."
+                            elif reason == "Political Rally":
+                                desc = "Political rally event scheduled nearby."
+                            elif reason == "Local Fair":
+                                desc = "Local fair event scheduled nearby."
+                            elif reason == "Large Attendance":
+                                desc = "High attendance expected, driving strong local demand."
+                            elif reason == "Moderate Attendance":
+                                desc = "Moderate attendance expected, driving regular demand surge."
+                            elif reason == "Small Attendance":
+                                desc = "Minor attendance expected, low demand influence."
+                            elif "Category" in reason:
+                                desc = f"Product category ({reason}) strongly associated with event demand."
+                            elif reason == "Very Close To Venue":
+                                desc = "Store is located extremely close to venue (within 1km)."
+                            elif reason == "Close To Venue":
+                                desc = "Store is located close to venue (within 3km)."
+                            elif reason == "Moderate Proximity To Venue":
+                                desc = "Store is located in moderate proximity to venue."
+                            else:
+                                desc = f"Event condition: {reason}."
+                            st.markdown(f"<li>{desc}</li>", unsafe_allow_html=True)
+                            
+                    st.markdown(
+                        """
+                            </ul>
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
 
             st.markdown("---")
 
@@ -369,28 +412,15 @@ def show_page():
             st.subheader("⚖️ DynCo: Coordinated Engine Weights")
             weights = result["coordinated_weights"]
             
-            if "E5_weight" in weights and weights["E5_weight"] > 0.0:
-                w_cols = st.columns(5)
-                with w_cols[0]:
-                    st.metric("E1 Weight", f"{weights['E1_weight']:.2%}")
-                with w_cols[1]:
-                    st.metric("E2 Weight", f"{weights['E2_weight']:.2%}")
-                with w_cols[2]:
-                    st.metric("E3 Weight", f"{weights['E3_weight']:.2%}")
-                with w_cols[3]:
-                    st.metric("E4 Weight", f"{weights['E4_weight']:.2%}")
-                with w_cols[4]:
-                    st.metric("E5 (Event) Weight", f"{weights['E5_weight']:.2%}")
-            else:
-                w_cols = st.columns(4)
-                with w_cols[0]:
-                    st.metric("E1 Weight", f"{weights['E1_weight']:.2%}")
-                with w_cols[1]:
-                    st.metric("E2 Weight", f"{weights['E2_weight']:.2%}")
-                with w_cols[2]:
-                    st.metric("E3 Weight", f"{weights['E3_weight']:.2%}")
-                with w_cols[3]:
-                    st.metric("E4 Weight", f"{weights['E4_weight']:.2%}")
+            w_cols = st.columns(4)
+            with w_cols[0]:
+                st.metric("E1 Weight", f"{weights['E1_weight']:.2%}")
+            with w_cols[1]:
+                st.metric("E2 Weight", f"{weights['E2_weight']:.2%}")
+            with w_cols[2]:
+                st.metric("E3 Weight", f"{weights['E3_weight']:.2%}")
+            with w_cols[3]:
+                st.metric("E4 Weight", f"{weights['E4_weight']:.2%}")
 
         except Exception as e:
             st.error(f"❌ **Pricing Optimization Failed**:\n\n{str(e)}")
