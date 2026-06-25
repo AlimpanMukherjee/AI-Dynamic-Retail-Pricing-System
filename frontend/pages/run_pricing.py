@@ -232,7 +232,7 @@ def show_page():
                     unsafe_allow_html=True
                 )
                 
-                if conf < 0.5:
+                if confidence < 0.5:
                     st.info(
                         "ℹ️ **Demand forecasting is operating with limited historical sales data.**\n\n"
                         "The pricing recommendation therefore relies more heavily on procurement costs, "
