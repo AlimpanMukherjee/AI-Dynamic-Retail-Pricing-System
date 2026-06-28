@@ -48,16 +48,14 @@ def append_sales_upload(file_source) -> dict:
     if os.path.exists(sales_path):
         df_existing = pd.read_csv(sales_path)
         df_existing = normalize_date_column(df_existing, "date")
-        # Find which rows in df are actually new
-        common_cols = list(set(df.columns).intersection(set(df_existing.columns)))
-        if common_cols:
-            df_new = df.merge(df_existing[common_cols], on=common_cols, how='left', indicator=True)
-            df_new = df_new[df_new['_merge'] == 'left_only'].drop(columns=['_merge'])
-        else:
-            df_new = df.copy()
+        
+        # Find which rows in df are actually new based on the primary key (date, product_id)
+        df_existing_keys = df_existing[['date', 'product_id']]
+        df_new = df.merge(df_existing_keys, on=['date', 'product_id'], how='left', indicator=True)
+        df_new = df_new[df_new['_merge'] == 'left_only'].drop(columns=['_merge'])
 
-        df_combined = pd.concat([df_existing, df], ignore_index=True)
-        df_combined = df_combined.drop_duplicates().reset_index(drop=True)
+        # Append only new rows
+        df_combined = pd.concat([df_existing, df_new], ignore_index=True)
         rows_added = len(df_combined) - len(df_existing)
     else:
         df_combined = df.copy()

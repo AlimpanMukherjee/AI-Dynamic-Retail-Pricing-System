@@ -1,2 +1,3 @@
 model_version,training_date,training_rows,train_r2,val_r2,test_r2,active
-v1,2026-06-20,19800,0.8036,0.2351,0.4859,True
+v1,2026-06-20,19800,0.8036,0.2351,0.4859,False
+v2,2026-06-28,19800,0.8036,0.2351,0.4859,True

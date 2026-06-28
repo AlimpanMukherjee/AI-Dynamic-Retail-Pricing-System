@@ -1,6 +1,6 @@
 {
-    "model_version": "v1",
-    "trained_at": "2026-06-20 00:00:00",
+    "model_version": "v2",
+    "trained_at": "2026-06-28 00:00:00",
     "training_rows": 19800,
     "train_r2": 0.8036,
     "validation_r2": 0.2351,
