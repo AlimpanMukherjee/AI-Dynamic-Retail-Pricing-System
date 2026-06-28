@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from frontend.services.inventory_service import get_inventory_summary
-from frontend.services.sales_service import get_sales_summary
+from frontend.services.sales_service import get_sales_summary, get_sales_history_df
 from frontend.components.metrics import render_metric_card
 
 def show_page():
@@ -81,6 +81,39 @@ def show_page():
         st.markdown("**Stock Distribution by Category**")
         df_cat = df.groupby("category")["current_stock"].sum().reset_index()
         st.bar_chart(df_cat, x="category", y="current_stock")
+
+    st.markdown("---")
+
+    # Sales Analytics Trends
+    st.subheader("📈 Sales Analytics Trends")
+    df_sales_raw = get_sales_history_df()
+    
+    if not df_sales_raw.empty:
+        # Group sales by day
+        df_sales_raw["parsed_date"] = pd.to_datetime(df_sales_raw["date"], format='mixed').dt.date
+        price_col = "selling_price" if "selling_price" in df_sales_raw.columns else "price"
+        df_sales_raw["sales_value"] = df_sales_raw[price_col] * df_sales_raw["units_sold"]
+        
+        df_daily = df_sales_raw.groupby("parsed_date").agg({
+            "units_sold": "sum",
+            "sales_value": "sum"
+        }).reset_index().sort_values("parsed_date")
+        
+        # User selection toggle
+        chart_option = st.radio(
+            "Select Sales Metric for Trend Line Chart",
+            options=["Sales Quantity (Units Sold)", "Total Sales Value (Revenue)"],
+            horizontal=True
+        )
+        
+        if chart_option == "Sales Quantity (Units Sold)":
+            st.markdown("**Daily Sales Quantity (Units)**")
+            st.line_chart(df_daily, x="parsed_date", y="units_sold")
+        else:
+            st.markdown("**Daily Sales Value (Revenue in ₹)**")
+            st.line_chart(df_daily, x="parsed_date", y="sales_value")
+    else:
+        st.info("No historical sales transactions found to plot trends.")
 
     st.markdown("---")
 

@@ -130,3 +130,13 @@ def get_sales_summary() -> dict:
         "latest_sale_date": latest_str,
         "first_sale_date": dates.min().strftime("%Y-%m-%d")
     }
+
+@st.cache_data
+def get_sales_history_df() -> pd.DataFrame:
+    """
+    Returns the raw sales history DataFrame (cached).
+    """
+    sales_path = cfg.CUSTOMER_SALES_PATH
+    if not os.path.exists(sales_path):
+        return pd.DataFrame()
+    return pd.read_csv(sales_path)
