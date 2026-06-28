@@ -5,8 +5,7 @@ pricing-system/
 |-- app.py                              # Main entry point for the Streamlit application
 |-- project_overview.md                 # System overview and architectural guidelines
 |-- project_structure.md                # Project directory tree and module explanations
-|-- requirement.txt                     # Package dependencies
-|-- requirements.txt                    # Duplicate package dependencies file
+|-- requirements.txt                    # Package dependencies
 |-- backend/
 |   |-- config.py                       # Global path mapping and environment configurations
 |   |-- alerts/
@@ -31,8 +30,7 @@ pricing-system/
 |   |   `-- test_event_engine.py        # [NEW] E5 Event Intelligence Engine unit tests
 |   |-- layer1/                         # Core Specialists Pricing Engines
 |   |   |-- engine1.py                  # Calculates procurement floor and supply risk
-|   |   |-- engine2/                    # Sub-modules for Engine 2 demand forecasting
-|   |   |-- engine2.py                  # Models demand elasticity and optimal price
+|   |   |-- engine2/                    # Package containing Engine 2 demand forecasting
 |   |   |-- engine3.py                  # Models inventory pressure & stockout urgency
 |   |   |-- engine4.py                  # Evaluates competitor pricing and region gaps
 |   |   `-- shared_utils.py             # Common math, CSV load, and encoding helpers
@@ -92,7 +90,7 @@ pricing-system/
 
 ### backend/layer1/
 - `engine1.py`: Computes minimum safe margins based on landed cost and supply risk.
-- `engine2.py`: Fits and runs local demand curves to identify optimal price.
+- `engine2/`: Package containing local demand curves fitting engine.
 - `engine3.py`: Evaluates on-hand levels to recommend stock clearing multipliers.
 - `engine4.py`: Matches price against competitor bands.
 

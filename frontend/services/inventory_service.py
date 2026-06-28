@@ -14,6 +14,7 @@ def process_inventory_upload(file_source, mode: str = "overwrite") -> dict:
     return res
 
 
+@st.cache_data
 def get_inventory_summary() -> dict:
     """
     Calculates stock health breakdowns, product lists, and aggregate metrics.

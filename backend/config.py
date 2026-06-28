@@ -18,10 +18,7 @@ DEV_DATA_DIR = os.path.join(PROJECT_ROOT, "datasets")
 DEV_PRODUCTS_PATH = os.path.join(DEV_DATA_DIR, "products.csv")
 DEV_SALES_PATH = os.path.join(DEV_DATA_DIR, "sales.csv")
 DEV_INVENTORY_PATH = os.path.join(DEV_DATA_DIR, "inventory_current.csv")
-DEV_INVENTORY_CURRENT_PATH = os.path.join(DEV_DATA_DIR, "inventory_current.csv")
-DEV_INVENTORY_HISTORY_PATH = os.path.join(DEV_DATA_DIR, "inventory_history.csv")
 DEV_PROCUREMENT_PATH = os.path.join(DEV_DATA_DIR, "procurement.csv")
-DEV_COMPETITORS_PATH = os.path.join(DEV_DATA_DIR, "competitors.csv")
 
 def _get_customer_data_dir() -> str:
     # Dynamically determine the data directory.

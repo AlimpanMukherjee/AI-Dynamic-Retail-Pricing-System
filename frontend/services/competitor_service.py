@@ -34,6 +34,13 @@ def _validate_schema(df: pd.DataFrame):
         errors["missing_columns"] = missing
         return False, errors
 
+    # Run unified backend competitor validation
+    from backend.onboarding.validators import validate_competitors, ValidationError
+    try:
+        validate_competitors(df)
+    except ValidationError as e:
+        errors["validation_error"] = str(e)
+
     # 2. duplicate detection
     dup_mask = df.duplicated(subset=["product_id", "competitor_name"], keep=False)
     if dup_mask.any():

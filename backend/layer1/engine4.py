@@ -1,16 +1,7 @@
 import pandas as pd
 import numpy as np
 import os
-
-
-# -----------------------------
-# STEP 1: LOAD DATA
-# -----------------------------
-def load_data(path):
-    if not os.path.exists(path):
-        raise FileNotFoundError(f"Data file not found at: {path}")
-    df = pd.read_csv(path)
-    return df
+from backend.layer1.shared_utils import load_csv
 
 
 # -----------------------------
@@ -106,7 +97,7 @@ def run_pipeline(competitors_csv=None, sales_csv=None, target_product_id="SKU_10
     if sales_csv is None:
         sales_csv = cfg.CUSTOMER_SALES_PATH
 
-    df_comp = load_data(competitors_csv)
+    df_comp = load_csv(competitors_csv)
 
     # Filter for the target product
     df_product = df_comp[df_comp["product_id"] == target_product_id]

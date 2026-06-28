@@ -1,8 +1,10 @@
 import os
 import pandas as pd
+import streamlit as st
 import backend.config as cfg
 from backend.pipeline.pricing_pipeline import run_coordinated_pricing
 
+@st.cache_data
 def get_available_products() -> list:
     """
     Returns a sorted list of tuple dicts containing product_id and descriptive label names.

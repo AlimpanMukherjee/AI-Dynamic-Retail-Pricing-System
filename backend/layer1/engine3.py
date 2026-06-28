@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import os
+from backend.layer1.shared_utils import load_csv
 
 
 # Lead time mapping based on warehouse location (fallback in case lead_time_days is missing)
@@ -12,16 +13,6 @@ LOCATION_LEAD_TIME = {
 }
 DEFAULT_LEAD_TIME = 7
                                                                                         
-# -----------------------------
-# STEP 1: LOAD DATA
-# -----------------------------
-def load_data(path):
-    if not os.path.exists(path):
-        raise FileNotFoundError(f"Data file not found at: {path}")
-    df = pd.read_csv(path)
-    return df
-
-
 # -----------------------------
 # STEP 2: INVENTORY COMPUTATION
 # -----------------------------
@@ -192,7 +183,7 @@ def run_pipeline(csv_path=None, target_product_id="SKU_1000", retailer_company=N
     if is_operational:
         df = load_current_inventory()
     else:
-        df = load_data(csv_path)
+        df = load_csv(csv_path)
 
     # Filter for the target product
     df_product = df[df["product_id"] == target_product_id]

@@ -1,117 +1,122 @@
 import pandas as pd
-import numpy as np
+from backend.onboarding.validators import (
+    validate_sales,
+    validate_inventory,
+    validate_procurement,
+    validate_competitors,
+    normalize_date_column as onboard_normalize_date,
+    ValidationError
+)
 
-def _check_missing_fields(df, fields, dataset_name):
-    for field in fields:
+def validate_sales_data(df: pd.DataFrame) -> None:
+    """
+    Validates sales data uploads (compatibility shim).
+    """
+    for field in ["product_id", "date"]:
         if field not in df.columns:
-            raise ValueError(f"Validation Error: Missing required column '{field}' in {dataset_name} dataset")
-        if df[field].isnull().any() or (df[field] == "").any():
-            # Find which SKU has the missing field for better readability
-            sku_info = ""
-            if "product_id" in df.columns:
-                bad_rows = df[df[field].isnull() | (df[field] == "")]
-                if not bad_rows.empty:
-                    sku_info = f" (detected for SKU: {bad_rows['product_id'].iloc[0]})"
-            raise ValueError(f"Validation Error: Missing values in column '{field}' in {dataset_name} dataset{sku_info}")
-
-def _check_duplicates(df, dataset_name):
+            raise ValueError(f"Missing required column '{field}'")
     if df.duplicated().any():
-        raise ValueError(f"Validation Error: Duplicate rows detected in {dataset_name} dataset")
-
-def _check_numeric_positive(df, column, dataset_name, strictly_positive=False):
-    if column not in df.columns:
-        return
-    try:
-        series = pd.to_numeric(df[column])
-    except Exception:
-        raise ValueError(f"Validation Error: Column '{column}' must be numeric in {dataset_name} dataset")
+        raise ValueError("Duplicate rows detected in sales data")
     
-    if strictly_positive:
-        if (series <= 0).any():
-            sku_info = ""
-            if "product_id" in df.columns:
-                bad_rows = df[df[column] <= 0]
-                sku_info = f" for SKU: {bad_rows['product_id'].iloc[0]}"
-            raise ValueError(f"Validation Error: Price/selling_price must be > 0{sku_info}")
-    else:
-        if (series < 0).any():
-            sku_info = ""
-            if "product_id" in df.columns:
-                bad_rows = df[df[column] < 0]
-                sku_info = f" detected for {bad_rows['product_id'].iloc[0]}"
-            raise ValueError(f"Validation Error: Negative {column}{sku_info}")
-
-def validate_sales_data(df: pd.DataFrame):
-    """
-    Validates sales data uploads
-    """
-    _check_missing_fields(df, ["date", "product_id"], "sales")
-    normalize_date_column(df, "date")
-    _check_duplicates(df, "sales")
-    
-    price_col = "selling_price" if "selling_price" in df.columns else "price"
-    _check_numeric_positive(df, price_col, "sales", strictly_positive=True)
-    _check_numeric_positive(df, "units_sold", "sales", strictly_positive=False)
-
-def validate_inventory_data(df: pd.DataFrame):
-    """
-    Validates inventory data uploads
-    """
-    _check_missing_fields(df, ["product_id"], "inventory")
-    _check_duplicates(df, "inventory")
-    
-    stock_col = "current_stock" if "current_stock" in df.columns else "stock"
-    _check_numeric_positive(df, stock_col, "inventory", strictly_positive=False)
-    _check_numeric_positive(df, "reserved_stock", "inventory", strictly_positive=False)
-
-def validate_market_data(df: pd.DataFrame):
-    """
-    Validates market competitor data uploads
-    """
-    _check_missing_fields(df, ["product_id"], "market competitor")
-    _check_duplicates(df, "market competitor")
-    
-    comp_price_col = "competitor_price" if "competitor_price" in df.columns else None
-    if comp_price_col:
-        _check_numeric_positive(df, comp_price_col, "market competitor", strictly_positive=True)
-
-def validate_supplier_data(df: pd.DataFrame):
-    """
-    Validates supplier procurement data uploads
-    """
-    _check_missing_fields(df, ["product_id", "supplier_id"], "supplier procurement")
-    _check_duplicates(df, "supplier procurement")
-    
-    lead_time_col = "lead_time_days" if "lead_time_days" in df.columns else "lead_time"
-    _check_numeric_positive(df, lead_time_col, "supplier procurement", strictly_positive=False)
-    
-    rel_col = "supplier_reliability" if "supplier_reliability" in df.columns else "reliability"
-    if rel_col in df.columns:
+    price_col = "selling_price" if "selling_price" in df.columns else ("price" if "price" in df.columns else None)
+    if price_col is not None:
         try:
-            series = pd.to_numeric(df[rel_col])
-        except Exception:
-            raise ValueError(f"Validation Error: Column '{rel_col}' must be numeric in supplier procurement dataset")
-        if (series < 0).any() or (series > 1).any():
-            sku_info = ""
-            bad_rows = df[(df[rel_col] < 0) | (df[rel_col] > 1)]
-            if not bad_rows.empty:
-                sku_info = f" for SKU: {bad_rows['product_id'].iloc[0]}"
-            raise ValueError(f"Validation Error: Reliability must be between 0 and 1{sku_info}")
+            prices = pd.to_numeric(df[price_col])
+            if (prices <= 0).any():
+                raise ValueError("Price/selling_price must be > 0")
+        except (ValueError, TypeError):
+            raise ValueError("Price/selling_price must be > 0")
+            
+    if "units_sold" in df.columns:
+        try:
+            units = pd.to_numeric(df["units_sold"])
+            if (units < 0).any():
+                raise ValueError("Negative units_sold detected")
+        except (ValueError, TypeError):
+            raise ValueError("Negative units_sold detected")
 
+    try:
+        validate_sales(df, require_date=True)
+    except ValidationError as e:
+        raise ValueError(str(e))
+
+def validate_inventory_data(df: pd.DataFrame) -> None:
+    """
+    Validates inventory data uploads (compatibility shim).
+    """
+    if "stock" in df.columns and "current_stock" not in df.columns:
+        df = df.copy()
+        df["current_stock"] = df["stock"]
+    for field in ["product_id"]:
+        if field not in df.columns:
+            raise ValueError(f"Missing required column '{field}'")
+    if df.duplicated().any():
+        raise ValueError("Duplicate rows detected in inventory data")
+    
+    if "current_stock" in df.columns:
+        try:
+            stocks = pd.to_numeric(df["current_stock"])
+            if (stocks < 0).any():
+                raise ValueError("Negative stock values detected")
+        except (ValueError, TypeError):
+            raise ValueError("Negative stock values detected")
+            
+    if "reserved_stock" in df.columns:
+        try:
+            reserved = pd.to_numeric(df["reserved_stock"].dropna())
+            if (reserved < 0).any():
+                raise ValueError("Negative reserved_stock values detected")
+        except (ValueError, TypeError):
+            raise ValueError("Negative reserved_stock values detected")
+
+    try:
+        validate_inventory(df)
+    except ValidationError as e:
+        raise ValueError(str(e))
+
+def validate_market_data(df: pd.DataFrame) -> None:
+    """
+    Validates market competitor data uploads (compatibility shim).
+    """
+    for field in ["product_id"]:
+        if field not in df.columns:
+            raise ValueError(f"Missing required column '{field}'")
+    if df.duplicated().any():
+        raise ValueError("Duplicate rows detected in competitor data")
+        
+    if "competitor_price" in df.columns:
+        try:
+            prices = pd.to_numeric(df["competitor_price"])
+            if (prices <= 0).any():
+                raise ValueError("Price/selling_price must be > 0")
+        except (ValueError, TypeError):
+            raise ValueError("Price/selling_price must be > 0")
+
+    try:
+        validate_competitors(df)
+    except ValidationError as e:
+        raise ValueError(str(e))
+
+def validate_supplier_data(df: pd.DataFrame) -> None:
+    """
+    Validates supplier procurement data uploads (compatibility shim).
+    """
+    for field in ["product_id", "supplier_id"]:
+        if field not in df.columns:
+            raise ValueError(f"Missing required column '{field}'")
+    if df.duplicated().any():
+        raise ValueError("Duplicate rows detected in procurement data")
+        
+    try:
+        validate_procurement(df)
+    except ValidationError as e:
+        msg = str(e)
+        if "lead time" in msg:
+            raise ValueError("Negative lead_time values detected")
+        raise ValueError(msg)
 
 def normalize_date_column(df: pd.DataFrame, column: str = "date") -> pd.DataFrame:
     """
-    Safely converts a date column to datetime and then formats it as YYYY-MM-DD string
-    to ensure matching date types for merge and storage.
+    Safely converts a date column to YYYY-MM-DD string format (compatibility shim).
     """
-    if column not in df.columns:
-        return df
-    try:
-        # Convert to datetime (coerce handles various string/excel representations)
-        df[column] = pd.to_datetime(df[column], format='mixed', errors="raise")
-        # Format as string YYYY-MM-DD
-        df[column] = df[column].dt.strftime("%Y-%m-%d")
-    except Exception:
-        raise ValueError(f"Validation Error: Invalid date format in column '{column}'")
-    return df
-
+    return onboard_normalize_date(df, column)

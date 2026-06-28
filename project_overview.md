@@ -73,13 +73,10 @@ Generates and selects the highest-scoring candidate price based on:
 ---
 
 ## 4. MVP Tech Stack
-To avoid overengineering, the MVP will utilize:
-*   **Backend**: Python + FastAPI
-*   **Database**: PostgreSQL (for transaction data, datasets, and configurations)
-*   **Caching/Queue**: Redis (for real-time pricing queries)
+To avoid overengineering, the MVP utilizes:
+*   **Backend/Frontend**: Python + Streamlit (with persistent CSV storage)
 *   **Data Processing**: Pandas + NumPy
-*   **Machine Learning**: XGBoost
-*   **Deployment**: Docker
+*   **Machine Learning**: XGBoost + Scikit-Learn
 
 ---
 
@@ -89,5 +86,5 @@ To avoid overengineering, the MVP will utilize:
 3.  **Step 3: Signal Extraction**: Design the feature vector generation pipeline.
 4.  **Step 4: Layer 2 Meta-Learning**: Build the weight prediction model.
 5.  **Step 5: Layer 3 Optimization**: Implement arbitration workflow, candidate generation, and business rules/constraints.
-6.  **Step 6: Deployment Pipeline**: Wrap the solution in a FastAPI application with the main endpoints (e.g., `POST /price/compute`).
+6.  **Step 6: Deployment Pipeline**: Package the solution as a self-contained Python library with a Streamlit-based interactive web interface.
 7.  **Step 7: Reinforcement Learning (Later Stage)**: Introduce Contextual Bandits to optimize pricing decisions based on post-deployment rewards.

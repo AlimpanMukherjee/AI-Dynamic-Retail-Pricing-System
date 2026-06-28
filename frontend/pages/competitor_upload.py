@@ -8,13 +8,16 @@ def show_page():
 
     st.title("📦 Competitor Price Upload")
     st.markdown(
-        "Upload a CSV to refresh competitor pricing. Only rows matching **product_id + competitor_name** are updated; all other records stay unchanged."
+        "Upload a CSV or Excel spreadsheet to refresh competitor pricing. Only rows matching **product_id + competitor_name** are updated; all other records stay unchanged."
     )
 
-    uploaded_file = st.file_uploader("Upload Competitor Pricing CSV", type=["csv"])
+    uploaded_file = st.file_uploader("Upload Competitor Pricing CSV or Excel", type=["csv", "xlsx"])
     if uploaded_file:
         try:
-            upload_df = pd.read_csv(uploaded_file)
+            if uploaded_file.name.endswith(".xlsx"):
+                upload_df = pd.read_excel(uploaded_file, engine='openpyxl')
+            else:
+                upload_df = pd.read_csv(uploaded_file)
             st.subheader("Uploaded Data Preview")
             st.dataframe(upload_df)
 

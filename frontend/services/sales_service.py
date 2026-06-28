@@ -87,6 +87,7 @@ def append_sales_upload(file_source) -> dict:
     }
 
 
+@st.cache_data
 def get_sales_summary() -> dict:
     """
     Returns high-level statistics of the sales_history.csv dataset.
@@ -116,9 +117,16 @@ def get_sales_summary() -> dict:
     
     dates = pd.to_datetime(df["date"], format='mixed')
     
+    latest_ts = dates.max()
+    has_time = (dates.dt.time != pd.Timestamp("2000-01-01 00:00:00").time()).any()
+    if has_time:
+        latest_str = latest_ts.strftime("%Y-%m-%d %H:%M:%S")
+    else:
+        latest_str = latest_ts.strftime("%Y-%m-%d")
+        
     return {
         "total_records": len(df),
         "total_revenue": revenue,
-        "latest_sale_date": dates.max().strftime("%Y-%m-%d"),
+        "latest_sale_date": latest_str,
         "first_sale_date": dates.min().strftime("%Y-%m-%d")
     }
