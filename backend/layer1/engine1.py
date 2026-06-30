@@ -7,9 +7,9 @@ CATEGORY_MARGINS = {
     "staples": 0.05,
     "packaged foods": 0.10,
     "dairy": 0.12,
-    "beverages": 0.15,
-    "snacks": 0.20,
-    "personal care": 0.25
+    "beverages": 0.10,
+    "snacks": 0.15,
+    "personal care": 0.20
 }
 DEFAULT_MARGIN = 0.10
 

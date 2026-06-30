@@ -99,7 +99,8 @@ def run_pricing(
     event_type: str = "Other",
     attendance: int = 0,
     distance_km: float = 2.0,
-    duration_hours: float = 4.0
+    duration_hours: float = 4.0,
+    event_time_of_day: str = "Evening"
 ) -> dict:
     """
     Invokes the backend pricing coordination pipeline.
@@ -121,7 +122,8 @@ def run_pricing(
         event_type=event_type,
         attendance=attendance,
         distance_km=distance_km,
-        duration_hours=duration_hours
+        duration_hours=duration_hours,
+        event_time_of_day=event_time_of_day
     )
     
     return result

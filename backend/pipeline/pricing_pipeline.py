@@ -25,7 +25,8 @@ def run_coordinated_pricing(
     event_type="Other",
     attendance=0,
     distance_km=2.0,
-    duration_hours=4.0
+    duration_hours=4.0,
+    event_time_of_day="Evening"
 ):
     """
     Executes the end-to-end pricing pipeline:
@@ -114,17 +115,41 @@ def run_coordinated_pricing(
         market_trend_score=market_trend_score
     )
 
-    # 6. Run Engine 5: Event Intelligence
-    from backend.engines.event_engine import run_pipeline as run_event_engine
-    e5_output = run_event_engine(
-        event_active=event_active,
-        event_type=event_type,
-        attendance=attendance,
-        distance_km=distance_km,
-        duration_hours=duration_hours,
-        product_category=product_category,
-        elasticity=e2_output.get("elasticity", 0.0)
-    )
+    # 6. Initialize E5 Placeholder for Unified Pricing State
+    # (The Event Engine is no longer executed prior to Layer 3 to ensure E5 remains a post-optimization adjustment)
+    e5_output = {
+        "event_active": event_active,
+        "event_type": event_type,
+        "attendance": int(attendance),
+        "distance_km": float(distance_km),
+        "duration_hours": float(duration_hours),
+        "event_time_of_day": event_time_of_day,
+        "expected_demand": 0.0,
+        "event_demand_multiplier": 1.0,
+        "adjusted_demand": 0.0,
+        "current_net_stock": 0.0,
+        "inventory_available": 0.0,
+        "shortage_units": 0.0,
+        "shortage_ratio": 0.0,
+        "attendance_factor": 0.0,
+        "distance_factor": 0.0,
+        "duration_factor": 0.0,
+        "category_factor": 1.0,
+        "event_factor": 1.0,
+        "scarcity_factor": 0.0,
+        "inventory_pressure_factor": 1.0,
+        "event_influence_factor": 0.0,
+        "combined_multiplier": 0.0,
+        "recommended_uplift_pct": 0.0,
+        "event_uplift_amount": 0.0,
+        "effective_uplift_pct": 0.0,
+        "event_relevance": 1.0,
+        "event_score": 0.0,
+        "event_opportunity_score": 0.0,
+        "impact_level": "LOW",
+        "pricing_explanation": "Event engine not yet executed.",
+        "reasoning": []
+    }
 
     # Assemble Unified Pricing State
     pricing_state = {
@@ -155,19 +180,64 @@ def run_coordinated_pricing(
     optimization_report = optimizer.optimize_price(pricing_state, coordinated_weights)
 
     base_price = float(optimization_report["final_price"])
-    effective_uplift_pct = float(e5_output.get("effective_uplift_pct", 0.0)) if event_active else 0.0
-    elasticity = float(pricing_state["E2"].get("elasticity", 0.0))
-    
-    elasticity_factor = max(
-        0.5,
-        min(
-            1.5,
-            2.0 - abs(elasticity)
-        )
+
+    # Run Complete Event Engine post-optimization
+    from backend.engines.event_engine import run_pipeline as run_event_engine
+    expected_demand = float(e2_output.get("expected_demand", 0.0))
+    available_inventory = float(e3_output.get("net_stock", 0.0))
+    elasticity_val = float(e2_output.get("elasticity", 0.0))
+
+    e5_output = run_event_engine(
+        event_active=event_active,
+        event_type=event_type,
+        attendance=attendance,
+        distance_km=distance_km,
+        duration_hours=duration_hours,
+        event_time_of_day=event_time_of_day,
+        product_category=product_category,
+        elasticity=elasticity_val,
+        expected_demand=expected_demand,
+        available_inventory=available_inventory,
+        base_price=base_price,
+        base_market_price=current_price
     )
+
+    # Calculate backward compatibility mapping inside the pipeline
+    recommended_uplift_pct = float(e5_output.get("recommended_uplift_pct", 0.0))
+    elasticity_factor = max(0.5, min(1.5, 2.0 - abs(elasticity_val)))
+    effective_uplift_pct = recommended_uplift_pct / elasticity_factor if elasticity_factor > 0 else 0.0
+    event_uplift_amount = float(e5_output.get("event_price_increase", 0.0))
     
-    event_uplift_amount = base_price * effective_uplift_pct * elasticity_factor
+    # Enrich e5_output keys for compatibility
+    e5_output["effective_uplift_pct"] = effective_uplift_pct
+    e5_output["event_uplift_amount"] = event_uplift_amount
+
+    # Update E5 in the unified pricing state
+    pricing_state["E5"] = e5_output
+
     final_price = base_price + event_uplift_amount
+
+    # Regenerate optimization narrative and price journey to incorporate post-optimization event uplift details
+    if event_active:
+        try:
+            optimization_report["price_journey"] = optimizer.selector._generate_price_journey(
+                pricing_state, coordinated_weights, base_price
+            )
+            optimization_report["explanation"] = optimizer.selector._generate_explanation(
+                winner={
+                    "price": base_price,
+                    "final_score": optimization_report["selected_price_score"],
+                    "procurement_score": optimization_report["price_breakdown"].get("procurement_margin", 0.0),
+                    "elasticity_score": optimization_report["price_breakdown"].get("demand_elasticity", 0.0),
+                    "inventory_score": optimization_report["price_breakdown"].get("inventory_clearance", 0.0),
+                    "market_score": optimization_report["price_breakdown"].get("market_competitiveness", 0.0),
+                },
+                pricing_state=pricing_state,
+                weights=coordinated_weights,
+                decision_summary=optimization_report["decision_summary"]
+            )
+        except Exception as ex:
+            logger.error(f"Error regenerating optimization narrative and price journey: {str(ex)}")
 
     # Construct pipeline result
     pipeline_result = {
