@@ -1,111 +1,112 @@
 product_id,product_name,brand,category,base_market_price,shelf_life_days,subcategory,pack_size_ml
-SKU_1000,Coca Cola 200ml Mini,Coca Cola,Beverages,14.0,117,Carbonated Soft Drink,200
-SKU_1001,Coca Cola 200ml Regular,Coca Cola,Beverages,20.0,72,Carbonated Soft Drink,200
-SKU_1002,Coca Cola 200ml Value,Coca Cola,Beverages,24.0,200,Carbonated Soft Drink,200
-SKU_1003,Coca Cola 200ml Family,Coca Cola,Beverages,30.0,185,Carbonated Soft Drink,200
-SKU_1004,Coca Cola 750ml Mini,Coca Cola,Beverages,28.0,174,Carbonated Soft Drink,750
-SKU_1005,Coca Cola 750ml Regular,Coca Cola,Beverages,40.0,131,Carbonated Soft Drink,750
-SKU_1006,Coca Cola 750ml Value,Coca Cola,Beverages,48.0,112,Carbonated Soft Drink,750
-SKU_1007,Coca Cola 750ml Family,Coca Cola,Beverages,60.0,339,Carbonated Soft Drink,750
-SKU_1008,Coca Cola 1L Mini,Coca Cola,Beverages,33.6,104,Carbonated Soft Drink,1000
-SKU_1009,Coca Cola 1L Regular,Coca Cola,Beverages,48.0,362,Carbonated Soft Drink,1000
-SKU_1010,Coca Cola 1L Value,Coca Cola,Beverages,57.6,276,Carbonated Soft Drink,1000
-SKU_1011,Coca Cola 1L Family,Coca Cola,Beverages,72.0,76,Carbonated Soft Drink,1000
-SKU_1012,Coca Cola 2L Mini,Coca Cola,Beverages,66.5,75,Carbonated Soft Drink,2000
-SKU_1013,Coca Cola 2L Regular,Coca Cola,Beverages,95.0,107,Carbonated Soft Drink,2000
-SKU_1014,Coca Cola 2L Value,Coca Cola,Beverages,114.0,171,Carbonated Soft Drink,2000
-SKU_1015,Coca Cola 2L Family,Coca Cola,Beverages,142.5,179,Carbonated Soft Drink,2000
-SKU_1016,Coke Zero 300ml Mini,Coca Cola,Beverages,28.0,318,Carbonated Soft Drink,300
-SKU_1017,Coke Zero 300ml Regular,Coca Cola,Beverages,40.0,73,Carbonated Soft Drink,300
-SKU_1018,Coke Zero 300ml Value,Coca Cola,Beverages,48.0,347,Carbonated Soft Drink,300
-SKU_1019,Coke Zero 300ml Family,Coca Cola,Beverages,60.0,161,Carbonated Soft Drink,300
-SKU_1020,Coke Zero Can 330ml Mini,Coca Cola,Beverages,31.5,339,Carbonated Soft Drink,330
-SKU_1021,Coke Zero Can 330ml Regular,Coca Cola,Beverages,45.0,274,Carbonated Soft Drink,330
-SKU_1022,Coke Zero Can 330ml Value,Coca Cola,Beverages,54.0,172,Carbonated Soft Drink,330
-SKU_1023,Coke Zero Can 330ml Family,Coca Cola,Beverages,67.5,289,Carbonated Soft Drink,330
-SKU_1024,Pepsi 250ml Mini,Pepsi,Beverages,14.0,361,Carbonated Soft Drink,250
-SKU_1025,Pepsi 250ml Regular,Pepsi,Beverages,20.0,202,Carbonated Soft Drink,250
-SKU_1026,Pepsi 250ml Value,Pepsi,Beverages,24.0,63,Carbonated Soft Drink,250
-SKU_1027,Pepsi 250ml Family,Pepsi,Beverages,30.0,141,Carbonated Soft Drink,250
-SKU_1028,Pepsi 750ml Mini,Pepsi,Beverages,28.0,276,Carbonated Soft Drink,750
-SKU_1029,Pepsi 750ml Regular,Pepsi,Beverages,40.0,234,Carbonated Soft Drink,750
-SKU_1030,Pepsi 750ml Value,Pepsi,Beverages,48.0,202,Carbonated Soft Drink,750
-SKU_1031,Pepsi 750ml Family,Pepsi,Beverages,60.0,139,Carbonated Soft Drink,750
-SKU_1032,Pepsi Black Can 330ml Mini,Pepsi,Beverages,31.5,170,Carbonated Soft Drink,330
-SKU_1033,Pepsi Black Can 330ml Regular,Pepsi,Beverages,45.0,232,Carbonated Soft Drink,330
-SKU_1034,Pepsi Black Can 330ml Value,Pepsi,Beverages,54.0,112,Carbonated Soft Drink,330
-SKU_1035,Pepsi Black Can 330ml Family,Pepsi,Beverages,67.5,107,Carbonated Soft Drink,330
-SKU_1036,Lay's Classic Salted 52g Mini,Lay's,Snacks,14.0,254,Dairy Beverage,52
-SKU_1037,Lay's Classic Salted 52g Regular,Lay's,Snacks,20.0,109,Dairy Beverage,52
-SKU_1038,Lay's Classic Salted 52g Value,Lay's,Snacks,24.0,243,Dairy Beverage,52
-SKU_1039,Lay's Classic Salted 52g Family,Lay's,Snacks,30.0,236,Dairy Beverage,52
-SKU_1040,Lay's Magic Masala 52g Mini,Lay's,Snacks,14.0,195,Snacks,52
-SKU_1041,Lay's Magic Masala 52g Regular,Lay's,Snacks,20.0,82,Snacks,52
-SKU_1042,Lay's Magic Masala 52g Value,Lay's,Snacks,24.0,295,Snacks,52
-SKU_1043,Lay's Magic Masala 52g Family,Lay's,Snacks,30.0,334,Snacks,52
-SKU_1044,Lay's Cream & Onion 90g Mini,Lay's,Snacks,31.5,123,Snacks,90
-SKU_1045,Lay's Cream & Onion 90g Regular,Lay's,Snacks,45.0,253,Snacks,90
-SKU_1046,Lay's Cream & Onion 90g Value,Lay's,Snacks,54.0,100,Snacks,90
-SKU_1047,Lay's Cream & Onion 90g Family,Lay's,Snacks,67.5,342,Snacks,90
-SKU_1048,Kurkure Masala Munch 90g Mini,Kurkure,Snacks,14.0,210,Potato Chips,90
-SKU_1049,Kurkure Masala Munch 90g Regular,Kurkure,Snacks,20.0,245,Potato Chips,90
-SKU_1050,Kurkure Masala Munch 90g Value,Kurkure,Snacks,24.0,355,Potato Chips,90
-SKU_1051,Kurkure Masala Munch 90g Family,Kurkure,Snacks,30.0,158,Potato Chips,90
-SKU_1052,Kurkure Green Chutney 90g Mini,Kurkure,Snacks,14.0,95,Potato Chips,90
-SKU_1053,Kurkure Green Chutney 90g Regular,Kurkure,Snacks,20.0,83,Potato Chips,90
-SKU_1054,Kurkure Green Chutney 90g Value,Kurkure,Snacks,24.0,176,Potato Chips,90
-SKU_1055,Kurkure Green Chutney 90g Family,Kurkure,Snacks,30.0,208,Potato Chips,90
-SKU_1056,Maggi 70g Mini,Nestle,Packaged Foods,9.8,100,Packaged Foods,70
-SKU_1057,Maggi 70g Regular,Nestle,Packaged Foods,14.0,179,Packaged Foods,70
-SKU_1058,Maggi 70g Value,Nestle,Packaged Foods,16.8,111,Packaged Foods,70
-SKU_1059,Maggi 70g Family,Nestle,Packaged Foods,21.0,254,Packaged Foods,70
-SKU_1060,Maggi Family Pack 280g Mini,Nestle,Packaged Foods,42.0,202,Packaged Foods,280
-SKU_1061,Maggi Family Pack 280g Regular,Nestle,Packaged Foods,60.0,292,Packaged Foods,280
-SKU_1062,Maggi Family Pack 280g Value,Nestle,Packaged Foods,72.0,246,Packaged Foods,280
-SKU_1063,Maggi Family Pack 280g Family,Nestle,Packaged Foods,90.0,143,Packaged Foods,280
-SKU_1064,Amul Milk 500ml Mini,Amul,Dairy,21.0,249,Dairy Beverage,500
-SKU_1065,Amul Milk 500ml Regular,Amul,Dairy,30.0,241,Dairy Beverage,500
-SKU_1066,Amul Milk 500ml Value,Amul,Dairy,36.0,167,Dairy Beverage,500
-SKU_1067,Amul Milk 500ml Family,Amul,Dairy,45.0,196,Dairy Beverage,500
-SKU_1068,Amul Milk 1L Mini,Amul,Dairy,42.0,96,Dairy Beverage,1000
-SKU_1069,Amul Milk 1L Regular,Amul,Dairy,60.0,147,Dairy Beverage,1000
-SKU_1070,Amul Milk 1L Value,Amul,Dairy,72.0,333,Dairy Beverage,1000
-SKU_1071,Amul Milk 1L Family,Amul,Dairy,90.0,185,Dairy Beverage,1000
-SKU_1072,Amul Butter 100g Mini,Amul,Dairy,40.6,143,Dairy,100
-SKU_1073,Amul Butter 100g Regular,Amul,Dairy,58.0,296,Dairy,100
-SKU_1074,Amul Butter 100g Value,Amul,Dairy,69.6,254,Dairy,100
-SKU_1075,Amul Butter 100g Family,Amul,Dairy,87.0,198,Dairy,100
-SKU_1076,Amul Cheese Cubes 200g Mini,Amul,Dairy,94.5,345,Dairy,200
-SKU_1077,Amul Cheese Cubes 200g Regular,Amul,Dairy,135.0,172,Dairy,200
-SKU_1078,Amul Cheese Cubes 200g Value,Amul,Dairy,162.0,226,Dairy,200
-SKU_1079,Amul Cheese Cubes 200g Family,Amul,Dairy,202.5,88,Dairy,200
-SKU_1080,Dove Soap 100g Mini,Dove,Personal Care,38.5,177,Soap,100
-SKU_1081,Dove Soap 100g Regular,Dove,Personal Care,55.0,76,Soap,100
-SKU_1082,Dove Soap 100g Value,Dove,Personal Care,66.0,221,Soap,100
-SKU_1083,Dove Soap 100g Family,Dove,Personal Care,82.5,265,Soap,100
-SKU_1084,Dove Shampoo 340ml Mini,Dove,Personal Care,203.0,197,Soap,340
-SKU_1085,Dove Shampoo 340ml Regular,Dove,Personal Care,290.0,93,Soap,340
-SKU_1086,Dove Shampoo 340ml Value,Dove,Personal Care,348.0,168,Soap,340
-SKU_1087,Dove Shampoo 340ml Family,Dove,Personal Care,435.0,350,Soap,340
-SKU_1088,Colgate Strong Teeth 200g Mini,Colgate,Personal Care,77.0,221,Toothpaste,200
-SKU_1089,Colgate Strong Teeth 200g Regular,Colgate,Personal Care,110.0,168,Toothpaste,200
-SKU_1090,Colgate Strong Teeth 200g Value,Colgate,Personal Care,132.0,315,Toothpaste,200
-SKU_1091,Colgate Strong Teeth 200g Family,Colgate,Personal Care,165.0,262,Toothpaste,200
-SKU_1092,Colgate MaxFresh 150g Mini,Colgate,Personal Care,66.5,294,Toothpaste,150
-SKU_1093,Colgate MaxFresh 150g Regular,Colgate,Personal Care,95.0,133,Toothpaste,150
-SKU_1094,Colgate MaxFresh 150g Value,Colgate,Personal Care,114.0,195,Toothpaste,150
-SKU_1095,Colgate MaxFresh 150g Family,Colgate,Personal Care,142.5,131,Toothpaste,150
-SKU_1096,Aashirvaad Atta 5kg Mini,Aashirvaad,Staples,199.5,186,Atta,5000
-SKU_1097,Aashirvaad Atta 5kg Regular,Aashirvaad,Staples,285.0,347,Atta,5000
-SKU_1098,Aashirvaad Atta 5kg Value,Aashirvaad,Staples,342.0,335,Atta,5000
-SKU_1099,Aashirvaad Atta 5kg Family,Aashirvaad,Staples,427.5,194,Atta,5000
-SKU_1100,Aashirvaad Atta 10kg Mini,Aashirvaad,Staples,378.0,359,Atta,10000
-SKU_1101,Aashirvaad Atta 10kg Regular,Aashirvaad,Staples,540.0,279,Atta,10000
-SKU_1102,Aashirvaad Atta 10kg Value,Aashirvaad,Staples,648.0,358,Atta,10000
-SKU_1103,Aashirvaad Atta 10kg Family,Aashirvaad,Staples,810.0,264,Atta,10000
-SKU_1104,Tata Salt 1kg Mini,Tata,Staples,21.0,245,Staples,1000
-SKU_1105,Tata Salt 1kg Regular,Tata,Staples,30.0,172,Staples,1000
-SKU_1106,Tata Salt 1kg Value,Tata,Staples,36.0,130,Staples,1000
-SKU_1107,Tata Salt 1kg Family,Tata,Staples,45.0,320,Staples,1000
-SKU_1108,Fortune Sunflower Oil 1L Mini,Fortune,Staples,115.5,312,Edible Oil,1000
-SKU_1109,Fortune Sunflower Oil 1L Regular,Fortune,Staples,165.0,106,Edible Oil,1000
+SKU_1000,Coca Cola 200ml Mini,Coca Cola,Beverages,18,117,Carbonated Soft Drink,200
+SKU_1001,Coca Cola 200ml Regular,Coca Cola,Beverages,21,72,Carbonated Soft Drink,200
+SKU_1002,Coca Cola 200ml Value,Coca Cola,Beverages,30,200,Carbonated Soft Drink,200
+SKU_1003,Coca Cola 200ml Family,Coca Cola,Beverages,31,185,Carbonated Soft Drink,200
+SKU_1004,Coca Cola 750ml Mini,Coca Cola,Beverages,31,174,Carbonated Soft Drink,750
+SKU_1005,Coca Cola 750ml Regular,Coca Cola,Beverages,44,131,Carbonated Soft Drink,750
+SKU_1006,Coca Cola 750ml Value,Coca Cola,Beverages,49,112,Carbonated Soft Drink,750
+SKU_1007,Coca Cola 750ml Family,Coca Cola,Beverages,74,339,Carbonated Soft Drink,750
+SKU_1008,Coca Cola 1L Mini,Coca Cola,Beverages,37,104,Carbonated Soft Drink,1000
+SKU_1009,Coca Cola 1L Regular,Coca Cola,Beverages,56,362,Carbonated Soft Drink,1000
+SKU_1010,Coca Cola 1L Value,Coca Cola,Beverages,64,276,Carbonated Soft Drink,1000
+SKU_1011,Coca Cola 1L Family,Coca Cola,Beverages,83,76,Carbonated Soft Drink,1000
+SKU_1012,Coca Cola 2L Mini,Coca Cola,Beverages,80,75,Carbonated Soft Drink,2000
+SKU_1013,Coca Cola 2L Regular,Coca Cola,Beverages,120,107,Carbonated Soft Drink,2000
+SKU_1014,Coca Cola 2L Value,Coca Cola,Beverages,145,171,Carbonated Soft Drink,2000
+SKU_1015,Coca Cola 2L Family,Coca Cola,Beverages,150,179,Carbonated Soft Drink,2000
+SKU_1016,Coke Zero 300ml Mini,Coca Cola,Beverages,29,318,Carbonated Soft Drink,300
+SKU_1017,Coke Zero 300ml Regular,Coca Cola,Beverages,47,73,Carbonated Soft Drink,300
+SKU_1018,Coke Zero 300ml Value,Coca Cola,Beverages,60,347,Carbonated Soft Drink,300
+SKU_1019,Coke Zero 300ml Family,Coca Cola,Beverages,72,161,Carbonated Soft Drink,300
+SKU_1020,Coke Zero Can 330ml Mini,Coca Cola,Beverages,38,339,Carbonated Soft Drink,330
+SKU_1021,Coke Zero Can 330ml Regular,Coca Cola,Beverages,53,274,Carbonated Soft Drink,330
+SKU_1022,Coke Zero Can 330ml Value,Coca Cola,Beverages,68,172,Carbonated Soft Drink,330
+SKU_1023,Coke Zero Can 330ml Family,Coca Cola,Beverages,77,289,Carbonated Soft Drink,330
+SKU_1024,Pepsi 250ml Mini,Pepsi,Beverages,21,361,Carbonated Soft Drink,250
+SKU_1025,Pepsi 250ml Regular,Pepsi,Beverages,22,202,Carbonated Soft Drink,250
+SKU_1026,Pepsi 250ml Value,Pepsi,Beverages,27,63,Carbonated Soft Drink,250
+SKU_1027,Pepsi 250ml Family,Pepsi,Beverages,32,141,Carbonated Soft Drink,250
+SKU_1028,Pepsi 750ml Mini,Pepsi,Beverages,38,276,Carbonated Soft Drink,750
+SKU_1029,Pepsi 750ml Regular,Pepsi,Beverages,49,234,Carbonated Soft Drink,750
+SKU_1030,Pepsi 750ml Value,Pepsi,Beverages,59,202,Carbonated Soft Drink,750
+SKU_1031,Pepsi 750ml Family,Pepsi,Beverages,61,139,Carbonated Soft Drink,750
+SKU_1032,Pepsi Black Can 330ml Mini,Pepsi,Beverages,42,170,Carbonated Soft Drink,330
+SKU_1033,Pepsi Black Can 330ml Regular,Pepsi,Beverages,49,232,Carbonated Soft Drink,330
+SKU_1034,Pepsi Black Can 330ml Value,Pepsi,Beverages,64,112,Carbonated Soft Drink,330
+SKU_1035,Pepsi Black Can 330ml Family,Pepsi,Beverages,73,107,Carbonated Soft Drink,330
+SKU_1036,Lay's Classic Salted 52g Mini,Lay's,Snacks,18,254,Dairy Beverage,52
+SKU_1037,Lay's Classic Salted 52g Regular,Lay's,Snacks,22,109,Dairy Beverage,52
+SKU_1038,Lay's Classic Salted 52g Value,Lay's,Snacks,25,243,Dairy Beverage,52
+SKU_1039,Lay's Classic Salted 52g Family,Lay's,Snacks,34,236,Dairy Beverage,52
+SKU_1040,Lay's Magic Masala 52g Mini,Lay's,Snacks,17,195,Snacks,52
+SKU_1041,Lay's Magic Masala 52g Regular,Lay's,Snacks,22,82,Snacks,52
+SKU_1042,Lay's Magic Masala 52g Value,Lay's,Snacks,30,295,Snacks,52
+SKU_1043,Lay's Magic Masala 52g Family,Lay's,Snacks,35,334,Snacks,52
+SKU_1044,Lay's Cream & Onion 90g Mini,Lay's,Snacks,36,123,Snacks,90
+SKU_1045,Lay's Cream & Onion 90g Regular,Lay's,Snacks,49,253,Snacks,90
+SKU_1046,Lay's Cream & Onion 90g Value,Lay's,Snacks,61,100,Snacks,90
+SKU_1047,Lay's Cream & Onion 90g Family,Lay's,Snacks,75,342,Snacks,90
+SKU_1048,Kurkure Masala Munch 90g Mini,Kurkure,Snacks,17,210,Potato Chips,90
+SKU_1049,Kurkure Masala Munch 90g Regular,Kurkure,Snacks,22,245,Potato Chips,90
+SKU_1050,Kurkure Masala Munch 90g Value,Kurkure,Snacks,29,355,Potato Chips,90
+SKU_1051,Kurkure Masala Munch 90g Family,Kurkure,Snacks,44,158,Potato Chips,90
+SKU_1052,Kurkure Green Chutney 90g Mini,Kurkure,Snacks,16,95,Potato Chips,90
+SKU_1053,Kurkure Green Chutney 90g Regular,Kurkure,Snacks,22,83,Potato Chips,90
+SKU_1054,Kurkure Green Chutney 90g Value,Kurkure,Snacks,27,176,Potato Chips,90
+SKU_1055,Kurkure Green Chutney 90g Family,Kurkure,Snacks,32,208,Potato Chips,90
+SKU_1056,Maggi 70g Mini,Nestle,Packaged Foods,13,100,Packaged Foods,70
+SKU_1057,Maggi 70g Regular,Nestle,Packaged Foods,16,179,Packaged Foods,70
+SKU_1058,Maggi 70g Value,Nestle,Packaged Foods,22,111,Packaged Foods,70
+SKU_1059,Maggi 70g Family,Nestle,Packaged Foods,24,254,Packaged Foods,70
+SKU_1060,Maggi Family Pack 280g Mini,Nestle,Packaged Foods,55,202,Packaged Foods,280
+SKU_1061,Maggi Family Pack 280g Regular,Nestle,Packaged Foods,77,292,Packaged Foods,280
+SKU_1062,Maggi Family Pack 280g Value,Nestle,Packaged Foods,85,246,Packaged Foods,280
+SKU_1063,Maggi Family Pack 280g Family,Nestle,Packaged Foods,110,143,Packaged Foods,280
+SKU_1064,Amul Milk 500ml Mini,Amul,Dairy,23,249,Dairy Beverage,500
+SKU_1065,Amul Milk 500ml Regular,Amul,Dairy,31,241,Dairy Beverage,500
+SKU_1066,Amul Milk 500ml Value,Amul,Dairy,40,167,Dairy Beverage,500
+SKU_1067,Amul Milk 500ml Family,Amul,Dairy,53,196,Dairy Beverage,500
+SKU_1068,Amul Milk 1L Mini,Amul,Dairy,45,96,Dairy Beverage,1000
+SKU_1069,Amul Milk 1L Regular,Amul,Dairy,76,147,Dairy Beverage,1000
+SKU_1070,Amul Milk 1L Value,Amul,Dairy,83,333,Dairy Beverage,1000
+SKU_1071,Amul Milk 1L Family,Amul,Dairy,105,185,Dairy Beverage,1000
+SKU_1072,Amul Butter 100g Mini,Amul,Dairy,43,143,Dairy,100
+SKU_1073,Amul Butter 100g Regular,Amul,Dairy,61,296,Dairy,100
+SKU_1074,Amul Butter 100g Value,Amul,Dairy,85,254,Dairy,100
+SKU_1075,Amul Butter 100g Family,Amul,Dairy,95,198,Dairy,100
+SKU_1076,Amul Cheese Cubes 200g Mini,Amul,Dairy,105,345,Dairy,200
+SKU_1077,Amul Cheese Cubes 200g Regular,Amul,Dairy,165,172,Dairy,200
+SKU_1078,Amul Cheese Cubes 200g Value,Amul,Dairy,210,226,Dairy,200
+SKU_1079,Amul Cheese Cubes 200g Family,Amul,Dairy,220,88,Dairy,200
+SKU_1080,Dove Soap 100g Mini,Dove,Personal Care,45,177,Soap,100
+SKU_1081,Dove Soap 100g Regular,Dove,Personal Care,65,76,Soap,100
+SKU_1082,Dove Soap 100g Value,Dove,Personal Care,83,221,Soap,100
+SKU_1083,Dove Soap 100g Family,Dove,Personal Care,87,265,Soap,100
+SKU_1084,Dove Shampoo 340ml Mini,Dove,Personal Care,230,197,Soap,340
+SKU_1085,Dove Shampoo 340ml Regular,Dove,Personal Care,335,93,Soap,340
+SKU_1086,Dove Shampoo 340ml Value,Dove,Personal Care,455,168,Soap,340
+SKU_1087,Dove Shampoo 340ml Family,Dove,Personal Care,510,350,Soap,340
+SKU_1088,Colgate Strong Teeth 200g Mini,Colgate,Personal Care,93,221,Toothpaste,200
+SKU_1089,Colgate Strong Teeth 200g Regular,Colgate,Personal Care,110,168,Toothpaste,200
+SKU_1090,Colgate Strong Teeth 200g Value,Colgate,Personal Care,150,315,Toothpaste,200
+SKU_1091,Colgate Strong Teeth 200g Family,Colgate,Personal Care,190,262,Toothpaste,200
+SKU_1092,Colgate MaxFresh 150g Mini,Colgate,Personal Care,78,294,Toothpaste,150
+SKU_1093,Colgate MaxFresh 150g Regular,Colgate,Personal Care,105,133,Toothpaste,150
+SKU_1094,Colgate MaxFresh 150g Value,Colgate,Personal Care,150,195,Toothpaste,150
+SKU_1095,Colgate MaxFresh 150g Family,Colgate,Personal Care,175,131,Toothpaste,150
+SKU_1096,Aashirvaad Atta 5kg Mini,Aashirvaad,Staples,200,186,Atta,5000
+SKU_1097,Aashirvaad Atta 5kg Regular,Aashirvaad,Staples,290,347,Atta,5000
+SKU_1098,Aashirvaad Atta 5kg Value,Aashirvaad,Staples,430,335,Atta,5000
+SKU_1099,Aashirvaad Atta 5kg Family,Aashirvaad,Staples,535,194,Atta,5000
+SKU_1100,Aashirvaad Atta 10kg Mini,Aashirvaad,Staples,440,359,Atta,10000
+SKU_1101,Aashirvaad Atta 10kg Regular,Aashirvaad,Staples,655,279,Atta,10000
+SKU_1102,Aashirvaad Atta 10kg Value,Aashirvaad,Staples,800,358,Atta,10000
+SKU_1103,Aashirvaad Atta 10kg Family,Aashirvaad,Staples,855,264,Atta,10000
+SKU_1104,Tata Salt 1kg Mini,Tata,Staples,22,245,Staples,1000
+SKU_1105,Tata Salt 1kg Regular,Tata,Staples,34,172,Staples,1000
+SKU_1106,Tata Salt 1kg Value,Tata,Staples,35,130,Staples,1000
+SKU_1107,Tata Salt 1kg Family,Tata,Staples,51,320,Staples,1000
+SKU_1108,Fortune Sunflower Oil 1L Mini,Fortune,Staples,145,312,Edible Oil,1000
+SKU_1109,Fortune Sunflower Oil 1L Regular,Fortune,Staples,195,106,Edible Oil,1000
+SKU_1110,Amul ice cream 70 gm,Amul,Dairy,35,180,Frozen desert,70

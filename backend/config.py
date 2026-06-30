@@ -12,6 +12,16 @@ MEDIUM_DATA_THRESHOLD = 1000
 HIGH_DATA_THRESHOLD = 5000
 MIN_ENGINE2_CONFIDENCE = 0.10
 
+# Demand Surge Pricing Configuration (E5 Event Pricing)
+MAX_EVENT_PRICE_INCREASE = 0.20  # Configurable maximum price increase (20%)
+MIN_EVENT_PRICE_INCREASE = 0.01  # Configurable minimum price increase (1%)
+EVENT_WARNING_MULTIPLIER = 20    # Sanity-check threshold multiplier compared to daily velocity
+ENABLE_EVENT_DEMAND_SANITY_CHECK = True  # Enable/disable demand validation warnings
+
+# MRP Validation Layer Configurations
+ENABLE_MRP_VALIDATION = True   # Enable Maximum Retail Price validation layer
+STRICT_MRP_VALIDATION = True   # Fail on missing/invalid MRPs if True, else log and skip
+
 
 # Developer/Base Model Training Datasets Directory (Preserved for ML Dev/Testing/Training)
 DEV_DATA_DIR = os.path.join(PROJECT_ROOT, "datasets")

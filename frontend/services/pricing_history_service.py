@@ -43,7 +43,16 @@ COLUMNS = [
     "price_before_event",
     "event_opportunity_score",
     "event_uplift_pct",
-    "event_uplift_amount"
+    "event_uplift_amount",
+    "expected_event_demand",
+    "available_inventory",
+    "inventory_shortage",
+    "inventory_coverage",
+    "elasticity",
+    "recommended_price_increase_pct",
+    "mrp",
+    "price_before_mrp",
+    "mrp_limit_applied"
 ]
 
 def save_pricing_decision(
@@ -84,7 +93,16 @@ def save_pricing_decision(
     price_before_event: float = None,
     event_opportunity_score: float = None,
     event_uplift_pct: float = None,
-    event_uplift_amount: float = None
+    event_uplift_amount: float = None,
+    expected_event_demand: float = None,
+    available_inventory: float = None,
+    inventory_shortage: float = None,
+    inventory_coverage: float = None,
+    elasticity: float = None,
+    recommended_price_increase_pct: float = None,
+    mrp: float = None,
+    price_before_mrp: float = None,
+    mrp_limit_applied: bool = False
 ):
     """
     Saves a pricing decision to customer_data/pricing_history.csv.
@@ -131,7 +149,16 @@ def save_pricing_decision(
         "price_before_event": round(float(price_before_event), 4) if price_before_event is not None else None,
         "event_opportunity_score": round(float(event_opportunity_score), 4) if event_opportunity_score is not None else None,
         "event_uplift_pct": round(float(event_uplift_pct), 4) if event_uplift_pct is not None else None,
-        "event_uplift_amount": round(float(event_uplift_amount), 4) if event_uplift_amount is not None else None
+        "event_uplift_amount": round(float(event_uplift_amount), 4) if event_uplift_amount is not None else None,
+        "expected_event_demand": round(float(expected_event_demand), 4) if expected_event_demand is not None else None,
+        "available_inventory": round(float(available_inventory), 4) if available_inventory is not None else None,
+        "inventory_shortage": round(float(inventory_shortage), 4) if inventory_shortage is not None else None,
+        "inventory_coverage": round(float(inventory_coverage), 4) if inventory_coverage is not None else None,
+        "elasticity": round(float(elasticity), 4) if elasticity is not None else None,
+        "recommended_price_increase_pct": round(float(recommended_price_increase_pct), 4) if recommended_price_increase_pct is not None else None,
+        "mrp": round(float(mrp), 4) if mrp is not None else None,
+        "price_before_mrp": round(float(price_before_mrp), 4) if price_before_mrp is not None else None,
+        "mrp_limit_applied": bool(mrp_limit_applied)
     }
 
     df_new = pd.DataFrame([record])

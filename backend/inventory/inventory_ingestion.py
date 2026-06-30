@@ -285,6 +285,7 @@ def deduct_inventory_from_sales(sales_df: pd.DataFrame):
     Deducts the units sold in sales_df from the current stock in inventory_current.csv.
     Clamps the remaining stock to 0.
     Updates last_updated timestamp for modified products.
+    Also recalculates and updates sales_velocity_per_day based on the updated sales history.
     """
     try:
         # Load inventory via repository
@@ -302,11 +303,22 @@ def deduct_inventory_from_sales(sales_df: pd.DataFrame):
         updated = False
         timestamp_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+        # Load sales history to recalculate velocity
+        sales_history_path = cfg.CUSTOMER_SALES_PATH
+        df_sales_history = None
+        if os.path.exists(sales_history_path):
+            try:
+                df_sales_history = pd.read_csv(sales_history_path)
+                df_sales_history["product_id"] = df_sales_history["product_id"].astype(str).str.strip()
+                df_sales_history["date"] = pd.to_datetime(df_sales_history["date"])
+            except Exception as se:
+                logger.error(f"Failed to load/parse sales history for velocity calculations: {str(se)}")
+
         for prod_id, qty in sales_agg.items():
             prod_id_str = str(prod_id).strip()
             mask = df_inv["product_id"] == prod_id_str
             if mask.any():
-                # Get current stock
+                # 1. Get current stock and deduct
                 current_stock = pd.to_numeric(df_inv.loc[mask, "current_stock"], errors='coerce').fillna(0).values[0]
                 new_stock = max(0.0, float(current_stock) - float(qty))
                 # Preserve integer representation if originally float/int integer-valued
@@ -314,11 +326,32 @@ def deduct_inventory_from_sales(sales_df: pd.DataFrame):
                     new_stock = int(new_stock)
                 df_inv.loc[mask, "current_stock"] = new_stock
                 df_inv.loc[mask, "last_updated"] = timestamp_str
+
+                # 2. Recalculate sales velocity if history is available
+                if df_sales_history is not None:
+                    sku_sales = df_sales_history[df_sales_history["product_id"] == prod_id_str]
+                    if not sku_sales.empty:
+                        max_date_global = df_sales_history["date"].max()
+                        first_sale = sku_sales["date"].min()
+                        
+                        active_days = (max_date_global - first_sale).days + 1
+                        divisor = min(30, active_days)
+                        if divisor <= 0:
+                            divisor = 1
+                            
+                        cutoff_30 = max_date_global - pd.Timedelta(days=30)
+                        sales_30 = sku_sales[sku_sales["date"] >= cutoff_30]
+                        units_30 = pd.to_numeric(sales_30["units_sold"], errors='coerce').fillna(0).sum()
+                        
+                        velocity = round(float(units_30 / divisor), 3)
+                        df_inv.loc[mask, "sales_velocity_per_day"] = velocity
+                        logger.info(f"Updated sales velocity for SKU {prod_id_str} to {velocity} (units_30: {units_30}, divisor: {divisor})")
+
                 updated = True
 
         if updated:
             save_current_inventory(df_inv)
-            logger.info("Successfully updated current stock levels in inventory based on sales.")
+            logger.info("Successfully updated current stock levels and sales velocity in inventory based on sales.")
     except Exception as e:
         logger.error(f"Error deducting inventory from sales: {str(e)}")
 

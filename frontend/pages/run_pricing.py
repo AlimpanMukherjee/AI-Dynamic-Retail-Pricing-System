@@ -35,8 +35,9 @@ def show_page():
     st.markdown(f"🏢 **Active Retailer**: `{selected_retailer}`")
 
     # Event Intelligence section
-    st.subheader("🎪 Event Intelligence")
-    event_active = st.checkbox("Special Event Nearby", value=False)
+    st.subheader("🎪 Event Pricing")
+    event_active = st.checkbox("Enable Event Pricing", value=False)
+    projected_event_demand = 0.0
     event_type = "Other"
     attendance = 0
     distance_km = 2.0
@@ -44,36 +45,14 @@ def show_page():
     event_time_of_day = "Evening"
     
     if event_active:
-        col_evt1, col_evt2 = st.columns(2)
-        with col_evt1:
-            event_type = st.selectbox(
-                "Event Type",
-                ["Festival", "Sports Match", "Concert", "Political Rally", "Local Fair", "Other"]
-            )
-            attendance = st.number_input(
-                "Expected Attendance",
-                min_value=0,
-                value=5000,
-                step=1000
-            )
-        with col_evt2:
-            distance_km = st.number_input(
-                "Distance From Store (km)",
-                min_value=0.1,
-                value=2.0,
-                step=0.5
-            )
-            duration_hours = st.number_input(
-                "Event Duration (hours)",
-                min_value=1.0,
-                value=4.0,
-                step=1.0
-            )
-            event_time_of_day = st.selectbox(
-                "Event Time of Day",
-                ["Morning", "Afternoon", "Evening", "Night"],
-                index=2
-            )
+        projected_event_demand = st.number_input(
+            "Projected Demand During Event (Units)",
+            min_value=0.0,
+            value=450.0,
+            step=50.0,
+            help="Expected total demand for this product during the event period."
+        )
+        attendance = int(projected_event_demand)
 
     st.markdown("---")
 
@@ -90,7 +69,8 @@ def show_page():
                     attendance=int(attendance),
                     distance_km=float(distance_km),
                     duration_hours=float(duration_hours),
-                    event_time_of_day=event_time_of_day
+                    event_time_of_day=event_time_of_day,
+                    projected_event_demand=float(projected_event_demand)
                 )
             
             st.success("✅ Pricing Calculation Completed!")
@@ -105,27 +85,57 @@ def show_page():
             conf_score = price_conf.get("confidence_score", round(confidence * 100, 1))
             conf_level = price_conf.get("confidence_level", "High" if conf_score >= 80 else "Medium" if conf_score >= 50 else "Low")
 
-            banner_html = f"""
-            <div style="
-                background-color: #d4edda;
-                border: 1px solid #c3e6cb;
-                border-radius: 8px;
-                padding: 2rem;
-                text-align: center;
-                margin-bottom: 2rem;
-                box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 120, 0.05);
-            ">
-                <h3 style="color: #155724; margin: 0; font-size: 1.1rem; font-weight: 600; text-transform: uppercase;">
-                    Final Optimized Price
-                </h3>
-                <h1 style="color: #155724; margin: 0.5rem 0; font-size: 3.2rem; font-weight: 800;">
-                    ₹{final_price:.2f}
-                </h1>
-                <p style="color: #155724; margin: 0; font-size: 1rem; font-weight: bold;">
-                    Confidence Score: {conf_score}% ({conf_level} Level) &nbsp;|&nbsp; Winning Candidate: ₹{winning_candidate:.2f}
-                </p>
-            </div>
-            """
+            mrp_limit_applied = result.get("mrp_limit_applied", False)
+            price_before_mrp = result.get("price_before_mrp", final_price)
+            mrp = result.get("mrp")
+
+            if mrp_limit_applied:
+                banner_html = f"""
+                <div style="
+                    background-color: #fff3cd;
+                    border: 1px solid #ffeeba;
+                    border-radius: 8px;
+                    padding: 1.5rem;
+                    text-align: center;
+                    margin-bottom: 2rem;
+                    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 120, 0.05);
+                ">
+                    <h3 style="color: #856404; margin: 0; font-size: 1rem; font-weight: 600; text-transform: uppercase;">
+                        Calculated Price: ₹{price_before_mrp:.2f}
+                    </h3>
+                    <h1 style="color: #856404; margin: 0.5rem 0; font-size: 3.2rem; font-weight: 800;">
+                        ₹{final_price:.2f}
+                    </h1>
+                    <p style="color: #721c24; margin: 0; font-size: 1.1rem; font-weight: bold;">
+                        ⚠️ Selling price capped at product MRP.
+                    </p>
+                    <p style="color: #856404; margin: 0.5rem 0 0 0; font-size: 0.9rem;">
+                        Confidence Score: {conf_score}% ({conf_level} Level) &nbsp;|&nbsp; Winning Candidate: ₹{winning_candidate:.2f}
+                    </p>
+                </div>
+                """
+            else:
+                banner_html = f"""
+                <div style="
+                    background-color: #d4edda;
+                    border: 1px solid #c3e6cb;
+                    border-radius: 8px;
+                    padding: 2rem;
+                    text-align: center;
+                    margin-bottom: 2rem;
+                    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 120, 0.05);
+                ">
+                    <h3 style="color: #155724; margin: 0; font-size: 1.1rem; font-weight: 600; text-transform: uppercase;">
+                        Final Optimized Price
+                    </h3>
+                    <h1 style="color: #155724; margin: 0.5rem 0; font-size: 3.2rem; font-weight: 800;">
+                        ₹{final_price:.2f}
+                    </h1>
+                    <p style="color: #155724; margin: 0; font-size: 1rem; font-weight: bold;">
+                        Confidence Score: {conf_score}% ({conf_level} Level) &nbsp;|&nbsp; Winning Candidate: ₹{winning_candidate:.2f}
+                    </p>
+                </div>
+                """
             st.markdown(banner_html, unsafe_allow_html=True)
 
             # Price Composition Waterfall Section
@@ -260,8 +270,31 @@ def show_page():
                 import numpy as np
                 import pandas as pd
                 import plotly.express as px
+                import os
+                import backend.config as cfg
                 
-                price_points = np.linspace(opt_price * 0.5, opt_price * 1.5, 45)
+                products_path = cfg.CUSTOMER_PRODUCTS_PATH
+                if not os.path.exists(products_path):
+                    products_path = cfg.DEV_PRODUCTS_PATH
+                    
+                product_mrp = 9999.0
+                try:
+                    df_prod = pd.read_csv(products_path)
+                    p_row = df_prod[df_prod["product_id"].astype(str).str.strip() == str(selected_prod["id"]).strip()]
+                    if not p_row.empty:
+                        base_market_price = float(p_row.iloc[0].get("base_market_price", 0.0))
+                        product_mrp = float(p_row.iloc[0].get("mrp", base_market_price * 1.25))
+                except Exception:
+                    pass
+
+                minimum_safe_price = float(pricing_state.get("E1", {}).get("minimum_safe_price", opt_price * 0.5))
+                
+                min_graph_price = minimum_safe_price
+                max_graph_price = product_mrp
+                if min_graph_price >= max_graph_price:
+                    min_graph_price = max_graph_price * 0.5
+                
+                price_points = np.linspace(min_graph_price, max_graph_price, 45)
                 eps = min(0.0, elasticity)
                 demand_points = [float(exp_demand * ((p / opt_price) ** eps)) for p in price_points]
                 
@@ -327,49 +360,45 @@ def show_page():
             # Row 3: E5 (only if event is active)
             if pricing_state.get("event_active"):
                 st.markdown("---")
-                st.subheader("🎪 E5: Event Intelligence")
+                st.subheader("🎪 E5: Event Pricing")
                 e5 = pricing_state.get("E5", {})
 
-                event_type_val = e5.get("event_type", "Other")
-                attendance_val = e5.get("attendance", 0)
-                distance_km_val = e5.get("distance_km", 0.0)
-                duration_hours_val = e5.get("duration_hours", 0.0)
-                event_strength_val = e5.get("event_strength", 0.0)
-                product_category_val = e5.get("product_category", "Other")
-                
-                # Demand Analysis values
-                expected_demand_val = e5.get("expected_demand", 0.0)
-                event_demand_multiplier_val = e5.get("event_multiplier", 1.0)
-                predicted_event_demand_val = e5.get("predicted_event_demand", 0.0)
+                projected_demand_val = e5.get("projected_demand", 0.0)
                 available_inventory_val = e5.get("available_inventory", 0.0)
-                expected_shortage_val = e5.get("expected_shortage", 0.0)
+                inventory_shortage_val = e5.get("inventory_shortage", 0.0)
+                inventory_coverage_val = e5.get("inventory_coverage", 1.0)
+                scarcity_score_val = e5.get("scarcity_score", 0.0)
+                elasticity_val = e5.get("elasticity", -1.5)
+                elasticity_factor_val = e5.get("elasticity_factor", 1.0)
+                recommended_price_increase_pct_val = e5.get("recommended_price_increase_pct", 0.0)
+                estimated_demand_after_increase_val = e5.get("estimated_demand_after_increase", 0.0)
+                projected_inventory_coverage_val = e5.get("projected_inventory_coverage", 1.0)
+                stock_sufficient_val = e5.get("stock_sufficient", True)
+                warnings_list = e5.get("warnings", [])
+                reasoning_list = e5.get("reasoning", [])
                 
-                # Pricing Decision values
-                required_demand_reduction_val = e5.get("required_demand_reduction", 0.0)
-                elasticity_val = e5.get("elasticity", 1.5)
-                recommended_uplift_pct_val = e5.get("recommended_uplift_pct", 0.0)
                 event_uplift_amount_val = e5.get("event_price_increase", 0.0)
                 final_price_val = e5.get("final_price", 0.0)
-                constraint_applied_val = e5.get("constraint_applied", "None")
+                confidence_val = e5.get("confidence", "High")
                 pricing_reason = e5.get("reason", "")
-                confidence_val = e5.get("confidence", "Medium")
 
-                has_shortage = expected_shortage_val >= 5.0
+                # Render Warnings if any
+                if warnings_list:
+                    for warning in warnings_list:
+                        st.warning(warning)
 
-                col_e5_1, col_e5_2, col_e5_3 = st.columns(3)
+                col_e5_1, col_e5_2 = st.columns(2)
 
                 with col_e5_1:
                     st.markdown(
                         f"""
                         <div style="padding: 1rem; border-radius: 8px; border-left: 4px solid #6f42c1; background-color: #f8f9fc; height: 100%;">
-                            <h4 style="margin-top: 0; color: #6f42c1; font-weight: bold;">Event Analysis</h4>
+                            <h4 style="margin-top: 0; color: #6f42c1; font-weight: bold;">Demand Surge Analysis</h4>
                             <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-                                <tr><td style="padding: 4px 0;"><b>Event Type:</b></td><td style="text-align: right;">{event_type_val}</td></tr>
-                                <tr><td style="padding: 4px 0;"><b>Attendance:</b></td><td style="text-align: right;">{attendance_val:,}</td></tr>
-                                <tr><td style="padding: 4px 0;"><b>Distance:</b></td><td style="text-align: right;">{distance_km_val:.1f} km</td></tr>
-                                <tr><td style="padding: 4px 0;"><b>Duration:</b></td><td style="text-align: right;">{duration_hours_val:.1f} hr</td></tr>
-                                <tr><td style="padding: 4px 0;"><b>Category:</b></td><td style="text-align: right;">{product_category_val}</td></tr>
-                                <tr><td style="padding: 4px 0; font-weight: bold;"><b>Event Strength:</b></td><td style="text-align: right; font-weight: bold; color: #6f42c1;">{event_strength_val * 100:.1f}%</td></tr>
+                                <tr><td style="padding: 4px 0;"><b>Expected Demand:</b></td><td style="text-align: right;">{projected_demand_val:,.0f} Units</td></tr>
+                                <tr><td style="padding: 4px 0;"><b>Available Inventory:</b></td><td style="text-align: right;">{available_inventory_val:,.0f} Units</td></tr>
+                                <tr><td style="padding: 4px 0; font-weight: bold;"><b>Inventory Coverage:</b></td><td style="text-align: right; font-weight: bold; color: {'#1cc88a' if stock_sufficient_val else '#f6c23e'};">{inventory_coverage_val * 100:.0f}%</td></tr>
+                                <tr><td style="padding: 4px 0; color: {'#e74a3b' if not stock_sufficient_val else '#1cc88a'};"><b>Inventory Shortage:</b></td><td style="text-align: right; font-weight: bold; color: {'#e74a3b' if not stock_sufficient_val else '#1cc88a'};">{inventory_shortage_val:,.0f} Units</td></tr>
                             </table>
                         </div>
                         """,
@@ -379,66 +408,25 @@ def show_page():
                 with col_e5_2:
                     st.markdown(
                         f"""
-                        <div style="padding: 1rem; border-radius: 8px; border-left: 4px solid #f6c23e; background-color: #f8f9fc; height: 100%;">
-                            <h4 style="margin-top: 0; color: #f6c23e; font-weight: bold;">Demand Analysis</h4>
+                        <div style="padding: 1rem; border-radius: 8px; border-left: 4px solid #1cc88a; background-color: #f8f9fc; height: 100%;">
+                            <h4 style="margin-top: 0; color: #1cc88a; font-weight: bold;">Pricing Recommendation</h4>
                             <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-                                <tr><td style="padding: 4px 0;"><b>Daily Demand:</b></td><td style="text-align: right;">{expected_demand_val:,.1f}</td></tr>
-                                <tr><td style="padding: 4px 0;"><b>Demand Mult:</b></td><td style="text-align: right;">{event_demand_multiplier_val:.2f}x</td></tr>
-                                <tr><td style="padding: 4px 0; font-weight: bold;"><b>Event Demand:</b></td><td style="text-align: right; font-weight: bold;">{predicted_event_demand_val:,.1f}</td></tr>
-                                <tr><td style="padding: 4px 0;"><b>Available Stock:</b></td><td style="text-align: right;">{available_inventory_val:,.0f}</td></tr>
-                                <tr><td style="padding: 4px 0; color: {'#e74a3b' if has_shortage else '#1cc88a'};"><b>Expected Shortage:</b></td><td style="text-align: right; font-weight: bold; color: {'#e74a3b' if has_shortage else '#1cc88a'};">{expected_shortage_val:,.1f}</td></tr>
+                                <tr><td style="padding: 4px 0;"><b>Elasticity:</b></td><td style="text-align: right;">-{abs(elasticity_val):.2f}</td></tr>
+                                <tr><td style="padding: 4px 0;"><b>Elasticity Factor:</b></td><td style="text-align: right;">{elasticity_factor_val:.2f}</td></tr>
+                                <tr><td style="padding: 4px 0; color: #6f42c1;"><b>Recommended Increase:</b></td><td style="text-align: right; font-weight: bold; color: #6f42c1;">{recommended_price_increase_pct_val * 100:.1f}%</td></tr>
+                                <tr><td style="padding: 4px 0; color: #36b9cc;"><b>Projected Demand After Increase:</b></td><td style="text-align: right; font-size: 0.85rem; color: #36b9cc;">~ {estimated_demand_after_increase_val:,.0f} Units (Estimated)</td></tr>
+                                <tr><td style="padding: 4px 0; font-weight: bold; color: #4e73df;"><b>Projected Inventory Coverage:</b></td><td style="text-align: right; font-weight: bold; color: #4e73df;">{projected_inventory_coverage_val * 100:.0f}%</td></tr>
+                                <tr><td style="padding: 4px 0; font-weight: bold; font-size: 1rem;"><b>Final Price:</b></td><td style="text-align: right; font-weight: bold; font-size: 1rem;">₹{final_price_val:.2f}</td></tr>
                             </table>
                         </div>
                         """,
                         unsafe_allow_html=True
                     )
 
-                with col_e5_3:
-                    if has_shortage:
-                        st.markdown(
-                            f"""
-                            <div style="padding: 1rem; border-radius: 8px; border-left: 4px solid #e74a3b; background-color: #f8f9fc; height: 100%;">
-                                <h4 style="margin-top: 0; color: #e74a3b; font-weight: bold;">Pricing Decision</h4>
-                                <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-                                    <tr><td style="padding: 4px 0;"><b>Price Elasticity:</b></td><td style="text-align: right;">{elasticity_val:.2f}</td></tr>
-                                    <tr><td style="padding: 4px 0;"><b>Req. Reduction:</b></td><td style="text-align: right; font-weight: bold; color: #e74a3b;">{required_demand_reduction_val * 100:.1f}%</td></tr>
-                                    <tr><td style="padding: 4px 0;"><b>Uplift Cap Applied:</b></td><td style="text-align: right;">{constraint_applied_val}</td></tr>
-                                    <tr><td style="padding: 4px 0; color: #6f42c1;"><b>Rec. Price Uplift:</b></td><td style="text-align: right; font-weight: bold; color: #6f42c1;">{recommended_uplift_pct_val * 100:.1f}%</td></tr>
-                                    <tr><td style="padding: 4px 0; color: #1cc88a;"><b>Price Increase:</b></td><td style="text-align: right; font-weight: bold; color: #1cc88a;">₹{event_uplift_amount_val:.2f}</td></tr>
-                                    <tr><td style="padding: 4px 0; font-weight: bold;"><b>Final Price:</b></td><td style="text-align: right; font-weight: bold; font-size: 1rem;">₹{final_price_val:.2f}</td></tr>
-                                </table>
-                            </div>
-                            """,
-                            unsafe_allow_html=True
-                        )
-                    else:
-                        st.markdown(
-                            f"""
-                            <div style="padding: 1rem; border-radius: 8px; border-left: 4px solid #1cc88a; background-color: #f8f9fc; height: 100%;">
-                                <h4 style="margin-top: 0; color: #1cc88a; font-weight: bold;">Pricing Decision</h4>
-                                <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-                                    <tr><td style="padding: 4px 0;"><b>Price Elasticity:</b></td><td style="text-align: right;">{elasticity_val:.2f}</td></tr>
-                                    <tr><td style="padding: 4px 0;"><b>Req. Reduction:</b></td><td style="text-align: right;">0.0%</td></tr>
-                                    <tr><td style="padding: 4px 0;"><b>Rec. Price Uplift:</b></td><td style="text-align: right;">0.0%</td></tr>
-                                    <tr><td style="padding: 4px 0;"><b>Price Increase:</b></td><td style="text-align: right;">₹0.00</td></tr>
-                                    <tr><td style="padding: 4px 0; font-weight: bold;"><b>Final Price:</b></td><td style="text-align: right; font-weight: bold;">₹{final_price_val:.2f}</td></tr>
-                                </table>
-                            </div>
-                            """,
-                            unsafe_allow_html=True
-                        )
-                
-                # Show logical explanation below the cards
-                explanation_color = "#1cc88a" if not has_shortage else "#4e73df"
-                st.markdown(
-                    f"""
-                    <div style="margin-top: 1rem; padding: 0.8rem; border-radius: 6px; background-color: #eaecf4; font-size: 0.9rem; color: #2e59d9; font-weight: bold; border-left: 4px solid {explanation_color};">
-                        📢 Prediction Quality Confidence: <span style="text-transform: uppercase;">{confidence_val}</span> &nbsp;|&nbsp; 
-                        <i>{pricing_reason}</i>
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-                )
+                # Show reasoning list below
+                st.markdown("##### 📋 Reasoning")
+                for bullet in reasoning_list:
+                    st.markdown(bullet)
 
             st.markdown("---")
 

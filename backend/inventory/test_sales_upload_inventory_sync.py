@@ -129,19 +129,20 @@ def test_sales_upload_inventory_sync(tmp_path, monkeypatch):
     df_curr_inv = load_current_inventory()
     sku_row = df_curr_inv[df_curr_inv["product_id"] == "SKU_1000"].iloc[0]
     assert sku_row["current_stock"] == 100
-
+    assert sku_row["sales_velocity_per_day"] == 1900.0
+ 
     # 3. Action: Run Pricing Pipeline
     result = run_coordinated_pricing(
         product_id="SKU_1000",
         retailer_company="Reliance Retail",
         store_location="Bengaluru"
     )
-
+ 
     # 4. Verify Engine 3 Stock = 100
     e3_state = result["pricing_state"]["E3"]
     assert e3_state["net_stock"] == 100
-    # Expected days_of_supply = 100 / 30 = 3.3
-    assert abs(e3_state["days_of_supply"] - 3.3) < 0.2
+    # Expected days_of_supply = 100 / 1900 = 0.0526... rounded to 1 decimal place is 0.1
+    assert abs(e3_state["days_of_supply"] - 0.1) < 0.01
 
     # 5. Verify Dashboard stock = 100
     dashboard_summary = get_inventory_summary()

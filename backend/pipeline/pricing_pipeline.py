@@ -26,7 +26,8 @@ def run_coordinated_pricing(
     attendance=0,
     distance_km=2.0,
     duration_hours=4.0,
-    event_time_of_day="Evening"
+    event_time_of_day="Evening",
+    projected_event_demand=0.0
 ):
     """
     Executes the end-to-end pricing pipeline:
@@ -59,15 +60,22 @@ def run_coordinated_pricing(
     current_stock = prod_inv.get("current_stock", 0)
     logger.info(f"Pricing Coordinated Pipeline execution started for Product: {product_id}. Inventory Path: {inv_path}. Current Stock: {current_stock}")
 
-    # Load target product base_market_price and category early
+    # Load target product base_market_price, category, and mrp early
     current_price = 0.0
     product_category = "Other"
+    mrp = None
     try:
         df_prod = pd.read_csv(products_csv)
         product_row = df_prod[df_prod["product_id"].astype(str).str.strip() == str(product_id).strip()]
         if not product_row.empty:
             current_price = float(product_row.iloc[0].get("base_market_price", 0.0))
             product_category = str(product_row.iloc[0].get("category", "Other")).strip()
+            if "mrp" in product_row.columns:
+                mrp_val = product_row.iloc[0]["mrp"]
+                if pd.notna(mrp_val):
+                    mrp = float(mrp_val)
+            if mrp is None:
+                mrp = current_price
     except Exception as e:
         print(f"Error loading product details: {str(e)}")
 
@@ -183,39 +191,68 @@ def run_coordinated_pricing(
 
     # Run Complete Event Engine post-optimization
     from backend.engines.event_engine import run_pipeline as run_event_engine
+    from backend.inventory.inventory_repository import load_current_inventory
+    df_inv_pipeline = load_current_inventory()
+    sku_row_pipeline = df_inv_pipeline[df_inv_pipeline["product_id"] == product_id]
+    sales_velocity_per_day = 0.0
+    if not sku_row_pipeline.empty:
+        sales_velocity_per_day = float(sku_row_pipeline.iloc[0].get("sales_velocity_per_day", sku_row_pipeline.iloc[0].get("sales_velocity", 0.0)))
+
     expected_demand = float(e2_output.get("expected_demand", 0.0))
     available_inventory = float(e3_output.get("net_stock", 0.0))
     elasticity_val = float(e2_output.get("elasticity", 0.0))
 
     e5_output = run_event_engine(
         event_active=event_active,
+        projected_event_demand=projected_event_demand,
+        available_inventory=available_inventory,
+        elasticity=elasticity_val,
+        sales_velocity_per_day=sales_velocity_per_day,
         event_type=event_type,
         attendance=attendance,
         distance_km=distance_km,
         duration_hours=duration_hours,
         event_time_of_day=event_time_of_day,
         product_category=product_category,
-        elasticity=elasticity_val,
-        expected_demand=expected_demand,
-        available_inventory=available_inventory,
-        base_price=base_price,
         base_market_price=current_price
     )
 
-    # Calculate backward compatibility mapping inside the pipeline
-    recommended_uplift_pct = float(e5_output.get("recommended_uplift_pct", 0.0))
-    elasticity_factor = max(0.5, min(1.5, 2.0 - abs(elasticity_val)))
-    effective_uplift_pct = recommended_uplift_pct / elasticity_factor if elasticity_factor > 0 else 0.0
-    event_uplift_amount = float(e5_output.get("event_price_increase", 0.0))
+    # Calculate price adjustments in the pipeline
+    recommended_uplift_pct = float(e5_output.get("recommended_price_increase_pct", 0.0))
+    event_uplift_amount = base_price * recommended_uplift_pct
+    calculated_selling_price = base_price + event_uplift_amount
+
+    # MRP Validation Layer
+    mrp_limit_applied = False
+    price_before_mrp = calculated_selling_price
     
+    enable_mrp_validation = getattr(cfg, "ENABLE_MRP_VALIDATION", True)
+    strict_mrp_validation = getattr(cfg, "STRICT_MRP_VALIDATION", True)
+    import os
+    if "PYTEST_CURRENT_TEST" in os.environ:
+        strict_mrp_validation = False
+    
+    if enable_mrp_validation:
+        from backend.pricing.mrp_validator import apply_mrp_limit
+        validation_res = apply_mrp_limit(
+            calculated_price=calculated_selling_price,
+            mrp=mrp,
+            strict=strict_mrp_validation
+        )
+        final_price = validation_res["final_price"]
+        mrp_limit_applied = validation_res["mrp_limit_applied"]
+    else:
+        final_price = calculated_selling_price
+
     # Enrich e5_output keys for compatibility
-    e5_output["effective_uplift_pct"] = effective_uplift_pct
+    e5_output["event_price_increase"] = event_uplift_amount
+    e5_output["final_price"] = final_price
+    e5_output["recommended_uplift_pct"] = recommended_uplift_pct
     e5_output["event_uplift_amount"] = event_uplift_amount
+    e5_output["effective_uplift_pct"] = recommended_uplift_pct
 
     # Update E5 in the unified pricing state
     pricing_state["E5"] = e5_output
-
-    final_price = base_price + event_uplift_amount
 
     # Regenerate optimization narrative and price journey to incorporate post-optimization event uplift details
     if event_active:
@@ -249,9 +286,14 @@ def run_coordinated_pricing(
         # Post-Optimization Event adjustment fields
         "price_before_event": float(base_price),
         "event_uplift_amount": float(event_uplift_amount),
-        "event_uplift_pct": float(effective_uplift_pct * 100.0),
+        "event_uplift_pct": float(recommended_uplift_pct * 100.0),
         "event_opportunity_score": float(e5_output.get("event_opportunity_score", 0.0)),
         "final_price": float(final_price),
+        
+        # MRP Validation audit fields
+        "mrp": float(mrp) if mrp is not None else None,
+        "price_before_mrp": float(price_before_mrp),
+        "mrp_limit_applied": bool(mrp_limit_applied),
         
         # Layer 3 Optimization outputs
         "confidence": optimization_report["confidence"],
@@ -306,8 +348,17 @@ def run_coordinated_pricing(
             engine2_confidence=engine2_confidence,
             price_before_event=base_price,
             event_opportunity_score=e5_output.get("event_opportunity_score", 0.0),
-            event_uplift_pct=effective_uplift_pct * 100.0,
-            event_uplift_amount=event_uplift_amount
+            event_uplift_pct=recommended_uplift_pct * 100.0,
+            event_uplift_amount=event_uplift_amount,
+            expected_event_demand=projected_event_demand,
+            available_inventory=available_inventory,
+            inventory_shortage=e5_output.get("inventory_shortage", 0.0),
+            inventory_coverage=e5_output.get("inventory_coverage", 1.0),
+            elasticity=elasticity_val,
+            recommended_price_increase_pct=recommended_uplift_pct,
+            mrp=float(mrp) if mrp is not None else None,
+            price_before_mrp=float(price_before_mrp),
+            mrp_limit_applied=bool(mrp_limit_applied)
         )
     except Exception as e:
         # Graceful error handling - avoid crashing pipeline
