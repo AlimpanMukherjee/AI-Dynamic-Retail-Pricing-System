@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import os
 from backend.layer1.shared_utils import load_csv
+import backend.config as cfg
 
 
 # -----------------------------
@@ -58,19 +59,21 @@ def compute_market_metrics(df_product, our_price=None, market_trend_score=0.5):
     # High competitor ratings -> High pressure (stronger competitor quality threat)
     promotion_rate = float(df_product["promotion_active"].astype(bool).mean())
     
-    # Normalize rating from 0.0 to 1.0 (assuming max rating of 5.0)
+    # Normalize rating from 0.0 to 1.0 (assuming max rating from config)
     avg_rating = float(df_product["rating"].mean())
-    rating_score = np.clip(avg_rating / 5.0, 0.0, 1.0)
+    rating_score = np.clip(avg_rating / cfg.MAX_COMPETITOR_RATING, 0.0, 1.0)
 
-    # Blended score: 40% promo activity, 40% rating threat, 20% market trend
-    market_pressure = (0.4 * promotion_rate) + (0.4 * rating_score) + (0.2 * market_trend_score)
+    # Blended score using weights defined in config
+    market_pressure = (cfg.MARKET_PRESSURE_WEIGHTS["promotion"] * promotion_rate) + \
+                      (cfg.MARKET_PRESSURE_WEIGHTS["rating"] * rating_score) + \
+                      (cfg.MARKET_PRESSURE_WEIGHTS["trend"] * market_trend_score)
     market_pressure = np.clip(market_pressure, 0.0, 1.0)
 
     # 4. Recommended Multiplier
     # If we are overpriced (gap > 0), lower our price (multiplier < 1.0)
     # If we are underpriced (gap < 0), we have room to raise price (multiplier > 1.0)
-    # Limit changes to +/- 15%
-    recommended_multiplier = 1.0 - np.clip(competitive_gap_pct, -0.15, 0.15)
+    # Limit changes according to max competitiveness adjustment from config
+    recommended_multiplier = 1.0 - np.clip(competitive_gap_pct, -cfg.MAX_COMPETITIVENESS_ADJUSTMENT, cfg.MAX_COMPETITIVENESS_ADJUSTMENT)
 
     return {
         "our_price": float(round(our_price, 2)),
@@ -139,7 +142,9 @@ def run_pipeline(competitors_csv=None, sales_csv=None, target_product_id="SKU_10
         "competitor_band": metrics["competitor_band"],
         "market_pressure": metrics["market_pressure"],
         "competitive_gap": metrics["competitive_gap"],
-        "recommended_multiplier": metrics["recommended_multiplier"]
+        "recommended_multiplier": metrics["recommended_multiplier"],
+        "median_competitor_price": metrics["median_competitor_price"],
+        "competitor_count": len(df_product)
     }
 
 

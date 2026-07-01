@@ -1,17 +1,7 @@
+import backend.config as cfg
 import pandas as pd
 import numpy as np
 import os
-
-# Target margins based on product category
-CATEGORY_MARGINS = {
-    "staples": 0.05,
-    "packaged foods": 0.10,
-    "dairy": 0.12,
-    "beverages": 0.10,
-    "snacks": 0.15,
-    "personal care": 0.20
-}
-DEFAULT_MARGIN = 0.10
 
 # -----------------------------
 # STEP 1: LOAD DATA & JOIN
@@ -76,7 +66,7 @@ def compute_procurement_metrics(df_product_suppliers, target_supplier_id=None, c
     warehouse_cost = float(supplier_row.get("warehouse_cost", 0))
     gst_tax = float(supplier_row.get("gst_tax", 0))
     reliability = float(supplier_row.get("supplier_reliability", 1.0))
-    lead_time_days = float(supplier_row.get("lead_time_days", 5.0))
+    lead_time_days = float(supplier_row.get("lead_time_days", cfg.DEFAULT_LEAD_TIME))
     category = str(supplier_row.get("category", "")).lower()
 
     # 3. True Landed Cost (incorporating currency fluctuations)
@@ -84,18 +74,18 @@ def compute_procurement_metrics(df_product_suppliers, target_supplier_id=None, c
     true_landed_cost = adjusted_supplier_price + freight_cost + warehouse_cost + gst_tax
 
     # 4. Supply Risk (0.0 to 1.0)
-    # Higher risk if reliability is low, and if lead times are long (normalized to 15 days scale)
+    # Higher risk if reliability is low, and if lead times are long (normalized to lead time risk scale)
     reliability_risk = 1.0 - reliability
-    lead_time_risk = np.clip(lead_time_days / 15.0, 0.0, 1.0)
-    supply_risk = (0.7 * reliability_risk) + (0.3 * lead_time_risk)
+    lead_time_risk = np.clip(lead_time_days / cfg.LEAD_TIME_RISK_SCALE, 0.0, 1.0)
+    supply_risk = (cfg.SUPPLY_RISK_RELIABILITY_WEIGHT * reliability_risk) + (cfg.SUPPLY_RISK_LEAD_TIME_WEIGHT * lead_time_risk)
     supply_risk = np.clip(supply_risk, 0.0, 1.0)
 
     # 5. Category-Specific Margin
-    minimum_margin_pct = CATEGORY_MARGINS.get(category, DEFAULT_MARGIN)
+    minimum_margin_pct = cfg.CATEGORY_MARGINS.get(category, cfg.DEFAULT_TARGET_MARGIN)
 
     # 6. Risk Buffer
-    # Buffer up to 10% of landed cost based on supply risk, and 5% based on cost volatility
-    risk_buffer = true_landed_cost * ((supply_risk * 0.10) + (cost_volatility * 0.05))
+    # Buffer up to supply risk buffer weight of landed cost based on supply risk, and volatility risk weight based on cost volatility
+    risk_buffer = true_landed_cost * ((supply_risk * cfg.RISK_BUFFER_SUPPLY_WEIGHT) + (cost_volatility * cfg.RISK_BUFFER_VOLATILITY_WEIGHT))
 
     # 7. Minimum Safe Price
     # minimum_safe_price = landed_cost + risk_buffer + minimum_margin

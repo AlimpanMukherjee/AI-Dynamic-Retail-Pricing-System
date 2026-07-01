@@ -2,16 +2,7 @@ import pandas as pd
 import numpy as np
 import os
 from backend.layer1.shared_utils import load_csv
-
-
-# Lead time mapping based on warehouse location (fallback in case lead_time_days is missing)
-LOCATION_LEAD_TIME = {
-    "Mumbai": 5,
-    "Delhi": 6,
-    "Kolkata": 7,
-    "Bengaluru": 8
-}
-DEFAULT_LEAD_TIME = 7
+import backend.config as cfg
                                                                                         
 # -----------------------------
 # STEP 2: INVENTORY COMPUTATION
@@ -45,7 +36,7 @@ def compute_inventory_metrics(row):
     stock_age = float(row.get("stock_age_days", 0))
     
     # Get safety stock
-    safety_stock = float(row.get("safety_stock", reorder_point * 0.4))
+    safety_stock = float(row.get("safety_stock", reorder_point * cfg.SAFETY_STOCK_FACTOR))
 
     # 2. Get Lead Time
     if "lead_time_days" in row:
@@ -54,7 +45,7 @@ def compute_inventory_metrics(row):
         lead_time = float(row["lead_time"])
     else:
         location = row.get("warehouse_location", "")
-        lead_time = float(LOCATION_LEAD_TIME.get(location, DEFAULT_LEAD_TIME))
+        lead_time = float(cfg.LOCATION_LEAD_TIMES.get(location, cfg.DEFAULT_LEAD_TIME_DAYS))
 
     # 3. Days of Supply (using net available stock, avoid divide-by-zero)
     days_of_supply = net_stock / (sales_velocity + 1e-5)
@@ -67,7 +58,7 @@ def compute_inventory_metrics(row):
         stockout_risk = 1.0
     else:
         # Scale risk between lead_time and lead_time + safety_days
-        divisor = safety_days if safety_days > 0 else 3.0
+        divisor = safety_days if safety_days > 0 else cfg.DEFAULT_SAFETY_DAYS
         stockout_risk = np.clip(1.0 - (days_of_supply - lead_time) / divisor, 0.0, 1.0)
 
     # Fallback to dataset-provided risk if present and we want comparison
@@ -76,29 +67,9 @@ def compute_inventory_metrics(row):
     # -------------------------------------------------------------------------
     # 5. INVENTORY PRESSURE (-1.0 to 1.0)
     # -------------------------------------------------------------------------
-    # Named constants for Days of Supply thresholds representing inventory pressure states.
-    # Declared explicitly to prevent "magic numbers" and make scaling readable.
-    CRITICAL_UNDERSTOCK_DAYS = 3.0
-    UNDERSTOCK_DAYS = 7.0
-    SHORTAGE_DAYS = 15.0
-    HEALTHY_STOCK_DAYS = 30.0
-    OVERSTOCK_DAYS = 60.0
-    HEAVY_OVERSTOCK_DAYS = 120.0
-    EXTREME_OVERSTOCK_DAYS = 180.0
-    MAX_SATURATION_DAYS = 360.0
-
-    # Keypoints for piecewise linear mapping from days of supply to inventory pressure
-    DOS_KEYPOINTS = [
-        0.0,
-        CRITICAL_UNDERSTOCK_DAYS,
-        UNDERSTOCK_DAYS,
-        SHORTAGE_DAYS,
-        HEALTHY_STOCK_DAYS,
-        OVERSTOCK_DAYS,
-        HEAVY_OVERSTOCK_DAYS,
-        EXTREME_OVERSTOCK_DAYS,
-        MAX_SATURATION_DAYS
-    ]
+    # Derive DOS_KEYPOINTS safely using explicit ordered key arrays to guarantee correctness
+    keys = ["critical", "understock", "shortage", "healthy", "overstock", "heavy_overstock", "extreme_overstock", "max_saturation"]
+    dos_points = [0.0] + [float(cfg.INVENTORY_THRESHOLDS[k]) for k in keys]
 
     # Target pressure values corresponding to each keypoint.
     # Map Days of Supply to pressure zones:
@@ -110,10 +81,10 @@ def compute_inventory_metrics(row):
     #   - 60-120 days: overstock, maps between 0.3 and 0.6
     #   - 120-180 days: heavy overstock, maps between 0.6 and 0.8
     #   - 180+ days: approaches extreme saturation, mapping up to 1.0 (at 360 days)
-    PRESSURE_KEYPOINTS = [-1.0, -1.0, -0.7, -0.45, 0.0, 0.3, 0.6, 0.8, 1.0]
+    pressure_keypoints = cfg.INVENTORY_PRESSURE_KEYPOINTS
 
     # Perform continuous piecewise linear interpolation to determine inventory pressure
-    inventory_pressure = float(np.interp(days_of_supply, DOS_KEYPOINTS, PRESSURE_KEYPOINTS))
+    inventory_pressure = float(np.interp(days_of_supply, dos_points, pressure_keypoints))
 
     # -------------------------------------------------------------------------
     # 6. URGENCY SCORE (0.0 to 1.0)
@@ -123,10 +94,9 @@ def compute_inventory_metrics(row):
     stockout_urgency = stockout_risk
 
     # B. Liquidation Urgency: Driven by positive inventory pressure (overstock) and stock age.
-    # We apply a slower aging factor (LIQUIDATION_AGE_FACTOR = 180 days) to prevent stock
+    # We apply a slower aging factor to prevent stock
     # that is only moderately aged (e.g. 60-90 days) from escalating into critical emergency.
-    LIQUIDATION_AGE_FACTOR = 180.0
-    liquidation_urgency = max(0.0, inventory_pressure) * (stock_age / LIQUIDATION_AGE_FACTOR)
+    liquidation_urgency = max(0.0, inventory_pressure) * (stock_age / cfg.LIQUIDATION_AGE_FACTOR)
     liquidation_urgency = float(np.clip(liquidation_urgency, 0.0, 1.0))
 
     # The final urgency score is the maximum of the two urgency signals.
@@ -137,13 +107,11 @@ def compute_inventory_metrics(row):
     # -------------------------------------------------------------------------
     # - Negative pressure (understock) -> Raise price (premium up to +10%)
     # - Positive pressure (overstock) -> Lower price (discount down to -15%)
-    MAX_DISCOUNT = 0.15
-    MAX_PREMIUM = 0.10
     
     if inventory_pressure >= 0:
-        recommended_multiplier = 1.0 - (inventory_pressure * MAX_DISCOUNT)
+        recommended_multiplier = 1.0 - (inventory_pressure * cfg.MAX_INVENTORY_DISCOUNT)
     else:
-        recommended_multiplier = 1.0 - (inventory_pressure * MAX_PREMIUM)
+        recommended_multiplier = 1.0 - (inventory_pressure * cfg.MAX_INVENTORY_PREMIUM)
 
     return {
         "net_stock": float(net_stock),

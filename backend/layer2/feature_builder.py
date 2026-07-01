@@ -69,13 +69,13 @@ def build_feature_vector(pricing_state, business_context):
     event_score = float(e5_data.get("event_score", 0.0))
 
     # 2. Encode Business Context Signals
-    retailer_type = business_context.get("retailer_type", "standard")
+    retailer_type = business_context.get("retailer_type", "discount")
     # Supporting both potential keys: business_strategy or business_mode
-    business_strategy = business_context.get("business_strategy", business_context.get("business_mode", "balanced"))
+    business_strategy = business_context.get("business_strategy", business_context.get("business_mode", "volume_first"))
     region = business_context.get("region", "urban")
 
-    retailer_enc = encode_categorical(retailer_type, RETAILER_TYPE_MAP, default=1.0)
-    strategy_enc = encode_categorical(business_strategy, BUSINESS_STRATEGY_MAP, default=1.0)
+    retailer_enc = encode_categorical(retailer_type, RETAILER_TYPE_MAP, default=0.0)
+    strategy_enc = encode_categorical(business_strategy, BUSINESS_STRATEGY_MAP, default=0.0)
     region_enc = encode_categorical(region, REGION_MAP, default=0.0)
 
     # 3. Assemble final flat vector

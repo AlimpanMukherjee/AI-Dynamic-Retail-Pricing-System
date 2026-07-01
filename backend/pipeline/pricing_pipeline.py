@@ -82,8 +82,8 @@ def run_coordinated_pricing(
     # 1. Fallback to default business context if not provided
     if business_context is None:
         business_context = {
-            "retailer_type": "standard",
-            "business_strategy": "balanced",
+            "retailer_type": "discount",
+            "business_strategy": "volume_first",
             "region": "urban"
         }
 
@@ -392,8 +392,8 @@ if __name__ == "__main__":
     store = "Hyderabad"
     
     context = {
-        "retailer_type": "standard",
-        "business_strategy": "balanced",
+        "retailer_type": "discount",
+        "business_strategy": "volume_first",
         "region": "urban"
     }
     

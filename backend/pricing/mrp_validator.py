@@ -1,7 +1,9 @@
+import backend.config as cfg
+
 def apply_mrp_limit(
     calculated_price: float,
     mrp: float,
-    strict: bool = True
+    strict: bool = None
 ) -> dict:
     """
     Enforces the Maximum Retail Price (MRP) constraint on calculated selling price.
@@ -14,6 +16,9 @@ def apply_mrp_limit(
     Returns:
         dict: A status summary containing calculated_price, mrp, final_price, and mrp_limit_applied.
     """
+    if strict is None:
+        strict = getattr(cfg, "STRICT_MRP_VALIDATION", True)
+
     if mrp is None or mrp <= 0:
         if strict:
             raise ValueError(f"Invalid or missing product MRP: {mrp}")

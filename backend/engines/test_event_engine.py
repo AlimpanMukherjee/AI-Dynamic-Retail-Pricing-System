@@ -88,3 +88,15 @@ def test_scenario_6_demand_sanity_warnings():
     )
     assert len(result["warnings"]) > 0
     assert "Projected demand" in result["warnings"][0]
+
+def test_scenario_7_none_elasticity():
+    # Scenario 7: elasticity is None -> should fall back to cfg.DEFAULT_ELASTICITY
+    result = run_pipeline(
+        event_active=True,
+        projected_event_demand=100.0,
+        available_inventory=50.0,
+        elasticity=None,
+        base_market_price=60.0
+    )
+    assert result["elasticity"] == -cfg.DEFAULT_ELASTICITY
+

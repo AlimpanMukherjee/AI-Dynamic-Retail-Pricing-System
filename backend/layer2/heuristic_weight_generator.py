@@ -115,8 +115,8 @@ def generate_heuristic_weights(pricing_state, business_context):
 
     # Business context string parsing
     ctx = business_context if isinstance(business_context, dict) else {}
-    retailer_type = str(ctx.get("retailer_type", "standard")).lower()
-    strategy = str(ctx.get("business_strategy", ctx.get("business_mode", "balanced"))).lower()
+    retailer_type = str(ctx.get("retailer_type", "discount")).lower()
+    strategy = str(ctx.get("business_strategy", ctx.get("business_mode", "volume_first"))).lower()
 
     # -------------------------------------------------------------------------
     # 2. Defensive Clipping / Signal Normalization

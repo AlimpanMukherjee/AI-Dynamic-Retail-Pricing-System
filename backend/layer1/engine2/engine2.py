@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 import backend.config as cfg
-from backend.layer1.engine2.config import FEATURE_COLUMNS, PRICE_RANGE_MULTIPLIERS
+from backend.layer1.engine2.config import FEATURE_COLUMNS
 from backend.layer1.engine2.data_loader import load_and_join_data
 from backend.layer1.engine2.preprocessing import preprocess
 from backend.layer1.engine2.trainer import train_model
@@ -179,7 +179,7 @@ def run_pipeline(
         if not any(f in features for f in identity_features):
             exp_demand = exp_demand * target_ret_strength * target_loc_strength
             
-        price_range = np.linspace(opt_price * PRICE_RANGE_MULTIPLIERS["min_multiplier"], opt_price * PRICE_RANGE_MULTIPLIERS["max_multiplier"], PRICE_RANGE_MULTIPLIERS["num_candidates"])
+        price_range = np.linspace(opt_price * cfg.PRICE_RANGE_MIN_MULTIPLIER, opt_price * cfg.PRICE_RANGE_MAX_MULTIPLIER, cfg.PRICE_RANGE_NUM_CANDIDATES)
         demand_points = exp_demand * (price_range / opt_price) ** min(0.0, elast)
         df_curve = pd.DataFrame({"price": price_range, "demand": demand_points})
         df_curve = calculate_revenue(df_curve)
@@ -214,9 +214,9 @@ def run_pipeline(
 
     # Generate candidate prices specifically for this product
     price_range = np.linspace(
-        df_product_localized["price"].min() * PRICE_RANGE_MULTIPLIERS["min_multiplier"],
-        df_product_localized["price"].max() * PRICE_RANGE_MULTIPLIERS["max_multiplier"],
-        PRICE_RANGE_MULTIPLIERS["num_candidates"]
+        df_product_localized["price"].min() * cfg.PRICE_RANGE_MIN_MULTIPLIER,
+        df_product_localized["price"].max() * cfg.PRICE_RANGE_MAX_MULTIPLIER,
+        cfg.PRICE_RANGE_NUM_CANDIDATES
     )
 
     df_curve_hist = generate_demand_curve(model, features, base_row, price_range)
@@ -249,7 +249,7 @@ def run_pipeline(
         exp_demand = hybrid_metrics["expected_demand"]
         elast = hybrid_metrics["elasticity"]
 
-        price_range = np.linspace(opt_price * PRICE_RANGE_MULTIPLIERS["min_multiplier"], opt_price * PRICE_RANGE_MULTIPLIERS["max_multiplier"], PRICE_RANGE_MULTIPLIERS["num_candidates"])
+        price_range = np.linspace(opt_price * cfg.PRICE_RANGE_MIN_MULTIPLIER, opt_price * cfg.PRICE_RANGE_MAX_MULTIPLIER, cfg.PRICE_RANGE_NUM_CANDIDATES)
         demand_points = exp_demand * (price_range / opt_price) ** min(0.0, elast)
         df_curve = pd.DataFrame({"price": price_range, "demand": demand_points})
         df_curve = calculate_revenue(df_curve)

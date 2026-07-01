@@ -5,12 +5,7 @@ import backend.config as cfg
 
 logger = logging.getLogger("pricing_system.engines.event_engine")
 
-# Default settings (if not found in config)
-DEFAULT_MAX_PRICE_INCREASE = 0.20
-DEFAULT_MIN_PRICE_INCREASE = 0.01
-DEFAULT_WARNING_MULTIPLIER = 20
-DEFAULT_ELASTICITY = 1.5
-PRICE_ROUNDING = 0.005
+# Event pricing engine logic using configs from config.py
 
 class EventEngine:
     """
@@ -42,10 +37,10 @@ class EventEngine:
         Runs the demand-driven scarcity pricing analysis.
         """
         # Load configs
-        max_increase = getattr(cfg, "MAX_EVENT_PRICE_INCREASE", DEFAULT_MAX_PRICE_INCREASE)
-        min_increase = getattr(cfg, "MIN_EVENT_PRICE_INCREASE", DEFAULT_MIN_PRICE_INCREASE)
-        warning_mult = getattr(cfg, "EVENT_WARNING_MULTIPLIER", DEFAULT_WARNING_MULTIPLIER)
-        sanity_check_enabled = getattr(cfg, "ENABLE_EVENT_DEMAND_SANITY_CHECK", True)
+        max_increase = cfg.MAX_EVENT_PRICE_INCREASE
+        min_increase = cfg.MIN_EVENT_PRICE_INCREASE
+        warning_mult = cfg.EVENT_WARNING_MULTIPLIER
+        sanity_check_enabled = cfg.ENABLE_EVENT_DEMAND_SANITY_CHECK
 
         warnings = []
         reasoning = []
@@ -60,7 +55,7 @@ class EventEngine:
                 "inventory_shortage": 0.0,
                 "inventory_coverage": 1.0,
                 "scarcity_score": 0.0,
-                "elasticity": float(elasticity) if elasticity is not None else -DEFAULT_ELASTICITY,
+                "elasticity": float(elasticity) if elasticity is not None else -cfg.DEFAULT_ELASTICITY,
                 "elasticity_factor": 1.0,
                 "recommended_price_increase_pct": 0.0,
                 "estimated_demand_after_increase": 0.0,
@@ -110,9 +105,9 @@ class EventEngine:
         stock_sufficient = (effective_inventory >= projected_demand)
         inventory_shortage = max(0.0, projected_demand - effective_inventory)
 
-        # 3. Elasticity adjustment factor (2.0 - abs(elasticity) clamped to [0.5, 1.5])
-        elasticity_abs = abs(elasticity) if elasticity is not None else DEFAULT_ELASTICITY
-        elasticity_factor = max(0.5, min(1.5, 2.0 - elasticity_abs))
+        # 3. Elasticity adjustment factor (2.0 - abs(elasticity) clamped to min/max limits)
+        elasticity_abs = abs(elasticity) if elasticity is not None else cfg.DEFAULT_ELASTICITY
+        elasticity_factor = max(cfg.ELASTICITY_FACTOR_LIMITS["min"], min(cfg.ELASTICITY_FACTOR_LIMITS["max"], 2.0 - elasticity_abs))
 
         # 4. Scarcity and Elasticity-Based Uplift
         raw_increase_pct = scarcity_score * elasticity_factor
@@ -130,8 +125,8 @@ class EventEngine:
             recommended_price_increase_pct = raw_increase_pct
             decision = "Increase Price"
 
-        # Apply Price Rounding to nearest 0.5% (PRICE_ROUNDING = 0.005)
-        recommended_price_increase_pct = round(recommended_price_increase_pct / PRICE_ROUNDING) * PRICE_ROUNDING
+        # Apply Price Rounding increment
+        recommended_price_increase_pct = round(recommended_price_increase_pct / cfg.PRICE_ROUNDING_INCREMENT) * cfg.PRICE_ROUNDING_INCREMENT
 
         # Recheck minimum threshold post-rounding
         if recommended_price_increase_pct < min_increase:
@@ -186,7 +181,7 @@ class EventEngine:
             "inventory_shortage": inventory_shortage,
             "inventory_coverage": inventory_coverage,
             "scarcity_score": scarcity_score,
-            "elasticity": float(elasticity) if elasticity is not None else -DEFAULT_ELASTICITY,
+            "elasticity": float(elasticity) if elasticity is not None else -cfg.DEFAULT_ELASTICITY,
             "elasticity_factor": elasticity_factor,
             "recommended_price_increase_pct": recommended_price_increase_pct,
             "estimated_demand_after_increase": estimated_demand_after_increase,

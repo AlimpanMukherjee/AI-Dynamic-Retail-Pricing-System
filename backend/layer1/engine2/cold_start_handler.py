@@ -1,5 +1,5 @@
 import logging
-from backend.layer1.engine2.config import MODE_THRESHOLDS
+import backend.config as cfg
 
 logger = logging.getLogger("pricing_system.layer1.engine2.cold_start_handler")
 
@@ -10,10 +10,9 @@ def determine_prediction_mode(sales_records_count: int) -> str:
     - hybrid (31-100 sales records)
     - normal (>100 sales records)
     """
-    thresholds = MODE_THRESHOLDS
-    if sales_records_count <= thresholds["cold_start_max"]:
+    if sales_records_count <= cfg.COLD_START_THRESHOLD:
         return "cold_start"
-    elif sales_records_count <= thresholds["hybrid_max"]:
+    elif sales_records_count <= cfg.HYBRID_START_THRESHOLD:
         return "hybrid"
     else:
         return "normal"
@@ -23,14 +22,14 @@ def hybrid_prediction(hist_metrics: dict, sim_metrics: dict, sales_records_count
     Blends target SKU sales history with similarity-borrowed signals.
     """
     n = sales_records_count
-    if n <= 30:
+    if n <= cfg.COLD_START_THRESHOLD:
         w_hist = 0.0
-    elif n <= 31:
+    elif n <= cfg.COLD_START_THRESHOLD + 1:
         w_hist = 0.10
     elif n <= 50:
-        w_hist = 0.10 + (n - 31) / (50 - 31) * (0.30 - 0.10)
-    elif n <= 100:
-        w_hist = 0.30 + (n - 50) / (100 - 50) * (1.00 - 0.30)
+        w_hist = 0.10 + (n - (cfg.COLD_START_THRESHOLD + 1)) / (50 - (cfg.COLD_START_THRESHOLD + 1)) * (0.30 - 0.10)
+    elif n <= cfg.HYBRID_START_THRESHOLD:
+        w_hist = 0.30 + (n - 50) / (cfg.HYBRID_START_THRESHOLD - 50) * (1.00 - 0.30)
     else:
         w_hist = 1.0
 

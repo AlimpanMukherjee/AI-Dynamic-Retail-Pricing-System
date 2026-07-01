@@ -1,6 +1,7 @@
 import numpy as np
 import logging
 from typing import Dict, Any
+import backend.config as cfg
 
 # Configure logging
 logger = logging.getLogger("pricing_system.layer3.scoring_engine")
@@ -266,6 +267,52 @@ class PricingScorer:
             (w4 * market_score) + 
             event_component
         )
+
+        # Compute Competitive Score Adjustment if enabled
+        enable_adjustment = getattr(cfg, "ENABLE_COMPETITIVE_PRICING_ADJUSTMENT", True)
+        competitive_score_adjustment = 0.0
+        
+        if enable_adjustment:
+            e4_data = pricing_state.get("E4", {})
+            competitor_median_price = float(e4_data.get("median_competitor_price", 0.0))
+            market_pressure = float(e4_data.get("market_pressure", 0.0))
+            recommended_multiplier = float(e4_data.get("recommended_multiplier", 1.0))
+            competitor_count = int(e4_data.get("competitor_count", 0))
+            min_sample_size = getattr(cfg, "MIN_COMPETITOR_SAMPLE_SIZE", 3)
+            
+            # Verify that competitor data exists and is reliable
+            if competitor_median_price > 0 and market_pressure > 0 and competitor_count >= min_sample_size:
+                competitive_gap_pct = max(0.0, (price - competitor_median_price) / competitor_median_price)
+                
+                # Ignore very small pricing differences below tolerance
+                gap_tolerance = getattr(cfg, "COMPETITIVE_PRICING_GAP_TOLERANCE", 0.02)
+                if competitive_gap_pct >= gap_tolerance:
+                    # Determine severity level multiplier
+                    levels = getattr(cfg, "COMPETITIVE_GAP_LEVELS", {"low": 0.05, "medium": 0.10, "high": 0.20})
+                    multipliers = getattr(cfg, "COMPETITIVE_GAP_MULTIPLIERS", {"low": 1.0, "medium": 1.35, "high": 1.75})
+                    
+                    if competitive_gap_pct <= levels.get("low", 0.05):
+                        severity = multipliers.get("low", 1.0)
+                    elif competitive_gap_pct <= levels.get("medium", 0.10):
+                        severity = multipliers.get("medium", 1.35)
+                    else:
+                        severity = multipliers.get("high", 1.75)
+                    
+                    # Scale penalty directionally: stronger when E4 recommends lowering price (recommended_multiplier < 1.0)
+                    market_factor = market_pressure * max(0.5, 2.0 - recommended_multiplier)
+                    
+                    # Competitive adjustment is intentionally a soft penalty.
+                    # It nudges Layer 3 toward market-competitive prices without
+                    # overriding procurement safety, demand elasticity or inventory logic.
+                    base_weight = getattr(cfg, "COMPETITIVE_PRICING_ADJUSTMENT_WEIGHT", 0.35)
+                    max_adj = getattr(cfg, "MAX_COMPETITIVE_PRICING_ADJUSTMENT", 0.15)
+                    competitive_score_adjustment = min(
+                        competitive_gap_pct * market_factor * severity * base_weight,
+                        max_adj
+                    )
+
+        # Apply internal Competitive Score Adjustment (ranking only)
+        final_score = max(0.0, final_score - competitive_score_adjustment)
 
         return {
             "price": price,
